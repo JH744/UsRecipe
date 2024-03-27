@@ -20,7 +20,8 @@ public class Member {
     private String phone;
     private int point;
     private String birth;
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private MemberRole role;
 
 
     @OneToMany(mappedBy = "inquiry_member")
