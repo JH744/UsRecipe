@@ -1,10 +1,18 @@
 package com.example.FP.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class Inquiry {
     @Id@GeneratedValue
     @Column(name = "inquiry_id")
@@ -22,4 +30,13 @@ public class Inquiry {
     @JoinColumn(name = "member_id")
     private Member inquiry_member;
 
+    public Inquiry(String inquiry_title, String inquiry_content, String inquiry_answer, LocalDateTime inquiry_date, LocalDateTime inquiry_answer_date, InquiryState inquiry_state, Member inquiry_member) {
+        this.inquiry_title = inquiry_title;
+        this.inquiry_content = inquiry_content;
+        this.inquiry_answer = inquiry_answer;
+        this.inquiry_date = inquiry_date;
+        this.inquiry_answer_date = inquiry_answer_date;
+        this.inquiry_state = inquiry_state;
+        this.inquiry_member = inquiry_member;
+    }
 }

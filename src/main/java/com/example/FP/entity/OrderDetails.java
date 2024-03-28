@@ -1,8 +1,16 @@
 package com.example.FP.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class OrderDetails {
     @Id@GeneratedValue
     @Column(name = "order_detail_id")
@@ -23,6 +31,10 @@ public class OrderDetails {
     private Ingredient orders_ingredient;
 
 
-
-
+    public OrderDetails(int ingredient_price, Orders orders_detail, Member orders_member, Ingredient orders_ingredient) {
+        this.ingredient_price = ingredient_price;
+        this.orders_detail = orders_detail;
+        this.orders_member = orders_member;
+        this.orders_ingredient = orders_ingredient;
+    }
 }
