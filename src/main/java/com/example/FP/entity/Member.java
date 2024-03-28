@@ -18,7 +18,7 @@ public class Member {
     @Id@GeneratedValue
     @Column(name = "member_id")
     private Long id;
-
+    @Column(nullable = false)
     private String userid;
     private String password;
     private String name;
@@ -73,4 +73,6 @@ public class Member {
         this.member_cart_list = member_cart_list;
         this.member_reply_list = member_reply_list;
     }
+
+
 }
