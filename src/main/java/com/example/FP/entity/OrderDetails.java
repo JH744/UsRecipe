@@ -31,6 +31,10 @@ public class OrderDetails {
     private Ingredient orders_ingredient;
 
 
-
-
+    public OrderDetails(int ingredient_price, Orders orders_detail, Member orders_member, Ingredient orders_ingredient) {
+        this.ingredient_price = ingredient_price;
+        this.orders_detail = orders_detail;
+        this.orders_member = orders_member;
+        this.orders_ingredient = orders_ingredient;
+    }
 }

@@ -25,4 +25,10 @@ public class Notice {
     private String notice_content;
     private String notice_title;
     private LocalDateTime notice_submit_date;
+
+    public Notice(String notice_content, String notice_title, LocalDateTime notice_submit_date) {
+        this.notice_content = notice_content;
+        this.notice_title = notice_title;
+        this.notice_submit_date = notice_submit_date;
+    }
 }

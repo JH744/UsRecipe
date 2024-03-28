@@ -22,4 +22,9 @@ public class OftenQuestion {
 
     private String often_question_title;
     private String often_question_answer;
+
+    public OftenQuestion(String often_question_title, String often_question_answer) {
+        this.often_question_title = often_question_title;
+        this.often_question_answer = often_question_answer;
+    }
 }

@@ -21,7 +21,12 @@ public class RecipeCategory {
 
     private String recipe_category_name;
 
+    @Builder.Default
     @OneToMany(mappedBy = "recipe_category")
     private List<Recipe> recipe_list = new ArrayList<>();
 
+    public RecipeCategory(String recipe_category_name, List<Recipe> recipe_list) {
+        this.recipe_category_name = recipe_category_name;
+        this.recipe_list = recipe_list;
+    }
 }

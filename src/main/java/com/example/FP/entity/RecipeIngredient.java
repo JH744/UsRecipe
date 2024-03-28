@@ -27,5 +27,10 @@ public class RecipeIngredient {
     @JoinColumn(name = "ingredient_id")
     private Ingredient recipe_ingredient_ingredient;
 
-
+    public RecipeIngredient(int recipe_ingredient_qty, String recipe_ingredient_need, Recipe recipe_ingredient_recipe, Ingredient recipe_ingredient_ingredient) {
+        this.recipe_ingredient_qty = recipe_ingredient_qty;
+        this.recipe_ingredient_need = recipe_ingredient_need;
+        this.recipe_ingredient_recipe = recipe_ingredient_recipe;
+        this.recipe_ingredient_ingredient = recipe_ingredient_ingredient;
+    }
 }

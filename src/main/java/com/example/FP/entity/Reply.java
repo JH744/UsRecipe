@@ -33,4 +33,13 @@ public class Reply {
     @ManyToOne
     @JoinColumn(name ="member_id")
     private Member reply_member;
+
+    public Reply(String reply_content, LocalDateTime reply_date, int reply_grade, Ingredient reply_ingredient, Recipe reply_recipe, Member reply_member) {
+        this.reply_content = reply_content;
+        this.reply_date = reply_date;
+        this.reply_grade = reply_grade;
+        this.reply_ingredient = reply_ingredient;
+        this.reply_recipe = reply_recipe;
+        this.reply_member = reply_member;
+    }
 }

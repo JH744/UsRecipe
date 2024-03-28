@@ -24,4 +24,9 @@ public class WishList {
     @ManyToOne
     @JoinColumn(name = "recipe_id")
     private Recipe wishlist_recipe;
+
+    public WishList(Member wishlist_member, Recipe wishlist_recipe) {
+        this.wishlist_member = wishlist_member;
+        this.wishlist_recipe = wishlist_recipe;
+    }
 }
