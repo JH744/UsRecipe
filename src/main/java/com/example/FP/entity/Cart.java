@@ -1,8 +1,14 @@
 package com.example.FP.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Cart {
     @Id@GeneratedValue
     @Column(name = "cart_id")

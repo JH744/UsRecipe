@@ -1,8 +1,16 @@
 package com.example.FP.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class OrderDetails {
     @Id@GeneratedValue
     @Column(name = "order_detail_id")

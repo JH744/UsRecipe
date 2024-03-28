@@ -1,9 +1,17 @@
 package com.example.FP.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "wishlist")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class WishList {
     @Id@GeneratedValue
     @Column(name = "wishlist_id")
