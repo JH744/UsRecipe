@@ -72,4 +72,8 @@ public class Recipe {
         this.recipe_cart_list = recipe_cart_list;
         this.recipe_reply_list = recipe_reply_list;
     }
+
+    public Recipe(String recipe_title) {
+        this.recipe_title = recipe_title;
+    }
 }

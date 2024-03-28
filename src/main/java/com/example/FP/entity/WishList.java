@@ -29,4 +29,9 @@ public class WishList {
         this.wishlist_member = wishlist_member;
         this.wishlist_recipe = wishlist_recipe;
     }
+
+    public static WishList createCart(Recipe recipe,Member member){
+        WishList wishList = new WishList(member,recipe);
+        return wishList;
+    }
 }
