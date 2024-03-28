@@ -2,6 +2,8 @@ package com.example.FP.dto;
 
 import com.example.FP.entity.*;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,6 +46,12 @@ public class MemberDto {
 
     public MemberDto(String userid, String password, String name, String nickname) {
         this.userid = userid;
+        this.password = password;
+        this.name = name;
+        this.nickname = nickname;
+    }
+
+    public MemberDto(String password, String name, String nickname) {
         this.password = password;
         this.name = name;
         this.nickname = nickname;
