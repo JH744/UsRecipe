@@ -1,6 +1,7 @@
 package com.example.FP.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,7 +27,7 @@ public class Member {
     private String addr;
     private String email;
     private String phone;
-    private int point;
+    private Integer point;
     private String birth;
     @Enumerated(EnumType.STRING)
     private MemberRole role;

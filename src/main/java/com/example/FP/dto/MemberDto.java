@@ -15,6 +15,7 @@ public class MemberDto {
 
     private Long id;
 
+    @Size(max = 12,min = 6 ,message = "아이디는 6~12자 사이여야합니다.")
     private String userid;
     private String password;
     private String name;

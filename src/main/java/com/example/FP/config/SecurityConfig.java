@@ -18,11 +18,11 @@ public class SecurityConfig {
                 .requestMatchers("/admin/**").hasRole("admin")
                 .anyRequest().authenticated();
 
-        http.formLogin().loginPage("/login").permitAll();
-
-        http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .invalidateHttpSession(true)
-                .logoutSuccessUrl("/login");
+//        http.formLogin().loginPage("/login").permitAll();
+//
+//        http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                .invalidateHttpSession(true)
+//                .logoutSuccessUrl("/login");
 
 
         http.httpBasic();
