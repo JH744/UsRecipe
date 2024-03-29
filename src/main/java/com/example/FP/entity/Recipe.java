@@ -23,8 +23,6 @@ public class Recipe {
     private String recipe_writer;
     private String recipe_url;
     private String recipe_thumbnail;
-    private String recipe_photo;
-    private String recipe_detail;
     private int recipe_views;
 
     @Builder.Default
@@ -55,14 +53,20 @@ public class Recipe {
     @OneToMany(mappedBy = "reply_recipe")
     private List<Reply> recipe_reply_list = new ArrayList<>();
 
+    @Builder.Default
+    @OneToMany(mappedBy = "recipe_recipe_order")
+    private List<RecipeOrder> recipe_recipe_order_list = new ArrayList<>();
 
-    public Recipe(String recipe_title, String recipe_writer, String recipe_url, String recipe_thumbnail, String recipe_photo, String recipe_detail, int recipe_views, List<WishList> wishlist_list, RecipeCategory recipe_category, Ingredient recipe_ingredient, Member recipe_member, List<RecipeIngredient> recipe_ingredient_list, List<Cart> recipe_cart_list, List<Reply> recipe_reply_list) {
+    @Builder.Default
+    @OneToMany(mappedBy = "alarm_recipe")
+    private List<Alarm> recipe_alarm = new ArrayList<>();
+
+
+    public Recipe(String recipe_title, String recipe_writer, String recipe_url, String recipe_thumbnail, int recipe_views, List<WishList> wishlist_list, RecipeCategory recipe_category, Ingredient recipe_ingredient, Member recipe_member, List<RecipeIngredient> recipe_ingredient_list, List<Cart> recipe_cart_list, List<Reply> recipe_reply_list, List<RecipeOrder> recipe_recipe_order_list, List<Alarm> recipe_alarm) {
         this.recipe_title = recipe_title;
         this.recipe_writer = recipe_writer;
         this.recipe_url = recipe_url;
         this.recipe_thumbnail = recipe_thumbnail;
-        this.recipe_photo = recipe_photo;
-        this.recipe_detail = recipe_detail;
         this.recipe_views = recipe_views;
         this.wishlist_list = wishlist_list;
         this.recipe_category = recipe_category;
@@ -71,5 +75,7 @@ public class Recipe {
         this.recipe_ingredient_list = recipe_ingredient_list;
         this.recipe_cart_list = recipe_cart_list;
         this.recipe_reply_list = recipe_reply_list;
+        this.recipe_recipe_order_list = recipe_recipe_order_list;
+        this.recipe_alarm = recipe_alarm;
     }
 }

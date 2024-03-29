@@ -2,6 +2,7 @@ package com.example.FP.dto;
 
 import com.example.FP.entity.Member;
 import com.example.FP.entity.OrderDetails;
+import com.example.FP.entity.OrderState;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,4 +32,5 @@ public class OrdersDto {
 
 
     private List<OrderDetails> order_ordersdetail_list = new ArrayList<>();
+    private OrderState orders_order_state;
 }

@@ -36,11 +36,28 @@ public class Orders {
     @JoinColumn(name = "member_id")
     private Member orders_member;
 
+    @ManyToOne
+    @JoinColumn(name = "order_state_id")
+    private OrderState orders_order_state;
+
     @Builder.Default
     @OneToMany(mappedBy = "orders_detail")
     private List<OrderDetails> order_ordersdetail_list = new ArrayList<>();
 
-    public Orders(LocalDateTime orders_date, String orders_receiver, String orders_receiver_addr, String orders_receiver_phone, int orders_total_price, int orders_sale_price, int orders_used_point, String orders_request, String orders_non_member_name, String orders_non_member_phone, Member orders_member, List<OrderDetails> order_ordersdetail_list) {
+    public Orders(LocalDateTime orders_date,
+                  String orders_receiver,
+                  String orders_receiver_addr,
+                  String orders_receiver_phone,
+                  int orders_total_price,
+                  int orders_sale_price,
+                  int orders_used_point,
+                  String orders_request,
+                  String orders_non_member_name,
+                  String orders_non_member_phone,
+                  Member orders_member,
+                  List<OrderDetails> order_ordersdetail_list,
+                  OrderState orders_order_state) {
+
         this.orders_date = orders_date;
         this.orders_receiver = orders_receiver;
         this.orders_receiver_addr = orders_receiver_addr;
@@ -53,5 +70,6 @@ public class Orders {
         this.orders_non_member_phone = orders_non_member_phone;
         this.orders_member = orders_member;
         this.order_ordersdetail_list = order_ordersdetail_list;
+        this.orders_order_state = orders_order_state;
     }
 }

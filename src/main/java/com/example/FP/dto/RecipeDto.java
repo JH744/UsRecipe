@@ -1,7 +1,6 @@
 package com.example.FP.dto;
 
 import com.example.FP.entity.*;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,8 +16,6 @@ public class RecipeDto {
     private String recipe_writer;
     private String recipe_url;
     private String recipe_thumbnail;
-    private String recipe_photo;
-    private String recipe_detail;
     private int recipe_views;
 
 
@@ -41,4 +38,8 @@ public class RecipeDto {
 
 
     private List<Reply> recipe_reply_list = new ArrayList<>();
+
+    private List<RecipeOrder> recipe_recipe_order_list = new ArrayList<>();
+
+    private List<Alarm> recipe_alarm = new ArrayList<>();
 }

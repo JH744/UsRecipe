@@ -55,7 +55,11 @@ public class Member {
     @OneToMany(mappedBy = "reply_member")
     private List<Reply> member_reply_list = new ArrayList<>();
 
-    public Member(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth, MemberRole role, List<Inquiry> inquiry_list, List<WishList> wishlist_list, List<Recipe> recipe_list, List<OrderDetails> order_member_list, List<Cart> member_cart_list, List<Reply> member_reply_list) {
+    @Builder.Default
+    @OneToMany(mappedBy = "alarm_member")
+    private List<Alarm> member_alarm_list = new ArrayList<>();
+
+    public Member(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth, MemberRole role, List<Inquiry> inquiry_list, List<WishList> wishlist_list, List<Recipe> recipe_list, List<OrderDetails> order_member_list, List<Cart> member_cart_list, List<Reply> member_reply_list, List<Alarm> member_alarm_list) {
         this.userid = userid;
         this.password = password;
         this.name = name;
@@ -72,6 +76,7 @@ public class Member {
         this.order_member_list = order_member_list;
         this.member_cart_list = member_cart_list;
         this.member_reply_list = member_reply_list;
+        this.member_alarm_list = member_alarm_list;
     }
 
 
