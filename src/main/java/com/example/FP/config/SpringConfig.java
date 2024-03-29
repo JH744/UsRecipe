@@ -17,23 +17,5 @@ public class SpringConfig {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    @Bean
-    public JavaMailSenderImpl javaMailSender(){
-        JavaMailSenderImpl jms = new JavaMailSenderImpl();
-        jms.setHost("smtp.gmail.com");
-        jms.setPort(587);
-        jms.setUsername("tjfkqm1@gmail.com");
-        jms.setPassword("rfhq dgdy atic kqmz");
-        jms.setDefaultEncoding("UTF-8");
 
-        Properties prop = new Properties();
-        prop.put("mail.smtp.starttls.enable", true);
-        prop.put("mail.smtp.auth", true);
-        prop.put("mail.smtp.ssl.checkserveridentity", true);
-        prop.put("mail.smtp.ssl.trust", "*");
-        prop.put("mail.smtp.ssl.protocols","TLSv1.2");
-        jms.setJavaMailProperties(prop);
-
-        return jms;
-    }
 }

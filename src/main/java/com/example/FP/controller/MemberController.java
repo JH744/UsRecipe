@@ -22,7 +22,6 @@ import java.util.Random;
 public class MemberController {
 
 
-    private final MailSender mailSender;
     private final MemberRepository memberRepository;
     @GetMapping("/join")
     public String join(Member member, Model model){
@@ -41,30 +40,5 @@ public class MemberController {
         return null;
     }
 
-    @GetMapping("/sendCodeEmail")
-    @ResponseBody
-    public String sendCodeEmail(String email){
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom("tjfkqm1@gmail.com");
-        mailMessage.setTo(email);
-        mailMessage.setSubject("인증번호");
 
-        Random r = new Random();
-        int a = r.nextInt(10);
-        int b = r.nextInt(10);
-        int c = r.nextInt(10);
-        int d = r.nextInt(10);
-
-        String text = "회원님의 인증번호는 ";
-        String data = a+""+b+""+c+""+d;
-
-        mailMessage.setText(text+data);
-        try {
-            mailSender.send(mailMessage);
-        }catch(Exception e) {
-            System.out.println("메일전송 오류 발생 : " + e.getMessage());
-        }
-
-        return data;
-    }
 }
