@@ -39,6 +39,11 @@ dependencies {
 	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
 	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
 	annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+	// https://mvnrepository.com/artifact/javax.mail/javax.mail-api
+	implementation group: 'javax.mail', name: 'javax.mail-api', version: '1.6.2'
+	// https://mvnrepository.com/artifact/org.springframework/spring-context-support
+	implementation group: 'org.springframework', name: 'spring-context-support', version: '6.1.4'
+
 }
 
 

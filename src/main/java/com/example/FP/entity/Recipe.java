@@ -78,4 +78,8 @@ public class Recipe {
         this.recipe_recipe_order_list = recipe_recipe_order_list;
         this.recipe_alarm = recipe_alarm;
     }
+
+    public Recipe(String recipe_title) {
+        this.recipe_title = recipe_title;
+    }
 }
