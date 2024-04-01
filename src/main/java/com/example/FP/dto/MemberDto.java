@@ -1,6 +1,7 @@
 package com.example.FP.dto;
 
 import com.example.FP.entity.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
