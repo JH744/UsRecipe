@@ -4,6 +4,7 @@ import com.example.FP.dto.MemberDto;
 import com.example.FP.entity.Member;
 import com.example.FP.mapper.MemberMapper;
 import com.example.FP.repository.MemberRepository;
+import com.example.FP.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.MailSender;
@@ -23,6 +24,7 @@ public class MemberController {
 
 
     private final MemberRepository memberRepository;
+    private final MemberService memberService;
     @GetMapping("/join")
     public String join(Member member, Model model){
         model.addAttribute("member",member);
@@ -34,11 +36,13 @@ public class MemberController {
         if(bindingResult.hasErrors()){
             return "join";
         }
-        Member member = MemberMapper.toEntity(memberDto);
-        memberRepository.save(member);
+        memberService.join(memberDto);
+
 
         return null;
     }
+
+
 
 
 }
