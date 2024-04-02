@@ -4,6 +4,7 @@
     height:110px;
     margin: 0 0 20px 0;
     padding: 0 0 0 0;
+
 }
 .headerLogo {
     margin:10px;
@@ -13,11 +14,15 @@
     background-image:url(../images/image_11.png);
     background-repeat:no-repeat;
     background-size:cover;
+
+
 }
 .headerMenu{
     margin:10px 30px 10px 10px;
     padding: 20px;
     display: flex;
+
+
 }
 .headerRight {
     width:199px;
@@ -25,8 +30,10 @@
     margin-left: 30px;
     padding: 20px;
     display: flex;
+
 }
 .loginTag {
+    color: black;
     width:70px;
     height:32px;
     margin: 10px;
@@ -34,6 +41,7 @@
     text-align:left;
     font-size:20px;
     letter-spacing:0;
+
 }
 .joinTag {
     color:rgba(0, 0, 0, 1);
@@ -45,6 +53,7 @@
     text-align:left;
     font-size:20px;
     letter-spacing:0;
+
 }
 .headerLeft {
     display: flex;
