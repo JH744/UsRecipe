@@ -1,11 +1,10 @@
-
-.hedder {
+.header{
     display: flex;
     justify-content: space-between;
     height:110px;
     top:0px;
 }
-.hedderLogo {
+.headerLogo {
     margin:10px;
     width:111px;
     height:95px;
@@ -13,13 +12,13 @@
     background-repeat:no-repeat;
     background-size:cover;
 }
-.hedderMenu{
+.headerMenu{
     margin:10px;
     margin-right: 30px;
     padding: 20px;
     display: flex;
 }
-.hedderRight {
+.headerRight {
     width:199px;
     margin:10px;
     margin-left: 30px;
@@ -35,7 +34,7 @@
     font-size:20px;
     letter-spacing:0;
 }
-.joingTag {
+.joinTag {
     color:rgba(0, 0, 0, 1);
     width:100px;
     height:32px;
@@ -46,7 +45,7 @@
     font-size:20px;
     letter-spacing:0;
 }
-.hedderLeft {
+.headerLeft {
     display: flex;
 }
 .recipeTag {
@@ -85,7 +84,7 @@
     font-size:20px;
     letter-spacing:0;
 }
-.createrTag {
+.creatorTag {
     margin:10px;
     margin-left: 10px;
     margin-right: 20px;
