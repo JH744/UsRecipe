@@ -45,6 +45,10 @@ public class MemberController {
 
         return "redirect:/joinOk";
     }
+    @GetMapping("/dataChange")
+    public String dataChangeForm(){
+        return "/dataChange";
+    }
 
     @GetMapping("/joinOk")
     public void joinOk(){}

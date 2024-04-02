@@ -84,6 +84,10 @@
             background: #D65454;
             list-style-type: none;
         }
+        .orderList_th{
+            text-align: center;
+
+        }
         .news-title{
             font-family: 'Cafe24Simplehae';
             font-size: 25px;
@@ -99,6 +103,11 @@
             padding: 30px 0 30px 0;
             border: 1px solid #dddddd;
             list-style-type: none;
+        }
+        .orderList_td{
+            text-align: center;
+            display:table-cell;
+            vertical-align:middle;
         }
         .news_list_wrap{
             border: 1px solid #dddddd;
@@ -172,7 +181,7 @@
         </aside>
         <section id="news_section">
             <div id="notion_title_wrap">
-                <span id="notion_spanB">정보변경</span><span id="notion_spanL">회원님의 정보를 변경합니다</span>
+                <span id="notion_spanB">주문목록</span><span id="notion_spanL">회원님의 주문목록을 확인할 수 있습니다.</span>
             </div>
             <hr>
             <div id="notion_box">
@@ -185,35 +194,25 @@
                     <div id="page">
                         <div class="container">
 
-                            <!-- #masthead -->
-                            <div id="content" class="site-content">
-                                <div id="primary" class="content-area column full" style="margin-top: -30px;">
-                                    <main id="main" class="site-main" role="main">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="orderList_th">번호</th>
+                                    <th scope="col" class="orderList_th">사진</th>
+                                    <th scope="col" class="orderList_th">제품명/가격</th>
+                                    <th scope="col" class="orderList_th">주문상태</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="orderList_td">1</td>
+                                    <td class="orderList_td"><img src="../static/images/image_11.png" style="width: 50px;height: 60px"></td>
+                                    <td class="orderList_td">Otto</td>
+                                    <td class="orderList_td">배송완료</td>
+                                </tr>
 
-                                        <form action="" >
-                                            <span>아이디</span><br>
-                                            <input type="text" style="width: 350px; height: 55px; border: none" readonly><br>
-                                            <span>이메일</span><br>
-                                            <input type="email" style="width: 350px; height: 55px; border: none" readonly><br>
-                                            <span>주소 입력</span><br>
-                                            <input type="text" style="width: 350px; height: 55px; border: none; margin-bottom: 10px;" placeholder="주소를 입력해주세요" >
-                                            <button id="addrFind" style="width: 70px;height: 30px;  background-color:#D65454; border: none ; color: white">주소찾기</button><br>
-                                            <input type="text" style="width: 350px; height: 55px; border: none" placeholder="상세주소 입력"><br>
-                                            <span>닉네임</span><br>
-                                            <input type="text" style="width: 350px; height: 55px; border: none"><br>
-                                            <span>비밀번호</span><br>
-                                            <input type="password" style="width: 350px; height: 55px; border: none" placeholder="새 비밀번호"><br>
-                                            <input type="password" style="width: 350px; height: 55px; border: none" placeholder="비밀번호 확인"><br>
-                                            <input type="submit" style="margin-left: 120px; background-color:#D65454; width: 150px;height: 50px; color: white" value="변경하기">
-                                        </form>
-
-
-                                    </main>
-                                    <!-- #main -->
-                                </div>
-                                <!-- #primary -->
-                            </div>
-                            <!-- #content -->
+                                </tbody>
+                            </table>
                         </div>
                         <!-- .container -->
 
@@ -225,9 +224,10 @@
                     <script src='/static/js/scripts.js'></script>
                     <script src='/static/js/masonry.pkgd.min.js'></script>
 
+                    </body>
+
                 </div>
             </div>
-
 
 
         </section>
