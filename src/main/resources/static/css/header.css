@@ -1,52 +1,76 @@
+@font-face {
+    font-family: 'JalnanGothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
-.hedder {
+.header{
     display: flex;
     justify-content: space-between;
     height:110px;
-    top:0px;
+    margin: 0 0 20px 0;
+    padding: 0 0 0 0;
+
+
+
 }
-.hedderLogo {
+
+.headerLogo {
     margin:10px;
+    padding: 0 0 0 0;
     width:111px;
     height:95px;
     background-image:url(../images/image_11.png);
     background-repeat:no-repeat;
     background-size:cover;
+
+
 }
-.hedderMenu{
-    margin:10px;
-    margin-right: 30px;
+.headerMenu{
+    margin:10px 30px 10px 10px;
     padding: 20px;
     display: flex;
+
+
 }
-.hedderRight {
+.headerRight {
     width:199px;
     margin:10px;
     margin-left: 30px;
     padding: 20px;
     display: flex;
+
 }
 .loginTag {
+
+    color: black;
     width:70px;
     height:32px;
     margin: 10px;
-    font-family:Inter;
+    font-family: 'JalnanGothic';
     text-align:left;
-    font-size:20px;
+    font-size:16px;
     letter-spacing:0;
+
 }
-.joingTag {
+span{
+    font-size:16px;
+    font-family: 'JalnanGothic';
+
+}
+.joinTag {
     color:rgba(0, 0, 0, 1);
     width:100px;
     height:32px;
     margin: 10px;
-
-    font-family:Inter;
     text-align:left;
-    font-size:20px;
+    font-size:16px;
     letter-spacing:0;
+
 }
-.hedderLeft {
+
+.headerLeft {
     display: flex;
 }
 .recipeTag {
@@ -85,7 +109,7 @@
     font-size:20px;
     letter-spacing:0;
 }
-.createrTag {
+.creatorTag {
     margin:10px;
     margin-left: 10px;
     margin-right: 20px;

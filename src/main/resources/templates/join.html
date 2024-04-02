@@ -1,668 +1,565 @@
 <!DOCTYPE html>
 <html lang="en">
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script>
-
-    $(function(){
-        $(".e45_233").click(function (){
-            alert("click!")
-        })
-
-    })
-</script>
-<link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-
-
-<style>
-
-
-    input[type="text"].e45_221,
-    input[type="text"].e45_222,
-    input[type="text"].e45_223,
-    input[type="text"].e45_238,
-    input[type="text"].e45_255,
-    input[type="text"].e45_251 {
-        border: none;
-        background-color: #F7F7FB;
-    }
-
-    .45_101 {
-        overflow:hidden;
-    }
-    .e45_101 {
-        background-color:rgba(255, 255, 255, 1);
-        width:1440px;
-        height:1400px;
-        position:absolute;
-    }
-    .e57_142 {
-        width:1440px;
-        height:200px;
-        position:absolute;
-        left:0px;
-        top:1200px;
-    }
-    .e45_102 {
-        background-color:rgba(242.24999696016312, 242.24999696016312, 242.24999696016312, 1);
-        width:1440px;
-        height:200px;
-        position:absolute;
-        left:0px;
-        top:0px;
-    }
-    .45_102 {
-           border:1px solid rgba(0, 0, 0, 1);
-       }
-    .e45_103 {
-        color:rgba(0, 0, 0, 1);
-        width:1023px;
-        height:151px;
-        position:absolute;
-        left:352px;
-        top:29px;
-        font-family:Inter;
-        text-align:left;
-        font-size:16px;
-        letter-spacing:0;
-    }
-    .e45_104 {
-        width:111px;
-        height:78px;
-        position:absolute;
-        left:187px;
-        top:56px;
-        /*background-image:url(images/image_27.png);*/
-        background-repeat:no-repeat;
-        background-size:cover;
-    }
-    .e57_141 {
-        width:332px;
-        height:205px;
-        position:absolute;
-        left:559px;
-        top:899px;
-    }
-    .e45_214 {
-        background-color:rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
-        width:330px;
-        height:55px;
-        position:absolute;
-        left:1px;
-        top:24px;
-    }
-    .e45_215 {
-        background-color:rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
-        width:330px;
-        height:55px;
-        position:absolute;
-        left:1px;
-        top:87px;
-    }
-    .e45_216 {
-        background-color:rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
-        width:330px;
-        height:55px;
-        position:absolute;
-        left:2px;
-        top:150px;
-    }
-    .e45_224 {
-        width:192px;
-        height:24px;
-        position:absolute;
-        left:64px;
-        top:41px;
-    }
-    .e45_225 {
-        color:rgba(29.000000171363354, 29.000000171363354, 29.000000171363354, 1);
-        width:156px;
-        height:24px;
-        position:absolute;
-        left:36px;
-        top:0px;
-        font-family:'Poppins';
-        text-align:left;
-        font-size:16px;
-        letter-spacing:0;
-    }
-    button {
-
-        border: none;
-    }
-
-    .e45_226 {
-        width:20px;
-        height:20px;
-        position:absolute;
-        left:0px;
-        top:2px;
-        /*background-image:url(images/logo_google_1.png);*/
-        background-repeat:no-repeat;
-        background-size:cover;
-    }
-    .e45_227 {
-        width:171px;
-        height:24px;
-        position:absolute;
-        left:100px;
-        top:102px;
-    }
-    .e45_228 {
-        color:rgba(29.000000171363354, 29.000000171363354, 29.000000171363354, 1);
-        width:171px;
-        height:24px;
-        position:absolute;
-        left:0px;
-        top:0px;
-        font-family:Poppins;
-        text-align:left;
-        font-size:16px;
-        letter-spacing:0;
-    }
-    .e45_229 {
-        width:171px;
-        height:24px;
-        position:absolute;
-        left:101px;
-        top:165px;
-    }
-    .e45_230 {
-        color:rgba(29.000000171363354, 29.000000171363354, 29.000000171363354, 1);
-        width:171px;
-        height:24px;
-        position:absolute;
-        left:0px;
-        top:0px;
-        font-family:Poppins;
-        text-align:left;
-        font-size:16px;
-        letter-spacing:0;
-    }
-
-    .45_231 {
-           border:1px solid rgba(0, 0, 0, 1);
-       }
-    .e45_231 {
-        width:330px;
-        height:0px;
-        position:absolute;
-        left:0px;
-        top:0px;
-    }
-    .e45_232 {
-        width:20px;
-        height:20px;
-        position:absolute;
-        left:64px;
-        top:106px;
-        /*background-image:url(images/image_29.png);*/
-        background-repeat:no-repeat;
-        background-size:cover;
-    }
-    .e45_235 {
-        width:21px;
-        height:20px;
-        position:absolute;
-        left:64px;
-        top:168px;
-        /*background-image:url(images/image_31.png);*/
-        background-repeat:no-repeat;
-        background-size:cover;
-    }
-    .e57_140 {
-        width:331px;
-        height:605.4029541015625px;
-        position:absolute;
-        left:560px;
-        top:278px;
-    }
-    .e45_211 {
-        background-color:rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
-        width:330px;
-        height:55px;
-        position:absolute;
-        left:1px;
-        top:145px;
-    }
-    .e45_249 {
-        background-color:rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
-        width:330px;
-        height:55px;
-        position:absolute;
-        left:1px;
-        top:249px;
-    }
-    .e45_236 {
-        background-color:rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
-        width:330px;
-        height:55px;
-        position:absolute;
-        left:1px;
-        top:32px;
-    }
-    .e45_212 {
-        background-color:rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
-        width:330px;
-        height:55px;
-        position:absolute;
-        left:1px;
-        top:416px;
-    }
-    .e45_254 {
-        background-color:rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
-        width:330px;
-        height:55px;
-        position:absolute;
-        left:1px;
-        top:312px;
-    }
-    .e45_213 {
-        background-color:rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
-        width:330px;
-        height:55px;
-        position:absolute;
-        left:1px;
-        top:479px;
-    }
-    .e45_217 {
-        background-color:rgba(255, 255, 255, 1);
-        width:330px;
-        height:55px;
-        position:absolute;
-        left:1px;
-        top:542px;
-    }
-    .e45_218 {
-        color:rgba(255, 255, 255, 1);
-        width:62px;
-        height:24px;
-        position:absolute;
-        left:135px;
-        top:557px;
-        font-family:Poppins;
-        text-align:center;
-        font-size:16px;
-        letter-spacing:0;
-    }
-    .e45_219 {
-        color:rgba(29.000000171363354, 29.000000171363354, 29.000000171363354, 1);
-        width:50px;
-        height:24px;
-        position:absolute;
-        left:1px;
-        top:113px;
-        font-family:Poppins;
-        text-align:left;
-        font-size:16px;
-        letter-spacing:0;
-    }
-    .e45_250 {
-        color:rgba(29.000000171363354, 29.000000171363354, 29.000000171363354, 1);
-        width:70px;
-        height:24px;
-        position:absolute;
-        left:1px;
-        top:217px;
-        font-family:Poppins;
-        text-align:left;
-        font-size:16px;
-        letter-spacing:0;
-    }
-    .e45_237 {
-        color:rgba(29.000000171363354, 29.000000171363354, 29.000000171363354, 1);
-        width:50px;
-        height:24px;
-        position:absolute;
-        left:1px;
-        top:0px;
-        font-family:Poppins;
-        text-align:left;
-        font-size:16px;
-        letter-spacing:0;
-    }
-    .e45_220 {
-        color:rgba(29.000000171363354, 29.000000171363354, 29.000000171363354, 1);
-        width:65px;
-        height:24px;
-        position:absolute;
-        left:0px;
-        top:384px;
-        font-family:Poppins;
-        text-align:left;
-        font-size:16px;
-        letter-spacing:0;
-    }
-    .e45_221 {
-        color:rgba(165.00000536441803, 166.00000530481339, 185.00000417232513, 1);
-        width:93px;
-        height:24px;
-        position:absolute;
-        left:17px;
-        top:494px;
-        font-family:Poppins;
-        text-align:left;
-        font-size:16px;
-        letter-spacing:0;
-    }
-    .e45_222 {
-        color:rgba(165.00000536441803, 166.00000530481339, 185.00000417232513, 1);
-        width:59px;
-        height:24px;
-        position:absolute;
-        left:17px;
-        top:431px;
-        font-family:Poppins;
-        text-align:left;
-        font-size:16px;
-        letter-spacing:0;
-    }
-    .e45_255 {
-        color:rgba(165.00000536441803, 166.00000530481339, 185.00000417232513, 1);
-        width:149px;
-        height:24px;
-        position:absolute;
-        left:17px;
-        top:327px;
-        font-family:Poppins;
-        text-align:left;
-        font-size:16px;
-        letter-spacing:0;
-    }
-    .e45_223 {
-        color:rgba(165.00000536441803, 166.00000530481339, 185.00000417232513, 1);
-        width:220px;
-        height:24px;
-        position:absolute;
-        left:17px;
-        top:160px;
-        font-family:Poppins;
-        text-align:left;
-        font-size:16px;
-        letter-spacing:0;
-    }
-    .e45_251 {
-        color:rgba(165.00000536441803, 166.00000530481339, 185.00000417232513, 1);
-        width:220px;
-        height:24px;
-        position:absolute;
-        left:17px;
-        top:264px;
-        font-family:Poppins;
-        text-align:left;
-        font-size:16px;
-        letter-spacing:0;
-    }
-    .e45_238 {
-        color:rgba(165.00000536441803, 166.00000530481339, 185.00000417232513, 1);
-        width:220px;
-        height:24px;
-        position:absolute;
-        left:17px;
-        top:47px;
-        font-family:Poppins;
-        text-align:left;
-        font-size:16px;
-        letter-spacing:0;
-    }
-    .e45_233 {
-        background-color:rgba(213.5625395178795, 83.7318965792656, 83.7318965792656, 1);
-        width:330px;
-        height:55.402931213378906px;
-        position:absolute;
-        left:1px;
-        top:550px;
-        color: white;
-    }
-    .e45_241 {
-        background-color:rgba(213.5625395178795, 83.7318965792656, 83.7318965792656, 1);
-        width:77px;
-        height:25px;
-        position:absolute;
-        left:248px;
-        top:47px;
-        border-radius:20px;
-        color: white;
-    }
-    .e45_243 {
-        background-color:rgba(213.5625395178795, 83.7318965792656, 83.7318965792656, 1);
-        width:77px;
-        color: white;
-        height:25px;
-        position:absolute;
-        left:246px;
-        top:160px;
-        border-radius:20px;
-    }
-    .e45_252 {
-        background-color:rgba(213.5625395178795, 83.7318965792656, 83.7318965792656, 1);
-        width:77px;
-        height:25px;
-        position:absolute;
-        left:246px;
-        top:264px;
-        border-radius:20px;
-        color: white;
-    }
-    .e45_234 {
-        color:rgba(255, 255, 255, 1);
-        width:62px;
-        height:24.175825119018555px;
-        position:absolute;
-        left:135px;
-        top:565px;
-        font-family:Poppins;
-        text-align:center;
-        font-size:16px;
-        letter-spacing:0;
-    }
-    .e45_242 {
-        color:rgba(255, 255, 255, 1);
-        width:68px;
-        height:20px;
-        position:absolute;
-        left:252px;
-        top:50px;
-        font-family:Poppins;
-        text-align:center;
-        font-size:14px;
-        letter-spacing:0;
-    }
-    .e45_244 {
-        color:rgba(255, 255, 255, 1);
-        width:68px;
-        height:20px;
-        position:absolute;
-        left:250px;
-        top:163px;
-        font-family:Poppins;
-        text-align:center;
-        font-size:14px;
-        letter-spacing:0;
-    }
-    .e45_253 {
-        color:rgba(255, 255, 255, 1);
-        width:68px;
-        height:20px;
-        position:absolute;
-        left:250px;
-        top:267px;
-        font-family:Poppins;
-        text-align:center;
-        font-size:14px;
-        letter-spacing:0;
-    }
-    .e57_139 {
-        width:134px;
-        height:60px;
-        position:absolute;
-        left:651px;
-        top:177px;
-    }
-    .e45_114 {
-        color:rgba(0, 0, 0, 1);
-        width:134px;
-        height:60px;
-        position:absolute;
-        left:0px;
-        top:0px;
-        font-family:Inter;
-        text-align:center;
-        font-size:32px;
-        letter-spacing:0;
-    }
-    .e57_138 {
-        width:1160px;
-        height:110px;
-        position:absolute;
-        left:140px;
-        top:0px;
-    }
-    .e45_105 {
-        background-color:rgba(255, 255, 255, 1);
-        width:1140px;
-        height:110px;
-        position:absolute;
-        left:0px;
-        top:0px;
-    }
-    .e45_106 {
-        color:rgba(0, 0, 0, 1);
-        width:60px;
-        height:32px;
-        position:absolute;
-        left:176px;
-        top:39px;
-        font-family:Inter;
-        text-align:left;
-        font-size:20px;
-        letter-spacing:0;
-    }
-    .e45_107 {
-        color:rgba(0, 0, 0, 1);
-        width:40px;
-        height:32px;
-        position:absolute;
-        left:274px;
-        top:39px;
-        font-family:Inter;
-        text-align:left;
-        font-size:20px;
-        letter-spacing:0;
-    }
-    .e45_108 {
-        color:rgba(0, 0, 0, 1);
-        width:80px;
-        height:32px;
-        position:absolute;
-        left:470px;
-        top:39px;
-        font-family:Inter;
-        text-align:left;
-        font-size:20px;
-        letter-spacing:0;
-    }
-    .e45_109 {
-        color:rgba(0, 0, 0, 1);
-        width:100px;
-        height:32px;
-        position:absolute;
-        left:342px;
-        top:39px;
-        font-family:Inter;
-        text-align:left;
-        font-size:20px;
-        letter-spacing:0;
-    }
-    .e45_110 {
-        color:rgba(0, 0, 0, 1);
-        width:100px;
-        height:32px;
-        position:absolute;
-        left:586px;
-        top:39px;
-        font-family:Inter;
-        text-align:left;
-        font-size:20px;
-        letter-spacing:0;
-    }
-    .e45_111 {
-        color:rgba(0, 0, 0, 1);
-        width:60px;
-        height:32px;
-        position:absolute;
-        left:961px;
-        top:39px;
-        font-family:Inter;
-        text-align:left;
-        font-size:20px;
-        letter-spacing:0;
-    }
-    .e45_112 {
-        color:rgba(0, 0, 0, 1);
-        width:100px;
-        height:32px;
-        position:absolute;
-        left:1060px;
-        top:39px;
-        font-family:Inter;
-        text-align:left;
-        font-size:20px;
-        letter-spacing:0;
-    }
-    .e45_113 {
-        width:111px;
-        height:78px;
-        position:absolute;
-        left:29px;
-        top:16px;
-        /*background-image:url(images/image_11.png);*/
-        background-repeat:no-repeat;
-        background-size:cover;
-    }
-
-</style>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>회원가입</title>
+    <link rel="stylesheet" href="../static/css/templateBody.css" />
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("header").load("./header.html");
+            $(".footer").load("./footer.html");
+        });
+    </script>
+    <link rel="stylesheet" href="/static/css/join.css">
+
+    <link rel="stylesheet" href="../main/css/reset.css">
+    <link rel="stylesheet" href="../main/css/common.css">
+    <link rel="stylesheet" href="./css/join.css">
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="./js/join.js"></script>
+    <script src="../main/js/common.js"></script>
+
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <script src="./js/join.js"></script>
+    <script>
+        function id_check(){
+            var id = $(".field_id input").val();             // 변수 id에  id값 대입
+
+            // var num = /[0-9]/;
+            // var eng = /[a-zA-Z]/;
+            var spe = /[~!@#$%^&*()_+|<>?:{}]/;
+
+
+
+            if(id.length < 6){                     //만약에 id의 길이가 6보다 작으면
+                $(".field_id .txt_guide .txt_case1").css('color', '#b3130b');   //글자색 변경
+            }else if(spe.test(id) == 1){    //spe.test(id) --> id안에 특수문자가 있으면 true반환 없으면 false반환
+                $(".field_id .txt_guide .txt_case1").css('color', '#b3130b');   //글자색 변경
+            }else{          // 모든 조건이 일치하지 않다면
+                $(".field_id .txt_guide .txt_case1").css('color', '#0f851a');  //글자색 초록색으로 변경
+            }
+        }
+
+        function pw_check(){
+            var pw = $(".field_pw input").val();                   // 변수 pw에 pw값 대입
+
+            var num = /[0-9]/;
+            var eng = /[a-zA-Z]/;
+            var spe = /[~!@#$%^&*()_+|<>?:{}]/;
+
+
+
+            if(pw.length < 10){                                  //pw의 길이가 10 이하일 때
+                $(".field_pw .txt_guide .txt_case1").css('color', '#b3130b');
+            }
+
+            if(pw.length >= 10){                                  //pw의 길이가 10 이상일 때
+                $(".field_pw .txt_guide .txt_case1").css('color', '#0f851a');
+            }
+
+            if(num.test(pw) == 0 || eng.test(pw) == 0 || spe.test(pw) == 0){    // pw의 숫자가 없거나 , 영어가 없거나, 특수문자가 없을경우 실패
+                $(".field_pw .txt_guide .txt_case2").css('color', '#b3130b');
+            }
+
+
+            if(num.test(pw) == 1 && eng.test(pw) == 1 && spe.test(pw) == 1){ // pw의 숫자,영어,특수문자가 1개이상씩 있을경우 성공
+                $(".field_pw .txt_guide .txt_case2").css('color', '#0f851a');
+            }
+
+        }
+
+
+
+        function pw2_check(){
+            var pwd1 = $(".field_pw input").val();
+            var pwd2 = $(".field_repw input").val();
+
+            if ( pwd1 != '' && pwd2 == '' ) {          //둘다 빈칸일 경우 아무것도 하지 않음
+                null;
+            } else if (pwd1 != "" || pwd2 != "") {     // 빈칸이 아닐 경우
+                if (pwd1 == pwd2) {                    // 비교해서 같으면
+                    $(".field_repw .txt_guide .txt_case1").css('color', '#0f851a');
+                    $(".field_repw .txt_guide .txt_case1").text("비밀번호가 동일합니다.");
+
+
+                } else {        // 비교해서 같지 않으면
+                    $(".field_repw .txt_guide .txt_case1").css('color', '#b3130b');
+                    $(".field_repw .txt_guide .txt_case1").text("비밀번호가 일치하지 않습니다.");
+
+
+                }
+            }
+        }
+    </script>
+
+    <script>
+        // onsubmit 관련된 코드짜기
+        function on_id_check(){          //id 검사 함수
+            var id = $(".field_id input").val();
+            var spe = /[~!@#$%^&*()_+|<>?:{}]/;
+            if(id.length < 6){
+                alert('아이디를 정확히 입력해주세요');
+                return false;
+            }else if(spe.test(id) == 1){
+
+                alert('아이디를 정확히 입력해주세요');
+                return false;
+            }
+            else{
+
+                return true;
+            }
+        }
+
+        function on_pw_check(){           //비밀번호 검사 함수
+            var pw = $(".field_pw input").val();
+            var num = /[0-9]/;
+            var eng = /[a-zA-Z]/;
+            var spe = /[~!@#$%^&*()_+|<>?:{}]/;
+            if(pw.length < 10){
+
+                alert('비밀번호를 정확히 입력해주세요');
+                return false;
+            }else if(num.test(pw) == 0 || eng.test(pw) == 0 || spe.test(pw) == 0){
+
+                alert('비밀번호를 정확히 입력해주세요');
+                return false;
+            }
+            else{
+
+                return true;
+            }
+        }
+
+        function on_pw2_check(){           //비밀번호 확인 검사 함수
+            var pw = $(".field_pw input").val();
+            var pw2 = $(".field_repw input").val();
+            if(pw2.length == 0){
+
+                alert('비밀번호 확인을 다시해주세요');
+                return false;
+            }else if(pw != pw2){
+
+                alert('비밀번호 확인을 다시해주세요');
+                return false;
+            }
+            else{
+
+                return true;
+            }
+        }
+
+        function on_name_check(){             //이름 검사 함수
+            var name = $(".field_name input").val();
+            if(name.length == 0){
+
+                alert('이름을 입력해주세요');
+                return false;
+            }else{
+
+                return true;
+            }
+        }
+
+        function on_email_check(){             //이메일 검사 함수
+            var email = $(".field_email input").val();
+            if(email.length == 0){
+
+                alert('이메일을 정확히 입력해주세요');
+                return false;
+            }else{
+
+                return true;
+            }
+        }
+
+        function on_phone_check(){               //휴대폰번호 검사함수
+            var phone = $(".field_phone input").val();
+            if(phone.length == 0){
+
+                alert('휴대폰 번호를 입력해주세요');
+                return false;
+            }else{
+
+                return true;
+            }
+        }
+
+
+        function on_submit_check(){               // fomr에 onsubmit으로 최종적으로 넘겨야될 함수
+            var check = false;                   //check변수에 false를 넣어주고 다른 함수들이 false를 반환하면 다음페이지로 못넘어가게 설정
+            if(on_id_check() == check){
+                return false;
+            }else if(on_pw_check() == check){
+                return false;
+            }else if(on_pw2_check() == check){
+                return false;
+            }else if(on_name_check() == check){
+                return false;
+            }else if(on_email_check() == check){
+                return false;
+            }else if(on_phone_check() == check){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+
+
+
+    </script>
+    <script>
+        $(document).ready(function(){
+            //아이디 조건 만족 불만족 확인하기
+            var text_id = $('.field_id input');
+            text_id.focus(function(){               //포커스 되면
+                $('.field_id .txt_guide').css('display', 'block');
+            });
+            text_id.blur(function(){              //포커스에서 벗어나면
+
+                id_check();              //id_check() 함수 실행
+
+            });
+
+
+            //비밀번호 조건 만족 불만족 확인하기
+            var text_pw = $('.field_pw input');
+            text_pw.focus(function(){               //포커스 되면
+                $('.field_pw .txt_guide').css('display', 'block');
+            });
+            text_pw.blur(function(){              //포커스에서 벗어나면
+
+                pw_check();              //id_check() 함수 실행
+            });
+
+
+            //비밀번호 확인 조건 만족 불만족 확인하기
+
+            var text_pw2 = $('.field_repw input');
+            text_pw2.focus(function(){
+                $('.field_repw .txt_guide').css('display', 'block');
+            });
+            text_pw2.blur(function(){
+                pw2_check();
+            });
+
+
+            //아이디 중복 체크
+            $('.field_id .btn').click(function(){
+
+                if ($('.field_id input').val() == '') {    //만약에 아무것도 입력 되지 않은 상태면
+                    alert('아이디를 입력해주세요');
+                    $(".field_id .txt_guide .txt_case2").css('color', '#b3130b');
+                    return;
+                }
+
+                id_overlap_input = document.querySelector('input[name="id"]');
+
+                $.ajax({
+                    type: "GET",
+                    url: "./id_check?id="+id_overlap_input,    //해당 url로 데이터를 넘김
+                    data: {
+                        'username': $('.field_id input').val()
+                    },
+                    datatype: 'json',
+                    success: function (data) {
+                        console.log(data['overlap']);
+                        if (data['overlap'] == "fail") {
+                            alert("이미 존재하는 아이디 입니다.");
+                            $(".field_id .txt_guide .txt_case2").css('color', '#b3130b');
+                            id_overlap_input.focus();
+                            return;
+                        } else {
+                            alert("사용가능한 아이디 입니다.");
+                            $(".field_id .txt_guide .txt_case2").css('color', '#0f851a');
+                            return;
+                        }
+                    }
+                });
+            });
+
+            //이메일 중복 체크
+            $('.field_email .btn').click(function(){
+
+                if ($('.field_email input').val() == '') {    //만약에 아무것도 입력 되지 않은 상태면
+                    alert('이메일을 입력해주세요');
+                    return;
+                }
+
+                email_overlap_input = document.querySelector('input[name="email"]');
+
+                $.ajax({
+                    type: "GET",
+                    url: "./email_check?id="+email_overlap_input,    //해당 url로 데이터를 넘김
+                    data: {
+                        'email': $('.field_email input').val()
+                    },
+                    datatype: 'json',
+                    success: function (data) {
+                        console.log(data['overlap']);
+                        if (data['overlap'] == "fail") {
+                            alert("이미 존재하는 이메일 입니다.");
+                            email_overlap_input.focus();
+                            return;
+                        } else {
+                            alert("사용가능한 이메일 입니다.");
+                            return;
+                        }
+                    }
+                });
+            });
+
+
+            $('#addressSearch').click(function(){
+                new daum.Postcode({
+                    oncomplete: function(data) {
+                        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                        // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                        var addr = ''; // 주소 변수
+                        var extraAddr = ''; // 참고항목 변수
+
+                        //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                        if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                            addr = data.roadAddress;
+                        } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                            addr = data.jibunAddress;
+                        }
+
+                        // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                        if(data.userSelectedType === 'R'){
+                            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                                extraAddr += data.bname;
+                            }
+                            // 건물명이 있고, 공동주택일 경우 추가한다.
+                            if(data.buildingName !== '' && data.apartment === 'Y'){
+                                extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                            }
+                            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                            if(extraAddr !== ''){
+                                extraAddr = ' (' + extraAddr + ')';
+                            }
+                            // 조합된 참고항목을 해당 필드에 넣는다.
+
+
+                        } else {
+
+                        }
+
+                        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+
+                        document.getElementById("user_address").value = addr;
+
+
+
+                        //주소 검색이 완료된 후 변하는 css 목록
+                        $('.field_address input').css('display', 'block');
+                        $('#addressNo').text('재검색')
+
+                        // 커서를 상세주소 필드로 이동한다.
+                        document.getElementById("user_detail_address").focus();
+                        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+                        // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+                        // http://postcode.map.daum.net/guide  api주소
+                    }
+                }).open();
+            });
+        });
+    </script>
 </head>
 <body>
-<div class="e45_101">
-    <div class="e57_142">
-        <div class="e45_102"></div>
-        <span class="e45_103">(주)유스레시피 사업자번호 : 157-45-48137 서비스명 : 유스레시피 사업자정보확인 고객센터 : 1877-4567 계좌번호 안내 : 신한은행 100-000-000000 (주)유스레시피 통신판매업등록 : 2021서울강북1234호 대표 : 김아무개 주소 : 서울시 설경구 강호동 123-456 개인정보책임자 : 김아무개 운영시간 : 오전10시 ~ 오후6시 [점심시간 : 오전11시30 ~ 오후1시] 이메일 : yuyuyuyu@yuyuyuyu.com ©asdfg Corp.</span>
-        <div class="e45_104"></div>
-    </div>
+<div class="templateBody">
+    <header></header>
+    <div class="mainBody">
+        <div id="container">
+            <div id="main">
+                <div id="content">
+                    <div class="page_aticle">
+                        <div class="type_form member_join">
+                            <form id="form" action="/joinOk" method="POST" onsubmit="return on_submit_check();">
+                                <div class="field_head">
+                                    <h3 class="tit">회원가입</h3>
+                                    <p class="sub">
+                                        <span class="ico">*</span>
+                                        필수입력사항
+                                    </p>
+                                </div>
 
-    <div class="e57_140">
-        <span class="e45_218">Sign up</span>
-        <b class="e45_219">이메일</b>
-        <b class="e45_250">주소 입력</b>
-        <b class="e45_237" style="height:200px;">아이디</b>
-        <b class="e45_220">비밀번호</b>
-        <input type="text" placeholder="비밀번호확인" style="width: 250px; height:40px;" class="e45_221">
-        <input type="text" placeholder="비밀번호" style="width: 250px; height:40px;" class="e45_222">
-        <input type="text" style="width: 280px; height:40px;" class="e45_255"placeholder="상세주소 입력">
-        <input type="text" style="width: 230px; height:40px;" class="e45_223" placeholder="이메일 example@email.com">
-        <input type="text" style="width: 230px; height:40px;" class="e45_251" placeholder="주소를 입력해 주세요">
-        <input type="text" style="width: 230px;height:40px;" class="e45_238" style="border:none " placeholder="아이디를 입력하세요">
-        <button class="e45_233" >가입하기</button>
-        <button class="e45_241" style="margin-left: 20px">중복확인</button>
-        <button class="e45_243" style="margin-left: 20px">중복확인</button>
-        <button class="e45_252"style="margin-left: 20px">주소찾기</button>
+                                <table class="tbl_comm">
+                                    <tbody>
+                                    <tr class="fst field_id">
+                                        <th>아이디
+                                            <span class="ico">
+                                                *
+                                                <span class="screen_out">필수항목</span>
+                                            </span>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="id" maxlength="16" required="" option="regId" onkeyup="id_check()" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">
+                                            <a class="btn default" href="#">중복확인</a>
+                                            <p class="txt_guide square">
+                                                <span class="txt txt_case1">
+                                                    6자 이상의 영문 혹은 영문과 숫자를 조합
+                                                </span>
+                                                <span class="txt txt_case2">
+                                                    아이디 중복확인
+                                                </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="field_pw">
+                                        <th>
+                                            비밀번호
+                                            <span class="ico">*
+                                                <span class="screen_out">필수항목</span>
+                                            </span>
+                                        </th>
+                                        <td>
+                                            <input type="password" name="pw" required=""  option="regPass" onkeyup="pw_check()" maxlength="16" class="reg_pw bad" placeholder="비밀번호를 입력해주세요">
+                                            <p class="txt_guide square">
+                                                <span class="txt txt_case1">
+                                                    10자 이상 입력
+                                                </span>
+                                                <span class="txt txt_case2">
+                                                    영문/숫자/특수문자(공백 제외)만 허용하며, 2개 이상 조합
+                                                </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="member_pwd field_repw">
+                                        <th>
+                                            비밀번호확인
+                                            <span class="ico">
+                                                *
+                                                <span class="screen_out">필수항목</span>
+                                            </span>
+                                        </th>
+                                        <td>
+                                            <input type="password" required=""  option="regPass" onkeyup="pw2_check()" maxlength="16" class="confirm_pw" placeholder="비밀번호를 한번 더 입력해주세요">
+                                            <p class="txt_guide square">
+                                                <span class="txt txt_case1">
+                                                    동일한 비밀번호를 입력해주세요.
+                                                </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="field_name">
+                                        <th>
+                                            이름
+                                            <span class="ico">
+                                                *
+                                                <span class="screen_out">필수항목</span>
+                                            </span>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="name"  required=""  label="이름" placeholder="이름을 입력해주세요">
+                                        </td>
+                                    </tr>
+
+                                    <tr class="field_email">
+                                        <th>
+                                            이메일
+                                            <span class="ico">
+                                                *
+                                                <span class="screen_out">필수항목</span>
+                                            </span>
+                                        </th>
+
+                                        <td>
+                                            <input type="text" name="email"   size="30" required=""  option="regEmail" label="이메일" placeholder="예: marketkurly@kurly.com">
+                                            <a href="#" class="btn default">중복확인</a>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="field_name">
+                                        <th>
+                                            닉네임
+                                            <span class="ico">
+                                                *
+                                                <span class="screen_out">필수항목</span>
+                                            </span>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="nickname"  required=""  label="닉네임" placeholder="닉네임을 입력해주세요">
+                                            <a href="#" class="btn default">중복확인</a>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="field_phone">
+                                        <th>
+                                            휴대폰
+                                            <span class="ico">
+                                                *
+                                                <span class="screen_out">필수항목</span>
+                                            </span>
+                                        </th>
+
+                                        <td>
+                                            <div class="phone_num">
+                                                <input type="text" value="" pattern="[0-9]*" name="mobileInp" placeholder="숫자만 입력해주세요" class="inp">
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>
+                                            주소
+                                            <span class="ico">
+                                                *
+                                                <span class="screen_out">필수항목</span>
+                                            </span>
+                                        </th>
+                                        <td class="field_address">
+                                            <a href="#" id="addressSearch" class="search">
+                                                <span id="addressNo" class="address_no">주소검색</span>
+                                            </a>
+                                            <input type="text" id="user_address" name="user_address" placeholder="주소">
+                                            <input type="text" id="user_detail_address" name="user_detail_address"  placeholder="상세주소">
+                                            <p class="txt_guide" style="display:block;">
+                                                <span class="txt txt_case1">배송지에 따라 상품 정보가 달라질 수 있습니다.</span>
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="birth field_birth">
+                                        <th>생년월일</th>
+                                        <td>
+                                            <div class="birth_day">
+                                                <input type="text" name="year" id="birth_year" pattern="[0-9]*"  label="생년월일" size="4" maxlength="4" placeholder="YYYY">
+                                                <span class="bar"></span>
+                                                <input type="text" name="month" id="birth_month" pattern="[0-9]*"  label="생년월일" size="2" maxlength="2" placeholder="MM">
+                                                <span class="bar"></span>
+                                                <input type="text" name="day" id="birth_day" pattern="[0-9]*"  label="생년월일" size="2" maxlength="2" placeholder="DD">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div id="formSubmit" class="form_footer" style="border-top: 1px solid #333;">
+                                    <button type="submit" class="btn active btn_join" >가입하기</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="e57_139"><b class="e45_114">회원가입</b></div>
-    <div class="e57_138">
-        <div class="e45_105"></div>
-        <span class="e45_106">레시피 </span>
-        <span class="e45_107">상점</span>
-        <span class="e45_108">고객센터 </span>
-        <span class="e45_109">크리에이터</span>
-        <span class="e45_110">마이페이지</span>
-        <span class="e45_111">로그인</span>
-        <span class="e45_112">회원가입</span>
-        <div class="e45_113"></div>
-    </div>
+    <div class="footer"></div>
 </div>
+
 </body>
 </html>

@@ -17,5 +17,5 @@ public class SpringConfig {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-
 }
+

@@ -2,47 +2,67 @@ package com.example.FP.controller;
 
 import com.example.FP.dto.MemberDto;
 import com.example.FP.entity.Member;
-import com.example.FP.mapper.MemberMapper;
-import com.example.FP.repository.MemberRepository;
 import com.example.FP.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.Random;
 
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
 
-
-    private final MemberRepository memberRepository;
     private final MemberService memberService;
+
+    private final PasswordEncoder passwordEncoder;
+
+    @GetMapping("/login")
+    public void loginForm(){}
+
+
     @GetMapping("/join")
-    public String join(Member member, Model model){
-        model.addAttribute("member",member);
-        return "join";
-
+    public void joinForm(Model model){
+        System.out.println("회원가입 하기");
+        model.addAttribute("memberFormDto", new MemberDto());
     }
+
     @PostMapping("/join")
-    public String joinSubmit(@Valid MemberDto memberDto, BindingResult bindingResult){
+    public String joinSubmit(@Valid @ModelAttribute("memberFormDto") MemberDto memberFormDto, BindingResult bindingResult){
+        System.out.println("회원가입 들어옴");
+        System.out.println(memberFormDto.getUserid());
         if(bindingResult.hasErrors()){
-            return "join";
+            System.out.println("에러");
+            return "jointest";
         }
-        memberService.join(memberDto);
 
+        Member member = Member.createMember(memberFormDto, passwordEncoder);
+        memberService.join(member);
 
-        return null;
+        return "redirect:/joinOk";
+    }
+    @GetMapping("/dataChange")
+    public String dataChangeForm(){
+        return "/dataChange";
     }
 
+    @GetMapping("/joinOk")
+    public void joinOk(){}
 
+    @GetMapping("/findID")
+    public void findId(){}
 
+    @GetMapping("/findPwd")
+    public void findPwd(){}
+
+    @GetMapping("/pwChange")
+    public void pwChange(){}
+
+    @GetMapping("/pwFindEmailCerti")
+    public void pwFindEmailCerti(){}
 
 }

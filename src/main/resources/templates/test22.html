@@ -43,6 +43,7 @@
         }
 
     </style>
+
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -77,7 +78,7 @@
         #news_aside{
             width: 20%;
             float: left;
-            margin-top: 100px;
+            margin-top: 50px;
         }
         .news_title_wrap{
             padding: 20px;
@@ -123,6 +124,7 @@
         }
         #notion_title_wrap{
             width: 800px;
+            margin-bottom: 20px;
         }
         #notion_spanB{
             font-family: 'Cafe24Dangdanghae';
@@ -146,6 +148,7 @@
 
 
 
+
     </style>
     <script>
         $(document).ready(function(){
@@ -155,90 +158,63 @@
     </script>
 </head>
 <body>
-<div class="templateBody">
-    <header></header>
-    <div class="mainBody">
+    <div class="templateBody">
+        <header></header>
+        <div class="mainBody">
 
-        <aside id="news_aside" style="margin-right: 10px;">
-            <ul class="news-ul">
-                <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
+                <aside id="news_aside">
+                    <ul class="news-ul">
+                        <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
 
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/notionmain}" style="font-weight: bold;">주문내역<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/question}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/myqnamain}" style="font-weight: bold;">정보변경<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/myqnamain}" style="font-weight: bold;">찜목록<span>></span></a></li>
+                        <li class="news_list_wrap"><a class="news-li" th:href="@{/notionmain}" style="font-weight: bold;">주문내역<span>></span></a></li>
+                        <li class="news_list_wrap"><a class="news-li" th:href="@{/question}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
+                        <li class="news_list_wrap"><a class="news-li" th:href="@{/myqnamain}" style="font-weight: bold;">정보변경<span>></span></a></li>
+                        <li class="news_list_wrap"><a class="news-li" th:href="@{/myqnamain}" style="font-weight: bold;">찜목록<span>></span></a></li>
 
-            </ul>
-        </aside>
-        <section id="news_section">
-            <div id="notion_title_wrap">
-                <span id="notion_spanB">정보변경</span><span id="notion_spanL">회원님의 정보를 변경합니다</span>
-            </div>
-            <hr>
-            <div id="notion_box">
-
-            </div>
-
-            <div style="margin-top:50px;" >
-                <div style="margin-left: 100px; text-align:left;">
-                    <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
-                    <div id="page">
-                        <div class="container">
-
-                            <!-- #masthead -->
-                            <div id="content" class="site-content">
-                                <div id="primary" class="content-area column full" style="margin-top: -30px;">
-                                    <main id="main" class="site-main" role="main">
-
-                                        <form action="" >
-                                            <span>아이디</span><br>
-                                            <input type="text" style="width: 350px; height: 55px; border: none" readonly><br>
-                                            <span>이메일</span><br>
-                                            <input type="email" style="width: 350px; height: 55px; border: none" readonly><br>
-                                            <span>주소 입력</span><br>
-                                            <input type="text" style="width: 350px; height: 55px; border: none; margin-bottom: 10px;" placeholder="주소를 입력해주세요" >
-                                            <button id="addrFind" style="width: 70px;height: 30px;  background-color:#D65454; border: none ; color: white">주소찾기</button><br>
-                                            <input type="text" style="width: 350px; height: 55px; border: none" placeholder="상세주소 입력"><br>
-                                            <span>닉네임</span><br>
-                                            <input type="text" style="width: 350px; height: 55px; border: none"><br>
-                                            <span>비밀번호</span><br>
-                                            <input type="password" style="width: 350px; height: 55px; border: none" placeholder="새 비밀번호"><br>
-                                            <input type="password" style="width: 350px; height: 55px; border: none" placeholder="비밀번호 확인"><br>
-                                            <input type="submit" style="margin-left: 120px; background-color:#D65454; width: 150px;height: 50px; color: white" value="변경하기">
-                                        </form>
-
-
-                                    </main>
-                                    <!-- #main -->
-                                </div>
-                                <!-- #primary -->
-                            </div>
-                            <!-- #content -->
-                        </div>
-                        <!-- .container -->
-
-                        <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
+                    </ul>
+                </aside>
+                <section id="news_section">
+                    <div id="notion_title_wrap">
+                        <span id="notion_spanB">정보변경</span><span id="notion_spanL">회원님의 정보를 변경합니다</span>
                     </div>
-                    <!-- #page -->
-                    <script src='/static/js/jquery.js'></script>
-                    <script src='/static/js/plugins.js'></script>
-                    <script src='/static/js/scripts.js'></script>
-                    <script src='/static/js/masonry.pkgd.min.js'></script>
+                    <hr>
+                    <div id="notion_box">
 
-                </div>
-            </div>
+                    </div>
+
+                    <div style="margin-top:100px;" >
+                        <div style="margin-left: 100px; text-align:left;">
+                            <form action="" >
+                                <span>아이디</span><br>
+                                <input type="text" style="width: 350px; height: 55px; border: none" readonly><br>
+                                <span>이메일</span><br>
+                                <input type="email" style="width: 350px; height: 55px; border: none" readonly><br>
+                                <span>주소 입력</span><br>
+                                <input type="text" style="width: 350px; height: 55px; border: none; margin-bottom: 10px;" placeholder="주소를 입력해주세요" >
+                                <button id="addrFind" style="width: 70px;height: 30px;  background-color:#D65454; border: none ; color: white">주소찾기</button><br>
+                                <input type="text" style="width: 350px; height: 55px; border: none" placeholder="상세주소 입력"><br>
+                                <span>닉네임</span><br>
+                                <input type="text" style="width: 350px; height: 55px; border: none"><br>
+                                <span>비밀번호</span><br>
+                                <input type="password" style="width: 350px; height: 55px; border: none" placeholder="새 비밀번호"><br>
+                                <input type="password" style="width: 350px; height: 55px; border: none" placeholder="비밀번호 확인"><br>
+                                <input type="submit" style="margin-left: 120px; background-color:#D65454; width: 150px;height: 50px; color: white" value="변경하기">
+                            </form>
+
+                        </div>
+                    </div>
 
 
 
-        </section>
+                </section>
 
 
-        <footer>
-        </footer>
+            <footer>
+            </footer>
 
 
+        </div>
+        <div class="footer"></div>
     </div>
-    <div class="footer"></div>
-</div>
 </body>
 </html>

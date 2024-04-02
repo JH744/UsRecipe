@@ -2,226 +2,305 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>유스레시피</title>
+    <link rel='stylesheet' href='../static/css/woocommerce-layout.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+    <link rel='stylesheet' href='../static/css/woocommerce.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../static/css/font-awesome.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../static/css/style.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+    <style>
+
+        *{
+
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html{
+            height: 100%;
+        }
+        .templateBody {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-content: space-between;
+            width: 100%;
+
+        }
+        .mainBody{
+            min-height: 100vh;
+
+
+
+        }
+
+        header{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style type="text/css">
+        input[type]{
+            border: none;
+            background-color: rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
+            margin-bottom: 30px;
+        }
+
+        @font-face {
+            font-family: 'Cafe24Simplehae';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Cafe24Dangdanghae';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.2/Cafe24Dangdanghae.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        *{
+            margin: 0 auto;
+            padding: 0;
+        }
+        #news_main{
+            height:700px;
+            width:1200px;
+            margin: 0 auto;
+        }
+        #news_aside{
+            width: 20%;
+            float: left;
+            margin-top: 100px;
+        }
+        .news_title_wrap{
+            padding: 20px;
+            background: #D65454;
+            list-style-type: none;
+        }
+        .news-title{
+            font-family: 'Cafe24Simplehae';
+            font-size: 25px;
+            letter-spacing: 2px;
+            color: white;
+        }
+        .news-ul{
+            font-family: 'Cafe24Simplehae';
+            font-size: 20px;
+        }
+        .news_img_wrap {
+            text-align: center;
+            padding: 30px 0 30px 0;
+            border: 1px solid #dddddd;
+            list-style-type: none;
+        }
+        .news_list_wrap{
+            border: 1px solid #dddddd;
+            padding: 15px 0 15px 10px;
+            list-style-type: none;
+        }
+        .news-ul span{
+            float: right;
+            margin-right: 15px;
+        }
+        .news-ul a:link, .news-ul a:visited, .news-ul a:active{
+            text-decoration: none;
+            color: #ffa550;
+        }
+        .news-ul a:hover{
+            color: black;
+            font-weight: bold;
+        }
+        #news_section{
+            width: 79%;
+            float: left;
+        }
+        #notion_title_wrap{
+            width: 800px;
+        }
+        #notion_spanB{
+            font-family: 'Cafe24Dangdanghae';
+            font-size: 35px;
+            padding-right:20px ;
+        }
+        #notion_spanL{
+            font-family: 'Cafe24Simplehae';
+            color:#aaaaaa;
+        }
+
+        .tb2 a:active, .tb2 a:link, .td2 a:visited {
+            text-decoration: none;
+            color: black;
+        }
+        .tb2 a:hover {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+
+
+
+    </style>
+    <script>
+        $(document).ready(function(){
+            $("header").load("./header.html");
+            $(".footer").load("./footer.html");
+        });
+    </script>
 </head>
 <body>
-<div style="width: 1440px; height: 1420px; position: relative; background: white">
-    <div style="width: 1131px; height: 78px; left: 157px; top: 16px; position: absolute">
-        <div style="width: 60px; height: 32px; left: 147px; top: 23px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">레시피 </div>
-        <div style="width: 40px; height: 32px; left: 245px; top: 23px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">상점</div>
-        <div style="width: 80px; height: 32px; left: 441px; top: 23px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">고객센터 </div>
-        <div style="width: 100px; height: 32px; left: 313px; top: 23px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">크리에이터</div>
-        <div style="width: 100px; height: 32px; left: 557px; top: 23px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">마이페이지</div>
-        <div style="width: 56px; height: 32px; left: 932px; top: 23px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">로그인</div>
-        <div style="width: 100px; height: 32px; left: 1031px; top: 23px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">회원가입</div>
-        <img style="width: 111px; height: 78px; left: 0px; top: 0px; position: absolute" src="https://via.placeholder.com/111x78" />
+<div class="templateBody">
+    <header></header>
+    <div class="mainBody">
+
+        <aside id="news_aside" style="margin-right: 10px;">
+            <ul class="news-ul">
+                <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
+
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/notionmain}" style="font-weight: bold;">주문내역<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/question}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/myqnamain}" style="font-weight: bold;">정보변경<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/myqnamain}" style="font-weight: bold;">찜목록<span>></span></a></li>
+
+            </ul>
+        </aside>
+        <section id="news_section">
+            <div id="notion_title_wrap">
+                <span id="notion_spanB">찜목록</span><span id="notion_spanL">회원님의 찜 목록을 보여줍니다</span>
+            </div>
+            <hr>
+            <div id="notion_box">
+
+            </div>
+
+            <div style="margin-top:50px;" >
+                <div style="margin-left: 100px; text-align:left;">
+                    <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
+                    <div id="page">
+                        <div class="container">
+
+                            <!-- #masthead -->
+                            <div id="content" class="site-content">
+                                <div id="primary" class="content-area column full">
+                                    <main id="main" class="site-main" role="main">
+
+                                        <form class="woocommerce-ordering" method="get">
+                                            <select name="orderby" class="orderby">
+                                                <option value="menu_order" selected="selected">Default sorting</option>
+                                                <option value="popularity">Sort by popularity</option>
+                                                <option value="rating">Sort by average rating</option>
+                                                <option value="date">Sort by newness</option>
+                                                <option value="price">Sort by price: low to high</option>
+                                                <option value="price-desc">Sort by price: high to low</option>
+                                            </select>
+                                        </form>
+                                        <ul class="products">
+
+                                            <li class="first product">
+                                                <a href="shop-single.html">
+
+                                                    <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j4-520x520.jpg" alt="">
+                                                    <h3>Cool Fedora</h3>
+                                                    <span class="price"><span class="amount">$34.00</span></span>
+                                                </a><a href="#" class="button">Add to cart</a>
+                                            </li>
+
+                                            <li class="product">
+                                                <a href="shop-single.html">
+                                                    <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j10-520x780-520x600.jpg" alt="">
+                                                    <h3>Beige Blouse</h3>
+                                                    <span class="price"><span class="amount">$66.00</span></span>
+                                                </a><a href="#" class="button">Add to cart</a>
+                                            </li>
+
+                                            <li class="product">
+                                                <a href="shop-single.html">
+                                                    <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j1-520x780-520x600.jpg" alt="">
+                                                    <h3>Black Jacket</h3>
+                                                    <span class="price"><span class="amount">$125.00</span></span>
+                                                </a><a href="#" class="button">Add to cart</a>
+                                            </li>
+
+                                            <li class="last product">
+                                                <a href="shop-single.html">
+                                                    <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j9-520x780-520x600.jpg" alt="">
+                                                    <h3>Brown Jacket</h3>
+                                                    <span class="price"><span class="amount">$28.00</span></span>
+                                                </a><a href="#" class="button">Add to cart</a>
+                                            </li>
+
+                                            <li class="first product">
+                                                <a href="shop-single.html">
+                                                    <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j12-520x668-520x600.jpg" alt="">
+                                                    <h3>Gray Blouse</h3>
+                                                    <span class="price"><span class="amount">$15.00</span></span>
+                                                </a><a href="#" class="button">Add to cart</a>
+                                            </li>
+
+                                            <li class="product">
+                                                <a href="shop-single.html">
+                                                    <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/f11-520x755-520x600.jpg" alt="">
+                                                    <h3>Male Bag</h3>
+                                                    <span class="price"><span class="amount">$16.00</span></span>
+                                                </a><a href="#" class="button">Add to cart</a>
+                                            </li>
+
+                                            <li class="product">
+                                                <a href="shop-single.html">
+                                                    <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j6-520x779-520x600.jpg" alt="">
+                                                    <h3>Hugo Jeans</h3>
+                                                    <span class="price"><span class="amount">$36.00</span></span>
+                                                </a><a href="#" class="button">Add to cart</a>
+                                            </li>
+
+                                            <li class="last product">
+                                                <a href="shop-single.html">
+                                                    <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j2-520x780-520x600.jpg" alt="">
+                                                    <h3>Male T-Shirt</h3>
+                                                    <span class="price"><span class="amount">$49.00</span></span>
+                                                </a><a href="#" class="button">Add to cart</a>
+                                            </li>
+
+                                        </ul>
+
+                                    </main>
+                                    <!-- #main -->
+                                </div>
+                                <!-- #primary -->
+                            </div>
+                            <!-- #content -->
+                        </div>
+                        <!-- .container -->
+
+                        <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
+                    </div>
+                    <!-- #page -->
+                    <script src='/static/js/jquery.js'></script>
+                    <script src='/static/js/plugins.js'></script>
+                    <script src='/static/js/scripts.js'></script>
+                    <script src='/static/js/masonry.pkgd.min.js'></script>
+
+                    </body>
+
+            </div>
+            </div>
+
+
+        </section>
+
+
+        <footer>
+        </footer>
+
+
     </div>
-    <div style="width: 1440px; height: 200px; left: 44px; top: 1220px; position: absolute">
-        <div style="width: 1440px; height: 200px; left: -40px; top: 0px; position: absolute; background: #F2F2F2; border: 1px rgba(0, 0, 0, 0.37) solid"></div>
-        <div style="width: 1023px; height: 151px; left: 352px; top: 36px; position: absolute; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">(주)유스레시피     사업자번호 : 157-45-48137    서비스명 : 유스레시피     사업자정보확인    고객센터 : 1877-4567<br/>계좌번호 안내 : 신한은행 100-000-000000 (주)유스레시피<br/>통신판매업등록 : 2021서울강북1234호     대표 : 김아무개    주소 : 서울시 설경구 강호동 123-456<br/>개인정보책임자 : 김아무개     운영시간 : 오전10시 ~ 오후6시 [점심시간 : 오전11시30 ~ 오후1시]<br/>이메일 : yuyuyuyu@yuyuyuyu.com     ©asdfg Corp.</div>
-        <img style="width: 111px; height: 78px; left: 187px; top: 63px; position: absolute" src="https://via.placeholder.com/111x78" />
-    </div>
-    <div style="width: 1162px; height: 1042px; left: 139px; top: 152px; position: absolute">
-        <div style="width: 100.17px; height: 35px; left: 102px; top: 284px; position: absolute; color: #333333; font-size: 28px; font-family: Noto Sans; font-weight: 500; line-height: 35px; word-wrap: break-word">마이</div>
-        <div style="height: 55px; padding-top: 8px; padding-bottom: 7px; padding-left: 20px; left: 82px; top: 596px; position: absolute; background: #FAFAFA; justify-content: flex-end; align-items: center; gap: 17.91px; display: inline-flex">
-            <div style="width: 129.09px; align-self: stretch; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
-                <div style="width: 129.39px; height: 20px; color: #333333; font-size: 14px; font-family: Noto Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">도움이 필요하신가요 ?</div>
-                <div style="align-self: stretch; flex: 1 1 0; padding-right: 65.17px; justify-content: flex-start; align-items: center; display: inline-flex">
-                    <div style="width: 63.92px; height: 20px; color: #333333; font-size: 12px; font-family: Noto Sans; font-weight: 400; line-height: 20px; word-wrap: break-word">1:1 문의하기</div>
-                </div>
-            </div>
-            <div style="width: 19px; padding-top: 5.02px; padding-bottom: 5.02px; padding-left: 3.71px; padding-right: 6.33px; justify-content: center; align-items: center; display: inline-flex">
-                <div style="width: 6.33px; height: 6.33px; transform: rotate(45deg); transform-origin: 0 0; border: 1.42px #333333 solid"></div>
-            </div>
-        </div>
-        <div style="width: 138px; height: 51px; left: 337px; top: 167px; position: absolute; color: #333333; font-size: 24px; font-family: Noto Sans; font-weight: 500; line-height: 48px; word-wrap: break-word">찜한 상품</div>
-        <div style="left: 668px; top: 1224px; position: absolute; justify-content: flex-start; align-items: center; gap: 11023px; display: inline-flex">
-            <div style="width: 1px; align-self: stretch; justify-content: flex-end; align-items: center; display: inline-flex">
-                <div style="width: 13.24px; height: 16.10px; text-align: center; color: #333333; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 16.10px; word-wrap: break-word">이</div>
-            </div>
-            <div style="width: 44px; height: 44px; justify-content: center; align-items: center; display: inline-flex">
-                <div style="flex: 1 1 0; align-self: stretch; padding-left: 10px; padding-right: 10px; justify-content: center; align-items: center; display: inline-flex">
-                    <div style="width: 24px; height: 44px; position: relative">
-                        <div style="width: 24px; height: 44px; left: 0px; top: 0px; position: absolute"></div>
-                        <div style="width: 9px; height: 17px; left: 7px; top: 13.50px; position: absolute; background: #EEEEEE"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div style="left: 719px; top: 1224px; position: absolute; justify-content: flex-start; align-items: center; gap: 11079px; display: inline-flex">
-            <div style="width: 1px; align-self: stretch; justify-content: flex-end; align-items: center; display: inline-flex">
-                <div style="width: 13.24px; height: 16.10px; text-align: center; color: #333333; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 16.10px; word-wrap: break-word">다</div>
-            </div>
-            <div style="width: 44px; height: 44px; justify-content: center; align-items: center; display: inline-flex">
-                <div style="flex: 1 1 0; align-self: stretch; padding-left: 10px; padding-right: 10px; justify-content: center; align-items: center; display: inline-flex">
-                    <div style="width: 24px; height: 44px"></div>
-                </div>
-            </div>
-        </div>
-        <div style="width: 174px; height: 40px; left: 988px; top: 170px; position: absolute"></div>
-        <div style="width: 817px; height: 157px; left: 322px; top: 1px; position: absolute">
-            <div style="padding-top: 10px; padding-bottom: 44px; padding-left: 13px; padding-right: 15px; left: 17px; top: 18px; position: absolute; justify-content: center; align-items: center; gap: 16px; display: inline-flex">
-                <img style="width: 38px; height: 34px" src="https://via.placeholder.com/38x34" />
-                <div style="width: 139px; height: 53px; color: black; font-size: 24px; font-family: Noto Sans; font-weight: 500; line-height: 48px; word-wrap: break-word">김유신</div>
-            </div>
-            <div style="width: 509px; height: 109px; left: 256px; top: 18px; position: absolute">
-                <div style="width: 125px; height: 31px; left: 77px; top: 10px; position: absolute; color: black; font-size: 24px; font-family: Noto Sans; font-weight: 500; line-height: 48px; word-wrap: break-word">적립금</div>
-                <div style="width: 127px; height: 25px; left: 322px; top: 10px; position: absolute; color: black; font-size: 24px; font-family: Noto Sans; font-weight: 500; line-height: 48px; word-wrap: break-word">총 주문 수</div>
-                <div style="width: 107px; height: 0px; left: 0px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; border: 1px black solid"></div>
-                <div style="width: 168px; height: 30px; left: 21px; top: 63px; position: absolute; color: black; font-size: 24px; font-family: Noto Sans; font-weight: 500; line-height: 48px; word-wrap: break-word">1,000원</div>
-                <div style="width: 114px; height: 28px; left: 321px; top: 65px; position: absolute; color: black; font-size: 24px; font-family: Noto Sans; font-weight: 500; line-height: 48px; word-wrap: break-word">4건</div>
-            </div>
-            <div style="width: 105px; height: 0px; left: 520px; top: 20px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; border: 1px black solid"></div>
-        </div>
-        <div style="width: 158px; height: 201px; left: 82px; top: 357px; position: absolute; background: white; border: 1px #F2F2F2 solid">
-            <div style="height: 50px; padding-top: 14.50px; padding-bottom: 16px; padding-left: 20px; left: 1px; top: 1px; position: absolute; background: white; border-bottom: 1px #F2F2F2 solid; justify-content: flex-end; align-items: flex-start; gap: 95.32px; display: inline-flex">
-                <div style="width: 50.68px; height: 19px; color: #666666; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 19px; word-wrap: break-word">주문내역</div>
-                <div style="width: 19px; align-self: stretch; padding-top: 5.02px; padding-bottom: 5.02px; padding-left: 3.71px; padding-right: 6.33px; justify-content: center; align-items: center; display: inline-flex">
-                    <div style="width: 6.33px; height: 6.33px; transform: rotate(45deg); transform-origin: 0 0; border: 1.42px #999999 solid"></div>
-                </div>
-            </div>
-            <div style="height: 50px; padding-top: 14.50px; padding-bottom: 16px; padding-left: 20px; left: 1px; top: 51px; position: absolute; background: white; border-bottom: 1px #F2F2F2 solid; justify-content: flex-end; align-items: flex-start; gap: 67.10px; display: inline-flex">
-                <div style="width: 78.90px; height: 19px; color: #666666; font-size: 14px; font-family: Noto Sans; font-weight: 500; line-height: 19px; word-wrap: break-word">1:1 문의</div>
-                <div style="width: 19px; align-self: stretch; padding-top: 5.02px; padding-bottom: 5.02px; padding-left: 3.71px; padding-right: 6.33px; justify-content: center; align-items: center; display: inline-flex">
-                    <div style="width: 6.33px; height: 6.33px; transform: rotate(45deg); transform-origin: 0 0; border: 1.42px #999999 solid"></div>
-                </div>
-            </div>
-            <div style="height: 50px; padding-top: 14.50px; padding-bottom: 16px; padding-left: 20px; left: 1px; top: 51px; position: absolute; background: white; border-bottom: 1px #F2F2F2 solid; justify-content: flex-end; align-items: flex-start; gap: 67.10px; display: inline-flex">
-                <div style="width: 78.90px; height: 19px; color: #666666; font-size: 14px; font-family: Noto Sans; font-weight: 500; line-height: 19px; word-wrap: break-word">1:1 문의</div>
-                <div style="width: 19px; align-self: stretch; padding-top: 5.02px; padding-bottom: 5.02px; padding-left: 3.71px; padding-right: 6.33px; justify-content: center; align-items: center; display: inline-flex">
-                    <div style="width: 6.33px; height: 6.33px; transform: rotate(45deg); transform-origin: 0 0; border: 1.42px #999999 solid"></div>
-                </div>
-            </div>
-            <div style="height: 50px; padding-top: 14.50px; padding-bottom: 16px; padding-left: 20px; left: 1px; top: 101px; position: absolute; background: white; border-bottom: 1px #F2F2F2 solid; justify-content: flex-end; align-items: flex-start; gap: 67.10px; display: inline-flex">
-                <div style="width: 78.90px; height: 19px; color: #666666; font-size: 14px; font-family: Noto Sans; font-weight: 500; line-height: 19px; word-wrap: break-word">찜목록</div>
-                <div style="width: 19px; align-self: stretch; padding-top: 5.02px; padding-bottom: 5.02px; padding-left: 3.71px; padding-right: 6.33px; justify-content: center; align-items: center; display: inline-flex">
-                    <div style="width: 6.33px; height: 6.33px; transform: rotate(45deg); transform-origin: 0 0; border: 1.42px #999999 solid"></div>
-                </div>
-            </div>
-            <div style="height: 50px; padding-top: 15px; padding-bottom: 16px; padding-left: 20px; left: 1px; top: 151px; position: absolute; background: #FAFAFA; border-bottom: 1px #F2F2F2 solid; justify-content: flex-end; align-items: flex-start; gap: 88px; display: inline-flex">
-                <div style="width: 58px; height: 19px; color: #ED0100; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 19px; word-wrap: break-word">정보변경</div>
-                <div style="width: 19px; align-self: stretch; padding-top: 5.02px; padding-bottom: 5.02px; padding-left: 3.71px; padding-right: 6.33px; justify-content: center; align-items: center; display: inline-flex">
-                    <div style="width: 6.33px; height: 6.33px; transform: rotate(45deg); transform-origin: 0 0; border: 1.42px #ED0100 solid"></div>
-                </div>
-            </div>
-            <div style="left: 29px; top: 168px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 19px; word-wrap: break-word"> </div>
-        </div>
-        <div style="width: 166px; left: 651px; top: 919px; position: absolute">
-            <div style="width: 137px; height: 23px; left: 0px; top: 0px; position: absolute">
-                <div style="left: 0px; top: 0px; position: absolute; color: black; font-size: 16px; font-family: Noto Sans KR; font-weight: 400; word-wrap: break-word">1</div>
-                <div style="left: 32px; top: 0px; position: absolute; opacity: 0.22; color: black; font-size: 16px; font-family: Noto Sans KR; font-weight: 400; word-wrap: break-word">2</div>
-                <div style="left: 64px; top: 0px; position: absolute; opacity: 0.22; color: black; font-size: 16px; font-family: Noto Sans KR; font-weight: 400; word-wrap: break-word">3</div>
-                <div style="left: 96px; top: 0px; position: absolute; opacity: 0.22; color: black; font-size: 16px; font-family: Noto Sans KR; font-weight: 400; word-wrap: break-word">4</div>
-                <div style="left: 128px; top: 0px; position: absolute; opacity: 0.22; color: black; font-size: 16px; font-family: Noto Sans KR; font-weight: 400; word-wrap: break-word">5</div>
-            </div>
-            <div style="width: 11px; height: 7px; left: 166px; top: 7px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; border: 2px #9A9898 solid"></div>
-        </div>
-        <div style="width: 814px; height: 0px; left: 327px; top: 256px; position: absolute; border: 1px black solid"></div>
-        <div style="width: 810px; height: 115px; left: 322px; top: 267px; position: absolute">
-            <div style="width: 781px; height: 92px; left: 0px; top: 0px; position: absolute">
-                <div style="width: 18px; height: 20px; left: 24px; top: 26.50px; position: absolute; text-align: center; color: black; font-size: 12px; font-family: Noto Sans KR; font-weight: 350; word-wrap: break-word">1</div>
-                <img style="width: 62px; height: 80px; left: 77px; top: 14px; position: absolute; border-radius: 2px" src="https://via.placeholder.com/62x80" />
-                <div style="width: 162px; height: 20px; left: 108px; top: 14px; position: absolute; text-align: center; color: black; font-size: 14px; font-family: Noto Sans KR; font-weight: 500; word-wrap: break-word">김치 한포기</div>
-                <div style="width: 74px; height: 20px; left: 146px; top: 41px; position: absolute; text-align: center; color: #9A9898; font-size: 12px; font-family: Noto Sans KR; font-weight: 500; word-wrap: break-word">12,000원</div>
-                <div style="width: 116px; height: 31px; padding-left: 29px; padding-right: 29px; padding-top: 15px; padding-bottom: 15px; left: 541px; top: 14px; position: absolute; border-radius: 11px; overflow: hidden; border: 2px #E2E2E2 solid; backdrop-filter: blur(4px); justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-                    <div style="text-align: center; color: black; font-size: 14px; font-family: Noto Sans KR; font-weight: 500; word-wrap: break-word">삭제</div>
-                </div>
-                <div style="width: 116px; height: 31px; padding-left: 29px; padding-right: 29px; padding-top: 15px; padding-bottom: 15px; left: 541px; top: 63px; position: absolute; border-radius: 11px; overflow: hidden; border: 2px #D65454 solid; backdrop-filter: blur(4px); justify-content: center; align-items: center; display: inline-flex">
-                    <div style="width: 16px; height: 16px; justify-content: center; align-items: center; display: flex">
-                        <div style="width: 16px; height: 16px; position: relative">
-                            <div style="width: 16px; height: 16px; left: 0px; top: 0px; position: absolute"></div>
-                            <div style="width: 11.41px; height: 10.19px; left: 2.30px; top: 2.91px; position: absolute">
-                                <div style="width: 9.34px; height: 5.14px; left: 2.07px; top: 1.63px; position: absolute; border: 1.70px #D65454 solid"></div>
-                                <div style="width: 1.90px; height: 1.90px; left: 8.17px; top: 8.28px; position: absolute; border: 1.70px #D65454 solid"></div>
-                                <div style="width: 1.90px; height: 1.90px; left: 3.41px; top: 8.28px; position: absolute; border: 1.70px #D65454 solid"></div>
-                                <div style="width: 2.47px; height: 3.33px; left: 0px; top: 0px; position: absolute; border: 1.70px #D65454 solid"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="text-align: center; color: #D65454; font-size: 14px; font-family: Noto Sans KR; font-weight: 500; word-wrap: break-word">담기</div>
-                </div>
-            </div>
-            <div style="width: 798px; height: 115px; left: 12px; top: 0px; position: absolute; border-bottom: 1px #F2F2F2 solid"></div>
-        </div>
-        <div style="width: 810px; height: 115px; left: 322px; top: 413px; position: absolute">
-            <div style="width: 781px; height: 92px; left: 0px; top: 0px; position: absolute">
-                <div style="width: 18px; height: 20px; left: 24px; top: 26.50px; position: absolute; text-align: center; color: black; font-size: 12px; font-family: Noto Sans KR; font-weight: 350; word-wrap: break-word">2</div>
-                <img style="width: 62px; height: 80px; left: 77px; top: 14px; position: absolute; border-radius: 2px" src="https://via.placeholder.com/62x80" />
-                <div style="width: 162px; height: 20px; left: 108px; top: 14px; position: absolute; text-align: center; color: black; font-size: 14px; font-family: Noto Sans KR; font-weight: 500; word-wrap: break-word">김치 한포기</div>
-                <div style="width: 74px; height: 20px; left: 146px; top: 41px; position: absolute; text-align: center; color: #9A9898; font-size: 12px; font-family: Noto Sans KR; font-weight: 500; word-wrap: break-word">12,000원</div>
-                <div style="width: 116px; height: 31px; padding-left: 29px; padding-right: 29px; padding-top: 15px; padding-bottom: 15px; left: 541px; top: 14px; position: absolute; border-radius: 11px; overflow: hidden; border: 2px #E2E2E2 solid; backdrop-filter: blur(4px); justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-                    <div style="text-align: center; color: black; font-size: 14px; font-family: Noto Sans KR; font-weight: 500; word-wrap: break-word">삭제</div>
-                </div>
-                <div style="width: 116px; height: 31px; padding-left: 29px; padding-right: 29px; padding-top: 15px; padding-bottom: 15px; left: 541px; top: 63px; position: absolute; border-radius: 11px; overflow: hidden; border: 2px #D65454 solid; backdrop-filter: blur(4px); justify-content: center; align-items: center; display: inline-flex">
-                    <div style="width: 16px; height: 16px; justify-content: center; align-items: center; display: flex">
-                        <div style="width: 16px; height: 16px; position: relative">
-                            <div style="width: 16px; height: 16px; left: 0px; top: 0px; position: absolute"></div>
-                            <div style="width: 11.41px; height: 10.19px; left: 2.30px; top: 2.91px; position: absolute">
-                                <div style="width: 9.34px; height: 5.14px; left: 2.07px; top: 1.63px; position: absolute; border: 1.70px #D65454 solid"></div>
-                                <div style="width: 1.90px; height: 1.90px; left: 8.17px; top: 8.28px; position: absolute; border: 1.70px #D65454 solid"></div>
-                                <div style="width: 1.90px; height: 1.90px; left: 3.41px; top: 8.28px; position: absolute; border: 1.70px #D65454 solid"></div>
-                                <div style="width: 2.47px; height: 3.33px; left: 0px; top: 0px; position: absolute; border: 1.70px #D65454 solid"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="text-align: center; color: #D65454; font-size: 14px; font-family: Noto Sans KR; font-weight: 500; word-wrap: break-word">담기</div>
-                </div>
-            </div>
-            <div style="width: 798px; height: 115px; left: 12px; top: 0px; position: absolute; border-bottom: 1px #F2F2F2 solid"></div>
-        </div>
-        <div style="width: 810px; height: 115px; left: 326px; top: 559px; position: absolute">
-            <div style="width: 781px; height: 92px; left: 0px; top: 0px; position: absolute">
-                <div style="width: 18px; height: 20px; left: 24px; top: 26.50px; position: absolute; text-align: center; color: black; font-size: 12px; font-family: Noto Sans KR; font-weight: 350; word-wrap: break-word">3</div>
-                <img style="width: 62px; height: 80px; left: 77px; top: 14px; position: absolute; border-radius: 2px" src="https://via.placeholder.com/62x80" />
-                <div style="width: 162px; height: 20px; left: 108px; top: 14px; position: absolute; text-align: center; color: black; font-size: 14px; font-family: Noto Sans KR; font-weight: 500; word-wrap: break-word">김치 한포기</div>
-                <div style="width: 74px; height: 20px; left: 146px; top: 41px; position: absolute; text-align: center; color: #9A9898; font-size: 12px; font-family: Noto Sans KR; font-weight: 500; word-wrap: break-word">12,000원</div>
-                <div style="width: 116px; height: 31px; padding-left: 29px; padding-right: 29px; padding-top: 15px; padding-bottom: 15px; left: 541px; top: 14px; position: absolute; border-radius: 11px; overflow: hidden; border: 2px #E2E2E2 solid; backdrop-filter: blur(4px); justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-                    <div style="text-align: center; color: black; font-size: 14px; font-family: Noto Sans KR; font-weight: 500; word-wrap: break-word">삭제</div>
-                </div>
-                <div style="width: 116px; height: 31px; padding-left: 29px; padding-right: 29px; padding-top: 15px; padding-bottom: 15px; left: 541px; top: 63px; position: absolute; border-radius: 11px; overflow: hidden; border: 2px #D65454 solid; backdrop-filter: blur(4px); justify-content: center; align-items: center; display: inline-flex">
-                    <div style="width: 16px; height: 16px; justify-content: center; align-items: center; display: flex">
-                        <div style="width: 16px; height: 16px; position: relative">
-                            <div style="width: 16px; height: 16px; left: 0px; top: 0px; position: absolute"></div>
-                            <div style="width: 11.41px; height: 10.19px; left: 2.30px; top: 2.91px; position: absolute">
-                                <div style="width: 9.34px; height: 5.14px; left: 2.07px; top: 1.63px; position: absolute; border: 1.70px #D65454 solid"></div>
-                                <div style="width: 1.90px; height: 1.90px; left: 8.17px; top: 8.28px; position: absolute; border: 1.70px #D65454 solid"></div>
-                                <div style="width: 1.90px; height: 1.90px; left: 3.41px; top: 8.28px; position: absolute; border: 1.70px #D65454 solid"></div>
-                                <div style="width: 2.47px; height: 3.33px; left: 0px; top: 0px; position: absolute; border: 1.70px #D65454 solid"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="text-align: center; color: #D65454; font-size: 14px; font-family: Noto Sans KR; font-weight: 500; word-wrap: break-word">담기</div>
-                </div>
-            </div>
-            <div style="width: 798px; height: 115px; left: 12px; top: 0px; position: absolute; border-bottom: 1px #F2F2F2 solid"></div>
-        </div>
-        <div style="width: 810px; height: 115px; left: 326px; top: 705px; position: absolute">
-            <div style="width: 781px; height: 92px; left: 0px; top: 0px; position: absolute">
-                <div style="width: 18px; height: 20px; left: 24px; top: 26.50px; position: absolute; text-align: center; color: black; font-size: 12px; font-family: Noto Sans KR; font-weight: 350; word-wrap: break-word">4</div>
-                <img style="width: 62px; height: 80px; left: 77px; top: 14px; position: absolute; border-radius: 2px" src="https://via.placeholder.com/62x80" />
-                <div style="width: 162px; height: 20px; left: 108px; top: 14px; position: absolute; text-align: center; color: black; font-size: 14px; font-family: Noto Sans KR; font-weight: 500; word-wrap: break-word">김치 한포기</div>
-                <div style="width: 74px; height: 20px; left: 146px; top: 41px; position: absolute; text-align: center; color: #9A9898; font-size: 12px; font-family: Noto Sans KR; font-weight: 500; word-wrap: break-word">12,000원</div>
-                <div style="width: 116px; height: 31px; padding-left: 29px; padding-right: 29px; padding-top: 15px; padding-bottom: 15px; left: 541px; top: 14px; position: absolute; border-radius: 11px; overflow: hidden; border: 2px #E2E2E2 solid; backdrop-filter: blur(4px); justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-                    <div style="text-align: center; color: black; font-size: 14px; font-family: Noto Sans KR; font-weight: 500; word-wrap: break-word">삭제</div>
-                </div>
-                <div style="width: 116px; height: 31px; padding-left: 29px; padding-right: 29px; padding-top: 15px; padding-bottom: 15px; left: 541px; top: 63px; position: absolute; border-radius: 11px; overflow: hidden; border: 2px #D65454 solid; backdrop-filter: blur(4px); justify-content: center; align-items: center; display: inline-flex">
-                    <div style="width: 16px; height: 16px; justify-content: center; align-items: center; display: flex">
-                        <div style="width: 16px; height: 16px; position: relative">
-                            <div style="width: 16px; height: 16px; left: 0px; top: 0px; position: absolute"></div>
-                            <div style="width: 11.41px; height: 10.19px; left: 2.30px; top: 2.91px; position: absolute">
-                                <div style="width: 9.34px; height: 5.14px; left: 2.07px; top: 1.63px; position: absolute; border: 1.70px #D65454 solid"></div>
-                                <div style="width: 1.90px; height: 1.90px; left: 8.17px; top: 8.28px; position: absolute; border: 1.70px #D65454 solid"></div>
-                                <div style="width: 1.90px; height: 1.90px; left: 3.41px; top: 8.28px; position: absolute; border: 1.70px #D65454 solid"></div>
-                                <div style="width: 2.47px; height: 3.33px; left: 0px; top: 0px; position: absolute; border: 1.70px #D65454 solid"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="text-align: center; color: #D65454; font-size: 14px; font-family: Noto Sans KR; font-weight: 500; word-wrap: break-word">담기</div>
-                </div>
-            </div>
-            <div style="width: 798px; height: 115px; left: 12px; top: 0px; position: absolute; border-bottom: 1px #F2F2F2 solid"></div>
-        </div>
-    </div>
+    <div class="footer"></div>
 </div>
 </body>
 </html>
