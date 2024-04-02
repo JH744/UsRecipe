@@ -2,296 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        .57_60 {
-            overflow:hidden;
-        }
-        .e57_60 {
-            background-color:rgba(255, 255, 255, 1);
-            width:1440px;
-            height:1024px;
-            position:absolute;
-        }
-        .e57_134 {
-            width:1440px;
-            height:200px;
-            position:absolute;
-            left:0px;
-            top:824px;
-        }
-        .e57_61 {
-            background-color:rgba(242.24999696016312, 242.24999696016312, 242.24999696016312, 1);
-            width:1440px;
-            height:200px;
-            position:absolute;
-            left:0px;
-            top:0px;
-        }
-        .57_61 {
-               border:1px solid rgba(0, 0, 0, 1);
-           }
-        .e57_62 {
-            color:rgba(0, 0, 0, 1);
-            width:1023px;
-            height:151px;
-            position:absolute;
-            left:352px;
-            top:29px;
-            font-family:Inter;
-            text-align:left;
-            font-size:16px;
-            letter-spacing:0;
-        }
-        .e57_63 {
-            width:111px;
-            height:78px;
-            position:absolute;
-            left:187px;
-            top:56px;
-            background-image:url(images/image_27.png);
-            background-repeat:no-repeat;
-            background-size:cover;
-        }
-        .e57_136 {
-            width:330px;
-            height:63.402931213378906px;
-            position:absolute;
-            left:555px;
-            top:682px;
-            background-color:rgba(213.5625395178795, 83.7318965792656, 83.7318965792656, 1);
-            color:rgba(255, 255, 255, 1);
-            font-family:Poppins;
-            text-align:center;
-            font-size:16px;
-            letter-spacing:0;
-            border: none;
-        }
+    <title>유스레시피</title>
+    <link rel="stylesheet" href="../static/css/templateBody.css" />
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("header").load("./header.html");
+            $(".footer").load("./footer.html");
+        });
+    </script>
 
-        .e57_85 {
-            background-color:rgba(237.0000010728836, 1.0000000591389835, 0, 1);
-            width:330px;
-            height:55px;
-            position:absolute;
-            left:0px;
-            top:0px;
-        }
-        .e57_86 {
-            color:rgba(255, 255, 255, 1);
-            width:62px;
-            height:24px;
-            position:absolute;
-            left:134px;
-            top:15px;
-            font-family:Poppins;
-            text-align:center;
-            font-size:16px;
-            letter-spacing:0;
-        }
-
-
-        .e57_135 {
-            width:290px;
-            height:497px;
-            position:absolute;
-            left:574px;
-            top:110px;
-        }
-        .e57_117 {
-            width:146px;
-            height:123px;
-            position:absolute;
-            left:73px;
-            top:0px;
-            background-image:url(images/image_28.png);
-            background-repeat:no-repeat;
-            background-size:cover;
-        }
-        .e57_75 {
-            color:rgba(0, 0, 0, 1);
-            width:275px;
-            height:60px;
-            position:absolute;
-            left:15px;
-            top:123px;
-            font-family:Inter;
-            text-align:center;
-            font-size:32px;
-            letter-spacing:0;
-        }
-        .e57_119 {
-            color:rgba(0, 0, 0, 1);
-            width:275px;
-            height:60px;
-            position:absolute;
-            left:8px;
-            top:377px;
-            font-family:Inter;
-            text-align:center;
-            font-size:32px;
-            letter-spacing:0;
-        }
-        .e57_118 {
-            color:rgba(154.0625050663948, 152.13672280311584, 152.13672280311584, 1);
-            width:290px;
-            height:30px;
-            position:absolute;
-            left:0px;
-            top:467px;
-            font-family:Poppins;
-            text-align:left;
-            font-size:20px;
-            letter-spacing:0;
-        }
-        .e57_122 {
-            width:155px;
-            height:137px;
-            position:absolute;
-            left:68px;
-            top:212px;
-            background-image:url(images/image_32.png);
-            background-repeat:no-repeat;
-            background-size:cover;
-        }
-        .e57_137 {
-            width:1160px;
-            height:110px;
-            position:absolute;
-            left:140px;
-            top:0px;
-        }
-        .e57_64 {
-            background-color:rgba(255, 255, 255, 1);
-            width:1140px;
-            height:110px;
-            position:absolute;
-            left:0px;
-            top:0px;
-        }
-        .e57_65 {
-            color:rgba(0, 0, 0, 1);
-            width:60px;
-            height:32px;
-            position:absolute;
-            left:176px;
-            top:39px;
-            font-family:Inter;
-            text-align:left;
-            font-size:20px;
-            letter-spacing:0;
-        }
-        .e57_66 {
-            color:rgba(0, 0, 0, 1);
-            width:40px;
-            height:32px;
-            position:absolute;
-            left:274px;
-            top:39px;
-            font-family:Inter;
-            text-align:left;
-            font-size:20px;
-            letter-spacing:0;
-        }
-        .e57_67 {
-            color:rgba(0, 0, 0, 1);
-            width:80px;
-            height:32px;
-            position:absolute;
-            left:470px;
-            top:39px;
-            font-family:Inter;
-            text-align:left;
-            font-size:20px;
-            letter-spacing:0;
-        }
-        .e57_68 {
-            color:rgba(0, 0, 0, 1);
-            width:100px;
-            height:32px;
-            position:absolute;
-            left:342px;
-            top:39px;
-            font-family:Inter;
-            text-align:left;
-            font-size:20px;
-            letter-spacing:0;
-        }
-        .e57_69 {
-            color:rgba(0, 0, 0, 1);
-            width:100px;
-            height:32px;
-            position:absolute;
-            left:586px;
-            top:39px;
-            font-family:Inter;
-            text-align:left;
-            font-size:20px;
-            letter-spacing:0;
-        }
-        .e57_72 {
-            color:rgba(0, 0, 0, 1);
-            width:56px;
-            height:32px;
-            position:absolute;
-            left:961px;
-            top:39px;
-            font-family:Inter;
-            text-align:left;
-            font-size:20px;
-            letter-spacing:0;
-        }
-        .e57_73 {
-            color:rgba(0, 0, 0, 1);
-            width:100px;
-            height:32px;
-            position:absolute;
-            left:1060px;
-            top:39px;
-            font-family:Inter;
-            text-align:left;
-            font-size:20px;
-            letter-spacing:0;
-        }
-        .e57_74 {
-            width:111px;
-            height:78px;
-            position:absolute;
-            left:29px;
-            top:16px;
-            background-image:url(images/image_11.png);
-            background-repeat:no-repeat;
-            background-size:cover;
-        }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="../static/css/joinOk.css">
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 
 </head>
 <body>
-<div class=e57_60>
-    <div class=e57_134>
-        <div class="e57_61"></div><span  class="e57_62">(주)유스레시피     사업자번호 : 157-45-48137    서비스명 : 유스레시피     사업자정보확인    고객센터 : 1877-4567
-계좌번호 안내 : 신한은행 100-000-000000 (주)유스레시피
-통신판매업등록 : 2021서울강북1234호     대표 : 김아무개    주소 : 서울시 설경구 강호동 123-456
-개인정보책임자 : 김아무개     운영시간 : 오전10시 ~ 오후6시 [점심시간 : 오전11시30 ~ 오후1시]
-이메일 : yuyuyuyu@yuyuyuyu.com     ©asdfg Corp.</span>
-        <div class="e57_63"></div>
+<div class="templateBody">
+    <header></header>
+    <div class="mainBody">
+        <div class=e57_135>
+            <div>
+                <span  class="e57_119">회원가입이
+                    <br>
+                완료되었습니다.</span>
+            </div>
+            <div class="e57_122"></div>
+
+                <div><span  class="e57_118">김김김님 회원가입을 축하합니다.</span></div>
+        </div>
+        <button class=e57_136>
+            로그인하기
+        </button>
     </div>
-    <button class=e57_136>
-        로그인하기
-    </button>
-    <div class=e57_135>
-        <div class="e57_117"></div>
-        <span  class="e57_75">유스레시피 회원가입</span>
-        <span  class="e57_119">회원가입이완료되었습니다.</span>
-        <span  class="e57_118">김김김씨 회원가입을 축하합니다.</span>
-        <div class="e57_122"></div>
-    </div>
-    <div class=e57_137>
-        <div class="e57_64"></div><span  class="e57_65">레시피 </span><span  class="e57_66">상점</span><span  class="e57_67">고객센터 </span><span  class="e57_68">크리에이터</span><span  class="e57_69">마이페이지</span><span  class="e57_72">로그인</span><span  class="e57_73">회원가입</span>
-        <div class="e57_74"></div>
-    </div>
+    <div class="footer"></div>
 </div>
 </body>
 </html>

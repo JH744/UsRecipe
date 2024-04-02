@@ -1,9 +1,13 @@
+body{
+    margin: 0;
+}
 .templateBody {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     align-content: space-between;
     width: 100%;
+    min-height: 945px;
 }
 
 header{
