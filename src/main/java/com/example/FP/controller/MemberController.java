@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
@@ -38,7 +37,7 @@ public class MemberController {
         System.out.println(memberFormDto.getUserid());
         if(bindingResult.hasErrors()){
             System.out.println("에러");
-            return "join";
+            return "jointest";
         }
 
         Member member = Member.createMember(memberFormDto, passwordEncoder);
