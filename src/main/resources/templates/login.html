@@ -349,7 +349,7 @@
             position:absolute;
             left:11px;
             top:11px;
-            background-image:url(static/images/image_31.png);
+            background-image:url(../static/images/image_31.png);
             background-repeat:no-repeat;
             background-size:cover;
         }
@@ -596,17 +596,23 @@
             <div class="e49_81"></div>
             <div class=e49_82>
                 <div class=e49_104>
-                    <input type="text" class="e49_105" placeholder="아이디를 입력하세요">
-                    <input type="text" placeholder="비밀번호를 입력하세요" class="e49_106"></input>
-                    <button class="e49_109">로그인</button><span  class="e49_110">로그인</span><b  class="e49_113">아이디
-</b><b  class="e49_114">비밀번호</b>
+                    <span  class="e49_110">로그인</span>
+                    <form action="/login" method="post">
+                        <input type="hidden" name="{_csrf.parameterName}" value="${_csrf.token}">
+                        <b class="e49_113">아이디</b>
+                        <input type="text" class="e49_105" placeholder="아이디를 입력하세요">
+                        <b class="e49_114">비밀번호</b>
+                        <input type="text" placeholder="비밀번호를 입력하세요" class="e49_106"/>
+                        <input class="e49_109" type="submit" value="로그인"/>
+                    </form>
+
                     <div class=e60_9><b  class="e49_126"> SNS 간편 로그인 </b>
 
                     </div>
                     <div class="e49_124"></div>
-                    <div class=e60_8><a class="e49_228">회원가입   </a>
-                        <div class="e60_6"></div><a  class="e49_229">아이디 찾기 </a>
-                        <div class="e52_2"></div><a  class="e49_231">비밀번호  찾기 </a>
+                    <div class=e60_8><a class="e49_228" href="">회원가입   </a>
+                        <div class="e60_6"></div><a  class="e49_229" href="">아이디 찾기 </a>
+                        <div class="e52_2"></div><a  class="e49_231" >비밀번호  찾기 </a>
                     </div>
                 </div>
             </div>

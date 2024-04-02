@@ -14,19 +14,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .requestMatchers("/", "/join").permitAll()
+                .requestMatchers("/", "/join", "/all/**", "/joinOk").permitAll()
                 .requestMatchers("/admin/**").hasRole("admin")
                 .anyRequest().authenticated();
 
-//        http.formLogin().loginPage("/login").permitAll();
-//
-//        http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                .invalidateHttpSession(true)
-//                .logoutSuccessUrl("/login");
+        http.formLogin().loginPage("/login").permitAll();
+
+        http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .invalidateHttpSession(true)
+                .logoutSuccessUrl("/login");
 
 
         http.httpBasic();
         return http.build();
 
-    };
+    }
 }
