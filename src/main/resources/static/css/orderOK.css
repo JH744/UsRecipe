@@ -1,0 +1,39 @@
+.successBox{
+    width: 450px; height: 606px;
+    box-shadow: 0 4px 8px 0 rgb(228, 225, 225);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 400px;
+}
+
+.sucBox_coment1{
+    font-size: 40px;
+    padding-top: 56px;
+    font-weight: 600;
+}
+.suclogo{
+    width: 187px;
+    height: 124px;
+}
+.sucBox_coment2{
+    font-size: 32px;
+    font-weight: 600;
+    text-align: center;
+}
+.sucBox_coment3{
+    font-size: 2px;
+    color: #9A9898;
+}
+
+.btnToOrderList{
+    color:#fff;
+    font-size:16px ;
+    font-weight: 600;
+    background-color: #D65454;
+    border: none;
+    width: 330px; height: 55px;
+}
+
