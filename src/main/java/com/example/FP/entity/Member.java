@@ -1,11 +1,13 @@
 package com.example.FP.entity;
 
+import com.example.FP.dto.MemberDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +21,11 @@ public class Member {
     @Id@GeneratedValue
     @Column(name = "member_id")
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String userid;
     private String password;
     private String name;
+    @Column(unique = true)
     private String nickname;
     private String addr;
     private String email;
@@ -80,5 +83,19 @@ public class Member {
         this.member_alarm_list = member_alarm_list;
     }
 
-
+    public static Member createMember(MemberDto memberDto, PasswordEncoder passwordEncoder){
+        System.out.println("맴버 생성");
+        Member member = Member.builder()
+                .userid(memberDto.getUserid())
+                .name(memberDto.getName())
+                .nickname(memberDto.getNickname())
+                .addr(memberDto.getAddr())
+                .email(memberDto.getEmail())
+                .phone(memberDto.getPhone())
+                .birth(memberDto.getBirth())
+                .password(passwordEncoder.encode(memberDto.getPassword()))  //암호화처리
+                .role(MemberRole.USER)
+                .build();
+        return member;
+    }
 }
