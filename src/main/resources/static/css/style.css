@@ -415,9 +415,7 @@ textarea {
 	transition: all 0.2s ease-in-out;
 }
 /*--------------------------------------------------------------6.0 Header--------------------------------------------------------------*/
-html {
-	border:12px solid #111;
-}
+
 .site-header {
 	padding-top:2em;
 	padding-bottom:1em;
