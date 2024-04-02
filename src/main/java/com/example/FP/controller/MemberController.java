@@ -41,6 +41,10 @@ public class MemberController {
 
         return null;
     }
+    @GetMapping("/dataChange")
+    public String dataChangeForm(){
+        return "/dataChange";
+    }
 
 
 
