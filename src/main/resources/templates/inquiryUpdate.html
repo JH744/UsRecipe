@@ -48,8 +48,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <style type="text/css">
         input[type]{
-            border: none;
-            background-color: rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
+
+
             margin-bottom: 30px;
         }
 
@@ -182,7 +182,7 @@
     <header></header>
     <div class="mainBody">
 
-        <aside id="news_aside" style="margin-right: 10px; margin-top: 300px">
+        <aside id="news_aside" style="margin-right: 10px;">
             <ul class="news-ul">
                 <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
 
@@ -195,53 +195,39 @@
             </ul>
         </aside>
         <section id="news_section">
-            <table style="border: none; width: 60%; margin-left: 150px; margin-bottom: 100px;">
-                <tr style="border-top: none;">
-                    <th style="color: black;" class="mypage_myinfo_th">이름</th>
-                    <th style="color: black" class="mypage_myinfo_th">적립금</th>
-                    <th style="color: black" class="mypage_myinfo_th">주문건수</th>
-                </tr>
-                <tr style="border-bottom: none">
-                    <td class="mypage_myinfo_td">김김김</td>
-                    <td class="mypage_myinfo_td">1000원</td>
-                    <td class="mypage_myinfo_td">3건</td>
-                </tr>
-            </table>
-            <div id="notion_title_wrap" style="color: black">
-                <span id="notion_spanB">주문목록</span><span id="notion_spanL">회원님의 주문목록을 확인할 수 있습니다.</span>
+
+            <div id="notion_title_wrap" style="color: black;">
+                <span id="notion_spanB">1대1 문의 수정</span><span id="notion_spanL">문의를 수정할 수 있습니다.</span>
+                <hr>
+                <h3 style="font-family: Cafe24Dangdanghae">문의하기</h3><br>
+                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae">질문유형</b>
+                <select name="inquiry_category">
+                    <option value="계정">계정</option>
+                    <option value="레시피">레시피</option>
+                    <option value="재료">재료</option>
+                    <option value="결제">결제</option>
+                </select><br>
+                <hr>
+                <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b><input type="text" style="width: 500px">
+                <hr>
+                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">문의내용</b><input type="text" style="width: 550px; height: 600px;">
+                <br>
+                <input type="submit" value="수정하기" style="margin-left: 380px; background-color: #D65454">
+
+
             </div>
-            <hr>
+
             <div id="notion_box">
 
             </div>
 
             <div style="margin-top:50px;" >
-                <div style="text-align:left;">
+                <div style=" text-align:left;">
                     <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
                     <div id="page">
                         <div class="container">
 
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col" class="orderList_th">번호</th>
-                                    <th scope="col" class="orderList_th">사진</th>
-                                    <th scope="col" class="orderList_th">제품명</th>
-                                    <th scope="col" class="orderList_th">가격</th>
-                                    <th scope="col" class="orderList_th">주문상태</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="orderList_td">1</td>
-                                    <td class="orderList_td"><img src="../static/images/image_11.png" style="width: 50px;height: 60px"></td>
-                                    <td class="orderList_td">Otto</td>
-                                    <td class="orderList_td">10000원</td>
-                                    <td class="orderList_td">배송완료</td>
-                                </tr>
 
-                                </tbody>
-                            </table>
                         </div>
                         <!-- .container -->
 

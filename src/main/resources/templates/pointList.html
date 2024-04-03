@@ -69,6 +69,9 @@
             margin: 0 auto;
             padding: 0;
         }
+        .point_list_a{
+            font-size: 20px;
+        }
         #news_main{
             height:700px;
             width:1200px;
@@ -126,6 +129,9 @@
             color: #D65454;
             font-weight: bold;
         }
+        .point_list_a:hover{
+            color:#D65454;
+        }
         #news_section{
             width: 79%;
             float: left;
@@ -182,7 +188,7 @@
     <header></header>
     <div class="mainBody">
 
-        <aside id="news_aside" style="margin-right: 10px; margin-top: 300px">
+        <aside id="news_aside" style="margin-right: 10px;">
             <ul class="news-ul">
                 <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
 
@@ -195,49 +201,36 @@
             </ul>
         </aside>
         <section id="news_section">
-            <table style="border: none; width: 60%; margin-left: 150px; margin-bottom: 100px;">
-                <tr style="border-top: none;">
-                    <th style="color: black;" class="mypage_myinfo_th">이름</th>
-                    <th style="color: black" class="mypage_myinfo_th">적립금</th>
-                    <th style="color: black" class="mypage_myinfo_th">주문건수</th>
-                </tr>
-                <tr style="border-bottom: none">
-                    <td class="mypage_myinfo_td">김김김</td>
-                    <td class="mypage_myinfo_td">1000원</td>
-                    <td class="mypage_myinfo_td">3건</td>
-                </tr>
-            </table>
-            <div id="notion_title_wrap" style="color: black">
-                <span id="notion_spanB">주문목록</span><span id="notion_spanL">회원님의 주문목록을 확인할 수 있습니다.</span>
+
+            <div id="notion_title_wrap" style="color: black;">
+                <span id="notion_spanB">적립내역</span><span id="notion_spanL">회원님의 적립내역을 확인할 수 있습니다.</span>
             </div>
-            <hr>
+
             <div id="notion_box">
 
             </div>
 
             <div style="margin-top:50px;" >
-                <div style="text-align:left;">
+                <div style=" text-align:left;">
                     <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
                     <div id="page">
                         <div class="container">
+                            <a class="point_list_a">전체</a>&nbsp;<a class="point_list_a">획득</a>&nbsp;<a class="point_list_a">사용</a>
+
 
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th scope="col" class="orderList_th">번호</th>
-                                    <th scope="col" class="orderList_th">사진</th>
-                                    <th scope="col" class="orderList_th">제품명</th>
-                                    <th scope="col" class="orderList_th">가격</th>
-                                    <th scope="col" class="orderList_th">주문상태</th>
+                                    <th scope="col" class="orderList_th" style="width: 60%">적립내용</th>
+                                    <th scope="col" class="orderList_th">포인트</th>
+                                    <th scope="col" class="orderList_th">적립날짜</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td class="orderList_td">1</td>
-                                    <td class="orderList_td"><img src="../static/images/image_11.png" style="width: 50px;height: 60px"></td>
-                                    <td class="orderList_td">Otto</td>
-                                    <td class="orderList_td">10000원</td>
-                                    <td class="orderList_td">배송완료</td>
+                                    <td class="orderList_td"><a>이벤트 당첨</a></td>
+                                    <td class="orderList_td">1000</td>
+                                    <td class="orderList_td">2024-04-03</td>
                                 </tr>
 
                                 </tbody>
