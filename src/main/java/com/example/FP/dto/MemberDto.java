@@ -67,6 +67,7 @@ public class MemberDto {
         this.phone = phone;
         this.point = point;
         this.birth = birth;
+        this.role=MemberRole.MEMBER;
     }
 
     public MemberDto() {}

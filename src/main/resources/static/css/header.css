@@ -17,6 +17,9 @@
     font-size:16px;
     font-family: 'JalnanGothic';
 }
+.header ul > li:hover{
+    color: #D65454;
+}
 
 .headerLogo {
     margin:10px;
