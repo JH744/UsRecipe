@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@DynamicInsert//insert할 때 null인필드 제외
 public class Member {
     @Id@GeneratedValue
     @Column(name = "member_id")
@@ -32,6 +35,7 @@ public class Member {
     private String phone;
     private Integer point;
     private String birth;
+
     @Enumerated(EnumType.STRING)
     private MemberRole role;
 
@@ -63,7 +67,7 @@ public class Member {
     @OneToMany(mappedBy = "alarm_member")
     private List<Alarm> member_alarm_list = new ArrayList<>();
 
-    public Member(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth, MemberRole role, List<Inquiry> inquiry_list, List<WishList> wishlist_list, List<Recipe> recipe_list, List<OrderDetails> order_member_list, List<Cart> member_cart_list, List<Reply> member_reply_list, List<Alarm> member_alarm_list) {
+    public Member(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth, MemberRole role, List<Inquiry> inquiry_list, List<WishList> wishlist_list, List<Recipe> recipe_list, List<OrderDetails> order_member_list, List<Cart> member_cart_list, List<Reply> member_reply_list , List<Alarm> member_alarm_list) {
         this.userid = userid;
         this.password = password;
         this.name = name;
@@ -94,7 +98,7 @@ public class Member {
                 .phone(memberDto.getPhone())
                 .birth(memberDto.getBirth())
                 .password(passwordEncoder.encode(memberDto.getPassword()))  //암호화처리
-                .role(MemberRole.USER)
+                .role(MemberRole.MEMBER)
                 .build();
         return member;
     }
