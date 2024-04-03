@@ -56,4 +56,18 @@ public class MemberDto {
         this.name = name;
         this.nickname = nickname;
     }
+
+    public MemberDto(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth) {
+        this.userid = userid;
+        this.password = password;
+        this.name = name;
+        this.nickname = nickname;
+        this.addr = addr;
+        this.email = email;
+        this.phone = phone;
+        this.point = point;
+        this.birth = birth;
+    }
+
+    public MemberDto() {}
 }
