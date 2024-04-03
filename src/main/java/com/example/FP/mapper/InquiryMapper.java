@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class InquiryMapper {
 
     public static Inquiry toEntity(InquiryDto inquiryDto){
-        Inquiry inquiry = new Inquiry(inquiryDto.getInquiry_title(), inquiryDto.getInquiry_content(), inquiryDto.getInquiry_answer(), inquiryDto.getInquiry_date(),inquiryDto.getInquiry_answer_date(),inquiryDto.getInquiry_state(),inquiryDto.getInquiry_member());
+        Inquiry inquiry = new Inquiry(inquiryDto.getInquiry_title(), inquiryDto.getInquiry_content(), inquiryDto.getInquiry_answer(),inquiryDto.getInquiry_category(), inquiryDto.getInquiry_date(),inquiryDto.getInquiry_answer_date(),inquiryDto.getInquiry_state(),inquiryDto.getInquiry_member());
         return inquiry;
 
     }

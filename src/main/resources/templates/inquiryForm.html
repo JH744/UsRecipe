@@ -48,8 +48,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <style type="text/css">
         input[type]{
-            border: none;
-            background-color: rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
+
+
             margin-bottom: 30px;
         }
 
@@ -84,6 +84,10 @@
             background: #D65454;
             list-style-type: none;
         }
+        .orderList_th{
+            text-align: center;
+
+        }
         .news-title{
             font-family: 'Cafe24Simplehae';
             font-size: 25px;
@@ -99,6 +103,11 @@
             padding: 30px 0 30px 0;
             border: 1px solid #dddddd;
             list-style-type: none;
+        }
+        .orderList_td{
+            text-align: center;
+            display:table-cell;
+            vertical-align:middle;
         }
         .news_list_wrap{
             border: 1px solid #dddddd;
@@ -128,7 +137,7 @@
             font-family: 'Cafe24Dangdanghae';
             font-size: 35px;
             padding-right:20px ;
-            color: black;
+
         }
         #notion_spanL{
             font-family: 'Cafe24Simplehae';
@@ -142,6 +151,19 @@
         .tb2 a:hover {
             text-decoration: underline;
             font-weight: bold;
+        }
+        th{
+            font-family: Cafe24Dangdanghae;
+        }
+        .mypage_myinfo_td{
+            text-align: center;
+            color: black;
+            font-family: Cafe24Dangdanghae;
+            font-size: 24px;
+        }
+        .mypage_myinfo_th{
+            text-align: center;
+
         }
 
 
@@ -172,49 +194,60 @@
             </ul>
         </aside>
         <section id="news_section">
-            <div id="notion_title_wrap">
-                <span id="notion_spanB">정보변경</span><span id="notion_spanL">회원님의 정보를 변경합니다</span>
+
+            <div id="notion_title_wrap" style="color: black;">
+                <span id="notion_spanB">1대1 문의 등록</span><span id="notion_spanL">문의를 등록할 수 있습니다.</span>
+                <hr>
+                <h3 style="font-family: Cafe24Dangdanghae">문의하기</h3><br>
+                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae">질문유형</b>
+                <select name="inquiry_category">
+                    <option value="계정">계정</option>
+                    <option value="레시피">레시피</option>
+                    <option value="재료">재료</option>
+                    <option value="결제">결제</option>
+                </select><br>
+                <hr>
+                <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b><input type="text" style="width: 500px">
+                <hr>
+                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">문의내용</b><input type="text" style="width: 550px; height: 600px;">
+                <br><br><br><br>
+
+
+                <b>개인정보 제3자 제공에 관한 동의</b>
+                <hr>
+
+                <div>
+                    개인정보의 제공 대상: 제공되는 개인정보를 받을 제3자 또는 제공 대상이 명시됩니다.
+
+                    제공되는 개인정보 항목: 어떤 종류의 개인정보가 제공되는지 명시됩니다. 예를 들어, 이름, 주소, 이메일 주소, 연락처 등이 포함될 수 있습니다.
+
+                    개인정보의 이용 목적: 제3자가 개인정보를 어떤 목적으로 이용할 것인지 설명됩니다. 예를 들어, 마케팅 활동, 서비스 제공, 연구 등이 있을 수 있습니다.
+
+                    개인정보의 보유 및 이용 기간: 제공된 개인정보를 제3자가 보유하고 이용하는 기간이 명시됩니다.
+
+                    동의 철회 방법: 사용자가 동의를 철회하고 개인정보 제공을 중단할 수 있는 방법이 설명됩니다.
+                    <hr>
+                    <input type="checkbox"> <b>개인정보 제3자 제공에 동의합니다</b>
+                </div>
+
+
+                <input type="submit" value="등록하기" style="margin-left: 380px; background-color: #D65454">
+
+
+
             </div>
-            <hr>
+
             <div id="notion_box">
 
             </div>
 
             <div style="margin-top:50px;" >
-                <div style="margin-left: 100px; text-align:left;">
+                <div style=" text-align:left;">
                     <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
                     <div id="page">
                         <div class="container">
 
-                            <!-- #masthead -->
-                            <div id="content" class="site-content">
-                                <div id="primary" class="content-area column full" style="margin-top: -30px;">
-                                    <main id="main" class="site-main" role="main">
 
-                                        <form action="" >
-                                            <span>아이디</span><br>
-                                            <input type="text" style="width: 350px; height: 55px; border: none" readonly><br>
-                                            <span>이메일</span><br>
-                                            <input type="email" style="width: 350px; height: 55px; border: none" readonly><br>
-                                            <span>주소 입력</span><br>
-                                            <input type="text" style="width: 350px; height: 55px; border: none; margin-bottom: 10px;" placeholder="주소를 입력해주세요" >
-                                            <button id="addrFind" style="width: 70px;height: 30px;  background-color:#D65454; border: none ; color: white">주소찾기</button><br>
-                                            <input type="text" style="width: 350px; height: 55px; border: none" placeholder="상세주소 입력"><br>
-                                            <span>닉네임</span><br>
-                                            <input type="text" style="width: 350px; height: 55px;  border: none" placeholder="닉네임을 입력해주세요"><br>
-                                            <span>비밀번호</span><br>
-                                            <input type="password" style="width: 350px; height: 55px; border: none" placeholder="새 비밀번호"><br>
-                                            <input type="password" style="width: 350px; height: 55px; border: none" placeholder="비밀번호 확인"><br>
-                                            <input type="submit" style="margin-left: 120px; background-color:#D65454; width: 150px;height: 50px; color: white" value="변경하기">
-                                        </form>
-
-
-                                    </main>
-                                    <!-- #main -->
-                                </div>
-                                <!-- #primary -->
-                            </div>
-                            <!-- #content -->
                         </div>
                         <!-- .container -->
 
@@ -227,9 +260,9 @@
                     <script src='/static/js/masonry.pkgd.min.js'></script>
 
                     </body>
+
                 </div>
             </div>
-
 
 
         </section>

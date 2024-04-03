@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>유스레시피</title>
+    <link rel="stylesheet" href="../static/css/templateBody.css" />
+    <link rel="stylesheet" href="../static/css/orderOK.css" />
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("header").load("./header.html");
+            $(".footer").load("./footer.html");
+        });
+    </script>
+</head>
+<body >
+    <div class="templateBody">
+        <header></header>
+        <div class="mainBody">
+            <div class="successBox">
+                <span class="sucBox_coment1">주문완료</span><br>
+                <img src="./successicon.png" class="suclogo">
+                <p class="sucBox_coment2">주문이<br> 완료되었습니다.</p>
+                <span class="sucBox_coment3">결제해주셔서 감사합니다.</span>
+                <button class="btnToOrderList">주문목록</button>
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+</body>
+</html>
