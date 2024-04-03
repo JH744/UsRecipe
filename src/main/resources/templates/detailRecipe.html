@@ -17,1858 +17,419 @@
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap_20211222.css">
     <link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/font_20230910.css">
     <link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/ez_recipe_20240405.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/ez_recipe_20240405.css">
 </head>
 
 <body>
-
 <div class="templateBody">
     <header></header>
     <div class="mainBody">
-        <style type="text/css">
-            #oldContArea img {
-                max-width: 100%;
-                height: auto;
-            }
+        <div class="contentBody">
+            <style type="text/css">
+                #oldContArea img {
+                    max-width: 100%;
+                    height: auto;
+                }
 
-            .view_step_cont .none {
-                display: none;
-            }
+                .view_step_cont .none {
+                    display: none;
+                }
 
-            .view_step_cont .carousel.slide {
-                border: none;
-                box-shadow: none;
-                margin: 0;
-                padding: 0;
-            }
+                .view_step_cont .carousel.slide {
+                    border: none;
+                    box-shadow: none;
+                    margin: 0;
+                    padding: 0;
+                }
 
-            .view_step_cont .media-right .carousel.slide {
-                width: 300px;
-            }
+                .view_step_cont .media-right .carousel.slide {
+                    width: 300px;
+                }
 
-            .view_step_cont .media-right {
-                width: 300px;
-            }
+                .view_step_cont .media-right {
+                    width: 300px;
+                }
 
-            .view_step_cont .carousel-control {
-                padding: 0;
-            }
+                .view_step_cont .carousel-control {
+                    padding: 0;
+                }
 
-            .view_step_cont .carousel-indicators {
-                bottom: -36px;
-            }
+                .view_step_cont .carousel-indicators {
+                    bottom: -36px;
+                }
 
-            .view_step_cont .carousel-indicators li {
-                width: 10px;
-                height: 10px;
-            }
+                .view_step_cont .carousel-indicators li {
+                    width: 10px;
+                    height: 10px;
+                }
 
-            .centeredcrop {
-                position: relative;
-                width: 100%;
-                overflow: hidden;
-                height: 400px;
-            }
+                .centeredcrop {
+                    position: relative;
+                    width: 100%;
+                    overflow: hidden;
+                    height: 400px;
+                }
 
-            .centeredcrop img {
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                width: 100%;
-                height: auto;
-                -webkit-transform: translate(-50%, -50%);
-                -ms-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
-            }
+                .centeredcrop img {
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    width: 100%;
+                    height: auto;
+                    -webkit-transform: translate(-50%, -50%);
+                    -ms-transform: translate(-50%, -50%);
+                    transform: translate(-50%, -50%);
+                }
 
-            .centeredcrop img.portrait {
-                width: auto;
-                height: 100%;
-            }
+                .centeredcrop img.portrait {
+                    width: auto;
+                    height: 100%;
+                }
 
-            .modal-body .btn_list {
-                text-align: center;
-                padding: 12px 0 0 0;
-            }
+                .modal-body .btn_list {
+                    text-align: center;
+                    padding: 12px 0 0 0;
+                }
 
-            .modal-body .btn_list a {
-                text-align: center;
-                font-size: 11px;
-                color: #444;
-                width: 23%;
-                display: inline-block;
-            }
+                .modal-body .btn_list a {
+                    text-align: center;
+                    font-size: 11px;
+                    color: #444;
+                    width: 23%;
+                    display: inline-block;
+                }
 
-            .modal-body .btn_list a img {
-                border-radius: 50%;
-                width: 69px;
-                height: 69px;
-            }
+                .modal-body .btn_list a img {
+                    border-radius: 50%;
+                    width: 69px;
+                    height: 69px;
+                }
 
-            .centeredcrop2 {
-                display: flex;
-                flex-direction: column;
-                flex-wrap: wrap;
-                align-items: flex-start;
-                width: 100%;
-                height: 400px;
-            }
+                .centeredcrop2 {
+                    display: flex;
+                    flex-direction: column;
+                    flex-wrap: wrap;
+                    align-items: flex-start;
+                    width: 100%;
+                    height: 400px;
+                }
 
-            .centeredcrop2 img {
-                object-fit: cover;
-                width: 600px;
-                height: 400px;
-            }
+                .centeredcrop2 img {
+                    object-fit: cover;
+                    width: 600px;
+                    height: 400px;
+                }
 
-            .centeredcrop2 img.portrait {
-                width: auto;
-                height: 100%;
-            }
+                .centeredcrop2 img.portrait {
+                    width: auto;
+                    height: 100%;
+                }
 
-            .swiper-slide {
-                text-align: center;
-                font-size: 18px;
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: -webkit-flex;
-                display: flex;
-                -webkit-box-pack: center;
-                -ms-flex-pack: center;
-                -webkit-justify-content: center;
-                justify-content: center;
-                -webkit-box-align: center;
-                -ms-flex-align: center;
-                -webkit-align-items: center;
-                align-items: center;
-            }
+                .swiper-slide {
+                    text-align: center;
+                    font-size: 18px;
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: -webkit-flex;
+                    display: flex;
+                    -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                    -webkit-justify-content: center;
+                    justify-content: center;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    -webkit-align-items: center;
+                    align-items: center;
+                }
 
-            .view2_box .swiper-substance span {
-                position: absolute;
-                font-size: 12px;
-                color: #fff;
-                text-shadow: 0.1em 0.1em 0.15em #333;
-                margin-left: 2px;
-                z-index: 100;
-            }
+                .view2_box .swiper-substance span {
+                    position: absolute;
+                    font-size: 12px;
+                    color: #fff;
+                    text-shadow: 0.1em 0.1em 0.15em #333;
+                    margin-left: 2px;
+                    z-index: 100;
+                }
 
-            .view2_box .swiper-substance img {
-                max-width: 180px;
-                border-radius: 6px;
-            }
+                .view2_box .swiper-substance img {
+                    max-width: 180px;
+                    border-radius: 6px;
+                }
 
-            .sp_pdt_wrap .swiper-substance span {
-                text-shadow: none
-            }
-        </style> <!-- 상단 이미지 css -->
-        <div class="container">
-            <div id="contents_area_full" style="clear:both;">
+                .sp_pdt_wrap .swiper-substance span {
+                    text-shadow: none
+                }
+            </style> <!-- 상단 이미지 css -->
+            <div class="container">
+                <div id="contents_area_full" style="clear:both;">
 
-                <div class="view2_pic">
-                    <div class="view_cate st2" style="z-index:10;">
-                        <div class="view_cate_num"><span class="hit font_num">1,454,785</span></div>
-                    </div>
+                    <div class="view2_pic">
+                        <div class="view_cate st2" style="z-index:10;">
+                            <div class="view_cate_num"><span class="hit font_num">1,454,785</span></div>
+                        </div>
 
-                    <div class="centeredcrop">
-                        <img id="main_thumbs"
-                             src="https://recipe1.ezmember.co.kr/cache/recipe/2015/04/22/3f22ecbbd276c60af4f6a89223c3f5551.jpg"
-                             alt="main thumb">
-                    </div>
-                    <div class="user_info2">
-                        <a class="app_block_link_remove user_info2_pic" href="/profile/index.html?uid=dollshouse"><img
-                                src="https://recipe1.ezmember.co.kr/img/df/pf_100_100.png"></a>
-                        <span class="user_info2_name">돌하우스                                <button id="friendDiv"
-                                                                                                  type="button"
-                                                                                                  class="btn btn-xs btn-default"
-                                                                                                  onclick="doAddFriend()">소식받기</button>
+                        <div class="centeredcrop">
+                            <img id="main_thumbs"
+                                 src="https://recipe1.ezmember.co.kr/cache/recipe/2015/04/22/3f22ecbbd276c60af4f6a89223c3f5551.jpg"
+                                 alt="main thumb">
+                        </div>
+                        <div class="user_info2">
+                            <a class="app_block_link_remove user_info2_pic"
+                               href="/profile/index.html?uid=dollshouse"><img
+                                    src="https://recipe1.ezmember.co.kr/img/df/pf_100_100.png"></a>
+                            <span class="user_info2_name">돌하우스                                <button id="friendDiv"
+                                                                                                      type="button"
+                                                                                                      class="btn btn-xs btn-default"
+                                                                                                      onclick="doAddFriend()">소식받기</button>
                                 </span>
-                    </div>
-                </div>
-
-                <div class="view2_summary st3">
-                    <h3>꽃게탕/꽃게탕 끓이는법</h3>
-                    <div class="view2_summary_in" id="recipeIntro">
-                        화려하게 여러가지 재료를 넣은것은 아니지만,... 기본재료와 양념만으로 소박하게 끓인것치고는... 훌륭한 꽃게탕이였답니다...ㅎㅎ
+                        </div>
                     </div>
 
-                    <div class="btn_list st2">
-                        <!--a href="javascript:void(0)" onClick="doLike()"><img id="availLike" src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_like.png"><span>좋아요<b class="st1">128</b></span></a-->
-                        <a href="javascript:void(0)" onclick="selectScrapFolderOpen()"><img
-                                src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_scrap.png"><span>스크랩<b
-                                class="st2">32,341</b></span></a>
-                        <a onclick="$('#snsLinkModal').modal('show')"><img
-                                src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_talk.png"><span>공유</span></a>
-                        <a href="#commentLists"><img
-                                src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_re.png"><span>댓글<b
-                                class="st3">40</b></span></a>
-                    </div>
-                </div>
+                    <div class="view2_summary st3">
+                        <h3>꽃게탕/꽃게탕 끓이는법</h3>
+                        <div class="view2_summary_in" id="recipeIntro">
+                            화려하게 여러가지 재료를 넣은것은 아니지만,... 기본재료와 양념만으로 소박하게 끓인것치고는... 훌륭한 꽃게탕이였답니다...ㅎㅎ
+                        </div>
 
-
-                <div class="blank_bottom"></div>
-
-
-                <div class="cont_ingre2">
-                    <div class="best_tit">
-                        <b>재료</b><span>Ingredients</span>
-
-                    </div>
-                    <div class="ready_ingre3" id="divConfirmedMaterialArea">
-                        <ul>
-                            <b class="ready_ingre3_tt">[재료]</b>
-                            <li>
-
-                                <div class="ingre_list_name">
-                                    <a href="javascript:viewMaterial('484');"
-                                       onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '꽃게');">
-                                        꽃게 <span>작은 사이즈</span>
-                                    </a>
-                                </div>
-
-
-                                <span class="ingre_list_ea">6마리 </span>
-                                <a href="javascript:buyCpMaterial('꽃게');" class="ingre_list_btn">구매</a>
-
-                            </li>
-                            <li>
-
-                                <div class="ingre_list_name">
-                                    <a href="javascript:viewMaterial('2');"
-                                       onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '양파(중)');">
-                                        양파(중) </a>
-                                </div>
-
-
-                                <span class="ingre_list_ea">1/2개 </span>
-                                <a href="javascript:buyCpMaterial('양파(중)');" class="ingre_list_btn">구매</a>
-
-                            </li>
-                            <li>
-
-                                <div class="ingre_list_name">
-                                    <a href="javascript:viewMaterial('329');"
-                                       onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '호박');">
-                                        호박 </a>
-                                </div>
-
-
-                                <span class="ingre_list_ea">1/2개 </span>
-                                <a href="javascript:buyCpMaterial('호박');" class="ingre_list_btn">구매</a>
-
-                            </li>
-                            <li>
-
-                                <div class="ingre_list_name">
-                                    <a href="javascript:viewMaterial('26');"
-                                       onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '대파');">
-                                        대파 </a>
-                                </div>
-
-
-                                <span class="ingre_list_ea">1/2개 </span>
-                                <a href="javascript:buyCpMaterial('대파');" class="ingre_list_btn">구매</a>
-
-                            </li>
-                            <li>
-
-                                <div class="ingre_list_name">
-                                    <a href="javascript:viewMaterial('296');"
-                                       onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '청량고추');">
-                                        청량고추 </a>
-                                </div>
-
-
-                                <span class="ingre_list_ea">2개 </span>
-                                <a href="javascript:buyCpMaterial('청량고추');" class="ingre_list_btn">구매</a>
-
-                            </li>
-                            <li>
-
-                                <div class="ingre_list_name">
-                                    <a href="javascript:viewMaterial('1005');"
-                                       onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '물');">
-                                        물 </a>
-                                </div>
-
-
-                                <span class="ingre_list_ea">1000ml </span>
-                                <a href="javascript:buyCpMaterial('물');" class="ingre_list_btn">구매</a>
-
-                            </li>
-                            <li>
-
-                                <div class="ingre_list_name">
-                                    <a href="javascript:viewMaterial('225');"
-                                       onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '후춧가루');">
-                                        후춧가루 </a>
-                                </div>
-
-
-                                <span class="ingre_list_ea">약간 </span>
-                                <a href="javascript:buyCpMaterial('후춧가루');" class="ingre_list_btn">구매</a>
-
-                            </li>
-                        </ul>
-                        <ul>
-                            <b class="ready_ingre3_tt">[양념]</b>
-                            <li>
-
-                                <div class="ingre_list_name">
-                                    <a href="javascript:viewMaterial('477');"
-                                       onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '고추장');">
-                                        고추장 </a>
-                                </div>
-
-
-                                <span class="ingre_list_ea">1스푼 </span>
-                                <a href="javascript:buyCpMaterial('고추장');" class="ingre_list_btn">구매</a>
-
-                            </li>
-                            <li>
-
-                                <div class="ingre_list_name">
-                                    <a href="javascript:viewMaterial('857');"
-                                       onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '집된장');">
-                                        집된장 </a>
-                                </div>
-
-
-                                <span class="ingre_list_ea">1스푼 </span>
-                                <a href="javascript:buyCpMaterial('집된장');" class="ingre_list_btn">구매</a>
-
-                            </li>
-                            <li>
-
-                                <div class="ingre_list_name">
-                                    <a href="javascript:viewMaterial('224');"
-                                       onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '고춧가루');">
-                                        고춧가루 </a>
-                                </div>
-
-
-                                <span class="ingre_list_ea">1+1/2스푼 </span>
-                                <a href="javascript:buyCpMaterial('고춧가루');" class="ingre_list_btn">구매</a>
-
-                            </li>
-                            <li>
-
-                                <div class="ingre_list_name">
-                                    <a href="javascript:viewMaterial('501');"
-                                       onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '소금');">
-                                        소금 </a>
-                                </div>
-
-
-                                <span class="ingre_list_ea">1/3스푼 </span>
-                                <a href="javascript:buyCpMaterial('소금');" class="ingre_list_btn">구매</a>
-
-                            </li>
-                            <li>
-
-                                <div class="ingre_list_name">
-                                    <a href="javascript:viewMaterial('353');"
-                                       onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '국간장');">
-                                        국간장 </a>
-                                </div>
-
-
-                                <span class="ingre_list_ea">1스푼 </span>
-                                <a href="javascript:buyCpMaterial('국간장');" class="ingre_list_btn">구매</a>
-
-                            </li>
-                            <li>
-
-                                <div class="ingre_list_name">
-                                    <a href="javascript:viewMaterial('233');"
-                                       onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '다진마늘');">
-                                        다진마늘 </a>
-                                </div>
-
-
-                                <span class="ingre_list_ea">1/2스푼 </span>
-                                <a href="javascript:buyCpMaterial('다진마늘');" class="ingre_list_btn">구매</a>
-
-                            </li>
-                        </ul>
+                        <div class="btn_list st2">
+                            <!--a href="javascript:void(0)" onClick="doLike()"><img id="availLike" src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_like.png"><span>좋아요<b class="st1">128</b></span></a-->
+                            <a href="javascript:void(0)" onclick="selectScrapFolderOpen()"><img
+                                    src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_scrap.png"><span>스크랩<b
+                                    class="st2">32,341</b></span></a>
+                            <a onclick="$('#snsLinkModal').modal('show')"><img
+                                    src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_talk.png"><span>공유</span></a>
+                            <a href="#commentLists"><img
+                                    src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_re.png"><span>댓글<b
+                                    class="st3">40</b></span></a>
+                        </div>
                     </div>
 
 
-                </div>
+                    <div class="blank_bottom"></div>
 
-
-                <div class="blank_bottom"></div>
-                <!-- 구글 배너 광고 -->
-                <!-- /26225854,21842705582/10000recipe/10000recipe.com/WTG_970x250_1 -->
-                <div id="w2g-slot2-cnt">
-                    <script>
-                        (function () {
-                            var domain = '10000recipe.com';
-                            var slot = 'w2g-slot2';
-                            if (window.self !== window.parent) {
-                                var d = top.document, w = window.parent;
-                                var parent = this.frameElement;
-                                parent.style.display = "none";
-                            } else {
-                                var d = document, w = window, parent = null;
-                                if (typeof d.currentScript !== 'undefined') {
-                                    parent = d.currentScript;
-                                    if (parent == null) {
-                                        parent = document.getElementById(slot + '-cnt');
-                                    }
-                                } else {
-                                    parent = d.body.lastElementChild;
-                                }
-                            }
-                            d.addEventListener('wtgLoaded', function (e) {
-                                if (typeof w.w2g.single === 'function') {
-                                    w.w2g.single(domain, slot, parent);
-                                }
-                            }, false);
-                            if (w.w2gLoaded === undefined) {
-                                w.w2gLoaded = 0;
-                            }
-                            if (w.w2gLoaded < 1 && w.w2g === undefined) {
-                                var element = d.createElement('script'),
-                                    head = d.head || d.getElementsByTagName('head')[0];
-                                element.type = 'text/javascript';
-                                element.async = true;
-                                element.src = 'https://lib.wtg-ads.com/lib.single.wtg.min.js';
-                                head.appendChild(element);
-                                w.w2gLoaded++;
-                            }
-                            if (w.w2g !== undefined && typeof w.w2g.single === 'function') {
-                                w.w2g.single(domain, slot, parent);
-                            }
-
-                        })();
-                    </script>
-                </div>
-                <style>
-                    #w2g-slot2 .label {
-                        display: none;
-                    }
-                </style>
-
-                <script async=""
-                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1557771002660658"
-                        crossorigin="anonymous"></script>
-
-
-                <div class="blank_bottom"></div>
-                <!-- Swiper -->
-
-                <!-- Initialize Swiper -->
-                <script>
-                    var swiper = new Swiper('.swiper-container', {
-                        slidesPerView: 5,
-                        spaceBetween: 30,
-                        slidesPerGroup: 5,
-                        loop: true,
-                        loopFillGroupWithBlank: true,
-                        pagination: {
-                            el: '.swiper-pagination',
-                            clickable: true,
-                        },
-                        navigation: {
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
-                        },
-                    });
-                </script>
-
-
-                <div class="view_step" id="obx_recipe_step_start" data-tag="웹-조리순서시작">
-                    <div class="best_tit">
-                        <b>조리순서</b><span>Steps</span>
-
-                    </div>
-                    <div id="stepDiv1" class="view_step_cont media step1">
-                        <div id="stepdescr1" class="media-body">저는 손질되어있는 냉동 꽃게를 사용했습니다.</div>
-                        <div id="stepimg1" class="media-right"><img
-                                src="https://recipe1.ezmember.co.kr/cache/recipe/2015/04/22/d4890c8cad8da5e1673cd47e7cf044fe1.jpg">
+                    <!--                재료-->
+                    <div class="cont_ingre2">
+                        <div class="best_tit">
+                            <b>재료</b><span>Ingredients</span>
                         </div>
-                    </div>
-                    <div id="stepDiv2" class="view_step_cont media step2">
-                        <div id="stepdescr2" class="media-body">사진정도 크기의 12토막을 깨끗이 씻어 준비하고...</div>
-                        <div id="stepimg2" class="media-right"><img
-                                src="https://recipe1.ezmember.co.kr/cache/recipe/2015/04/22/47b81ee523149db615628c4e0088003c1.jpg">
-                        </div>
-                    </div>
-                    <div id="stepDiv3" class="view_step_cont media step3">
-                        <div id="stepdescr3" class="media-body">분량의 양파, 호박, 대파, 청량고추를 사진처럼 썰어서 준비합니다.</div>
-                        <div id="stepimg3" class="media-right"><img
-                                src="https://recipe1.ezmember.co.kr/cache/recipe/2015/04/22/e9e01a6a5225a1cb457dd614c7e7eefc1.jpg">
-                        </div>
-                    </div>
-                </div>
-
-                <div id="completeimgs" class="carousel slide" data-ride="carousel"
-                     style="width:920px;margin:0 auto 60px;">
-                    <div class="carousel-inner" role="listbox">
-                        <div class="carouItem centercrop"><img
-                                src="https://recipe1.ezmember.co.kr/cache/recipe/2015/04/22/37aae2cdc89262512c93b29f6cc244821.jpg">
-                        </div>
-                    </div>
-                </div>
+                        <div class="ready_ingre3" id="divConfirmedMaterialArea">
+                            <ul>
+                                <b class="ready_ingre3_tt">[재료]</b>
+                                <li>
+                                    <div class="ingre_list_name">
+                                        <a href="javascript:viewMaterial('484');"
+                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '꽃게');">
+                                            꽃게 <span>작은 사이즈</span>
+                                        </a>
+                                    </div>
 
 
-                <!-- 레시피 스텝 하단 광고 -->
-                <div id="divEzadArea_recipe_view_step_bottom"
-                     style="display:none; z-index:100000;padding-left:10px;padding-right:20px;padding-top:5px;">
-                    <div id="EZAD-view_step_bottom">
-                        <script type="text/javascript"
-                                src="//api.ezadsystem.com/api/api_kwd.html?cmd=ez_web&amp;cmd_sub=recipe_view_step_bottom&amp;aid=web.com.ezhld.recipe&amp;recipe_seq=4164229"></script>
-                    </div>
-                </div>
-                <script>
-                    var _ezad_params = {
-                        app_id: 'web.com.ezhld.recipe',
-                        cmd_sub: 'recipe_view_step_bottom',
-                        recipe_seq: '4164229',
-                        dev_mode: false
-                    };
-                    if (_EZAD.getCookie('_ezad_hide_' + _ezad_params.cmd_sub) == '') {
-                        var s2 = document.createElement('script');
-                        s2.type = "text/javascript";
-                        s2.src = "//api.ezadsystem.com/api/api_kwd.html?cmd=ez_web&cmd_sub=" + _ezad_params.cmd_sub + "&aid=" + _ezad_params.app_id + "&recipe_seq=" + _ezad_params.recipe_seq;
-                        document.getElementById('EZAD-view_step_bottom').appendChild(s2);
-                    }
-                </script>
-            </div><!--/view_step -->
-            <div class="blank_bottom"></div>
+                                    <span class="ingre_list_ea">6마리 </span>
+                                    <a href="javascript:buyCpMaterial('꽃게');" class="ingre_list_btn">구매</a>
 
-            <div id="snsLinkModal" class="modal" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" style="width:620px">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img
-                                    src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></button>
-                            <h4 class="modal-title">공유하기</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="btn_list">
-                                <a href="javascript:void(0)" onclick="copyBbsUrl()"><img
-                                        src="https://recipe1.ezmember.co.kr/img/mobile/icon_url_copy.gif"
-                                        data-toggle="tooltip" title="" data-original-title="레시피 주소복사"></a>
-                                <a id="kakao-link-btn" href="javascript:void(0)" onclick="snsWriter('kakaoTalk')"><img
-                                        src="https://recipe1.ezmember.co.kr/img/mobile/icon_sns_k.png"
-                                        data-toggle="tooltip"
-                                        title="" data-original-title="카카오톡"></a>
-                                <a href="javascript:void(0)" onclick="snsWriter('facebook')"><img
-                                        src="https://recipe1.ezmember.co.kr/img/mobile/icon_sns_f.png"
-                                        data-toggle="tooltip"
-                                        title="" data-original-title="페이스북"></a>
-                                <a href="javascript:void(0)" onclick="snsWriter('twitter')"><img
-                                        src="https://recipe1.ezmember.co.kr/img/mobile/icon_sns_t.png"
-                                        data-toggle="tooltip"
-                                        title="" data-original-title="트위터"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div id="errorModal" class="modal" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" style="width:520px">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img
-                                    src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></button>
-                            <h4 class="modal-title">꽃게탕/꽃게탕 끓이는법</h4>
-                        </div>
-                        <div class="modal-body">
-                        <textarea id="errorCont" class="form-control" rows="3"
-                                  placeholder="이런! 레시피에 문제가 있나요? 자세한 내용을 남겨주시면 신속하게 처리하겠습니다."
-                                  style="height:260px;"></textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn-lg btn-default" data-dismiss="modal">취소</button>
-                            <button type="button" class="btn-lg btn-primary" onclick="submitError()">전송</button>
-                        </div>
-                        <div class="modal-noti">개별회신을 원하시면, <a href="/customer/list.html?bid=3"
-                                                               style="text-decoration:underline;color:#666;">여기</a>에
-                            문의하세요.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="noteModal" class="modal" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" style="width:520px">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img
-                                    src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></button>
-                            <h4 class="modal-title">꽃게탕/꽃게탕 끓이는법</h4>
-                        </div>
-                        <div class="modal-body">
-                        <textarea id="noteCont" class="form-control" rows="3" placeholder="해당 레시피에 대해서 나만의 노트를 작성해 보세요."
-                                  style="height:260px;"></textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn-lg btn-default" data-dismiss="modal">취소</button>
-                            <button type="button" class="btn-lg btn-primary" onclick="submitNote()">저장</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="vImageModal" class="modal" role="dialog" aria-hidden="true">
-                <div id="vImageModalDialog" class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <img id="vImageModalSrc" src="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="materialVideoModal" class="modal" role="dialog" aria-hidden="true">
-                <div id="materialVideoModalDialog" class="modal-dialog">
-                    <div class="modal-content" style="width:730px;height:452px">
-                        <div class="modal-body">
-                            <iframe id="ifrmMaterialVideo" width="700" height="422" src="about:blank?wmode=transparent"
-                                    frameborder="0" allowfullscreen=""></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="measureModal" class="modal fade in" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content" style="padding:0;">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true"><img src="https://recipe1.ezmember.co.kr/img/btn_close.gif"
-                                                            alt="닫기"
-                                                            width="18px" height="18px"></span></button>
-                            <h4 class="modal-title">계량법 안내</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="measuring_guide">
-                                <dl class="measuring_block bg_gray">
-                                    <dt>기본 계량 정보</dt>
-                                    <dd>
-                                        <div class="measuring_cont">
-                                            <b>1큰술(1T) = 15ml</b>
-                                            <span>1Ts = 1Tbsp = 1 테이블 스푼 = 1 밥숟가락 수북이</span>
-                                        </div>
-                                        <div class="measuring_cont">
-                                            <b>1작은술(1t) = 5ml</b>
-                                            <span>1ts = 1tbsp = 1 티스푼 = 1 커피스푼 수북이</span>
-                                        </div>
-                                        <div class="measuring_cont">
-                                            <b>1컵(1C) = 200ml</b>
-                                        </div>
-                                        <div class="measuring_cont">
-                                            <b>1종이컵 = 180ml</b>
-                                        </div>
-                                    </dd>
-                                </dl>
-
-                                <dl class="measuring_block">
-                                    <dt>가루류 계량</dt>
-                                    <dd>
-                                        <div class="measuring_cont2">
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">1큰술 <small>(1T)</small></div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_1_1.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">1 밥숟가락 수북이</div>
-                                            </div>
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">1작은술 <small>(1t)</small></div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_1_2.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">1.5 밥숟가락</div>
-                                            </div>
-                                        </div>
-                                    </dd>
-
-                                    <dt>액체류 계량</dt>
-                                    <dd>
-                                        <div class="measuring_cont2">
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">1큰술 <small>(1T)</small></div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_2_1.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">1.5 밥숟가락</div>
-                                            </div>
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">1작은술 <small>(1t)</small></div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_2_2.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">2/3 밥숟가락</div>
-                                            </div>
-                                        </div>
-                                    </dd>
-
-                                    <dt>장류 계량</dt>
-                                    <dd>
-                                        <div class="measuring_cont2">
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">1큰술 <small>(1T)</small></div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_3_1.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">1.5 밥숟가락</div>
-                                            </div>
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">1작은술 <small>(1t)</small></div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_3_2.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">2/3 밥숟가락</div>
-                                            </div>
-                                        </div>
-                                    </dd>
-
-                                    <dt>다진 양념류 계량</dt>
-                                    <dd>
-                                        <div class="measuring_cont2">
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">1큰술 <small>(1T)</small></div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_4_1.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">1.5 밥숟가락</div>
-                                            </div>
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">1작은술 <small>(1t)</small></div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_4_2.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">2/3 밥숟가락</div>
-                                            </div>
-                                        </div>
-                                    </dd>
-
-                                    <dt>손 계량 정보</dt>
-                                    <dd>
-                                        <div class="measuring_cont2">
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">1꼬집</div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_5_1.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">엄지와 검지로 집은 정도</div>
-                                            </div>
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">1줌 <small>(나물)</small></div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_5_2.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">손으로 자연스럽게 한가득</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="measuring_cont2">
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">1줌 <small>(1인분)</small></div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_5_3.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">500원 동전 크기</div>
-                                            </div>
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">1주먹</div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_5_4.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">여자 어른 주먹 크기</div>
-                                            </div>
-                                        </div>
-                                    </dd>
-
-                                    <dt>재료별 눈대중 정보</dt>
-                                    <dd>
-                                        <div class="measuring_cont2">
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">생선 1토막</div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_6_1.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">약 85g</div>
-                                            </div>
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">돼지고기 1토막</div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_6_2.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">약 100g</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="measuring_cont2">
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">양파 1개 <small>(중간사이즈)</small></div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_6_3.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">약 170g</div>
-                                            </div>
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">당근 1개 <small>(중간사이즈)</small></div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_6_4.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">약 150g</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="measuring_cont2">
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">무 1토막 <small>(약 2cm)</small></div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_6_5.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">150g</div>
-                                            </div>
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t">대파 1/2대</div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_6_6.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">70g</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="measuring_cont2">
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t" style="height:57px;padding-top:20px;">
-                                                    마늘 1톨
-                                                    <small>(중)</small></div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_6_7.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">5g</div>
-                                            </div>
-                                            <div class="measuring_cont_in">
-                                                <div class="measuring_cont_in_t" style="height:57px;">생강 1톨 <small><br>(마늘과
-                                                    같은크기)</small></div>
-                                                <div class="measuring_cont_in_p"><img
-                                                        src="https://recipe1.ezmember.co.kr/img/mobile/2024/measuring_6_8.jpg">
-                                                </div>
-                                                <div class="measuring_cont_in_c">5g</div>
-                                            </div>
-                                        </div>
-
-                                    </dd>
-
-                                </dl>
-
-                                <dl class="measuring_block bg_gray align_left">
-                                    <dt>그 외 팁 정보</dt>
-                                    <dd>
-                                        <ul class="measuring_cont3">
-                                            <li><b>·</b>1g = 1ml = 1 cc</li>
-                                            <li><b>·</b>1oz = 28.3g</li>
-                                            <li><b>·</b>1파운드 = 약 0.453kg</li>
-                                            <li><b>·</b>1갤런 = 약 3.78l</li>
-                                            <li><b>·</b>1국그릇 = 300ml</li>
-                                            <li><b>·</b>1T = 3t = 1 밥숟가락 수북이</li>
-                                        </ul>
-                                    </dd>
-                                </dl>
-
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn-lg btn-default" data-dismiss="modal">닫기</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-
-            <div id="materialViewModal" class="modal" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" style="width:912px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img
-                                    src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></button>
-                            <h4 class="modal-title" id="materialNames"></h4>
-                        </div>
-                        <div class="modal-body" id="materialBody"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="toolViewModal" class="modal" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" style="width:912px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img
-                                    src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></button>
-                            <h4 class="modal-title" id="toolNames"></h4>
-                        </div>
-                        <div class="modal-body" id="toolBody"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="goodsViewModal" class="modal" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" style="width:820px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img
-                                    src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></button>
-                            <h4 class="modal-title" id="goodsNames"><img
-                                    src="https://recipe1.ezmember.co.kr/img/mobile/icon_pdt.png" width="24"> 레시피와 관련된 상품
-                            </h4>
-                        </div>
-                        <div class="modal-body" id="goodsBody">
-                            <input type="hidden" id="open_position" value="">
-                            <ul class="sp_pdt_all">
-                                <li class="goods_1000022455 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000022455&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_pop&amp;utm_campaign=g국내산 시래기 우거지 꽃게탕 700g (2인분)"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/21/08/35/1000022455/1000022455_magnify_056.jpg"
-                                                onclick="doGoodsClickLog(140830823,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">국내산 시래기 우거지 꽃게탕 700g (2인분)</p>
-                                            <div class="price_box">
-                                                <strong class="price">13,900<small>원</small></strong>
-                                                <span class="buyer">22개 구매</span>
-                                            </div>
-                                            <p class="cont_star">
-                            <span class="star_img">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                            </span>
-                                                <span class="star_ea">(1)</span>
-                                            </p>
-                                        </div>
-                                    </a>
                                 </li>
+                                <li>
+
+                                    <div class="ingre_list_name">
+                                        <a href="javascript:viewMaterial('2');"
+                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '양파(중)');">
+                                            양파(중) </a>
+                                    </div>
 
 
-                                <li class="goods_1000022151 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000022151&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_pop&amp;utm_campaign=g게장에 꽂히다 국내산 간장게장 4종 (새우장/알배기간장게장/양념게장/순살게장)"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/21/08/33/1000022151/1000022151_magnify_038.jpg"
-                                                onclick="doGoodsClickLog(134638954,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">게장에 꽂히다 국내산 간장게장 4종 (새우장/알배기간장게장/양념게장/순살게장)</p>
-                                            <div class="price_box">
-                                                <strong class="price">14,900<small>원</small></strong>
-                                                <span class="buyer">4,892개 구매</span>
-                                            </div>
-                                            <p class="cont_star">
-                            <span class="star_img">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                            </span>
-                                                <span class="star_ea">(338)</span>
-                                            </p>
-                                        </div>
-                                    </a>
+                                    <span class="ingre_list_ea">1/2개 </span>
+                                    <a href="javascript:buyCpMaterial('양파(중)');" class="ingre_list_btn">구매</a>
+
                                 </li>
+                                <li>
+
+                                    <div class="ingre_list_name">
+                                        <a href="javascript:viewMaterial('329');"
+                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '호박');">
+                                            호박 </a>
+                                    </div>
 
 
-                                <li class="goods_1000029012 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000029012&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_pop&amp;utm_campaign=g빙고씨푸드x용궁블루스 연평도 숙성 간장 암꽃게장 2.5kg"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/22/06/26/1000029012/1000029012_add3_096.jpg"
-                                                onclick="doGoodsClickLog(228811291,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">빙고씨푸드x용궁블루스 연평도 숙성 간장 암꽃게장 2.5kg</p>
-                                            <div class="price_box">
-                                                <strong class="price">34,900<small>원</small></strong>
-                                                <span class="buyer">96개 구매</span>
-                                            </div>
-                                            <p class="cont_star">
-                            <span class="star_img">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                            </span>
-                                                <span class="star_ea">(11)</span>
-                                            </p>
-                                        </div>
-                                    </a>
+                                    <span class="ingre_list_ea">1/2개 </span>
+                                    <a href="javascript:buyCpMaterial('호박');" class="ingre_list_btn">구매</a>
+
                                 </li>
+                                <li>
+
+                                    <div class="ingre_list_name">
+                                        <a href="javascript:viewMaterial('26');"
+                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '대파');">
+                                            대파 </a>
+                                    </div>
 
 
-                                <li class="goods_1000029006 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000029006&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_pop&amp;utm_campaign=g유튜버 참PD 인정! 국내산 꽃게탕(3~4인분) 밀키트"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/22/06/26/1000029006/1000029006_magnify_067.jpg"
-                                                onclick="doGoodsClickLog(212379568,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">유튜버 참PD 인정! 국내산 꽃게탕(3~4인분) 밀키트</p>
-                                            <div class="price_box">
-                                                <strong class="price">25,900<small>원</small></strong>
-                                                <span class="buyer">2개 구매</span>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    <span class="ingre_list_ea">1/2개 </span>
+                                    <a href="javascript:buyCpMaterial('대파');" class="ingre_list_btn">구매</a>
+
                                 </li>
+                                <li>
+
+                                    <div class="ingre_list_name">
+                                        <a href="javascript:viewMaterial('296');"
+                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '청량고추');">
+                                            청량고추 </a>
+                                    </div>
 
 
-                                <li class="goods_1000043197 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000043197&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_pop&amp;utm_campaign=g밥도둑 양념 꽃게장 1kg (1팩/2팩) 꽃게 무침"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/24/01/03/1000043197/1000043197_add3_055.png"
-                                                onclick="doGoodsClickLog(342985732,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">밥도둑 양념 꽃게장 1kg (1팩/2팩) 꽃게 무침</p>
-                                            <div class="price_box">
-                                                <strong class="price">21,900<small>원</small></strong>
-                                                <span class="buyer">2개 구매</span>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    <span class="ingre_list_ea">2개 </span>
+                                    <a href="javascript:buyCpMaterial('청량고추');" class="ingre_list_btn">구매</a>
+
                                 </li>
+                                <li>
+
+                                    <div class="ingre_list_name">
+                                        <a href="javascript:viewMaterial('1005');"
+                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '물');">
+                                            물 </a>
+                                    </div>
 
 
-                                <li class="goods_1000042315 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000042315&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_pop&amp;utm_campaign=g26년전통 맛집 귀빈정 국내산 꽃게 태양초고춧가루 양념게장 (1kg/2kg/3kg)"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/23/12/50/1000042315/1000042315_magnify_071.jpg"
-                                                onclick="doGoodsClickLog(342985735,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">26년전통 맛집 귀빈정 국내산 꽃게 태양초고춧가루 양념게장 (1kg/2kg/3kg)</p>
-                                            <div class="price_box">
-                                                <strong class="price">29,800<small>원</small></strong>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    <span class="ingre_list_ea">1000ml </span>
+                                    <a href="javascript:buyCpMaterial('물');" class="ingre_list_btn">구매</a>
+
                                 </li>
+                                <li>
+
+                                    <div class="ingre_list_name">
+                                        <a href="javascript:viewMaterial('225');"
+                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '후춧가루');">
+                                            후춧가루 </a>
+                                    </div>
 
 
-                                <li class="goods_1000038775 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000038775&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_pop&amp;utm_campaign=g26년전통맛집 귀빈정 수제 암꽃게 알배기 간장게장 (1.6kg/2.1kg/3.1kg)"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/23/08/33/1000038775/1000038775_magnify_058.jpg"
-                                                onclick="doGoodsClickLog(342985734,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">26년전통맛집 귀빈정 수제 암꽃게 알배기 간장게장
-                                                (1.6kg/2.1kg/3.1kg)</p>
-                                            <div class="price_box">
-                                                <strong class="price">29,900<small>원</small></strong>
-                                                <span class="buyer">1개 구매</span>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    <span class="ingre_list_ea">약간 </span>
+                                    <a href="javascript:buyCpMaterial('후춧가루');" class="ingre_list_btn">구매</a>
+
                                 </li>
+                            </ul>
+                            <ul>
+                                <b class="ready_ingre3_tt">[양념]</b>
+                                <li>
+
+                                    <div class="ingre_list_name">
+                                        <a href="javascript:viewMaterial('477');"
+                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '고추장');">
+                                            고추장 </a>
+                                    </div>
 
 
-                                <li class="goods_1000030927 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000030927&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_pop&amp;utm_campaign=g빙고씨푸드x용궁블루스 국내산 연평도 암꽃게 간장게장 3kg(5마리)"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/22/10/41/1000030927/1000030927_magnify_041.jpg"
-                                                onclick="doGoodsClickLog(261914717,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">빙고씨푸드x용궁블루스 국내산 연평도 암꽃게 간장게장 3kg(5마리)</p>
-                                            <div class="price_box">
-                                                <strong class="price">39,900<small>원</small></strong>
-                                                <span class="buyer">3개 구매</span>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    <span class="ingre_list_ea">1스푼 </span>
+                                    <a href="javascript:buyCpMaterial('고추장');" class="ingre_list_btn">구매</a>
+
                                 </li>
+                                <li>
+
+                                    <div class="ingre_list_name">
+                                        <a href="javascript:viewMaterial('857');"
+                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '집된장');">
+                                            집된장 </a>
+                                    </div>
 
 
-                                <li class="goods_1000042735 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000042735&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_pop&amp;utm_campaign=g빙고씨푸드 국내산 선별 연평도 절단 꽃게 1kg"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/24/01/01/1000042735/1000042735_magnify_09.jpg"
-                                                onclick="doGoodsClickLog(342985738,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">빙고씨푸드 국내산 선별 연평도 절단 꽃게 1kg</p>
-                                            <div class="price_box">
-                                                <strong class="price">28,000<small>원</small></strong>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    <span class="ingre_list_ea">1스푼 </span>
+                                    <a href="javascript:buyCpMaterial('집된장');" class="ingre_list_btn">구매</a>
+
                                 </li>
+                                <li>
+
+                                    <div class="ingre_list_name">
+                                        <a href="javascript:viewMaterial('224');"
+                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '고춧가루');">
+                                            고춧가루 </a>
+                                    </div>
 
 
-                                <li class="goods_1000041254 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000041254&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_pop&amp;utm_campaign=g[단독특가] 수율가득! 연평도 양념게장 300g &amp; 간장게장 650g"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/23/11/44/1000041254/1000041254_magnify_064.png"
-                                                onclick="doGoodsClickLog(342985728,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">[단독특가] 수율가득! 연평도 양념게장 300g &amp; 간장게장 650g</p>
-                                            <div class="price_box">
-                                                <strong class="price">13,200<small>원</small></strong>
-                                                <span class="buyer">4개 구매</span>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    <span class="ingre_list_ea">1+1/2스푼 </span>
+                                    <a href="javascript:buyCpMaterial('고춧가루');" class="ingre_list_btn">구매</a>
+
                                 </li>
+                                <li>
+
+                                    <div class="ingre_list_name">
+                                        <a href="javascript:viewMaterial('501');"
+                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '소금');">
+                                            소금 </a>
+                                    </div>
 
 
-                                <li class="goods_1000038682 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000038682&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_pop&amp;utm_campaign=g최저가 최인선 셰프의 국내산 순살 꽃게장 양념/간장 (250g/350g) 1+1"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/23/08/32/1000038682/1000038682_magnify_041.jpg"
-                                                onclick="doGoodsClickLog(342985733,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">최저가 최인선 셰프의 국내산 순살 꽃게장 양념/간장 (250g/350g) 1+1</p>
-                                            <div class="price_box">
-                                                <strong class="price">35,900<small>원</small></strong>
-                                                <span class="buyer">1개 구매</span>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    <span class="ingre_list_ea">1/3스푼 </span>
+                                    <a href="javascript:buyCpMaterial('소금');" class="ingre_list_btn">구매</a>
+
                                 </li>
+                                <li>
+
+                                    <div class="ingre_list_name">
+                                        <a href="javascript:viewMaterial('353');"
+                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '국간장');">
+                                            국간장 </a>
+                                    </div>
 
 
-                                <li class="goods_1000033481 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000033481&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_pop&amp;utm_campaign=g연평도 간장게장 해여름 알배기 간장꽃게장 2kg (중2미)"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/23/02/06/1000033481/1000033481_magnify_048.jpg"
-                                                onclick="doGoodsClickLog(342985737,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">연평도 간장게장 해여름 알배기 간장꽃게장 2kg (중2미)</p>
-                                            <div class="price_box">
-                                                <strong class="price">35,900<small>원</small></strong>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    <span class="ingre_list_ea">1스푼 </span>
+                                    <a href="javascript:buyCpMaterial('국간장');" class="ingre_list_btn">구매</a>
+
                                 </li>
+                                <li>
+
+                                    <div class="ingre_list_name">
+                                        <a href="javascript:viewMaterial('233');"
+                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '다진마늘');">
+                                            다진마늘 </a>
+                                    </div>
 
 
-                                <li class="goods_1000042317 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000042317&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_pop&amp;utm_campaign=g한입 간편 알배기 간장 꽃게장 500g / 양념 꽃게장 300g"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/23/12/50/1000042317/1000042317_magnify_042.jpg"
-                                                onclick="doGoodsClickLog(342985727,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">한입 간편 알배기 간장 꽃게장 500g / 양념 꽃게장 300g</p>
-                                            <div class="price_box">
-                                                <strong class="price">8,900<small>원</small></strong>
-                                                <span class="buyer">6개 구매</span>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    <span class="ingre_list_ea">1/2스푼 </span>
+                                    <a href="javascript:buyCpMaterial('다진마늘');" class="ingre_list_btn">구매</a>
+
                                 </li>
-
-
-                                <li class="goods_1000040392 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000040392&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_pop&amp;utm_campaign=g한정식 전문 쉐프 유승희의 간장게장/양념게장/순살게장 모음"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/23/09/37/1000040392/1000040392_magnify_083.jpg"
-                                                onclick="doGoodsClickLog(342985736,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">한정식 전문 쉐프 유승희의 간장게장/양념게장/순살게장 모음</p>
-                                            <div class="price_box">
-                                                <strong class="price">17,400<small>원</small></strong>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="goods_1000034636 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000034636&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_pop&amp;utm_campaign=g지브로와 바다 그 맛 해물탕 밀키트 모음 (해물탕,알탕,꽃게탕,동태탕)"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/23/03/11/1000034636/1000034636_add3_047.jpg"
-                                                onclick="doGoodsClickLog(281737404,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">지브로와 바다 그 맛 해물탕 밀키트 모음 (해물탕,알탕,꽃게탕,동태탕)</p>
-                                            <div class="price_box">
-                                                <strong class="price">6,900<small>원</small></strong>
-                                                <span class="buyer">3개 구매</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-
                             </ul>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div id="goodsCarouselModal" class="modal" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" style="width:820px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img
-                                    src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></button>
-                            <h4 class="modal-title"><img src="https://recipe1.ezmember.co.kr/img/mobile/icon_pdt.png"
-                                                         width="24"> 레시피와 관련된 상품</h4>
+                    <div class="view_step" id="obx_recipe_step_start" data-tag="웹-조리순서시작">
+                        <div class="best_tit">
+                            <b>조리순서</b><span>Steps</span>
+
                         </div>
-                        <div class="modal-body">
-                            <ul class="sp_pdt_all">
-                                <li class="goods_1000022455 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000022455&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_step&amp;utm_campaign=국내산 시래기 우거지 꽃게탕 700g (2인분)"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/21/08/35/1000022455/1000022455_magnify_056.jpg"
-                                                onclick="doGoodsClickLog(140830823,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">국내산 시래기 우거지 꽃게탕 700g (2인분)</p>
-                                            <div class="price_box">
-                                                <strong class="price">13,900<small>원</small></strong>
-                                                <span class="buyer">22개 구매</span>
-                                            </div>
-                                            <p class="cont_star">
-                            <span class="star_img">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                            </span>
-                                                <span class="star_ea">(1)</span>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="goods_1000022151 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000022151&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_step&amp;utm_campaign=게장에 꽂히다 국내산 간장게장 4종 (새우장/알배기간장게장/양념게장/순살게장)"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/21/08/33/1000022151/1000022151_magnify_038.jpg"
-                                                onclick="doGoodsClickLog(134638954,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">게장에 꽂히다 국내산 간장게장 4종 (새우장/알배기간장게장/양념게장/순살게장)</p>
-                                            <div class="price_box">
-                                                <strong class="price">14,900<small>원</small></strong>
-                                                <span class="buyer">4,892개 구매</span>
-                                            </div>
-                                            <p class="cont_star">
-                            <span class="star_img">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                            </span>
-                                                <span class="star_ea">(338)</span>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="goods_1000029012 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000029012&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_step&amp;utm_campaign=빙고씨푸드x용궁블루스 연평도 숙성 간장 암꽃게장 2.5kg"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/22/06/26/1000029012/1000029012_add3_096.jpg"
-                                                onclick="doGoodsClickLog(228811291,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">빙고씨푸드x용궁블루스 연평도 숙성 간장 암꽃게장 2.5kg</p>
-                                            <div class="price_box">
-                                                <strong class="price">34,900<small>원</small></strong>
-                                                <span class="buyer">96개 구매</span>
-                                            </div>
-                                            <p class="cont_star">
-                            <span class="star_img">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                                                                    <img src="https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png">
-                                                            </span>
-                                                <span class="star_ea">(11)</span>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="goods_1000029006 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000029006&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_step&amp;utm_campaign=유튜버 참PD 인정! 국내산 꽃게탕(3~4인분) 밀키트"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/22/06/26/1000029006/1000029006_magnify_067.jpg"
-                                                onclick="doGoodsClickLog(212379568,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">유튜버 참PD 인정! 국내산 꽃게탕(3~4인분) 밀키트</p>
-                                            <div class="price_box">
-                                                <strong class="price">25,900<small>원</small></strong>
-                                                <span class="buyer">2개 구매</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="goods_1000043197 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000043197&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_step&amp;utm_campaign=밥도둑 양념 꽃게장 1kg (1팩/2팩) 꽃게 무침"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/24/01/03/1000043197/1000043197_add3_055.png"
-                                                onclick="doGoodsClickLog(342985732,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">밥도둑 양념 꽃게장 1kg (1팩/2팩) 꽃게 무침</p>
-                                            <div class="price_box">
-                                                <strong class="price">21,900<small>원</small></strong>
-                                                <span class="buyer">2개 구매</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="goods_1000042315 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000042315&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_step&amp;utm_campaign=26년전통 맛집 귀빈정 국내산 꽃게 태양초고춧가루 양념게장 (1kg/2kg/3kg)"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/23/12/50/1000042315/1000042315_magnify_071.jpg"
-                                                onclick="doGoodsClickLog(342985735,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">26년전통 맛집 귀빈정 국내산 꽃게 태양초고춧가루 양념게장 (1kg/2kg/3kg)</p>
-                                            <div class="price_box">
-                                                <strong class="price">29,800<small>원</small></strong>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="goods_1000038775 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000038775&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_step&amp;utm_campaign=26년전통맛집 귀빈정 수제 암꽃게 알배기 간장게장 (1.6kg/2.1kg/3.1kg)"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/23/08/33/1000038775/1000038775_magnify_058.jpg"
-                                                onclick="doGoodsClickLog(342985734,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">26년전통맛집 귀빈정 수제 암꽃게 알배기 간장게장
-                                                (1.6kg/2.1kg/3.1kg)</p>
-                                            <div class="price_box">
-                                                <strong class="price">29,900<small>원</small></strong>
-                                                <span class="buyer">1개 구매</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="goods_1000030927 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000030927&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_step&amp;utm_campaign=빙고씨푸드x용궁블루스 국내산 연평도 암꽃게 간장게장 3kg(5마리)"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/22/10/41/1000030927/1000030927_magnify_041.jpg"
-                                                onclick="doGoodsClickLog(261914717,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">빙고씨푸드x용궁블루스 국내산 연평도 암꽃게 간장게장 3kg(5마리)</p>
-                                            <div class="price_box">
-                                                <strong class="price">39,900<small>원</small></strong>
-                                                <span class="buyer">3개 구매</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="goods_1000042735 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000042735&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_step&amp;utm_campaign=빙고씨푸드 국내산 선별 연평도 절단 꽃게 1kg"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/24/01/01/1000042735/1000042735_magnify_09.jpg"
-                                                onclick="doGoodsClickLog(342985738,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">빙고씨푸드 국내산 선별 연평도 절단 꽃게 1kg</p>
-                                            <div class="price_box">
-                                                <strong class="price">28,000<small>원</small></strong>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="goods_1000041254 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000041254&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_step&amp;utm_campaign=[단독특가] 수율가득! 연평도 양념게장 300g &amp; 간장게장 650g"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/23/11/44/1000041254/1000041254_magnify_064.png"
-                                                onclick="doGoodsClickLog(342985728,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">[단독특가] 수율가득! 연평도 양념게장 300g &amp; 간장게장 650g</p>
-                                            <div class="price_box">
-                                                <strong class="price">13,200<small>원</small></strong>
-                                                <span class="buyer">4개 구매</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="goods_1000038682 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000038682&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_step&amp;utm_campaign=최저가 최인선 셰프의 국내산 순살 꽃게장 양념/간장 (250g/350g) 1+1"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/23/08/32/1000038682/1000038682_magnify_041.jpg"
-                                                onclick="doGoodsClickLog(342985733,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">최저가 최인선 셰프의 국내산 순살 꽃게장 양념/간장 (250g/350g) 1+1</p>
-                                            <div class="price_box">
-                                                <strong class="price">35,900<small>원</small></strong>
-                                                <span class="buyer">1개 구매</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="goods_1000033481 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000033481&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_step&amp;utm_campaign=연평도 간장게장 해여름 알배기 간장꽃게장 2kg (중2미)"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/23/02/06/1000033481/1000033481_magnify_048.jpg"
-                                                onclick="doGoodsClickLog(342985737,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">연평도 간장게장 해여름 알배기 간장꽃게장 2kg (중2미)</p>
-                                            <div class="price_box">
-                                                <strong class="price">35,900<small>원</small></strong>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="goods_1000042317 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000042317&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_step&amp;utm_campaign=한입 간편 알배기 간장 꽃게장 500g / 양념 꽃게장 300g"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/23/12/50/1000042317/1000042317_magnify_042.jpg"
-                                                onclick="doGoodsClickLog(342985727,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">한입 간편 알배기 간장 꽃게장 500g / 양념 꽃게장 300g</p>
-                                            <div class="price_box">
-                                                <strong class="price">8,900<small>원</small></strong>
-                                                <span class="buyer">6개 구매</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="goods_1000040392 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000040392&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_step&amp;utm_campaign=한정식 전문 쉐프 유승희의 간장게장/양념게장/순살게장 모음"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/23/09/37/1000040392/1000040392_magnify_083.jpg"
-                                                onclick="doGoodsClickLog(342985736,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">한정식 전문 쉐프 유승희의 간장게장/양념게장/순살게장 모음</p>
-                                            <div class="price_box">
-                                                <strong class="price">17,400<small>원</small></strong>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="goods_1000034636 ">
-                                    <a href="https://shop.10000recipe.com/goods/goods_view.php?goodsNo=1000034636&amp;utm_source=10k_recipe&amp;utm_medium=recipe_view_join_step&amp;utm_campaign=지브로와 바다 그 맛 해물탕 밀키트 모음 (해물탕,알탕,꽃게탕,동태탕)"
-                                       target="_blank">
-                                        <div class="sp_pdt_img"><img
-                                                src="https://recipe1.ezmember.co.kr/cache/data/goods/23/03/11/1000034636/1000034636_add3_047.jpg"
-                                                onclick="doGoodsClickLog(281737404,'');"></div>
-                                        <div class="unity_cont">
-                                            <p class="cont_tit line2">지브로와 바다 그 맛 해물탕 밀키트 모음 (해물탕,알탕,꽃게탕,동태탕)</p>
-                                            <div class="price_box">
-                                                <strong class="price">6,900<small>원</small></strong>
-                                                <span class="buyer">3개 구매</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="orderModal" class="modal fade in" aria-hidden="true">
-                <div class="modal-dialog ui-draggable">
-                    <div class="modal-content" style="padding:0;">
-                        <div class="modal-header ui-draggable-handle">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true"><img src="https://recipe1.ezmember.co.kr/img/btn_close.gif"
-                                                            alt="닫기"
-                                                            width="18px" height="18px"></span></button>
-                            <h4 class="modal-title">제품 구매</h4>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn-lg btn-success" onclick="doOrder('cart')">장바구니 담기</button>
-                            <button type="button" class="btn-lg btn-success" onclick="doOrder('order')">바로 구매하기</button>
-                            <button type="button" class="btn-lg btn-default" data-dismiss="modal">닫기</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <script>
-                $("#orderModal .modal-dialog").draggable({
-                    handle: ".modal-header"
-                });
-
-                function addOpt() {
-                    var opt_no = $("#insOrderFrm [name=select_opt_no]").val();
-                    var opt_nm = $("#insOrderFrm [name=select_opt_no] option:selected").text();
-                    var opt_price = $("#insOrderFrm [name=select_opt_no] option:selected").attr('opt_price');
-                    if (opt_no != '' && !$("#tdSelectedOptList [id=divOptItem_" + opt_no + "]").length) {
-                        var str = '<div id="divOptItem_' + opt_no + '" class="form-group buy_select row">';
-                        str += '<div class="col-sm-6">' + opt_nm + '</div>';
-                        str += '<input type="hidden" name="opt_no[]" id="opt_no_' + opt_no + '" value="' + opt_no + '">';
-                        str += '<div class="col-sm-3">';
-                        str += '<span class="glyphicon glyphicon-minus" onclick="addOptCnt(' + opt_no + ',-1)"></span>';
-                        str += '<input type="text" name="opt_cnt[]" id="opt_cnt_' + opt_no + '" class="form-group input-xs" value="1" style="width:40px;text-align:center" readOnly>';
-                        str += '<span class="glyphicon glyphicon-plus" onclick="addOptCnt(' + opt_no + ',1)"></span>';
-                        str += '</div>';
-                        str += '<div class="col-sm-3">';
-                        str += '<span id="opt_price_' + opt_no + '" unit_opt_price="' + opt_price + '">' + opt_price + '</span>';
-                        str += '<a href="javascript:delOpt(' + opt_no + ')" class="btn_del"><img src="https://recipe1.ezmember.co.kr/img/btn_del2.gif" alt="삭제" /></a>';
-                        str += '</div>';
-                        str += '</div>';
-                        $(str).appendTo("#tdSelectedOptList");
-                        $("#tdSelectedOptList").show();
-                        $("#insOrderFrm [name=select_opt_no] option:eq(0)").prop("selected", true);
-                        calcOrderAmt();
-                    }
-                }
-
-                function delOpt(opt_no) {
-                    $("#tdSelectedOptList [id=divOptItem_" + opt_no + "]").remove();
-                    calcOrderAmt();
-                }
-
-                function addOptCnt(opt_no, cnt) {
-                    var now_cnt = $("#divOptItem_" + opt_no + " [name='opt_cnt[]']").val();
-                    var stock_cnt = $("#insOrderFrm [name=select_opt_no] option[value=" + opt_no + "]").attr('stock_cnt');
-
-                    //품절인 경우, 1개까지는 가능하게 또는 0개 선택은 없도록
-                    if (stock_cnt == 0) {
-                        stock_cnt = 1;
-                    }
-                    now_cnt = parseInt(now_cnt, 10) + cnt;
-                    now_cnt = Math.max(now_cnt, 1);
-                    now_cnt = Math.min(now_cnt, parseInt(stock_cnt, 10));
-                    $("#divOptItem_" + opt_no + " [name='opt_cnt[]']").val(now_cnt);
-                    calcOrderAmt();
-                }
-
-                function calcOrderAmt() {
-                    var sell_price = parseInt($("#insOrderFrm [name=sell_price]").val(), 10);
-                    var order_cnt = 0;
-                    var total_order_amt = 0;
-                    var order_amt = parseInt($("#insOrderFrm [name=sell_price]").val(), 10);
-                    $("#tdSelectedOptList [id^=opt_cnt_]").each(function () {
-                        var opt_no = $(this).prop('id').replace('opt_cnt_', '');
-                        opt_cnt = parseInt($(this).val(), 10);
-                        opt_price = parseInt($("#tdSelectedOptList [id=opt_price_" + opt_no + "]").attr('unit_opt_price'), 10);
-                        order_cnt += opt_cnt;
-                        order_amt = (sell_price + opt_price) * opt_cnt;
-                        $("#tdSelectedOptList [id=opt_price_" + opt_no + "]").text((order_amt + '').replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-                        total_order_amt += order_amt;
-                    });
-                    if (order_cnt == 0) {
-                        total_order_amt = 0;
-                        $("#trTotalPrice").hide();
-                    } else {
-                        $("#divTotalPrice").html((total_order_amt + '').replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' (' + order_cnt + ')');
-                        $("#trTotalPrice").show();
-                    }
-                }
-
-                function doOrder(mode) {
-                    var q_mode = '';
-                    if (mode == 'cart') {
-                        $("#insOrderFrm [name=q_mode]").val('insert_cart');
-                        $.ajax({
-                            type: "POST",
-                            url: "/recipe/ajax.html",
-                            data: $("#insOrderFrm").serialize(),
-                            success: function (result) {
-                                isSubmit = false;
-                                if (result == 'SUCCESS') {
-                                    //alert('성공');
-                                    if ($("#insOrderFrm [name=q_mode]").val() == 'insert_cart') {
-                                        str = '<div>상품이 장바구니에 담겼습니다.</div>';
-                                        $("#divOrderSuccessMsg").show();
-                                    } else {
-                                        document.location.href = '/shop/order_req.html';
-                                    }
-                                } else if (result == 'NEED_LOGIN') {
-                                    EZ.ATLogin();
-                                } else {
-                                    alert('주문에 필요한 상품 정보가 없습니다.');
-                                }
-                            },
-                            error: function () {
-                                isSubmit = false;
-                                alert('주문 실패! 잠시후 다시 시도해 주세요.');
-                            }
-                        });
-                    } else {
-                        $("#insOrderFrm [name=q_mode]").val('insert_order');
-                        //document.location.href = '/shop/order_req.html';
-                        $("#insOrderFrm").submit();
-                    }
-
-                }
-            </script>
-
-
-            <script>
-                var selFolder = false;
-
-                function checkScrapLogin() {
-                    return true;
-                }
-
-                function newScrapFoler() {
-                    if (!checkScrapLogin()) return;
-
-                    if (selFolder) $("#selectScrapFolderModal").modal('hide');
-                    $("#editFolderSeq").val('');
-                    $("#scrapFolderName").val('');
-                    $("#editScrapFolderModal").modal('show');
-                    $("#editFolderModalTitle").html("새폴더 만들기");
-                    $("#editFolderModalDescr").show();
-                }
-
-                function editScrapFoler(seq) {
-                    if (!checkScrapLogin()) return;
-                    if (!seq) return;
-
-                    if (selFolder) $("#selectScrapFolderModal").modal('hide');
-                    $("#editScrapFolderModal").modal('show');
-                    $("#editFolderModalTitle").html("폴더명 수정");
-                    $("#editFolderModalDescr").hide();
-                    $("#editFolderSeq").val(seq);
-                    if ($("#editOriName_" + seq).val()) $("#scrapFolderName").val($("#editOriName_" + seq).val());
-                }
-
-                function delScrapFoler(seq) {
-                    if (!checkScrapLogin()) return;
-                    if (!seq) return;
-                    if (confirm('폴더를 삭제하시겠습니까?\n\n폴더에 스크랩된 레시피도 모두 삭제됩니다.')) {
-                        $.ajax({
-                            type: "POST",
-                            url: "/scrap/ajax.html",
-                            data: "q_mode=deleteFolder&folderSeq=" + seq,
-                            success: function (result) {
-                                if (result == 'SUCCESS') {
-                                    scrapListRefresh();
-                                } else {
-                                    alert('삭제실패. 잠시후 다시 시도해 주세요.');
-                                }
-                            }
-                        });
-                    }
-                }
-
-                function shareScrapFoler(seq, tg) {
-                    if (!checkScrapLogin()) return;
-                    if (!seq) return;
-
-                    var msg = "폴더를 공유하시겠습니까?\n\n다른 사람들이 내가 스크랩한 레시피를 구경하고 추천할 수 있습니다.";
-                    if (tg != 1) msg = "폴더 공유를 해제하시겠습니까?\n\n다른 사람들이 내가 스크랩한 레시피를 볼 수 없습니다.";
-
-                    if (confirm(msg)) {
-                        $.ajax({
-                            type: "POST",
-                            url: "/scrap/ajax.html",
-                            data: "q_mode=shareFolder&folderSeq=" + seq + "&share=" + tg,
-                            success: function (result) {
-                                if (result == 'SUCCESS') {
-                                    scrapListRefresh();
-                                } else {
-                                    alert('공유실패. 잠시후 다시 시도해 주세요.');
-                                }
-                            }
-                        });
-                    }
-                }
-
-                function submitScrapFolder() {
-                    if (!checkScrapLogin()) return;
-                    var folder = $("#scrapFolderName").val();
-                    var seq = $("#editFolderSeq").val();
-                    var mode = (!seq) ? 'insertFolder' : 'updateFolder';
-                    if (!folder) {
-                        alert('폴더명을 입력해 주세요.');
-                        return;
-                    }
-                    $.ajax({
-                        type: "POST",
-                        url: "/scrap/ajax.html",
-                        data: "q_mode=" + mode + "&seq=" + seq + "&folder=" + folder,
-                        success: function (result) {
-                            if (result == 'SUCCESS') {
-                                $("#scrapFolderName").val('');
-                                $("#editScrapFolderModal").modal('hide');
-                                scrapListRefresh();
-                            } else if (result == 'LIMITED') {
-                                alert('폴더는 50개까지만 생성가능합니다. 다른 폴더를 지우고 만들어 주세요.');
-                            } else if (result == 'NOT_ENOUGH') {
-                                //alert("프리미엄 회원이 아닌경우, 최대 개까지 폴더 생성이 가능합니다.");
-                                viewPremiumFolderModal();
-                            } else {
-                                alert('등록실패. 잠시후 다시 시도해 주세요.');
-                            }
-                        }
-                    });
-                }
-
-                function getScrapFolder(target) {
-                    var urls = "q_mode=getListScrapFolder";
-                    if (target == "my") urls += "&uid=";
-                    $.ajax({
-                        type: "GET",
-                        url: "/scrap/ajax.html",
-                        data: urls,
-                        success: function (result) {
-                            if (result) {
-                                $("#listScrapFolder_" + target).html(result);
-                            } else {
-                                alert('조회실패. 잠시후 다시 시도해 주세요.');
-                            }
-                        }
-                    });
-                }
-
-                function scrapListRefresh() {
-                    if (selFolder) {
-                        selectScrapFolderOpen();
-                    } else {
-                        getScrapFolder('my');
-                    }
-                }
-
-                function selectScrapFolderOpen() {
-                    $("#selectScrapFolderModal").modal('show');
-                    selFolder = true;
-                    getScrapFolder('sel');
-                }
-
-                $(function () {
-                    $('#editScrapFolderModal').on('hidden.bs.modal', function () {
-                        //$("#selectScrapFolderModal").modal('show');
-                        scrapListRefresh();
-                    });
-                });
-            </script>
-            <input type="hidden" id="editFolderSeq">
-            <div id="editScrapFolderModal" class="modal" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" style="width:80%;max-width:520px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span><img
-                                    src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></span></button>
-                            <h4 id="editFolderModalTitle" class="modal-title">새폴더 만들기</h4>
-                        </div>
-                        <div class="modal-body" style="padding:25px 35px 0;">
-                            <input id="scrapFolderName" type="text" class="form-control"
-                                   placeholder="폴더명을 입력해 주세요(20자 이내)"
-                                   style="height:50px;">
-                            <div id="editFolderModalDescr" style="display:none;">
-                                <p>
-                                    * 폴더는 최대 50개까지 생성이 가능합니다.<br>
-                                </p>
+                        <div id="stepDiv1" class="view_step_cont media step1">
+                            <div id="stepdescr1" class="media-body">저는 손질되어있는 냉동 꽃게를 사용했습니다.</div>
+                            <div id="stepimg1" class="media-right"><img
+                                    src="https://recipe1.ezmember.co.kr/cache/recipe/2015/04/22/d4890c8cad8da5e1673cd47e7cf044fe1.jpg">
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn-lg btn-default" data-dismiss="modal">취소</button>
-                            <button type="button" class="btn-lg btn-primary" onclick="submitScrapFolder()">등록</button>
+                        <div id="stepDiv2" class="view_step_cont media step2">
+                            <div id="stepdescr2" class="media-body">사진정도 크기의 12토막을 깨끗이 씻어 준비하고...</div>
+                            <div id="stepimg2" class="media-right"><img
+                                    src="https://recipe1.ezmember.co.kr/cache/recipe/2015/04/22/47b81ee523149db615628c4e0088003c1.jpg">
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div id="selectScrapFolderModal" class="modal" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" style="width:80%;max-width:520px;">
-                    <div class="modal-content new_folder">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span><img
-                                    src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></span></button>
-                            <h4 class="modal-title"><p>레시피를 담을 폴더를 선택해 주세요.</p>
-                                <button type="button" class="btn btn-default" aria-label="Left Align"
-                                        onclick="newScrapFoler()"><span>새폴더 만들기</span></button>
-                            </h4>
-                        </div>
-                        <div class="modal-body" style="padding:0;">
-                            <div id="listScrapFolder_sel" class="scrap_list"
-                                 style="height:480px;overflow:yes;overflow-x:hidden;">
+                        <div id="stepDiv3" class="view_step_cont media step3">
+                            <div id="stepdescr3" class="media-body">분량의 양파, 호박, 대파, 청량고추를 사진처럼 썰어서 준비합니다.</div>
+                            <div id="stepimg3" class="media-right"><img
+                                    src="https://recipe1.ezmember.co.kr/cache/recipe/2015/04/22/e9e01a6a5225a1cb457dd614c7e7eefc1.jpg">
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    <!--  완성 사진-->
+                    <div class="best_tit">
+                        <b>완성 사진</b><span>completeimgs</span>
+                    </div>
+                    <div id="completeimgs" class="carousel slide" data-ride="carousel"
+                         style="width:920px;margin:0 auto 60px;">
+                        <div class="carousel-inner" role="listbox">
+                            <div class="carouItem centercrop">
+                                <img src="https://recipe1.ezmember.co.kr/cache/recipe/2015/04/22/37aae2cdc89262512c93b29f6cc244821.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/view_step -->
             </div>
-
-
-            <div class="blank_bottom"></div>
-
-
-            <div id="divRelativeRecipes"></div><!-- 연관레시피 -->
-
-            <script>
-
-                function viewLargePic(imgSrc) {
-                    var html = '<div class="text-center"><img src="' + imgSrc + '" style="max-width:580px;"></div>';
-                    $("#viewPicModalCont").html(html);
-                    $("#viewPicDivModal").modal("show");
-                }
-
-                function doStar(n) {
-                    var i;
-                    for (i = 1; i <= 5; i++) {
-                        $('#img_star_' + i).attr("src", 'https://recipe1.ezmember.co.kr/img/mobile/icon_star2_on.png');
-                    }
-                    for (i = n + 1; i <= 5; i++) {
-                        $('#img_star_' + i).attr("src", 'https://recipe1.ezmember.co.kr/img/mobile/icon_star2.png');
-                    }
-
-                }
-
-                function goReviewSort(tg) {
-                    location.href = '/recipe/4164229?seq=4164229&tg_review_sort=' + tg + '#reviewLists';
-                }
-
-                function photoReview_compilation(q_sq_board, seq, totalCnt) {
-                    EAD.showDialog({
-                        'title': "포토 리뷰 전체보기 <small style='font-size:14px; font-weight:bold; letter-spacing:0.04em; padding-left:4px; color:#74b243;'>" + totalCnt + "</small>",
-                        'url': 'view_photo_review.html?q_sq_board=' + q_sq_board + '&seq=' + seq,
-                        'modal': true,
-                        'width': 1200,
-                        'height': 830
-                    });
-                }
-            </script>
-
-
             <div class="view_reply">
                 <div class="reply_tit">댓글 <span id="recipeCommentListCount">40</span></div>
                 <div id="recipeCommentList_1">
@@ -1910,502 +471,11 @@
                         </div>
                         <div id="replyCommentDiv_39705280" style="padding-left:50px;"></div>
                     </div>
-                    <div id="moreViewCommentList" style="display:none;padding-top:20px;">
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=54028734"><img
-                                    class="media-object" src="https://recipe1.ezmember.co.kr/img/df/pf_100_100.png"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">ssun</b>2022-10-13
-                                19:28<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39698617)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39698617');">신고</a></h4>짱짱!!<br>
-                                이렇게 끓였더니 식당에서 파는 맛 같다며<br>
-                                남편한테 칭찬 받았어요!
-                            </div>
-                            <div id="replyCommentDiv_39698617" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=15018376"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2020/11/14/5383c321d1f8bd8b67cb5c890305665f1.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">미메타</b>2022-05-09
-                                19:16<span>|</span><a
-                                        href="javascript:void(0);"
-                                        onclick="doCommentReply(39694723)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39694723');">신고</a></h4>와 이거 진짜 맛있어요 인정 인정..
-                            </div>
-                            <div id="replyCommentDiv_39694723" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=kariskim"><img
-                                    class="media-object" src="https://recipe1.ezmember.co.kr/img/df/pf_100_100.png"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">캐리캐리스</b>2022-05-09
-                                08:27<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39694713)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39694713');">신고</a></h4>맛있어요!!
-                            </div>
-                            <div id="replyCommentDiv_39694713" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=10976794"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2020/04/18/fc646940473087fa618056372bd174fe1.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">서울아씨</b>2022-03-13
-                                20:00<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39693295)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39693295');">신고</a></h4>이 래시피 강추합니다
-                            </div>
-                            <div id="replyCommentDiv_39693295" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=14251945"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2020/07/24/60ce7d7942b17cf07a050f05a43708e61.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">ㅋㅋㅋ </b>2021-12-06
-                                07:20<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39690435)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39690435');">신고</a></h4>
-                                후추는언제넣어요?????!!!???????????!!?!!,!!?
-                            </div>
-                            <div id="replyCommentDiv_39690435" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=69676104"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2018/11/24/344fd2e188b55f564bcf691e315d632b1.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_m">신도강</b>2021-11-11
-                                08:28<span>|</span><a
-                                        href="javascript:void(0);"
-                                        onclick="doCommentReply(39689670)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39689670');">신고</a></h4>감사합니다
-                            </div>
-                            <div id="replyCommentDiv_39689670" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=84111307"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2018/10/03/6dbcb0e73d73804f645ec7e391b7b5491.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">kspar****</b>2021-10-02
-                                20:27<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39688400)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39688400');">신고</a></h4>감사합니다
-                            </div>
-                            <div id="replyCommentDiv_39688400" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=69361568"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2018/10/11/925b49461f35c11ddffaedc03d354e3a1.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">롱롱</b>2021-05-15
-                                09:32<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39683753)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39683753');">신고</a></h4>냉동된 꽃게를 바로 넣나요 아님
-                                해동해서
-                                넣어야 하나요?
-                            </div>
-                            <div id="replyCommentDiv_39683753" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=38336653"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2020/12/24/36a3ac88635bac4b16fe55b9593555461.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">authgirl</b>2021-05-09
-                                17:59<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39683551)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39683551');">신고</a></h4>청량고추가 아니고 청양고추
-                            </div>
-                            <div id="replyCommentDiv_39683551" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=57873523"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2020/07/08/b506a5ed5cfc69a515fe4a295afd62581.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">ujeein</b>2021-02-01
-                                18:49<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39679501)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39679501');">신고</a></h4>무넣고 쑥갓 올려 만들었는데 너무
-                                맛있어요~~^^<br>
-                                레시피 감사합니다^^
-                            </div>
-                            <div id="replyCommentDiv_39679501" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=gaeul2000"><img
-                                    class="media-object" src="https://recipe1.ezmember.co.kr/img/df/pf_100_100.png"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">리리언니</b>2020-12-25
-                                11:27<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39677158)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39677158');">신고</a></h4>또해먹었어용~ 이 레시피 짱!! 무랑
-                                새우넣고 멸치육수에 끓이면 더맛남
-                            </div>
-                            <div class="media-right"><a
-                                    href="javascript:viewLargePic('https://recipe1.ezmember.co.kr/cache/comment/2020/12/25/973154d48f74964e7a81225cdc8e19ab.jpg')"><img
-                                    src="https://recipe1.ezmember.co.kr/cache/comment/2020/12/25/6425cafc1fceeba1e515028ad8b44f841.jpg"
-                                    style="width:100px;height:100px" "=""></a></div>
-                            <div id="replyCommentDiv_39677158" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=21532491"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2017/10/16/8bd40c4b79b82d8c9bb76950cc1f02ec1.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_m">인섭이</b>2020-11-11
-                                09:32<span>|</span><a
-                                        href="javascript:void(0);"
-                                        onclick="doCommentReply(39674926)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39674926');">신고</a></h4>굿입니다
-                            </div>
-                            <div id="replyCommentDiv_39674926" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=63753392"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2019/03/21/c2cb6e18682a8e2b27f88db74d2788f91.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">요리손고자</b>2020-08-24
-                                01:00<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39670623)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39670623');">신고</a></h4>애호박 안넣어도돼죠?
-                            </div>
-                            <div id="replyCommentDiv_39670623" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=93132376"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2020/05/22/6d70f43567ea9f8d0342f29a2ebf05131.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">요리초보2048</b>2020-05-22
-                                19:19<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39665493)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39665493');">신고</a></h4>맛있겠다. <br>
-                            </div>
-                            <div id="replyCommentDiv_39665493" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=92717110"><img
-                                    class="media-object" src="https://recipe1.ezmember.co.kr/img/df/pm_100_100.png"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_m">kaqua26</b>2020-05-21
-                                09:55<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39665388)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39665388');">신고</a></h4>오늘 한번 해보겠습니다
-                            </div>
-                            <div id="replyCommentDiv_39665388" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=74345886"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2018/04/22/7bd336a4048bbfa8855b3b67125abf5f1.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">맑음!</b>2020-01-07
-                                17:53<span>|</span><a
-                                        href="javascript:void(0);"
-                                        onclick="doCommentReply(39651015)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39651015');">신고</a></h4>오늘 저녁에 해볼게요
-                            </div>
-                            <div id="replyCommentDiv_39651015" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=45521556"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2018/08/10/9366174ecc86c90300d6cc6182db3fe01.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">촛새</b>2019-12-20
-                                18:00<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39650196)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39650196');">신고</a></h4>ㅅㅅㅅㅅ
-                            </div>
-                            <div id="replyCommentDiv_39650196" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=94487254"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2019/09/30/3f59282d6120b0dd0d85e4a726363fad1.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_m">두루미치기</b>2019-11-11
-                                15:29<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39647870)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39647870');">신고</a></h4>1스푼이 티스푼 용량으로
-                                1스푼인가요?
-                            </div>
-                            <div id="replyCommentDiv_39647870" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=36266755"><img
-                                    class="media-object" src="https://recipe1.ezmember.co.kr/img/df/pf_100_100.png"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">김종현맘</b>2019-10-05
-                                20:26<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39645426)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39645426');">신고</a></h4>최고!!
-                            </div>
-                            <div id="replyCommentDiv_39645426" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=20143730"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2014/11/27/0e08c63020113dadeccf36bb0f658e5e1.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">건방진이여사</b>2019-09-30
-                                15:32<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39645022)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39645022');">신고</a></h4>고추가루 2스픈인가요?1스픈인가요?
-                            </div>
-                            <div id="replyCommentDiv_39645022" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=93975850"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2016/07/14/f711e7a49f88d0c22e780226c62b056e1.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">조모니카</b>2019-09-10
-                                18:27<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39643907)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39643907');">신고</a></h4>잘 응용했습니다
-                            </div>
-                            <div id="replyCommentDiv_39643907" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=92641484"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2018/06/20/0adf1026a6055f04f4ef0f81c998dc3f1.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">tnsf****</b>2019-09-04
-                                09:31<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39643516)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39643516');">신고</a></h4>오늘도전할라고요~~♡정보감사합니다
-                            </div>
-                            <div id="replyCommentDiv_39643516" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=win5900"><img
-                                    class="media-object" src="https://recipe1.ezmember.co.kr/img/df/pm_100_100.png"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_m">음란한상상</b>2019-01-31
-                                22:08<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39623528)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39623528');">신고</a></h4>된장장 양을 조금 줄이면 더 나은 것
-                                같아요....
-                            </div>
-                            <div id="replyCommentDiv_39623528" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=64423480"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2017/10/29/ef330427d82e3fc88ce50b824ffae2671.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">멍주하</b>2018-10-26
-                                14:46<span>|</span><a
-                                        href="javascript:void(0);"
-                                        onclick="doCommentReply(39614597)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39614597');">신고</a></h4>꽃게 통으로 시작하실수도 있는 분들을
-                                위해(저처럼
-                                초보인 사람들은 잘 모르거든요~~따로 검색 안하고 대충넣었다면 쓴맛날뻔했어요) 탕용 꽃게 손질법도 올려주심 어떨까요? 맛은 신랑이 이제껏 먹었던 꽃게탕중에
-                                최고라고
-                                합니다.아 그리고 저도 처음에 비린맛이 좀 나서 소주를 조금 넣었습니다~~ 아랫분도 비린내 말씀하시길래요^^
-                            </div>
-                            <div id="replyCommentDiv_39614597" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=jong0913"><img
-                                    class="media-object" src="https://recipe1.ezmember.co.kr/img/df/pf_100_100.png"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">yeon258788</b>2018-10-11
-                                12:59<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39613169)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39613169');">신고</a></h4>넘 맛있었어요
-                            </div>
-                            <div id="replyCommentDiv_39613169" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=51020461"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2018/01/29/ead33b8a87d4042aa8a909df7142c71d1.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">신지노</b>2018-06-04
-                                17:23<span>|</span><a
-                                        href="javascript:void(0);"
-                                        onclick="doCommentReply(39600375)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39600375');">신고</a></h4>된장꽃게탕맛이낫어요ㅎㅎㅎ
-                            </div>
-                            <div id="replyCommentDiv_39600375" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=46880020"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2018/05/30/e768610119f96b2ef31b183e004eb4421.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">궁금이궁금이</b>2018-05-30
-                                04:42<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39599806)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39599806');">신고</a></h4>육수 안우리고 그냥 물로만 해도
-                                꽃개탕 맛이
-                                나나요?
-                            </div>
-                            <div id="replyCommentDiv_39599806" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=75840286"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2018/04/27/f11b7f4981b07446ca503e3f8ea9039c1.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">그린그린녹색</b>2018-04-27
-                                08:19<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39596261)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39596261');">신고</a></h4>엄청 비리던데요....
-                            </div>
-                            <div id="replyCommentDiv_39596261" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=93302592"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2017/06/10/34011f8744c4947bd23fa91b50c96e711.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">빠용</b>2018-04-19
-                                09:06<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39595264)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39595264');">신고</a></h4>기본에 충실한 간단래시피
-                                짱입니다!!!
-                            </div>
-                            <div id="replyCommentDiv_39595264" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=58705784"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2016/08/20/56791b75cd504a2140135a48a56e7a431.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">매화맘</b>2018-01-27
-                                09:28<span>|</span><a
-                                        href="javascript:void(0);"
-                                        onclick="doCommentReply(39586416)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39586416');">신고</a></h4>전 이상하게 국물이 매웧어요<br>
-                                끓이는시간은 몇분이나걸리나요?
-                            </div>
-                            <div id="replyCommentDiv_39586416" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=58705784"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2016/08/20/56791b75cd504a2140135a48a56e7a431.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">매화맘</b>2018-01-26
-                                19:46<span>|</span><a
-                                        href="javascript:void(0);"
-                                        onclick="doCommentReply(39586376)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39586376');">신고</a></h4>꽃게탕 맛이안나요?ㅠ<br>
-                                양념을 득분넣었을까요?전<br>
-                                넘 매웠어요ㅠ
-                            </div>
-                            <div id="replyCommentDiv_39586376" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=81998500"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2018/05/13/5fd9960893b8e5500c22043e7d7811551.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_m">이채형</b>2017-09-05
-                                12:23<span>|</span><a
-                                        href="javascript:void(0);"
-                                        onclick="doCommentReply(39571873)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39571873');">신고</a></h4>비쥬얼 좋네요
-                            </div>
-                            <div id="replyCommentDiv_39571873" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=53823615"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2015/06/22/824c1d5e500d45991f05b17309f9b7b31.jpg"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">주진혜씨</b>2017-08-21
-                                14:41<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39570205)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39570205');">신고</a></h4>오늘부터 매장 꽃게 행사라서 당장
-                                도전해야겠어요. 저는 늘 꽃게탕이 시원한맛이 없더라고요. ㅠㅠ
-                            </div>
-                            <div id="replyCommentDiv_39570205" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=22097503"><img
-                                    class="media-object" src="https://recipe1.ezmember.co.kr/img/df/pf_100_100.png"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">하하호호히히키키</b>2017-06-10
-                                17:07<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(39560409)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','39560409');">신고</a></h4>꽃게탕인데 꽃게맛이 안나요 ㅜㅜ
-                                어떻하죠?
-                            </div>
-                            <div id="replyCommentDiv_39560409" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a
-                                    href="/profile/recipe_comment.html?uid=4s87n0g3blbde0wwu1vq1tpv7j9i@k"><img
-                                    class="media-object"
-                                    src="https://recipe1.ezmember.co.kr/cache/rpf/2015/08/02/8e3b7986cf0263518259ff7f956e2beb1.73cd5c353d7a0956233727bbdb9d1913"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">010-9365-2279</b>2014-08-23
-                                15:28<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(34853486)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','34853486');">신고</a></h4>멋져요 저도 짐 하러갑니다 ㅋㅋ
-                            </div>
-                            <div id="replyCommentDiv_34853486" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=kangdj2014"><img
-                                    class="media-object" src="https://recipe1.ezmember.co.kr/img/df/pm_100_100.png"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_m">두하늘</b>2013-09-18
-                                13:24<span>|</span><a
-                                        href="javascript:void(0);"
-                                        onclick="doCommentReply(29884986)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','29884986');">신고</a></h4>간단하연서도 정말로 맛나게
-                                하셨네요레시피 정말로
-                                감사드림니다앞으로도 많은레시피를^^^^^^^^^
-                            </div>
-                            <div id="replyCommentDiv_29884986" style="padding-left:50px;"></div>
-                        </div>
-                        <div class="media reply_list">
-                            <div class="media-left"><a href="/profile/recipe_comment.html?uid=gembira"><img
-                                    class="media-object" src="https://recipe1.ezmember.co.kr/img/df/pf_100_100.png"
-                                    data-holder-rendered="true"></a></div>
-                            <div class="media-body"><h4 class="media-heading"><b class="info_name_f">지니</b>2012-09-25
-                                01:21<span>|</span><a href="javascript:void(0);"
-                                                      onclick="doCommentReply(23997949)">답글</a><span>|</span><a
-                                        href="javascript:problem_open('rc','23997949');">신고</a></h4>넘 맛나보여여~~~저도 만들어 먹고
-                                싶네여...ㅎㅎ
-                            </div>
-                            <div id="replyCommentDiv_23997949" style="padding-left:50px;"></div>
-                        </div>
-                    </div>
-
                 </div>
 
                 <div class="reply_write">
                     <form id="insCmtFrm1" method="post">
-                        <input type="hidden" name="q_mode" value="insertRecipeComment">
-                        <input type="hidden" name="frm[cmt_sq_board]" value="4164229">
-                        <input type="hidden" name="frm[cmt_id_user]" value="">
-                        <input type="hidden" name="frm[cmt_nm_user]" value="">
-                        <input type="hidden" name="frm[cok_reg_id]" value="dollshouse">
-                        <input type="hidden" name="frm[q_tx_images1]" id="cmt_tx_images1">
-                        <input type="hidden" name="frm[q_tx_images2]" id="cmt_tx_images21">
-                        <input type="file" id="file_1" style="display:none;">
-                        <div style="width:100px;display:inline-block;">
-
-                            <div id="img_dd1" class="complete_pic" style="display:none;"><img id="attach_imgs1" src=""
-                                                                                              width="100" height="100">
-                            </div>
-                        </div>
-                        <div class="input-group" style="width:1000px;">
+                        <div class="input-group" style="width:auto;">
                         <textarea id="cmt_tx_content1" onclick="" name="frm[cmt_tx_content]" class="form-control"
                                   placeholder="무엇이 궁금하신가요? 댓글을 남겨주세요."
                                   style="height:100px; width:100%; resize:none;"></textarea>
@@ -2416,43 +486,11 @@
                     </form>
                 </div>
 
-                <div id="re_reply_div" style="display:none;">
-                    <div class="reply_write">
-                        <form id="insCmtFrm2" method="post">
-                            <input type="hidden" name="q_mode" value="insertRecipeComment">
-                            <input type="hidden" name="frm[cmt_sq_board]" value="4164229">
-                            <input type="hidden" name="frm[cmt_id_user]" value="">
-                            <input type="hidden" name="frm[cmt_nm_user]" value="">
-                            <input type="hidden" name="frm[cok_reg_id]" value="dollshouse">
-                            <input type="hidden" name="frm[q_tx_images1]" id="cmt_tx_images2">
-                            <input type="hidden" name="frm[q_tx_images2]" id="cmt_tx_images22">
-                            <input type="hidden" name="frm[parent_sq_comment]" id="parent_sq_comment">
-                            <input type="file" id="file_2" style="display:none;">
-                            <div style="width:100px;display:inline-block;">
-                                <div id="add_imgs2" class="complete_pic"><img
-                                        src="https://recipe1.ezmember.co.kr/img/pic_none3.gif" alt="파일첨부" width="100"
-                                        height="100" onclick="document.getElementById('file_2').click();"
-                                        style="cursor:pointer;"></div>
-                                <div id="img_dd2" class="complete_pic" style="display:none;"><img id="attach_imgs2"
-                                                                                                  src=""
-                                                                                                  width="100"
-                                                                                                  height="100">
-                                </div>
-                            </div>
-                            <div class="input-group" style="width:960px;">
-                            <textarea id="cmt_tx_content2" onclick="" name="frm[cmt_tx_content]" class="form-control"
-                                      style="height:100px; width:100%; resize:none;"></textarea>
-                                <span class="input-group-btn"><button class="btn btn-default" type="button"
-                                                                      onclick="doCommentSubmit(2)"
-                                                                      style="height:100px; width:100px;">등록</button></span>
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div><!-- /view_reply -->
-        </div><!-- /contents_area -->
-    </div>
-    <div class="footer"></div>
+        </div>
+    </div><!-- /contents_area -->
+</div>
+<div class="footer"></div>
 </div>
 </body>
 </html>
