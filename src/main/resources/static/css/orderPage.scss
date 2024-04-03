@@ -1,17 +1,37 @@
 $연한그레이 : #f0f0f0;
 $애플배경색 : #d9d9d9;
 $버튼색상 : #D65454;
+$녹색: #74B243;
 
 
-a {
+
+
+
+//초기화
+
+body{
+  overflow-y: auto;
+}
+
+a{
   text-decoration: none;
   color: black;
 }
 
+
+
+
+
 .mainBody{
   width: 905px; height: 940px;
   margin: 0 auto;
+  ul{
+    list-style: none;  
+    text-decoration: none;  
+  }
+
 }
+
 
 
 
@@ -282,5 +302,4 @@ a {
 
 
 }
-
 
