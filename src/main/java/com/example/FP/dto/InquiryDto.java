@@ -18,6 +18,7 @@ public class InquiryDto {
     private String inquiry_title;
     private String inquiry_content;
     private String inquiry_answer;
+    private String inquiry_category;
     private LocalDateTime inquiry_date;
     private LocalDateTime inquiry_answer_date;
     private InquiryState inquiry_state;
