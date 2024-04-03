@@ -186,3 +186,6 @@ img {
 .form_join_p .guide_txt2 b {color: #999; font-weight: normal;padding-left:4px;}
 .form_join_p .guide_txt2.check_all {border-bottom: 1px solid #ddd; padding-bottom:12px; margin-bottom:12px}
 .form_join_p .guide_txt2.check_all span {font-size: 16px;}
+.loginBtn:hover{
+    background-color: #D65454;
+}
