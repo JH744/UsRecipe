@@ -123,7 +123,7 @@
             color: #ffa550;
         }
         .news-ul a:hover{
-            color: black;
+            color: #D65454;
             font-weight: bold;
         }
         #news_section{
@@ -137,6 +137,7 @@
             font-family: 'Cafe24Dangdanghae';
             font-size: 35px;
             padding-right:20px ;
+
         }
         #notion_spanL{
             font-family: 'Cafe24Simplehae';
@@ -150,6 +151,19 @@
         .tb2 a:hover {
             text-decoration: underline;
             font-weight: bold;
+        }
+        th{
+            font-family: Cafe24Dangdanghae;
+        }
+        .mypage_myinfo_td{
+            text-align: center;
+            color: black;
+            font-family: Cafe24Dangdanghae;
+            font-size: 24px;
+        }
+        .mypage_myinfo_th{
+            text-align: center;
+
         }
 
 
@@ -168,7 +182,7 @@
     <header></header>
     <div class="mainBody">
 
-        <aside id="news_aside" style="margin-right: 10px;">
+        <aside id="news_aside" style="margin-right: 10px; margin-top: 280px">
             <ul class="news-ul">
                 <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
 
@@ -180,7 +194,19 @@
             </ul>
         </aside>
         <section id="news_section">
-            <div id="notion_title_wrap">
+            <table style="border: none; width: 60%; margin-left: 200px; margin-bottom: 100px;">
+                <tr style="border-top: none;">
+                    <th style="color: black;" class="mypage_myinfo_th">이름</th>
+                    <th style="color: black" class="mypage_myinfo_th">적립금</th>
+                    <th style="color: black" class="mypage_myinfo_th">주문건수</th>
+                </tr>
+                <tr style="border-bottom: none">
+                    <td class="mypage_myinfo_td">김김김</td>
+                    <td class="mypage_myinfo_td">1000원</td>
+                    <td class="mypage_myinfo_td">3건</td>
+                </tr>
+            </table>
+            <div id="notion_title_wrap" style="color: black">
                 <span id="notion_spanB">주문목록</span><span id="notion_spanL">회원님의 주문목록을 확인할 수 있습니다.</span>
             </div>
             <hr>

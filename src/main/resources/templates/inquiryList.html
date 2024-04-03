@@ -84,6 +84,10 @@
             background: #D65454;
             list-style-type: none;
         }
+        .orderList_th{
+            text-align: center;
+
+        }
         .news-title{
             font-family: 'Cafe24Simplehae';
             font-size: 25px;
@@ -99,6 +103,11 @@
             padding: 30px 0 30px 0;
             border: 1px solid #dddddd;
             list-style-type: none;
+        }
+        .orderList_td{
+            text-align: center;
+            display:table-cell;
+            vertical-align:middle;
         }
         .news_list_wrap{
             border: 1px solid #dddddd;
@@ -128,7 +137,7 @@
             font-family: 'Cafe24Dangdanghae';
             font-size: 35px;
             padding-right:20px ;
-            color: black;
+
         }
         #notion_spanL{
             font-family: 'Cafe24Simplehae';
@@ -142,6 +151,19 @@
         .tb2 a:hover {
             text-decoration: underline;
             font-weight: bold;
+        }
+        th{
+            font-family: Cafe24Dangdanghae;
+        }
+        .mypage_myinfo_td{
+            text-align: center;
+            color: black;
+            font-family: Cafe24Dangdanghae;
+            font-size: 24px;
+        }
+        .mypage_myinfo_th{
+            text-align: center;
+
         }
 
 
@@ -172,49 +194,40 @@
             </ul>
         </aside>
         <section id="news_section">
-            <div id="notion_title_wrap">
-                <span id="notion_spanB">정보변경</span><span id="notion_spanL">회원님의 정보를 변경합니다</span>
+
+            <div id="notion_title_wrap" style="color: black;">
+                <span id="notion_spanB">1대1 문의</span><span id="notion_spanL">회원님의 문의목록을 확인할 수 있습니다.</span>
             </div>
-            <hr>
+
             <div id="notion_box">
 
             </div>
 
             <div style="margin-top:50px;" >
-                <div style="margin-left: 100px; text-align:left;">
+                <div style=" text-align:left;">
                     <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
                     <div id="page">
                         <div class="container">
 
-                            <!-- #masthead -->
-                            <div id="content" class="site-content">
-                                <div id="primary" class="content-area column full" style="margin-top: -30px;">
-                                    <main id="main" class="site-main" role="main">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="orderList_th" style="width: 60%">제목</th>
+                                    <th scope="col" class="orderList_th">등록일자</th>
+                                    <th scope="col" class="orderList_th">질문유형</th>
+                                    <th scope="col" class="orderList_th">답변상태</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="orderList_td"><a>1</a></td>
+                                    <td class="orderList_td">2024-04-03</td>
+                                    <td class="orderList_td">계정</td>
+                                    <td class="orderList_td">답변완료</td>
+                                </tr>
 
-                                        <form action="" >
-                                            <span>아이디</span><br>
-                                            <input type="text" style="width: 350px; height: 55px; border: none" readonly><br>
-                                            <span>이메일</span><br>
-                                            <input type="email" style="width: 350px; height: 55px; border: none" readonly><br>
-                                            <span>주소 입력</span><br>
-                                            <input type="text" style="width: 350px; height: 55px; border: none; margin-bottom: 10px;" placeholder="주소를 입력해주세요" >
-                                            <button id="addrFind" style="width: 70px;height: 30px;  background-color:#D65454; border: none ; color: white">주소찾기</button><br>
-                                            <input type="text" style="width: 350px; height: 55px; border: none" placeholder="상세주소 입력"><br>
-                                            <span>닉네임</span><br>
-                                            <input type="text" style="width: 350px; height: 55px;  border: none" placeholder="닉네임을 입력해주세요"><br>
-                                            <span>비밀번호</span><br>
-                                            <input type="password" style="width: 350px; height: 55px; border: none" placeholder="새 비밀번호"><br>
-                                            <input type="password" style="width: 350px; height: 55px; border: none" placeholder="비밀번호 확인"><br>
-                                            <input type="submit" style="margin-left: 120px; background-color:#D65454; width: 150px;height: 50px; color: white" value="변경하기">
-                                        </form>
-
-
-                                    </main>
-                                    <!-- #main -->
-                                </div>
-                                <!-- #primary -->
-                            </div>
-                            <!-- #content -->
+                                </tbody>
+                            </table>
                         </div>
                         <!-- .container -->
 
@@ -227,9 +240,9 @@
                     <script src='/static/js/masonry.pkgd.min.js'></script>
 
                     </body>
+
                 </div>
             </div>
-
 
 
         </section>
