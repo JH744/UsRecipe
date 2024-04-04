@@ -70,5 +70,14 @@ public class MemberDto {
         this.role=MemberRole.MEMBER;
     }
 
+    public MemberDto(String userid, String password, String name, String nickname, String email, String phone) {
+        this.userid = userid;
+        this.password = password;
+        this.name = name;
+        this.nickname = nickname;
+        this.email = email;
+        this.phone = phone;
+    }
+
     public MemberDto() {}
 }

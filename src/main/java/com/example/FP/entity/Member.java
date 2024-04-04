@@ -97,6 +97,7 @@ public class Member {
                 .email(memberDto.getEmail())
                 .phone(memberDto.getPhone())
                 .birth(memberDto.getBirth())
+                .point(0)
                 .password(passwordEncoder.encode(memberDto.getPassword()))  //암호화처리
                 .role(MemberRole.MEMBER)
                 .build();
