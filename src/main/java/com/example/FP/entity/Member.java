@@ -19,7 +19,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@DynamicInsert//insert할 때 null인필드 제외
 public class Member {
     @Id@GeneratedValue
     @Column(name = "member_id")
@@ -111,8 +110,14 @@ public class Member {
     public void addPoint(Orders orders){
         int savedPoint = (int)Math.round(orders.getOrders_sale_price()*0.01);
         this.point += savedPoint;
-        System.out.println(savedPoint + "원이 적립되었습니다");
+        System.out.println(this.getUserid()+" 님의 포인트 "+savedPoint + "원이 적립되었습니다");
 
+    }
+
+    public void usePoint(Orders orders){
+        int usedPoint = orders.getOrders_used_point();
+        this.point-=usedPoint;
+        System.out.println(this.getUserid()+" 님의 포인트 "+usedPoint+"원이 사용되었습니다");
     }
 
 

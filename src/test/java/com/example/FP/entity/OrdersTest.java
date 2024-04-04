@@ -53,16 +53,13 @@ class OrdersTest {
         mr.save(member3);
 
         LocalDateTime time = LocalDateTime.now();
-        Orders orders = new Orders(time,"kim","seoul",null,20000,20000,0,null,null,null,member1,null,null,null);
+        Orders orders = new Orders(time,"kim","seoul",null,20000,48500,0,null,member1,null,null,null);
 
         or.save(orders);
 
         member1.addPoint(orders);
 
-        assertThat(member1.getPoint()).isEqualTo(200);
-
-
-
+        assertThat(member1.getPoint()).isEqualTo(485);
 
 
     }
