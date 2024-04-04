@@ -9,12 +9,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig{
+
     @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .requestMatchers("/", "/join","/joinOk","/static/**").permitAll()
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests()
+                .requestMatchers("/","/header", "/footer","/join", "/all/**", "/joinOk", "/static/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("admin")
                 .anyRequest().authenticated()
                 .and()
@@ -29,10 +29,6 @@ public class SecurityConfig {
 
         http.httpBasic();
 
-//        http.authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
-//                .requestMatchers(new AntPathRequestMatcher("/join"),new AntPathRequestMatcher("/joinForm"),new AntPathRequestMatcher("/static/**"),new AntPathRequestMatcher("/")).permitAll()).csrf().disable()
-//
-//        ;
 
         return http.build();
     }

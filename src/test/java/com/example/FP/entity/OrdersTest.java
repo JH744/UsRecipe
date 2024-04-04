@@ -1,32 +1,47 @@
-
 package com.example.FP.entity;
 
 import com.example.FP.dto.MemberDto;
 import com.example.FP.mapper.MemberMapper;
 import com.example.FP.repository.MemberRepository;
+import com.example.FP.repository.OrdersRepository;
+import com.example.FP.service.MemberService;
+import com.example.FP.service.OrdersService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
-//@Rollback(value = false)
-class MemberTest {
-    private final MemberRepository mr;
+class OrdersTest {
+
+
+    private MemberRepository mr;
+    private OrdersRepository or;
+
+
+    private MemberService ms;
+    private OrdersService os;
 
     @Autowired
-    public MemberTest(MemberRepository mr) {
+    public OrdersTest(MemberRepository mr, OrdersRepository or, MemberService ms, OrdersService os) {
         this.mr = mr;
+        this.or = or;
+        this.ms = ms;
+        this.os = os;
     }
 
+
+
     @Test
-    public void joinMember() {
+    public void orderTest(){
         MemberDto member4 = new MemberDto("aaa","aaa","aaa","aaa","aaa","aaa@naver.com","010-1111-2222",0,"1997-03-24",null);
         MemberDto member5 = new MemberDto("bbb","bbb","bbb","bbb","bbb","bbb@naver.com","010-3333-4444",0,"1997-03-25",null);
         MemberDto member6 = new MemberDto("ccc","ccc","ccc","ccc","ccc","ccc@naver.com","010-5555-6666",0,"1997-03-25",null);
@@ -37,11 +52,16 @@ class MemberTest {
         mr.save(member2);
         mr.save(member3);
 
-        System.out.println("member1.getPoint() = " + member1.getPoint());
+        LocalDateTime time = LocalDateTime.now();
+        Orders orders = new Orders(time,"kim","seoul",null,20000,48500,0,null,member1,null,null,null);
 
-//        System.out.println(member1.getRole());
-//        assertThat(member1.getName()).isEqualTo("aaa");
-          assertThat(member1.getPoint()).isEqualTo(0);
+        or.save(orders);
+
+        member1.addPoint(orders);
+
+        assertThat(member1.getPoint()).isEqualTo(485);
+
+
     }
-}
 
+}

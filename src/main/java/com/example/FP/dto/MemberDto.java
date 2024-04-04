@@ -43,6 +43,8 @@ public class MemberDto {
     private List<Reply> member_reply_list = new ArrayList<>();
 
     private List<Alarm> member_alarm_list = new ArrayList<>();
+    private List<Point> member_point_list= new ArrayList<>();
+
 
     public MemberDto(String userid, String password, String name, String nickname) {
         this.userid = userid;
@@ -57,7 +59,7 @@ public class MemberDto {
         this.nickname = nickname;
     }
 
-    public MemberDto(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth) {
+    public MemberDto(String userid, String password, String name, String nickname, String addr, String email, String phone, Integer point, String birth,List<Point> member_point_list) {
         this.userid = userid;
         this.password = password;
         this.name = name;
@@ -68,6 +70,7 @@ public class MemberDto {
         this.point = point;
         this.birth = birth;
         this.role=MemberRole.MEMBER;
+        this.member_point_list = member_point_list;
     }
 
     public MemberDto(String userid, String password, String name, String nickname, String email, String phone) {
