@@ -67,7 +67,11 @@ public class Member {
     @OneToMany(mappedBy = "alarm_member")
     private List<Alarm> member_alarm_list = new ArrayList<>();
 
-    public Member(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth, MemberRole role, List<Inquiry> inquiry_list, List<WishList> wishlist_list, List<Recipe> recipe_list, List<OrderDetails> order_member_list, List<Cart> member_cart_list, List<Reply> member_reply_list , List<Alarm> member_alarm_list) {
+    @Builder.Default
+    @OneToMany(mappedBy = "point_member")
+    private List<Point> member_point_list= new ArrayList<>();
+
+    public Member(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth, MemberRole role, List<Inquiry> inquiry_list, List<WishList> wishlist_list, List<Recipe> recipe_list, List<OrderDetails> order_member_list, List<Cart> member_cart_list, List<Reply> member_reply_list , List<Alarm> member_alarm_list,List<Point> member_point_list) {
         this.userid = userid;
         this.password = password;
         this.name = name;
@@ -85,6 +89,7 @@ public class Member {
         this.member_cart_list = member_cart_list;
         this.member_reply_list = member_reply_list;
         this.member_alarm_list = member_alarm_list;
+        this.member_point_list = member_point_list;
     }
 
     public static Member createMember(MemberDto memberDto, PasswordEncoder passwordEncoder){
@@ -102,4 +107,14 @@ public class Member {
                 .build();
         return member;
     }
+
+    public void addPoint(Orders orders){
+        int savedPoint = (int)Math.round(orders.getOrders_sale_price()*0.01);
+        this.point += savedPoint;
+        System.out.println(savedPoint + "원이 적립되었습니다");
+
+    }
+
+
+
 }

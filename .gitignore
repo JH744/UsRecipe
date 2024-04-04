@@ -36,3 +36,5 @@ out/
 
 ### VS Code ###
 .vscode/
+/src/test/java/resources/application.properties
+/src/test/resources/

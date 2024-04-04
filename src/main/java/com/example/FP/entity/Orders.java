@@ -44,19 +44,25 @@ public class Orders {
     @OneToMany(mappedBy = "orders_detail")
     private List<OrderDetails> order_ordersdetail_list = new ArrayList<>();
 
+    @Builder.Default
+    @OneToMany(mappedBy = "point_orders")
+    private List<Point> order_point_list = new ArrayList<>();
+
     public Orders(LocalDateTime orders_date,
                   String orders_receiver,
                   String orders_receiver_addr,
                   String orders_receiver_phone,
                   int orders_total_price,
                   int orders_sale_price,
-                  int orders_used_point,
+                  Integer orders_used_point,
                   String orders_request,
                   String orders_non_member_name,
                   String orders_non_member_phone,
                   Member orders_member,
                   List<OrderDetails> order_ordersdetail_list,
-                  OrderState orders_order_state) {
+                  OrderState orders_order_state,
+                  List<Point> orders_point_list
+    ) {
 
         this.orders_date = orders_date;
         this.orders_receiver = orders_receiver;
@@ -71,5 +77,7 @@ public class Orders {
         this.orders_member = orders_member;
         this.order_ordersdetail_list = order_ordersdetail_list;
         this.orders_order_state = orders_order_state;
+        this.order_point_list = orders_point_list;
+
     }
 }
