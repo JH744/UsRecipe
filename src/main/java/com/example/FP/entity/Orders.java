@@ -29,8 +29,6 @@ public class Orders {
     private int orders_sale_price;
     private int orders_used_point;
     private String orders_request;
-    private String orders_non_member_name;
-    private String orders_non_member_phone;
 
     @ManyToOne
     @JoinColumn(name = "member_id")
@@ -56,8 +54,6 @@ public class Orders {
                   int orders_sale_price,
                   Integer orders_used_point,
                   String orders_request,
-                  String orders_non_member_name,
-                  String orders_non_member_phone,
                   Member orders_member,
                   List<OrderDetails> order_ordersdetail_list,
                   OrderState orders_order_state,
@@ -72,8 +68,6 @@ public class Orders {
         this.orders_sale_price = orders_sale_price;
         this.orders_used_point = orders_used_point;
         this.orders_request = orders_request;
-        this.orders_non_member_name = orders_non_member_name;
-        this.orders_non_member_phone = orders_non_member_phone;
         this.orders_member = orders_member;
         this.order_ordersdetail_list = order_ordersdetail_list;
         this.orders_order_state = orders_order_state;

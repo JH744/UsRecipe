@@ -25,9 +25,6 @@ public class OrdersDto {
     private int orders_sale_price;
     private Integer orders_used_point;
     private String orders_request;
-    private String orders_non_member_name;
-    private String orders_non_member_phone;
-
     private Member orders_member;
 
 
