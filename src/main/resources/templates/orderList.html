@@ -182,11 +182,12 @@
     <header></header>
     <div class="mainBody">
 
-        <aside id="news_aside" style="margin-right: 10px; margin-top: 280px">
+        <aside id="news_aside" style="margin-right: 10px; margin-top: 300px">
             <ul class="news-ul">
                 <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
 
                 <li class="news_list_wrap"><a class="news-li" th:href="@{/notionmain}" style="font-weight: bold;">주문내역<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/notionmain}" style="font-weight: bold;">적립내역<span>></span></a></li>
                 <li class="news_list_wrap"><a class="news-li" th:href="@{/question}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
                 <li class="news_list_wrap"><a class="news-li" th:href="@{/myqnamain}" style="font-weight: bold;">정보변경<span>></span></a></li>
                 <li class="news_list_wrap"><a class="news-li" th:href="@{/myqnamain}" style="font-weight: bold;">찜목록<span>></span></a></li>
@@ -194,7 +195,7 @@
             </ul>
         </aside>
         <section id="news_section">
-            <table style="border: none; width: 60%; margin-left: 200px; margin-bottom: 100px;">
+            <table style="border: none; width: 60%; margin-left: 150px; margin-bottom: 100px;">
                 <tr style="border-top: none;">
                     <th style="color: black;" class="mypage_myinfo_th">이름</th>
                     <th style="color: black" class="mypage_myinfo_th">적립금</th>
@@ -215,7 +216,7 @@
             </div>
 
             <div style="margin-top:50px;" >
-                <div style="margin-left: 100px; text-align:left;">
+                <div style="text-align:left;">
                     <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
                     <div id="page">
                         <div class="container">
@@ -225,7 +226,8 @@
                                 <tr>
                                     <th scope="col" class="orderList_th">번호</th>
                                     <th scope="col" class="orderList_th">사진</th>
-                                    <th scope="col" class="orderList_th">제품명/가격</th>
+                                    <th scope="col" class="orderList_th">제품명</th>
+                                    <th scope="col" class="orderList_th">가격</th>
                                     <th scope="col" class="orderList_th">주문상태</th>
                                 </tr>
                                 </thead>
@@ -234,6 +236,7 @@
                                     <td class="orderList_td">1</td>
                                     <td class="orderList_td"><img src="../static/images/image_11.png" style="width: 50px;height: 60px"></td>
                                     <td class="orderList_td">Otto</td>
+                                    <td class="orderList_td">10000원</td>
                                     <td class="orderList_td">배송완료</td>
                                 </tr>
 
