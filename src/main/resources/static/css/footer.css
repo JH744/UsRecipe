@@ -1,5 +1,6 @@
 
 .footer {
+
     margin-top: 5px;
     width:100%;
     padding: 0;
@@ -19,9 +20,9 @@
     color:rgba(0,0,0,5);
     left:352px;
     top:29px;
-    font-family:Inter;
+    font-family: Cafe24Simplehae;
     text-align:left;
-    font-size:16px;
+    font-size:22px;
     letter-spacing:0;
 }
 

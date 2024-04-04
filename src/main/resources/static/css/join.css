@@ -115,9 +115,9 @@ table {
 }
 
 .type_form .btn.default {
-    border: 1px solid #5f0080;
+    border: 1px solid #000000;
     background-color: #fff;
-    color: #5f0080;
+    color: #000000;
 }
 
 #main .member_join .btn {
@@ -176,7 +176,7 @@ table {
     overflow: hidden;
     width: 332px;
     height: 44px;
-    border: 1px solid #5f0080;
+    border: 1px solid #000000;
     border-radius: 3px;
     text-align: center;
 }
@@ -188,14 +188,14 @@ table {
     padding-left: 24px;
     font-weight: 700;
     font-size: 14px;
-    color: #5f0080;
+    color: #000000;
     line-height: 40px;
     vertical-align: top;
 }
 
 .member_join .birth .birth_day {
     overflow: hidden;
-    width: 332px;
+    width: 380px;
     padding-left: 18px;
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -238,8 +238,8 @@ table {
 }
 
 .type_form .btn.active {
-    border: 1px solid #5f0081;
-    background-color: #5f0080;
+    border: 1px solid #D65454;
+    background-color: #D65454;
     color: #fff;
 }
 
