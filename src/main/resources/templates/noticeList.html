@@ -48,8 +48,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <style type="text/css">
         input[type]{
-
-
+            border: none;
+            background-color: rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
             margin-bottom: 30px;
         }
 
@@ -184,34 +184,18 @@
 
         <aside id="news_aside" style="margin-right: 10px;">
             <ul class="news-ul">
-                <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
+                <li class="news_title_wrap"><h4 class="news-title">고객센터</h4></li>
 
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/notionmain}" style="font-weight: bold;">주문내역<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/question}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/myqnamain}" style="font-weight: bold;">정보변경<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/myqnamain}" style="font-weight: bold;">찜목록<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/notionmain}" style="font-weight: bold;">공지사항<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/question}" style="font-weight: bold; ">자주묻는질문<span>></span></a></li>
+
 
             </ul>
         </aside>
         <section id="news_section">
 
             <div id="notion_title_wrap" style="color: black;">
-                <span id="notion_spanB">1대1 상세</span><span id="notion_spanL">회원님의 문의답변을 확인/삭제 할 수 있습니다.</span>
-                <hr>
-                <h3 style="font-family: Cafe24Dangdanghae">문의하기</h3><br>
-                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae">질문유형</b>
-                <b>계정</b>
-                <br>
-                <hr>
-                <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b><b>1대1 문의 제목입니다</b>
-                <hr>
-                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">문의내용</b><b>문의 답변 내용입니다.</b>
-                <br>
-                <button style="width: 100px;color: white; margin : 100px 0 0 300px; height: 50px ;background-color: #D65454">목록으로</button>
-                <button id="deleteButton" style="width: 100px; color: white; margin: 100px 0 0 20px; height: 50px; background-color: #D65454">삭제</button>
-
-
-
+                <span id="notion_spanB">공지사항</span><span id="notion_spanL">공지사항을 확인할 수 있습니다.</span>
             </div>
 
             <div id="notion_box">
@@ -224,7 +208,80 @@
                     <div id="page">
                         <div class="container">
 
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="orderList_th" style="width: 20%">번호</th>
+                                    <th scope="col" class="orderList_th" >제목</th>
+                                    <th scope="col" class="orderList_th">작성자</th>
+                                    <th scope="col" class="orderList_th">작성일</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="orderList_td"><a>10</a></td>
+                                    <td class="orderList_td">[안내] 배송 및 박스 서비스 지역 확대 안내(2024.03.29~)  </td>
+                                    <td class="orderList_td">관리자</td>
+                                    <td class="orderList_td">2024.03.28</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderList_td"><a>9</a></td>
+                                    <td class="orderList_td">[안내] 4월 배송 휴무 일정 안내 (2024.04.01~04.03) </td>
+                                    <td class="orderList_td">관리자</td>
+                                    <td class="orderList_td">2024.03.26</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderList_td"><a>8</a></td>
+                                    <td class="orderList_td">[안내] 3월 배송 휴무 일정 안내 (2024.03.20~03.23) </td>
+                                    <td class="orderList_td">관리자</td>
+                                    <td class="orderList_td">2024.03.19</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderList_td"><a>7</a></td>
+                                    <td class="orderList_td">[이벤트] 3/14(목) 글로벌 나이프 라이브 방송 당첨자 안내(구매인증 50명) </td>
+                                    <td class="orderList_td">관리자</td>
+                                    <td class="orderList_td">2024.03.10</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderList_td"><a>6</a></td>
+                                    <td class="orderList_td">[안내] 유스 소비자 분쟁해결 기준 안내 </td>
+                                    <td class="orderList_td">관리자</td>
+                                    <td class="orderList_td">2024.03.08</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderList_td"><a>5</a></td>
+                                    <td class="orderList_td">[안내] 배송 및 박스 서비스 지역 확대 안내(2024.03.01~) </td>
+                                    <td class="orderList_td">관리자</td>
+                                    <td class="orderList_td">2024.03.08</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderList_td"><a>4</a></td>
+                                    <td class="orderList_td">[안내] 유스캐시 결제 적립금 지급 종료 사전 안내 </td>
+                                    <td class="orderList_td">관리자</td>
+                                    <td class="orderList_td">2024.03.08</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderList_td"><a>3</a></td>
+                                    <td class="orderList_td">[이벤트] 2/27 소울 라이브 이벤트 당첨자 안내 </td>
+                                    <td class="orderList_td">관리자</td>
+                                    <td class="orderList_td">2024.02.29</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderList_td"><a>2</a></td>
+                                    <td class="orderList_td">[이벤트] 2/22 달바 라이브 이벤트 당첨자 안내</td>
+                                    <td class="orderList_td">관리자</td>
+                                    <td class="orderList_td">2024.02.28</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderList_td"><a>1</a></td>
+                                    <td class="orderList_td">[안내] 3월 배송 휴무 일정 안내 (2024.03.01~03.03) </td>
+                                    <td class="orderList_td">관리자</td>
+                                    <td class="orderList_td">2024.02.26</td>
+                                </tr>
 
+
+                                </tbody>
+                            </table>
                         </div>
                         <!-- .container -->
 
