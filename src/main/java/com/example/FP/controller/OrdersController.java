@@ -6,16 +6,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class OrdersController {
 
-//
-//    @GetMapping("/order")
-//    public String orderPage(){
-//
-//        return "orderPage.html";
-//    }
-//    @GetMapping("/orderOK")
-//    public void orderOK(){
-//
-//    }
+
+    @GetMapping("/order")
+    public String orderPage(){
+
+        return "orderPage";
+    }
+    @GetMapping("/orderOK")
+    public String orderOK(){
+
+        return "orderOK";
+    }
 
 
 

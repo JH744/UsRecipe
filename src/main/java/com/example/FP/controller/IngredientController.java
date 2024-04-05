@@ -14,9 +14,10 @@ public class IngredientController {
 
     private final IngredientService is;
 
-    @GetMapping("/store")
-    public void IngredientList(Model model){
+    @GetMapping("/listIngredient")
+    public String IngredientList(Model model){
         model.addAttribute("list", is.list());
+        return "listIngredient" ;
     }
 
 

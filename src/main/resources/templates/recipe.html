@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
@@ -75,71 +75,15 @@
             
             <div class="recipeContainer">
 
-                <div class="recipeItem">
+                <div class="recipeItem"  th:each=" r : ${list}">
                     <div class="recipeItem_img"></div>
                     <div class="recipeItem_info">
-                        <p>레시피명</p>
-                        <span>닉네임</span><br>
+                        <p th:text="${r.recipe_title}"></p>
+                        <span th:text="${r.recipe_writer}">닉네임</span><br>
                         <span>조회수</span>
                     </div>
                 </div>
-                <div class="recipeItem">
-                    <div class="recipeItem_img"></div>
-                    <div class="recipeItem_info">
-                        <p>레시피명</p>
-                        <span>닉네임</span><br>
-                        <span>조회수</span>
-                    </div>
-                </div>
-                <div class="recipeItem">
-                    <div class="recipeItem_img"></div>
-                    <div class="recipeItem_info">
-                        <p>레시피명</p>
-                        <span>닉네임</span><br>
-                        <span>조회수</span>
-                    </div>
-                </div>
-                <div class="recipeItem">
-                    <div class="recipeItem_img"></div>
-                    <div class="recipeItem_info">
-                        <p>레시피명</p>
-                        <span>닉네임</span><br>
-                        <span>조회수</span>
-                    </div>
-                </div>
-                <div class="recipeItem">
-                    <div class="recipeItem_img"></div>
-                    <div class="recipeItem_info">
-                        <p>레시피명</p>
-                        <span>닉네임</span><br>
-                        <span>조회수</span>
-                    </div>
-                </div>
-                <div class="recipeItem">
-                    <div class="recipeItem_img"></div>
-                    <div class="recipeItem_info">
-                        <p>레시피명</p>
-                        <span>닉네임</span><br>
-                        <span>조회수</span>
-                    </div>
-                </div>
-                <div class="recipeItem">
-                    <div class="recipeItem_img"></div>
-                    <div class="recipeItem_info">
-                        <p>레시피명</p>
-                        <span>닉네임</span><br>
-                        <span>조회수</span>
-                    </div>
-                </div>
-                <div class="recipeItem">
-                    <div class="recipeItem_img"></div>
-                    <div class="recipeItem_info">
-                        <p>레시피명</p>
-                        <span>닉네임</span><br>
-                        <span>조회수</span>
-                    </div>
-                </div>
-               
+
 
 
             </div>

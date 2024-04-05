@@ -1,7 +1,9 @@
 package com.example.FP.service;
 
 import com.example.FP.entity.Ingredient;
+import com.example.FP.entity.Member;
 import com.example.FP.repository.IngredientRepository;
+import com.example.FP.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +15,41 @@ import java.util.List;
 public class IngredientService {
 
     private final IngredientRepository ir;
-
+    private final MemberRepository mr;
 
     public List<Ingredient> list(){
-       return ir.findAll();
+        //재료 더미데이터 설정. 나중에 삭제
+//        Ingredient ingredient = Ingredient.builder()
+//                .ingredient_name("토마토")
+//                .ingredient_price(9000)
+//                .ingredient_origin("수원")
+//                .ingredient_amount(99)
+//                .ingredient_unit("g")
+//                .ingredient_qty(90)
+//                .build();
+//
+//        ir.save(ingredient);
+        //맴버 더미데이터 설정. 나중에 지움.
+//        Member member = Member.builder()
+//                .addr("경기도수원")
+//                .birth("19900909")
+//                .email("tiger@naver.com")
+//                .name("김순신")
+//                .nickname("SS123")
+//                .password("qweqweqwe123!@")
+//                .phone("010-1234-5678")
+//                .point(800)
+//                .userid("qwe123")
+//                .build();
+//
+//        mr.save(member);
+
+
+
+
+
+
+        return ir.findAll();
     }
 
 

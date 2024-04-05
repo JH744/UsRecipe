@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
@@ -52,54 +52,15 @@
                 <div class="storeContainer2GirdBox">
 
 
-                    <div class="storeItem">
+                    <div class="storeItem" th:each=" i : ${list}">
                         <div class="storeItem_img"></div>
                         <button id="cartBtn" class="cartBtn"><img src="../static/images/icon/카트.svg"/><span>담기</span></button>
                         <div class="storeItem_info">
-                            <p>상품명</p>
-                            <p>상품가격</p>
+                            <p th:text="${i.ingredient_name}">상품명</p>
+                            <p th:text="${i.ingredient_price}">상품가격</p>
                         </div>
                     </div>
-                    <div class="storeItem">
-                        <div class="storeItem_img"></div>
-                        <button id="cartBtn" class="cartBtn"><img src="../static/images/icon/카트.svg"/><span>담기</span></button>
-                        <div class="storeItem_info">
-                            <p>상품명</p>
-                            <p>상품가격</p>
-                        </div>
-                    </div>
-                    <div class="storeItem">
-                        <div class="storeItem_img"></div>
-                        <button id="cartBtn" class="cartBtn"><img src="../static/images/icon/카트.svg"/><span>담기</span></button>
-                        <div class="storeItem_info">
-                            <p>상품명</p>
-                            <p>상품가격</p>
-                        </div>
-                    </div>
-                    <div class="storeItem">
-                        <div class="storeItem_img"></div>
-                        <button id="cartBtn" class="cartBtn"><img src="../static/images/icon/카트.svg"/><span>담기</span></button>
-                        <div class="storeItem_info">
-                            <p>상품명</p>
-                            <p>상품가격</p>
-                        </div>
-                    </div>
-                    <div class="storeItem">
-                        <div class="storeItem_img"></div>
-                        <button id="cartBtn" class="cartBtn"><img src="../static/images/icon/카트.svg"/><span>담기</span></button>
-                        <div class="storeItem_info">
-                            <p>상품명</p>
-                            <p>상품가격</p>
-                        </div>
-                    </div>
-                    <div class="storeItem">
-                        <div class="storeItem_img"></div>
-                        <button id="cartBtn" class="cartBtn"><img src="../static/images/icon/카트.svg"/><span>담기</span></button>
-                        <div class="storeItem_info">
-                            <p>상품명</p>
-                            <p>상품가격</p>
-                        </div>
-                    </div>
+
 
 
                 </div>

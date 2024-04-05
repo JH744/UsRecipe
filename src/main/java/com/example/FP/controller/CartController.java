@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -16,8 +17,13 @@ public class CartController {
     private final CartService cs;
 
     @GetMapping("/cart")
-    public void cartList(){
+    public String cartList(Model model){
 
+        //model.addAttribute("list",cs.listCart());
+
+
+
+        return "cart";
     }
 
 

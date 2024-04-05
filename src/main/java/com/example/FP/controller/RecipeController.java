@@ -16,7 +16,7 @@ public class RecipeController {
     private final RecipeService rs;
 
     @GetMapping("/recipe")
-    public void recipeList(Model model){
+    public String recipeList(Model model){
 
         //레시피목록 불러오기
         model.addAttribute("list",rs.list());
@@ -30,7 +30,7 @@ public class RecipeController {
         //주간인기레시피
         // 찜목록 중에서 레시피id를 count했을 시 가장 많은 top4를 불러옴
 
-
+        return "recipe";
     }
 
 
