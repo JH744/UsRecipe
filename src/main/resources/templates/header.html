@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -8,9 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
 
-
 </head>
-<div class="header">
+<div class="header" th:fragment="header">
     <div class=headerLeft>
         <div class="headerLogo"></div>
         <nav>
@@ -24,10 +23,19 @@
         </nav>
     </div>
     <nav>
-        <ul class=headerRight>
-            <li  class="loginTag">로그인</li>
-            <li  class="joinTag">회원가입</li>
-        </ul>
+        <th:block th:if="${session.userid == null}">
+            <ul class="headerRight">
+                <li class="loginTag"><a href="/login">로그인</a></li>
+                <li class="joinTag"><a href="/join">회원가입</a></li>
+            </ul>
+        </th:block>
+        <th:block th:if="${session.userid != null}">
+            <ul class="headerRight">
+                <li class="loginTag"><a href="/logout">로그아웃</a></li>
+                <!-- 여기에서 회원가입 대신 로그아웃으로 표시하려면 주의합니다. -->
+                <li class="joinTag"><a href="/logout">로그아웃</a></li>
+            </ul>
+        </th:block>
     </nav>
 </div>
 </html>
