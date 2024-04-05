@@ -24,10 +24,6 @@ public class RecipeDto {
 
     private RecipeCategory recipe_category;
 
-
-    private Ingredient recipe_ingredient;
-
-
     private Member recipe_member;
 
 
