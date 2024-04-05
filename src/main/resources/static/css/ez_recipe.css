@@ -5,10 +5,6 @@
 .navbar-header, .navbar-form, .navbar-nav, .navbar-nav > li { float: left ;}
 /*a, a:focus, input:focus,bu:focus, .btn:active, .btn:hover {outline-style:none; }*/
 
-.materialCategory{
-    width:100px;
-    height: 50px;
-}
 
 
 /*main*/
@@ -6589,7 +6585,7 @@ a.label_like span {color:#f64000; padding:0 5px 0 0; vertical-align:middle;}
 .regi_cont div:last-child {border:none;}
 .cont_box {padding:26px 30px; border-bottom:4px solid #f1f1f2; margin:0 -1px;}
 .cont_box input {background:#f5f5f5; border:1px solid #e1e1e1; font-size:16px; padding-left:15px; height:50px; vertical-align:middle; margin-top:-1px;}
-.cont_box select {background:#f5f5f5; border:1px solid #e1e1e1; font-size:16px; padding:8px 2px; margin:0 2px 0 0; border-radius:4px;}
+.cont_box select {background:#f5f5f5; border:1px solid #e1e1e1; font-size:16px; padding:8px 2px; border-radius:4px;}
 
 .cont_box li input {display:inline-block; margin:0 3px; vertical-align:middle;}
 .cont_pic {width:170px; float:right; text-align:center;}
@@ -9133,3 +9129,23 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 .rcp_list2022_new_cont_hit_ea { display: inline-block; line-height: 1; color: #999; background: url(//recipe1.ezmember.co.kr/img/mobile/icon_dot7.png) left 2px no-repeat; background-size: 1px 12px; padding-left: 8px; font-size: 12px;}
 .rcp_list2022_new_cont_hit_ea a { color: #999;}
 
+.ingredientCategory{
+    display: flex;
+    align-content: start;
+}
+
+.IngredientCategory{
+    width:auto;
+    height: 50px;
+    margin: 0 3px;
+}
+
+.IngredientName{
+    width:auto;
+    height: 50px;
+    margin: 0 3px;
+}
+
+#cok_sq_category_4{
+    margin: 0;
+}
