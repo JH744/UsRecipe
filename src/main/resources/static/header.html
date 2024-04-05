@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>유스레시피</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
+
+</head>
+<div class="header" th:fragment="header">
+    <div class=headerLeft>
+        <div class="headerLogo"></div>
+        <nav>
+            <ul class="headerMenu">
+                <li  class="recipeTag"><a>레시피 </a></li>
+                <li  class="storeTag"><a>상점</a></li>
+                <li  class="creatorTag"><a>크리에이터</a></li>
+                <li  class="csTag"><a>고객센터</a> </li>
+                <li  class="myPageTag"><a>마이페이지</a></li>
+            </ul>
+        </nav>
+    </div>
+    <nav>
+        <th:block th:if="${session.userid == null}">
+            <ul class="headerRight">
+                <li class="loginTag"><a href="/login">로그인</a></li>
+                <li class="joinTag"><a href="/join">회원가입</a></li>
+            </ul>
+        </th:block>
+        <th:block th:if="${session.userid != null}">
+            <ul class="headerRight">
+                <li class="loginTag"><a href="/logout">로그아웃</a></li>
+                <!-- 여기에서 회원가입 대신 로그아웃으로 표시하려면 주의합니다. -->
+                <li class="joinTag"><a href="/logout">로그아웃</a></li>
+            </ul>
+        </th:block>
+    </nav>
+</div>
+</html>
