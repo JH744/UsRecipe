@@ -5675,3 +5675,8 @@ button.close {
         display:none!important
     }
 }
+
+
+.header ul > li > a:hover{
+    color: #D65454;
+}
