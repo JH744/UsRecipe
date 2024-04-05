@@ -10,4 +10,9 @@ public class RecipeController {
     public void addRecipe(){
 
     }
+
+    @GetMapping("/detailRecipe")
+    public void detailRecipe(){
+
+    }
 }
