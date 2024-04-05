@@ -6588,6 +6588,7 @@ a.label_like span {color:#f64000; padding:0 5px 0 0; vertical-align:middle;}
 .cont_box select {background:#f5f5f5; border:1px solid #e1e1e1; font-size:16px; padding:8px 2px; border-radius:4px;}
 
 .cont_box li input {display:inline-block; margin:0 3px; vertical-align:middle; border-radius: 4px;}
+
 .cont_pic {width:170px; float:right; text-align:center;}
 .cont_pic p {margin:0 0 0 0 !important;}
 .cont_pic img {border:1px solid #e1e1e1;}
