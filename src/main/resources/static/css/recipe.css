@@ -1,0 +1,167 @@
+@charset "UTF-8";
+body {
+    overflow-y: auto;
+    font-family: "Poppins", "Noto Sans KR", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.mainBody {
+    width: 905px;
+    height: 1800px;
+    margin: 0 auto;
+}
+.mainBody ul {
+    list-style: none;
+    text-decoration: none;
+}
+
+.sortContainer {
+    width: 500px;
+    height: 88px;
+    margin: 0 auto;
+}
+.sortContainer ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.sortContainer ul li {
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 2px;
+}
+.sortContainer ul :hover {
+    background-color: #74B243;
+    color: #fff;
+    font-weight: 600;
+}
+
+.HowAboutContainer {
+    width: 100%;
+    max-width: 900px;
+    height: 350px;
+    position: relative;
+}
+.HowAboutContainer h3 {
+    margin-top: 0;
+}
+
+.serchbox {
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: center;
+}
+.serchbox input {
+    width: 250px;
+    height: 21px;
+}
+.serchbox button {
+    height: 27px;
+    margin: 0;
+    background-color: #74B243;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.ThisrecipeInfo, .Thisrecipe {
+    margin: 0;
+    padding: 0;
+    width: 50%;
+    height: 300px;
+    border-radius: 5px;
+}
+
+.Thisrecipe {
+    background-image: url(../images/오믈렛.png);
+    background-size: auto;
+    float: left;
+}
+.Thisrecipe h3 {
+    color: #fff;
+    position: relative;
+    top: 250px;
+    left: 180px;
+}
+
+.ThisrecipeInfo {
+    background-color: #f2f2f2;
+    float: right;
+}
+
+.infobox {
+    width: 80%;
+    height: 80%;
+    padding: 50px 30px 30px 30px;
+}
+
+.hotrecipecontainer {
+    margin: 0 auto;
+}
+
+.hotrecipebox {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.hotrecipe4, .hotrecipe3, .hotrecipe2, .hotrecipe1 {
+    height: 260px;
+    width: 160px;
+    border-radius: 10px;
+    background-image: url(../images/김치볶음밥.png);
+}
+.hotrecipe4 span, .hotrecipe3 span, .hotrecipe2 span, .hotrecipe1 span {
+    color: #fff;
+    position: relative;
+    top: 220px;
+    left: 14px;
+}
+
+.hotrecipe1 {
+    background-image: url(../images/김치볶음밥.png);
+}
+
+.hotrecipe2 {
+    background-image: url(../images/떡볶이.png);
+}
+
+.hotrecipe3 {
+    background-image: url(../images/프레첼.png);
+}
+
+.hotrecipe4 {
+    background-image: url(../images/만두.png);
+}
+
+.recipeContainer {
+    margin: 80px auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.recipeItem {
+    width: 200px;
+    height: 400px;
+    margin-bottom: 20px;
+}
+.recipeItem p {
+    font-size: 30px;
+}
+.recipeItem span {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.recipeItem_img {
+    width: 220px;
+    height: 250px;
+    background-image: url(../images/된장국.png);
+}/*# sourceMappingURL=recipe.css.map */
