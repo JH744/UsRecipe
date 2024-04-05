@@ -19,7 +19,8 @@ public class RecipeService {
 
     public List<Recipe> list(){
         return rr.findAll();
-    }public Optional<Recipe> HowAbout(Long id){
+    }
+    public Optional<Recipe> HowAbout(Long id){
         return rr.findById(id);
     }
 

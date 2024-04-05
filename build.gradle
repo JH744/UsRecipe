@@ -32,7 +32,7 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+//	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
@@ -43,7 +43,6 @@ dependencies {
 	implementation group: 'javax.mail', name: 'javax.mail-api', version: '1.6.2'
 	// https://mvnrepository.com/artifact/org.springframework/spring-context-support
 	implementation group: 'org.springframework', name: 'spring-context-support', version: '6.1.4'
-
 }
 
 
