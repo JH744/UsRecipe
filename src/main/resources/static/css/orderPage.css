@@ -1,243 +1,160 @@
-@charset "UTF-8";
+body {
+  overflow-y: auto;
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
+}
+
 a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 .mainBody {
-    width: 905px;
-    height: 940px;
-    margin: 0 auto;
+  width: 905px;
+  height: 1100px;
+  margin: 0 auto;
+}
+.mainBody ul {
+  list-style: none;
+  text-decoration: none;
 }
 
 .orderTop {
-    border-bottom: 3px solid #626161;
-    overflow: hidden;
+  border-bottom: 3px solid #626161;
+  overflow: hidden;
 }
 
 .orderTopLeft {
-    float: left;
-    margin: 20px 20px 10px 20px;
+  float: left;
+  margin: 20px 20px 10px 20px;
 }
 
 .orderTopRight {
-    float: right;
-    margin-top: 28px;
+  float: right;
+  margin-top: 28px;
 }
 
 .whitegray {
-    color: #8d8c8c;
+  color: #8d8c8c;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .bgapple {
-    background-color: #d9d9d9;
-    padding: 0;
-    width: 90px;
+  background-color: #d9d9d9;
+  padding: 0;
+  width: 90px;
 }
 
 .fontStyle1 {
-    margin-bottom: 0;
-    font-size: 24px;
+  margin-bottom: 0;
+  font-size: 24px;
 }
 
 .t1, .t2, .t3, .t4 {
-    border: 1px solid #d9d9d9;
-    padding: 0;
+  border: 1px solid #d9d9d9;
+  padding: 0;
 }
 
 .t1 td, .t2 td, .t3 td, .t4 td {
-    border: 1px solid #d9d9d9;
-    width: 800px;
-    height: 36px;
+  border: 1px solid #d9d9d9;
+  width: 800px;
+  height: 36px;
 }
 
 .t3 {
-    text-align: center;
+  text-align: center;
 }
 
 .btnOrder {
-    width: 330px;
-    height: 55px;
-    background-color: #D65454;
-    color: #fff;
-    font-size: 24px;
-    font-weight: 600;
-    margin: 40 0 0 0px;
-    border: none;
-    border-radius: 2%;
-    position: relative;
-    top: 50px;
-    left: 270px;
-    cursor: pointer;
+  width: 330px;
+  height: 55px;
+  background-color: #D65454;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 40 0 0 0px;
+  border: none;
+  border-radius: 2%;
+  position: relative;
+  top: 50px;
+  left: 270px;
+  cursor: pointer;
 }
 
 .cartbox {
-    clear: both;
-    font-size: 14px;
-    text-align: center;
+  clear: both;
+  font-size: 14px;
+  text-align: center;
 }
 
 .cartTable {
-    border-collapse: collapse;
-    margin: 26px 0 3px 0;
-    width: 100%;
-    max-width: 1125px;
+  border-collapse: collapse;
+  margin: 26px 0 3px 0;
+  width: 100%;
+  max-width: 1125px;
 }
 .cartTable tr {
-    border: 2px solid #d9d9d9;
+  border: 2px solid #d9d9d9;
 }
 
 .cartTableCol {
-    border: 2px solid #d9d9d9;
+  border: 2px solid #d9d9d9;
 }
 
 .cartTableCol th {
-    font-weight: 500;
-    font-size: 16px;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .cartTableGoodsName {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .cartTable td {
-    height: 69px;
+  height: 69px;
 }
 
 .deletebtnbox {
-    float: left;
+  float: left;
 }
 
 .deletebtn {
-    background-color: #fff;
-    border: 1px solid #d9d9d9;
-    color: #d9d9d9;
-    font-size: 14px;
-    padding: 7px;
-    cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  color: #d9d9d9;
+  font-size: 14px;
+  padding: 7px;
+  cursor: pointer;
 }
 
 .orderPricebox {
-    clear: both;
+  clear: both;
 }
 
 .orderPriceFt1 {
-    color: #a8a4a4;
-    font-weight: bold;
+  color: #a8a4a4;
+  font-weight: bold;
 }
 
 .orderPriceFt2 {
-    font-size: 16px;
-    font-weight: bolder;
-    margin: 10px;
+  font-size: 16px;
+  font-weight: bolder;
+  margin: 10px;
 }
 
 .orderbtn {
-    width: 330px;
-    height: 55px;
-    background-color: #000000;
-    color: #fff;
-    font-size: 24px;
-    font-weight: 600;
-    margin: 38px 0 0 0px;
-    border: none;
-    border-radius: 2%;
-    cursor: pointer;
+  width: 330px;
+  height: 55px;
+  background-color: #000000;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 38px 0 0 0px;
+  border: none;
+  border-radius: 2%;
+  cursor: pointer;
 }
 
-.storeContainer1 {
-    width: 100%;
-    max-width: 788px;
-    height: 350px;
-    margin: auto;
-    text-align: center;
-}
-
-.Container1_box {
-    border: 3px solid #d9d9d9;
-    width: 100%;
-    height: 176px;
-}
-
-.Container1_boxul {
-    padding: 20px;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px 130px;
-    font-weight: 500;
-    font-size: 16px;
-}
-.Container1_boxul li {
-    width: 80px;
-    cursor: pointer;
-}
-.Container1_boxul :hover {
-    color: #D65454;
-    font-weight: 800;
-}
-
-.Container1_box2ul {
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    width: 250px;
-    height: 20px;
-    margin: auto;
-    padding: 20px 0 20px 50px;
-}
-
-.storeContainer2 {
-    margin: auto;
-}
-
-.storeContainer2GirdBox {
-    padding-left: 60px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 249px);
-    gap: 31px 18px;
-}
-
-.storeItem {
-    width: 249px;
-    height: 573px;
-}
-.storeItem button {
-    width: 100%;
-    background-color: #fff;
-    border: 1px solid #d9d9d9;
-    border-radius: 3px;
-    margin: 5px 0 5px 0;
-    height: 36px;
-    cursor: pointer;
-}
-.storeItem span {
-    height: 19px;
-    font-size: 16px;
-    font-weight: 600px;
-}
-.storeItem img {
-    height: 22px;
-}
-.storeItem img, .storeItem span {
-    vertical-align: middle;
-    color: #333333;
-}
-
-.cartBtn:hover {
-    background-color: #D65454;
-}
-
-.storeItem_img {
-    border-radius: 2%;
-    width: 249px;
-    height: 320px;
-    background-image: url(./토마토.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-}/*# sourceMappingURL=orderPage.css.map */
+/*# sourceMappingURL=orderPage.css.map */
