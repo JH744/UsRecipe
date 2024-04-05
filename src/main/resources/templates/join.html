@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
@@ -7,10 +7,11 @@
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
     <script>
         $(document).ready(function(){
-            $("header").load("./header.html");
-            $(".footer").load("./footer.html");
+            $("header").load("../static/header.html");
+            $(".footer").load("../static/footer.html");
         });
     </script>
     <link rel="stylesheet" href="/static/css/join.css">
@@ -23,15 +24,13 @@
     <script src="./js/join.js"></script>
     <script src="../main/js/common.js"></script>
 
+
+    <link rel="stylesheet" type="text/css" href="../static/css/join.css">
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-    <script src="./js/join.js"></script>
     <script>
         function id_check(){
             var id = $(".field_id input").val();             // 변수 id에  id값 대입
-
-            // var num = /[0-9]/;
-            // var eng = /[a-zA-Z]/;
             var spe = /[~!@#$%^&*()_+|<>?:{}]/;
 
 
@@ -47,12 +46,9 @@
 
         function pw_check(){
             var pw = $(".field_pw input").val();                   // 변수 pw에 pw값 대입
-
             var num = /[0-9]/;
             var eng = /[a-zA-Z]/;
             var spe = /[~!@#$%^&*()_+|<>?:{}]/;
-
-
 
             if(pw.length < 10){                                  //pw의 길이가 10 이하일 때
                 $(".field_pw .txt_guide .txt_case1").css('color', '#b3130b');
@@ -90,8 +86,6 @@
                 } else {        // 비교해서 같지 않으면
                     $(".field_repw .txt_guide .txt_case1").css('color', '#b3130b');
                     $(".field_repw .txt_guide .txt_case1").text("비밀번호가 일치하지 않습니다.");
-
-
                 }
             }
         }
@@ -100,20 +94,21 @@
     <script>
         // onsubmit 관련된 코드짜기
         function on_id_check(){          //id 검사 함수
-            var id = $(".field_id input").val();
-            var spe = /[~!@#$%^&*()_+|<>?:{}]/;
-            if(id.length < 6){
-                alert('아이디를 정확히 입력해주세요');
-                return false;
-            }else if(spe.test(id) == 1){
-
-                alert('아이디를 정확히 입력해주세요');
-                return false;
-            }
-            else{
-
-                return true;
-            }
+            // var id = $(".field_id input").val();
+            // var spe = /[~!@#$%^&*()_+|<>?:{}]/;
+            // if(id.length < 6){
+            //     alert('아이디를 정확히 입력해주세요');
+            //     return false;
+            // }else if(spe.test(id) == 1){
+            //
+            //     alert('아이디를 정확히 입력해주세요');
+            //     return false;
+            // }
+            // else{
+            //
+            //     return true;
+            // }
+            return true;
         }
 
         function on_pw_check(){           //비밀번호 검사 함수
@@ -210,12 +205,12 @@
                 return true;
             }
         }
-
-
-
     </script>
+
     <script>
         $(document).ready(function(){
+            $("header").load("../static/header.html");
+            $(".footer").load("../static/footer.html");
             //아이디 조건 만족 불만족 확인하기
             var text_id = $('.field_id input');
             text_id.focus(function(){               //포커스 되면
@@ -240,7 +235,6 @@
 
 
             //비밀번호 확인 조건 만족 불만족 확인하기
-
             var text_pw2 = $('.field_repw input');
             text_pw2.focus(function(){
                 $('.field_repw .txt_guide').css('display', 'block');
@@ -259,29 +253,29 @@
                     return;
                 }
 
-                id_overlap_input = document.querySelector('input[name="id"]');
+                id_overlap_input = document.querySelector('input[name="userid"]');
 
-                $.ajax({
-                    type: "GET",
-                    url: "./id_check?id="+id_overlap_input,    //해당 url로 데이터를 넘김
-                    data: {
-                        'username': $('.field_id input').val()
-                    },
-                    datatype: 'json',
-                    success: function (data) {
-                        console.log(data['overlap']);
-                        if (data['overlap'] == "fail") {
-                            alert("이미 존재하는 아이디 입니다.");
-                            $(".field_id .txt_guide .txt_case2").css('color', '#b3130b');
-                            id_overlap_input.focus();
-                            return;
-                        } else {
-                            alert("사용가능한 아이디 입니다.");
-                            $(".field_id .txt_guide .txt_case2").css('color', '#0f851a');
-                            return;
-                        }
-                    }
-                });
+                // $.ajax({
+                //     type: "GET",
+                //     url: "./id_check?id="+id_overlap_input,    //해당 url로 데이터를 넘김
+                //     data: {
+                //         'username': $('.field_id input').val()
+                //     },
+                //     datatype: 'json',
+                //     success: function (data) {
+                //         console.log(data['overlap']);
+                //         if (data['overlap'] == "fail") {
+                //             alert("이미 존재하는 아이디 입니다.");
+                //             $(".field_id .txt_guide .txt_case2").css('color', '#b3130b');
+                //             id_overlap_input.focus();
+                //             return;
+                //         } else {
+                //             alert("사용가능한 아이디 입니다.");
+                //             $(".field_id .txt_guide .txt_case2").css('color', '#0f851a');
+                //             return;
+                //         }
+                //     }
+                // });
             });
 
             //이메일 중복 체크
@@ -294,25 +288,25 @@
 
                 email_overlap_input = document.querySelector('input[name="email"]');
 
-                $.ajax({
-                    type: "GET",
-                    url: "./email_check?id="+email_overlap_input,    //해당 url로 데이터를 넘김
-                    data: {
-                        'email': $('.field_email input').val()
-                    },
-                    datatype: 'json',
-                    success: function (data) {
-                        console.log(data['overlap']);
-                        if (data['overlap'] == "fail") {
-                            alert("이미 존재하는 이메일 입니다.");
-                            email_overlap_input.focus();
-                            return;
-                        } else {
-                            alert("사용가능한 이메일 입니다.");
-                            return;
-                        }
-                    }
-                });
+                // $.ajax({
+                //     type: "GET",
+                //     url: "./email_check?id="+email_overlap_input,    //해당 url로 데이터를 넘김
+                //     data: {
+                //         'email': $('.field_email input').val()
+                //     },
+                //     datatype: 'json',
+                //     success: function (data) {
+                //         console.log(data['overlap']);
+                //         if (data['overlap'] == "fail") {
+                //             alert("이미 존재하는 이메일 입니다.");
+                //             email_overlap_input.focus();
+                //             return;
+                //         } else {
+                //             alert("사용가능한 이메일 입니다.");
+                //             return;
+                //         }
+                //     }
+                // });
             });
 
 
@@ -385,7 +379,8 @@
                 <div id="content">
                     <div class="page_aticle">
                         <div class="type_form member_join">
-                            <form id="form" action="/joinOk" method="POST" onsubmit="return on_submit_check();">
+                            <form id="form" method="post" name="memberFormDto" action="/join" th:object="${memberFormDto}">
+                                <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
                                 <div class="field_head">
                                     <h3 class="tit">회원가입</h3>
                                     <p class="sub">
@@ -404,7 +399,7 @@
                                             </span>
                                         </th>
                                         <td>
-                                            <input type="text" name="id" maxlength="16" required="" option="regId" onkeyup="id_check()" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">
+                                            <input type="text" th:field="*{userid}" maxlength="16" required="" option="regId" onkeyup="id_check()" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">
                                             <a class="btn default" href="#">중복확인</a>
                                             <p class="txt_guide square">
                                                 <span class="txt txt_case1">
@@ -425,7 +420,7 @@
                                             </span>
                                         </th>
                                         <td>
-                                            <input type="password" name="pw" required=""  option="regPass" onkeyup="pw_check()" maxlength="16" class="reg_pw bad" placeholder="비밀번호를 입력해주세요">
+                                            <input type="password" th:field="*{password}" required="" option="regPass" onkeyup="pw_check()" maxlength="16" class="reg_pw bad" placeholder="비밀번호를 입력해주세요">
                                             <p class="txt_guide square">
                                                 <span class="txt txt_case1">
                                                     10자 이상 입력
@@ -464,7 +459,7 @@
                                             </span>
                                         </th>
                                         <td>
-                                            <input type="text" name="name"  required=""  label="이름" placeholder="이름을 입력해주세요">
+                                            <input type="text" th:field="*{name}" required=""  label="이름" placeholder="이름을 입력해주세요">
                                         </td>
                                     </tr>
 
@@ -478,7 +473,7 @@
                                         </th>
 
                                         <td>
-                                            <input type="text" name="email"   size="30" required=""  option="regEmail" label="이메일" placeholder="예: marketkurly@kurly.com">
+                                            <input type="text" th:field="*{email}" size="30" required="" option="regEmail" label="이메일" placeholder="예: recipe@recipe.com">
                                             <a href="#" class="btn default">중복확인</a>
                                         </td>
                                     </tr>
@@ -492,7 +487,7 @@
                                             </span>
                                         </th>
                                         <td>
-                                            <input type="text" name="nickname"  required=""  label="닉네임" placeholder="닉네임을 입력해주세요">
+                                            <input type="text" th:field="*{nickname}" required=""  label="닉네임" placeholder="닉네임을 입력해주세요">
                                             <a href="#" class="btn default">중복확인</a>
                                         </td>
                                     </tr>
@@ -508,7 +503,7 @@
 
                                         <td>
                                             <div class="phone_num">
-                                                <input type="text" value="" pattern="[0-9]*" name="mobileInp" placeholder="숫자만 입력해주세요" class="inp">
+                                                <input type="text" pattern="[0-9]*" th:field="*{phone}" placeholder="숫자만 입력해주세요" class="inp">
 
                                             </div>
                                         </td>
@@ -526,11 +521,8 @@
                                             <a href="#" id="addressSearch" class="search">
                                                 <span id="addressNo" class="address_no">주소검색</span>
                                             </a>
-                                            <input type="text" id="user_address" name="user_address" placeholder="주소">
-                                            <input type="text" id="user_detail_address" name="user_detail_address"  placeholder="상세주소">
-                                            <p class="txt_guide" style="display:block;">
-                                                <span class="txt txt_case1">배송지에 따라 상품 정보가 달라질 수 있습니다.</span>
-                                            </p>
+                                            <input type="text" id="user_address" name="addr1" placeholder="주소">
+                                            <input type="text" id="user_detail_address" name="addr2"  placeholder="상세주소">
                                         </td>
                                     </tr>
 
