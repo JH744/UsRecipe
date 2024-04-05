@@ -21,9 +21,6 @@ public class IngredientDto {
     private int ingredient_qty;
 
 
-    private List<Recipe> recipe_list = new ArrayList<>();
-
-
     private List<RecipeIngredient> recipe_ingredient_list = new ArrayList<>();
 
 

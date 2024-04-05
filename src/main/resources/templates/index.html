@@ -1,28 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
     <link rel="stylesheet" href="../static/css/templateBody.css"/>
     <link rel="stylesheet" href="../static/css/main.css"/>
+    <link rel="stylesheet" href="../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("header").load("../static/header.html");
-            $(".footer").load("../static/footer.html");
-        });
-    </script>
-    <style>
 
-
-
-    </style>
 </head>
 <body>
 <div class="templateBody">
-    <header></header>
+    <header>
+        <div class="header" th:replace="header :: header"></div>
+    </header>
     <div class="mainBody">
         <div class=e56_3>
             <div class=e56_56>
@@ -156,7 +150,7 @@
             </div>
         </div>
     </div>
-    <div class="footer"></div>
+    <div class="footer" th:replace="footer :: footer"></div>
 </div>
 </body>
 </html>

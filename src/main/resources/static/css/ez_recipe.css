@@ -7274,42 +7274,41 @@ a.label_like span {color:#f64000; padding:0 5px 0 0; vertical-align:middle;}
 .etc_wrap .form-group .form-control {width:320px; margin:0 auto; height:50px; background:#f5f5f5;}
 .etc_wrap .btn-success, .etc_wrap .btn-primary {margin-top:10px;}
 
-.footer {background:#fff; color:#999; padding:2px 0 5px 0; margin-top:30px; border-top:1px solid #dcdcdc;}
-.footer .intro {width:428px; padding:26px 0 0 24px;}
-.footer .intro h3 {font-weight:bold;}
-.footer .intro p.f_link {margin:0; padding-bottom:16px;}
-.footer .intro p.f_info {font-size:13px; line-height:1.6; margin-bottom:16px; }
-.footer .intro p.f_link a { font-size:13px; color:#999;}
-.footer .intro p.f_link span {color:#ddd; padding:0 4px;}
-.footer .intro .copyright {font-size:12px; padding:20px 0; color:#999; font-family:Helvetica;}
-.footer .banner {width:200px; padding:25px 0 0 0; position:relative;}
-.footer .banner a {margin-bottom:9px; display:block;}
-.footer .facebook {width:320px; padding:25px 0 0 22px;}
-.footer .comment {width:300px; padding:28px 0 0 0;}
-.footer .comment b {padding-bottom:14px; display:block;}
-.footer .comment textarea {width:300px; height:150px; font-size:13px; background:#f5f5f5; border:1px solid #e6e7e8;}
-.footer .comment button {border:1px solid #dcdcdc; background:#fff; border-radius:0; color:#444; width:300px; margin:8px 0 0 -1px;}
-.footer .comment p.noti {margin:0; padding:10px 0 0 0; text-align:center; width:300px; font-size:13px; color:#999; display:block;}
-.footer .app_layer {background:url(//recipe1.ezmember.co.kr/img/bg_layer4.png) left top; width:372px; height:321px; position:absolute; left:-10px; top:-300px; padding:12px 12px; z-index:1000;}
+ .intro {width:428px; padding:26px 0 0 24px;}
+ .intro h3 {font-weight:bold;}
+ .intro p.f_link {margin:0; padding-bottom:16px;}
+ .intro p.f_info {font-size:13px; line-height:1.6; margin-bottom:16px; }
+ .intro p.f_link a { font-size:13px; color:#999;}
+ .intro p.f_link span {color:#ddd; padding:0 4px;}
+ .intro .copyright {font-size:12px; padding:20px 0; color:#999; font-family:Helvetica;}
+ .banner {width:200px; padding:25px 0 0 0; position:relative;}
+ .banner a {margin-bottom:9px; display:block;}
+ .facebook {width:320px; padding:25px 0 0 22px;}
+ .comment {width:300px; padding:28px 0 0 0;}
+ .comment b {padding-bottom:14px; display:block;}
+ .comment textarea {width:300px; height:150px; font-size:13px; background:#f5f5f5; border:1px solid #e6e7e8;}
+ .comment button {border:1px solid #dcdcdc; background:#fff; border-radius:0; color:#444; width:300px; margin:8px 0 0 -1px;}
+ .comment p.noti {margin:0; padding:10px 0 0 0; text-align:center; width:300px; font-size:13px; color:#999; display:block;}
+ .app_layer {background:url(//recipe1.ezmember.co.kr/img/bg_layer4.png) left top; width:372px; height:321px; position:absolute; left:-10px; top:-300px; padding:12px 12px; z-index:1000;}
 .app_layer  p.tit {font-size:14px; color:#444; border-bottom:1px solid #ebebeb; padding:10px 0; background:#f8f8f8; text-align:center; font-weight:bold; line-height:18px; margin:0;}
-.footer .app_layer .layer_l {width:172px; border-right:1px solid #ebebeb; display:inline-block; text-align:center; padding:12px 0 8px;}
-.footer .app_layer .layer_r {width:172px; display:inline-block; text-align:center; padding:12px 0 8px;}
-.footer .app_layer .layer_l a, .footer .app_layer .layer_r a {margin-top:14px;}
-.footer .banner_sns {padding-top:20px;}
-.footer .banner_sns a {display:table-cell;}
+ .app_layer .layer_l {width:172px; border-right:1px solid #ebebeb; display:inline-block; text-align:center; padding:12px 0 8px;}
+ .app_layer .layer_r {width:172px; display:inline-block; text-align:center; padding:12px 0 8px;}
+ .app_layer .layer_l a,  .app_layer .layer_r a {margin-top:14px;}
+ .banner_sns {padding-top:20px;}
+ .banner_sns a {display:table-cell;}
 
-.footer.st2 {background:#289f5d; margin-top:0; border-top:none;}
-.footer.st2 .container {padding:18px 0 18px 40px;}
-.footer.st2 .btm_stats {background:url(//recipe1.ezmember.co.kr/img/btm_line.png) 32px 24px no-repeat; display:inline-block; vertical-align:middle; padding:0; margin-left:22px;}
-.footer.st2 .btm_stats li {text-align:center; display:inline-block; color:#fff; font-size:12px; width:160px;}
-.footer.st2 .btm_stats li span {width:100%; height:66px; display:block; margin-bottom:6px;}
-.footer.st2 .btm_stats li b {color:#fdff51; display:block; font-size:18px; font-weight:normal; margin-top:4px;}
-.footer.st2 .btm_stats_1 {background:url(//recipe1.ezmember.co.kr/img/btm_icon1.png) center no-repeat;}
-.footer.st2 .btm_stats_2 {background:url(//recipe1.ezmember.co.kr/img/btm_icon2.png) center no-repeat;}
-.footer.st2 .btm_stats_3 {background:url(//recipe1.ezmember.co.kr/img/btm_icon3.png) center no-repeat;}
-.footer.st2 .btm_stats_4 {background:url(//recipe1.ezmember.co.kr/img/btm_icon4.png) center no-repeat;}
-.footer.st2 .btm_stats_5 {background:url(//recipe1.ezmember.co.kr/img/btm_icon5.png) center no-repeat;}
-.footer.st2 .btm_mail {background:url(//recipe1.ezmember.co.kr/img/btm_img1.png) left top no-repeat; padding:12px 0 0 108px; display:inline-block; margin-left:10px;}
+.st2 {margin-top:0; border-top:none;}
+.st2 .container {padding:18px 0 18px 40px;}
+.st2 .btm_stats {background:url(//recipe1.ezmember.co.kr/img/btm_line.png) 32px 24px no-repeat; display:inline-block; vertical-align:middle; padding:0; margin-left:22px;}
+.st2 .btm_stats li {text-align:center; display:inline-block; color:#fff; font-size:12px; width:160px;}
+.st2 .btm_stats li span {width:100%; height:66px; display:block; margin-bottom:6px;}
+.st2 .btm_stats li b {color:#fdff51; display:block; font-size:18px; font-weight:normal; margin-top:4px;}
+.st2 .btm_stats_1 {background:url(//recipe1.ezmember.co.kr/img/btm_icon1.png) center no-repeat;}
+.st2 .btm_stats_2 {background:url(//recipe1.ezmember.co.kr/img/btm_icon2.png) center no-repeat;}
+.st2 .btm_stats_3 {background:url(//recipe1.ezmember.co.kr/img/btm_icon3.png) center no-repeat;}
+.st2 .btm_stats_4 {background:url(//recipe1.ezmember.co.kr/img/btm_icon4.png) center no-repeat;}
+.st2 .btm_stats_5 {background:url(//recipe1.ezmember.co.kr/img/btm_icon5.png) center no-repeat;}
+.st2 .btm_mail {background:url(//recipe1.ezmember.co.kr/img/btm_img1.png) left top no-repeat; padding:12px 0 0 108px; display:inline-block; margin-left:10px;}
 
 .chef_apply .apply_info {background:#fff; padding:50px 0 60px 0; text-align:center; color:#444;}
 .chef_apply .apply_info dl {padding:0 0 50px 0;}
