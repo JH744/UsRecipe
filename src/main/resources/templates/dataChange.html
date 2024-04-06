@@ -197,7 +197,7 @@
                                 <div id="primary" class="content-area column full" style="margin-top: -30px;">
                                     <main id="main" class="site-main" role="main">
 
-                                        <form th:action method="post" th:object="*{memberDto}" >
+                                        <form th:action method="post"> <!--th:object="*{memberDto}"-->
                                             <span class="input_span">아이디</span><br>
                                             <input type="text" style="width: 350px; height: 55px; border: none" th:value="${session.userid}" readonly><br>
                                             <span class="input_span">주소 입력</span><br>

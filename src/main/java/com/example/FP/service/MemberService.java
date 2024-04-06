@@ -58,11 +58,48 @@ public class MemberService implements UserDetailsService {
         return byUserid.getId();
     }
 
+
     public String pwCheck(String userid){
         String passwordById = mr.findPasswordById(userid);
         System.out.println(passwordById);
 
         return passwordById;
+    }
+
+    public Boolean findByUserid(String userid){
+        Member byUserid = mr.findByUserid(userid);
+        if (byUserid != null) {
+            if (byUserid.getUserid() == null) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Boolean findByEmail(String email){
+        Member byEmail = mr.findByEmail(email);
+        if (byEmail != null) {
+            if (byEmail.getEmail() == null) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Boolean findByNickname(String nickname){
+        Member byNickname = mr.findByNickname(nickname);
+        if (byNickname != null) {
+            if (byNickname.getNickname() == null) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
