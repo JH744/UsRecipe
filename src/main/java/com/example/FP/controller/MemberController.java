@@ -2,14 +2,14 @@ package com.example.FP.controller;
 
 import com.example.FP.dto.MemberDto;
 import com.example.FP.entity.Member;
+import com.example.FP.mapper.MemberMapper;
 import com.example.FP.service.MemberService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,6 +18,8 @@ public class MemberController {
     private final MemberService memberService;
 
     private final PasswordEncoder passwordEncoder;
+
+
 
     @GetMapping("/login")
     public void loginForm(){}
@@ -94,10 +96,6 @@ public class MemberController {
         return "success";
     }
 
-    @GetMapping("/dataChange")
-    public String dataChangeForm(){
-        return "/dataChange";
-    }
 
     @GetMapping("/joinOk")
     public String joinOk(){
@@ -115,6 +113,46 @@ public class MemberController {
 
     @GetMapping("/pwFindEmailCerti")
     public void pwFindEmailCerti(){}
+
+    @GetMapping("/pwCheckDataChange")
+    public String pwCheckDataChangeForm(){
+
+
+
+        return "/pwCheckDataChange";
+    }
+    @PostMapping("/pwCheckDataChange")
+    @ResponseBody
+    public Boolean pwCheckDataChangeSubmit(HttpSession session, @RequestParam String password){
+        String id = (String)session.getAttribute("userid");
+        String pw = memberService.pwCheck(id);
+        System.out.println("입력 비번 : " + password);
+        boolean matches = passwordEncoder.matches(password, pw);
+
+        return matches;
+
+    }
+    @GetMapping("/dataChange")
+    public String dataChangeForm(Model model,MemberDto memberDto){
+        model.addAttribute("memberDto",memberDto);
+        return "/dataChange";
+    }
+    @PostMapping("/dataChange")
+    public String dataChangeSubmit(MemberDto memberDto){
+
+        Member member = Member.createMember(memberDto,passwordEncoder);
+        memberService.dataChange(member);
+
+//        String addr = addr1 + " " + addr2;
+//        String birth = year + month + day;
+//        memberFormDto.setAddr(addr);
+//        memberFormDto.setBirth(birth);
+//        Member member = Member.createMember(memberFormDto, passwordEncoder);
+//        memberService.join(member);
+
+        return "redirect:/";
+
+    }
 
 
 }
