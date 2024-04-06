@@ -145,17 +145,18 @@
             text-decoration: underline;
             font-weight: bold;
         }
+        .input_span{
+            color: black;
+            font-family: Cafe24Dangdanghae;
+            font-size: 18px;
+            font-weight: bold;
+        }
 
 
 
 
     </style>
-    <script>
-        $(document).ready(function(){
-            $("header").load("../static/header.html");
-            $(".footer").load("../static/footer.html");
-        });
-    </script>
+
 </head>
 <body>
 <div class="templateBody">
@@ -196,18 +197,16 @@
                                 <div id="primary" class="content-area column full" style="margin-top: -30px;">
                                     <main id="main" class="site-main" role="main">
 
-                                        <form action="" >
-                                            <span>아이디</span><br>
-                                            <input type="text" style="width: 350px; height: 55px; border: none" readonly><br>
-                                            <span>이메일</span><br>
-                                            <input type="email" style="width: 350px; height: 55px; border: none" readonly><br>
-                                            <span>주소 입력</span><br>
+                                        <form th:action method="post" th:object="*{memberDto}" >
+                                            <span class="input_span">아이디</span><br>
+                                            <input type="text" style="width: 350px; height: 55px; border: none" th:value="${session.userid}" readonly><br>
+                                            <span class="input_span">주소 입력</span><br>
                                             <input type="text" style="width: 350px; height: 55px; border: none; margin-bottom: 10px;" placeholder="주소를 입력해주세요" >
                                             <button id="addrFind" style="width: 70px;height: 30px;  background-color:#D65454; border: none ; color: white">주소찾기</button><br>
                                             <input type="text" style="width: 350px; height: 55px; border: none" placeholder="상세주소 입력"><br>
-                                            <span>닉네임</span><br>
+                                            <span class="input_span">닉네임</span><br>
                                             <input type="text" style="width: 350px; height: 55px;  border: none" placeholder="닉네임을 입력해주세요"><br>
-                                            <span>비밀번호</span><br>
+                                            <span class="input_span">비밀번호</span><br>
                                             <input type="password" style="width: 350px; height: 55px; border: none" placeholder="새 비밀번호"><br>
                                             <input type="password" style="width: 350px; height: 55px; border: none" placeholder="비밀번호 확인"><br>
                                             <input type="submit" style="margin-left: 120px; background-color:#D65454; width: 150px;height: 50px; color: white" value="변경하기">

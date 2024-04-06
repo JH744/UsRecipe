@@ -4,12 +4,14 @@ import com.example.FP.dto.MemberDto;
 import com.example.FP.entity.Member;
 import com.example.FP.mapper.MemberMapper;
 import com.example.FP.repository.MemberRepository;
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -32,6 +34,9 @@ public class MemberService implements UserDetailsService {
         mr.save(member);
         return member.getId();
     }
+    public void dataChange(Member member){
+        mr.save(member);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -52,4 +57,12 @@ public class MemberService implements UserDetailsService {
         Member byUserid = mr.findByUserid(userid);
         return byUserid.getId();
     }
+
+    public String pwCheck(String userid){
+        String passwordById = mr.findPasswordById(userid);
+        System.out.println(passwordById);
+
+        return passwordById;
+    }
+
 }
