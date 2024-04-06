@@ -101,7 +101,7 @@ table {
     width: 332px;
 }
 
-.type_form textarea, .type_form input[type=text], .type_form input[type=password] {
+.type_form textarea, .type_form input[type=text], .type_form input[type=password], .type_form input[type=email] {
     height: 44px;
     padding: 0 14px;
     border: 1px solid #ccc;
