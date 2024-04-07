@@ -6,6 +6,9 @@ import com.example.FP.repository.IngredientRepository;
 import com.example.FP.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +20,9 @@ public class IngredientService {
     private final IngredientRepository ir;
     private final MemberRepository mr;
 
-    public List<Ingredient> list(){
+
+    //재료 전체리스트 불러오기//
+//    public List<Ingredient> list(){
         //재료 더미데이터 설정. 나중에 삭제
 //        Ingredient ingredient = Ingredient.builder()
 //                .ingredient_name("토마토")
@@ -44,13 +49,22 @@ public class IngredientService {
 //
 //        mr.save(member);
 
+//        return ir.findAll();
+//
+//    }
 
+    //재료 목록 페이지네이션//
 
-
-
-
-        return ir.findAll();
+    //전체 재료목록 + 페이지네이션
+    public Page<Ingredient> listAll(Pageable pageable){
+        return ir.findAll(pageable);
     }
+
+    //카테고리별 재료목록
+    public Page<Ingredient> listByCategory(Long categoryId, Pageable pageable){
+        return ir.findByCategoryId(categoryId, pageable);
+    }
+
 
 
 }

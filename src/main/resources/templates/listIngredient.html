@@ -62,8 +62,20 @@
                     </div>
 
 
+                </div>
+                <div class="pageBox">
+                     <th:block th:each="i:${#numbers.sequence(1,totalPage)}">
+                        <a class="pageNum" th:href="@{/listIngredient/{i}(i=${i}, categori='spice')}" th:text="${i}"></a> <!--URI방식임  -->
+                     </th:block>
+<!--                        <a href="#" class="pageNum">1</a>-->
+<!--                        <a href="#" class="pageNum">2</a>-->
+<!--                        <a href="#" class="pageNum">3</a>-->
+<!--                        <a href="#" class="pageNum">4</a>-->
+<!--                        <a href="#" class="pageNum">5</a>-->
+<!--                        <a href="#" class="pageNum">6</a>-->
 
                 </div>
+
             </div>
 
 
