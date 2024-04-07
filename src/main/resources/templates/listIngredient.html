@@ -27,10 +27,10 @@
                 <h2>스토어</h2>
                 <div class="Container1_box">
                     <ul class="Container1_boxul">
-                        <li>전체보기</li>
-                        <li>과일</li>
-                        <li>견과류</li>
-                        <li>쌀잡곡</li>
+                        <li><a th:href="@{/listIngredient/{i}(i=1, category='000', sort='price')}">전체보기</a></li>
+                        <li><a th:href="@{/listIngredient/{i}(i=1, category='1', sort='price')}">과일</a></li>
+                        <li><a th:href="@{/listIngredient/{i}(i=1, category='2', sort='price')}">견과류</a></li>
+                        <li><a th:href="@{/listIngredient/{i}(i=1, category='3', sort='price')}">쌀잡곡</a></li>
                         <li>조미료</li>
                         <li>카테고리1</li>
                         <li>카테고리2</li>
@@ -65,14 +65,9 @@
                 </div>
                 <div class="pageBox">
                      <th:block th:each="i:${#numbers.sequence(1,totalPage)}">
-                        <a class="pageNum" th:href="@{/listIngredient/{i}(i=${i}, categori='spice')}" th:text="${i}"></a> <!--URI방식임  -->
+                        <a class="pageNum" th:href="@{|/listIngredient/${i}|}" th:text="${i}"></a> <!--URI방식임  -->
                      </th:block>
-<!--                        <a href="#" class="pageNum">1</a>-->
-<!--                        <a href="#" class="pageNum">2</a>-->
-<!--                        <a href="#" class="pageNum">3</a>-->
-<!--                        <a href="#" class="pageNum">4</a>-->
-<!--                        <a href="#" class="pageNum">5</a>-->
-<!--                        <a href="#" class="pageNum">6</a>-->
+
 
                 </div>
 
