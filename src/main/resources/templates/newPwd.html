@@ -21,6 +21,7 @@
 
     <div class="mainBody">
         <form action="">
+            <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
             <div class="e65_476">
                 <div>
                     <span class="e65_483">새 비밀번호</span>
@@ -35,7 +36,7 @@
 
                 <div style="width: 388px">
                     <span class="e65_503">비밀번호 확인</span>
-                    <input class="e65_501" type="password"/>
+                    <input class="e65_501" type="password" name="password2"/>
                 </div>
                 <div>
                     <input class="e65_480" type="submit" value="비밀번호 확인"/>
