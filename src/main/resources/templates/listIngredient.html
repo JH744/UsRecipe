@@ -43,8 +43,8 @@
                     <ul class="Container1_box2ul">
                         <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='id', direction='DESC')}">최신순</a></a></li>
                         <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='id',direction='ASC')}">오래된순</a></a></li>
-                        <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='ingredient_price', direction='DESC')}">가격낮은순</a></a></li>
-                        <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='ingredient_price',direction='ASC')}">가격높은순</a></a></li>
+                        <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='ingredientPrice', direction='DESC')}">가격낮은순</a></a></li>
+                        <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='ingredientPrice',direction='ASC')}">가격높은순</a></a></li>
                     </ul>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                         <button id="cartBtn" class="cartBtn"><img src="../static/images/icon/카트.svg"/><span>담기</span></button>
                         <div class="storeItem_info">sds
                             <p th:text="${i.ingredient_name}">상품명</p>
-                            <p th:text="${i.ingredient_price}">상품가격</p>
+                            <p th:text="${i.ingredientPrice}">상품가격</p>
                         </div>
                     </div>
 

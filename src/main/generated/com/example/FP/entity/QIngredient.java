@@ -36,13 +36,13 @@ public class QIngredient extends EntityPathBase<Ingredient> {
 
     public final StringPath ingredient_origin = createString("ingredient_origin");
 
-    public final NumberPath<Integer> ingredient_price = createNumber("ingredient_price", Integer.class);
-
     public final NumberPath<Integer> ingredient_qty = createNumber("ingredient_qty", Integer.class);
 
     public final ListPath<Reply, QReply> ingredient_reply_list = this.<Reply, QReply>createList("ingredient_reply_list", Reply.class, QReply.class, PathInits.DIRECT2);
 
     public final StringPath ingredient_unit = createString("ingredient_unit");
+
+    public final NumberPath<Integer> ingredientPrice = createNumber("ingredientPrice", Integer.class);
 
     public final ListPath<RecipeIngredient, QRecipeIngredient> recipe_ingredient_list = this.<RecipeIngredient, QRecipeIngredient>createList("recipe_ingredient_list", RecipeIngredient.class, QRecipeIngredient.class, PathInits.DIRECT2);
 

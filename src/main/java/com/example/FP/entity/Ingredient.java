@@ -20,7 +20,7 @@ public class Ingredient {
     private Long id;
 
     private String ingredient_name;
-    private int ingredient_price;
+    private int ingredientPrice;
     private String ingredient_origin;
     private int ingredient_amount;
     private String ingredient_unit;
@@ -46,9 +46,9 @@ public class Ingredient {
     @OneToMany(mappedBy = "reply_ingredient")
     private List<Reply> ingredient_reply_list = new ArrayList<>();
 
-    public Ingredient(String ingredient_name, int ingredient_price, String ingredient_origin, int ingredient_amount, String ingredient_unit, int ingredient_qty, List<RecipeIngredient> recipe_ingredient_list, IngredientCategory ingredient_ingredient_category, List<OrderDetails> ingredient_orderdetail_list, List<Cart> ingredient_cart_list, List<Reply> ingredient_reply_list) {
+    public Ingredient(String ingredient_name, int ingredientPrice, String ingredient_origin, int ingredient_amount, String ingredient_unit, int ingredient_qty, List<RecipeIngredient> recipe_ingredient_list, IngredientCategory ingredient_ingredient_category, List<OrderDetails> ingredient_orderdetail_list, List<Cart> ingredient_cart_list, List<Reply> ingredient_reply_list) {
         this.ingredient_name = ingredient_name;
-        this.ingredient_price = ingredient_price;
+        this.ingredientPrice = ingredientPrice;
         this.ingredient_origin = ingredient_origin;
         this.ingredient_amount = ingredient_amount;
         this.ingredient_unit = ingredient_unit;
