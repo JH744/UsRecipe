@@ -22,9 +22,9 @@ public class QIngredientCategory extends EntityPathBase<IngredientCategory> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final StringPath ingredient_category_name = createString("ingredient_category_name");
+    public final StringPath ingredientCategoryName = createString("ingredientCategoryName");
 
-    public final ListPath<Ingredient, QIngredient> ingredient_list = this.<Ingredient, QIngredient>createList("ingredient_list", Ingredient.class, QIngredient.class, PathInits.DIRECT2);
+    public final ListPath<Ingredient, QIngredient> ingredientList = this.<Ingredient, QIngredient>createList("ingredientList", Ingredient.class, QIngredient.class, PathInits.DIRECT2);
 
     public QIngredientCategory(String variable) {
         super(IngredientCategory.class, forVariable(variable));

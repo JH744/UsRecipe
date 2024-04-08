@@ -24,17 +24,17 @@ public class QReply extends EntityPathBase<Reply> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final StringPath reply_content = createString("reply_content");
+    public final StringPath replyContent = createString("replyContent");
 
-    public final DateTimePath<java.time.LocalDateTime> reply_date = createDateTime("reply_date", java.time.LocalDateTime.class);
+    public final DateTimePath<java.time.LocalDateTime> replyDate = createDateTime("replyDate", java.time.LocalDateTime.class);
 
-    public final NumberPath<Integer> reply_grade = createNumber("reply_grade", Integer.class);
+    public final NumberPath<Integer> replyGrade = createNumber("replyGrade", Integer.class);
 
-    public final QIngredient reply_ingredient;
-
-    public final QRecipe reply_recipe;
+    public final QIngredient replyIngredient;
 
     public final QMember replyMember;
+
+    public final QRecipe replyRecipe;
 
     public QReply(String variable) {
         this(Reply.class, forVariable(variable), INITS);
@@ -54,9 +54,9 @@ public class QReply extends EntityPathBase<Reply> {
 
     public QReply(Class<? extends Reply> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.reply_ingredient = inits.isInitialized("reply_ingredient") ? new QIngredient(forProperty("reply_ingredient"), inits.get("reply_ingredient")) : null;
-        this.reply_recipe = inits.isInitialized("reply_recipe") ? new QRecipe(forProperty("reply_recipe"), inits.get("reply_recipe")) : null;
+        this.replyIngredient = inits.isInitialized("replyIngredient") ? new QIngredient(forProperty("replyIngredient"), inits.get("replyIngredient")) : null;
         this.replyMember = inits.isInitialized("replyMember") ? new QMember(forProperty("replyMember")) : null;
+        this.replyRecipe = inits.isInitialized("replyRecipe") ? new QRecipe(forProperty("replyRecipe"), inits.get("replyRecipe")) : null;
     }
 
 }

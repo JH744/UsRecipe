@@ -19,7 +19,7 @@ public class OrdersRepositoryImpl implements OrdersRepositoryCustom {
     }
 
     public List<Orders> listOrders(String userid){
-        return queryFactory.select(orders).from(orderDetails).join(orderDetails.orders_detail, orders).where(orders.id.eq(orderDetails.orders_detail.id).and(orders.orders_member.userid.eq(userid))).fetch();
+        return queryFactory.select(orders).from(orderDetails).join(orderDetails.ordersDetail, orders).where(orders.id.eq(orderDetails.ordersDetail.id).and(orders.ordersMember.userid.eq(userid))).fetch();
     }
 
 

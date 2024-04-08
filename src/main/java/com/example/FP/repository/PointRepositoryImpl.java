@@ -21,7 +21,7 @@ public class PointRepositoryImpl implements PointRepositoryCustom{
     @Override
     public List<Point> pointListByUserid(String userid) {
 
-        List<Point> result = queryFactory.select(point).from(point).where(point.point_member.userid.eq(userid)).fetch();
+        List<Point> result = queryFactory.select(point).from(point).where(point.pointMember.userid.eq(userid)).fetch();
         return result;
 
     }

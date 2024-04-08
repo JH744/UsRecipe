@@ -24,21 +24,21 @@ public class QInquiry extends EntityPathBase<Inquiry> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final StringPath inquiry_answer = createString("inquiry_answer");
+    public final StringPath inquiryAnswer = createString("inquiryAnswer");
 
-    public final DateTimePath<java.time.LocalDateTime> inquiry_answer_date = createDateTime("inquiry_answer_date", java.time.LocalDateTime.class);
+    public final DateTimePath<java.time.LocalDateTime> inquiryAnswerDate = createDateTime("inquiryAnswerDate", java.time.LocalDateTime.class);
 
-    public final StringPath inquiry_category = createString("inquiry_category");
+    public final StringPath inquiryCategory = createString("inquiryCategory");
 
-    public final StringPath inquiry_content = createString("inquiry_content");
+    public final StringPath inquiryContent = createString("inquiryContent");
 
-    public final DateTimePath<java.time.LocalDateTime> inquiry_date = createDateTime("inquiry_date", java.time.LocalDateTime.class);
-
-    public final EnumPath<InquiryState> inquiry_state = createEnum("inquiry_state", InquiryState.class);
-
-    public final StringPath inquiry_title = createString("inquiry_title");
+    public final DateTimePath<java.time.LocalDateTime> inquiryDate = createDateTime("inquiryDate", java.time.LocalDateTime.class);
 
     public final QMember inquiryMember;
+
+    public final EnumPath<InquiryState> inquiryState = createEnum("inquiryState", InquiryState.class);
+
+    public final StringPath inquiryTitle = createString("inquiryTitle");
 
     public QInquiry(String variable) {
         this(Inquiry.class, forVariable(variable), INITS);
