@@ -1,9 +1,9 @@
 package com.example.FP.repository;
 
-import com.example.FP.entity.Point;
+import com.example.FP.entity.OrderDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PointRepository extends JpaRepository<Point,Long>,PointRepositoryCustom {
+public interface OrderDetailsRepository extends JpaRepository<OrderDetails,Long> {
 }

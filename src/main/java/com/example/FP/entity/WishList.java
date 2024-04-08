@@ -25,9 +25,9 @@ public class WishList {
     @JoinColumn(name = "recipe_id")
     private Recipe wishlistRecipe;
 
-    public WishList(Member wishlist_member, Recipe wishlist_recipe) {
-        this.wishlistMember = wishlist_member;
-        this.wishlistRecipe = wishlist_recipe;
+    public WishList(Member wishlistMember, Recipe wishlistRecipe) {
+        this.wishlistMember = wishlistMember;
+        this.wishlistRecipe = wishlistRecipe;
     }
 
     public static WishList createCart(Recipe recipe,Member member){

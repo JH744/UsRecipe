@@ -61,18 +61,19 @@
 .loginTag {
 
     color: black;
-    width:70px;
+    width:150px;
     height:32px;
     margin: 10px;
     text-align:left;
     font-size:16px;
     letter-spacing:0;
+    margin-bottom: 20px;
 
 }
 
 .joinTag {
     color:rgba(0, 0, 0, 1);
-    width:100px;
+    width:200px;
     height:32px;
     margin: 10px;
     text-align:left;
@@ -146,4 +147,24 @@
 a{
     text-decoration: none;
     color: inherit;
+}
+
+.memberInfo{
+    width: 100px;
+    top: 30px;
+
+}
+#loginHeaderRight{
+    width: 300px;
+    padding: 0;
+
+
+
+}
+#loginJoinTag{
+    width: 120px;
+    margin-top: 26px;
+}
+.memberImg{
+    margin-bottom: -18px;
 }

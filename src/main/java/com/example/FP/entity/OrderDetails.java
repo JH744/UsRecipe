@@ -16,25 +16,29 @@ public class OrderDetails {
     @Column(name = "order_detail_id")
     private Long id;
 
-    private int ingredient_price;
+    private int ingredientPrice;
 
     @ManyToOne
     @JoinColumn(name = "orders_id")
-    private Orders orders_detail;
+    private Orders ordersDetail;
 
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member ordersMember;
+    private Member orderDetailsMember;
+
 
     @ManyToOne
     @JoinColumn(name = "ingredient_id")
-    private Ingredient orders_ingredient;
+    private Ingredient ordersIngredient;
 
 
-    public OrderDetails(int ingredient_price, Orders orders_detail, Member orders_member, Ingredient orders_ingredient) {
-        this.ingredient_price = ingredient_price;
-        this.orders_detail = orders_detail;
-        this.ordersMember = orders_member;
-        this.orders_ingredient = orders_ingredient;
+
+    public OrderDetails(int ingredientPrice, Orders ordersDetail, Member orderDetailsMember, Ingredient ordersIngredient) {
+
+        this.ingredientPrice = ingredientPrice;
+        this.ordersDetail = ordersDetail;
+        this.orderDetailsMember = orderDetailsMember;
+        this.ordersIngredient = ordersIngredient;
+
     }
 }

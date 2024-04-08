@@ -44,6 +44,7 @@ public class MemberDto {
 
     private List<Alarm> member_alarm_list = new ArrayList<>();
     private List<Point> member_point_list= new ArrayList<>();
+    private List<Orders> member_orders_list = new ArrayList<>();
 
 
     public MemberDto(String userid, String password, String name, String nickname) {
