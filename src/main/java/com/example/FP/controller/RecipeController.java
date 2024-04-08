@@ -35,13 +35,14 @@ public class RecipeController {
 
 
     @GetMapping("/addRecipe")
-    public void addRecipe(){
-
+    public String addRecipe(){
+        return "/addRecipe";
     }
 
     @GetMapping("/detailRecipe")
-    public void detailRecipe(){
 
+    public String detailRecipe(){
+        return "/detailRecipe";
     }
 
 

@@ -18,7 +18,6 @@ public class Ingredient {
     @Id@GeneratedValue
     @Column(name = "ingredient_id")
     private Long id;
-
     private String ingredient_name;
     private int ingredientPrice;
     private String ingredient_origin;
@@ -39,7 +38,7 @@ public class Ingredient {
     private List<OrderDetails> ingredient_orderdetail_list = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "cart_ingredient")
+    @OneToMany(mappedBy = "cartIngredient")
     private List<Cart> ingredient_cart_list = new ArrayList<>();
 
     @Builder.Default
