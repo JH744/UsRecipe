@@ -183,8 +183,7 @@ public class MemberController {
     }
     @GetMapping("/orderList")
     public String orderList(Model model,HttpSession session){
-        String userid = (String)session.getAttribute("userid");
-        model.addAttribute("list",os.listAllByUserId(userid));
+
         return "/orderList";
 
     }

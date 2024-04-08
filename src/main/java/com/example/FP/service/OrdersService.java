@@ -12,11 +12,6 @@ import java.util.List;
 public class OrdersService {
     private final OrdersRepository or;
 
-    public List<Orders> listAllByUserId(String userid){
-        return or.listOrders(userid);
-    }
-
-
 
 
 }

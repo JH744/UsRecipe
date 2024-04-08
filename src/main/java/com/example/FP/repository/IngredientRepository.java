@@ -14,7 +14,7 @@ public interface IngredientRepository extends JpaRepository<Ingredient,Long> {
     Page<Ingredient> findAll(Pageable pageable);
 
     //제료목록 카테고리id별로 불러오기
-    @Query("SELECT i FROM Ingredient i WHERE (:categoryId IS NULL OR i.ingredient_ingredient_category.id = :categoryId)")
+    @Query("SELECT i FROM Ingredient i WHERE (:categoryId IS NULL OR i.ingredientIngredientCategory.id = :categoryId)")
     Page<Ingredient> findByCategoryId(@Param("categoryId") Long categoryId, Pageable pageable);
 
 }
