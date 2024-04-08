@@ -24,13 +24,13 @@ public class QPoint extends EntityPathBase<Point> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final StringPath point_content = createString("point_content");
+    public final StringPath pointContent = createString("pointContent");
 
-    public final QMember point_member;
+    public final QMember pointMember;
 
-    public final QOrders point_orders;
+    public final QOrders pointOrders;
 
-    public final NumberPath<Integer> use_point = createNumber("use_point", Integer.class);
+    public final NumberPath<Integer> usePoint = createNumber("usePoint", Integer.class);
 
     public QPoint(String variable) {
         this(Point.class, forVariable(variable), INITS);
@@ -50,8 +50,8 @@ public class QPoint extends EntityPathBase<Point> {
 
     public QPoint(Class<? extends Point> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.point_member = inits.isInitialized("point_member") ? new QMember(forProperty("point_member")) : null;
-        this.point_orders = inits.isInitialized("point_orders") ? new QOrders(forProperty("point_orders"), inits.get("point_orders")) : null;
+        this.pointMember = inits.isInitialized("pointMember") ? new QMember(forProperty("pointMember")) : null;
+        this.pointOrders = inits.isInitialized("pointOrders") ? new QOrders(forProperty("pointOrders"), inits.get("pointOrders")) : null;
     }
 
 }

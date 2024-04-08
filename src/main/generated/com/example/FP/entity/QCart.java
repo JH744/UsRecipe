@@ -22,11 +22,11 @@ public class QCart extends EntityPathBase<Cart> {
 
     public static final QCart cart = new QCart("cart");
 
-    public final QIngredient cart_ingredient;
+    public final QIngredient cartIngredient;
 
-    public final QMember cart_member;
+    public final QMember cartMember;
 
-    public final QRecipe cart_recipe;
+    public final QRecipe cartRecipe;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
@@ -48,9 +48,9 @@ public class QCart extends EntityPathBase<Cart> {
 
     public QCart(Class<? extends Cart> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.cart_ingredient = inits.isInitialized("cart_ingredient") ? new QIngredient(forProperty("cart_ingredient"), inits.get("cart_ingredient")) : null;
-        this.cart_member = inits.isInitialized("cart_member") ? new QMember(forProperty("cart_member")) : null;
-        this.cart_recipe = inits.isInitialized("cart_recipe") ? new QRecipe(forProperty("cart_recipe"), inits.get("cart_recipe")) : null;
+        this.cartIngredient = inits.isInitialized("cartIngredient") ? new QIngredient(forProperty("cartIngredient"), inits.get("cartIngredient")) : null;
+        this.cartMember = inits.isInitialized("cartMember") ? new QMember(forProperty("cartMember")) : null;
+        this.cartRecipe = inits.isInitialized("cartRecipe") ? new QRecipe(forProperty("cartRecipe"), inits.get("cartRecipe")) : null;
     }
 
 }

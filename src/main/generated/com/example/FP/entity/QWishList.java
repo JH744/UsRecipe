@@ -24,9 +24,9 @@ public class QWishList extends EntityPathBase<WishList> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final QMember wishlist_member;
+    public final QMember wishlistMember;
 
-    public final QRecipe wishlist_recipe;
+    public final QRecipe wishlistRecipe;
 
     public QWishList(String variable) {
         this(WishList.class, forVariable(variable), INITS);
@@ -46,8 +46,8 @@ public class QWishList extends EntityPathBase<WishList> {
 
     public QWishList(Class<? extends WishList> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.wishlist_member = inits.isInitialized("wishlist_member") ? new QMember(forProperty("wishlist_member")) : null;
-        this.wishlist_recipe = inits.isInitialized("wishlist_recipe") ? new QRecipe(forProperty("wishlist_recipe"), inits.get("wishlist_recipe")) : null;
+        this.wishlistMember = inits.isInitialized("wishlistMember") ? new QMember(forProperty("wishlistMember")) : null;
+        this.wishlistRecipe = inits.isInitialized("wishlistRecipe") ? new QRecipe(forProperty("wishlistRecipe"), inits.get("wishlistRecipe")) : null;
     }
 
 }

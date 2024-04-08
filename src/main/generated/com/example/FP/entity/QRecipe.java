@@ -24,31 +24,31 @@ public class QRecipe extends EntityPathBase<Recipe> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final ListPath<Alarm, QAlarm> recipe_alarm = this.<Alarm, QAlarm>createList("recipe_alarm", Alarm.class, QAlarm.class, PathInits.DIRECT2);
+    public final ListPath<Alarm, QAlarm> recipeAlarm = this.<Alarm, QAlarm>createList("recipeAlarm", Alarm.class, QAlarm.class, PathInits.DIRECT2);
 
-    public final ListPath<Cart, QCart> recipe_cart_list = this.<Cart, QCart>createList("recipe_cart_list", Cart.class, QCart.class, PathInits.DIRECT2);
+    public final ListPath<Cart, QCart> recipeCartList = this.<Cart, QCart>createList("recipeCartList", Cart.class, QCart.class, PathInits.DIRECT2);
 
-    public final QRecipeCategory recipe_category;
+    public final QRecipeCategory recipeCategory;
 
-    public final ListPath<RecipeIngredient, QRecipeIngredient> recipe_ingredient_list = this.<RecipeIngredient, QRecipeIngredient>createList("recipe_ingredient_list", RecipeIngredient.class, QRecipeIngredient.class, PathInits.DIRECT2);
+    public final ListPath<RecipeIngredient, QRecipeIngredient> recipeIngredientList = this.<RecipeIngredient, QRecipeIngredient>createList("recipeIngredientList", RecipeIngredient.class, QRecipeIngredient.class, PathInits.DIRECT2);
 
-    public final QMember recipe_member;
+    public final QMember recipeMember;
 
-    public final ListPath<RecipeOrder, QRecipeOrder> recipe_recipe_order_list = this.<RecipeOrder, QRecipeOrder>createList("recipe_recipe_order_list", RecipeOrder.class, QRecipeOrder.class, PathInits.DIRECT2);
+    public final ListPath<RecipeOrder, QRecipeOrder> recipeRecipeOrderList = this.<RecipeOrder, QRecipeOrder>createList("recipeRecipeOrderList", RecipeOrder.class, QRecipeOrder.class, PathInits.DIRECT2);
 
-    public final ListPath<Reply, QReply> recipe_reply_list = this.<Reply, QReply>createList("recipe_reply_list", Reply.class, QReply.class, PathInits.DIRECT2);
+    public final ListPath<Reply, QReply> recipeReplyList = this.<Reply, QReply>createList("recipeReplyList", Reply.class, QReply.class, PathInits.DIRECT2);
 
-    public final StringPath recipe_thumbnail = createString("recipe_thumbnail");
+    public final StringPath recipeThumbnail = createString("recipeThumbnail");
 
-    public final StringPath recipe_title = createString("recipe_title");
+    public final StringPath recipeTitle = createString("recipeTitle");
 
-    public final StringPath recipe_url = createString("recipe_url");
+    public final StringPath recipeUrl = createString("recipeUrl");
 
-    public final NumberPath<Integer> recipe_views = createNumber("recipe_views", Integer.class);
+    public final NumberPath<Integer> recipeViews = createNumber("recipeViews", Integer.class);
 
-    public final StringPath recipe_writer = createString("recipe_writer");
+    public final StringPath recipeWriter = createString("recipeWriter");
 
-    public final ListPath<WishList, QWishList> wishlist_list = this.<WishList, QWishList>createList("wishlist_list", WishList.class, QWishList.class, PathInits.DIRECT2);
+    public final ListPath<WishList, QWishList> wishlistList = this.<WishList, QWishList>createList("wishlistList", WishList.class, QWishList.class, PathInits.DIRECT2);
 
     public QRecipe(String variable) {
         this(Recipe.class, forVariable(variable), INITS);
@@ -68,8 +68,8 @@ public class QRecipe extends EntityPathBase<Recipe> {
 
     public QRecipe(Class<? extends Recipe> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.recipe_category = inits.isInitialized("recipe_category") ? new QRecipeCategory(forProperty("recipe_category")) : null;
-        this.recipe_member = inits.isInitialized("recipe_member") ? new QMember(forProperty("recipe_member")) : null;
+        this.recipeCategory = inits.isInitialized("recipeCategory") ? new QRecipeCategory(forProperty("recipeCategory")) : null;
+        this.recipeMember = inits.isInitialized("recipeMember") ? new QMember(forProperty("recipeMember")) : null;
     }
 
 }
