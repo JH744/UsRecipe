@@ -22,9 +22,9 @@ public class QRecipeCategory extends EntityPathBase<RecipeCategory> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final StringPath recipe_category_name = createString("recipe_category_name");
+    public final StringPath recipeCategoryName = createString("recipeCategoryName");
 
-    public final ListPath<Recipe, QRecipe> recipe_list = this.<Recipe, QRecipe>createList("recipe_list", Recipe.class, QRecipe.class, PathInits.DIRECT2);
+    public final ListPath<Recipe, QRecipe> recipeList = this.<Recipe, QRecipe>createList("recipeList", Recipe.class, QRecipe.class, PathInits.DIRECT2);
 
     public QRecipeCategory(String variable) {
         super(RecipeCategory.class, forVariable(variable));

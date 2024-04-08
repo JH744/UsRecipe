@@ -30,7 +30,7 @@ public class QOrderDetails extends EntityPathBase<OrderDetails> {
 
     public final QIngredient orders_ingredient;
 
-    public final QMember orders_member;
+    public final QMember ordersMember;
 
     public QOrderDetails(String variable) {
         this(OrderDetails.class, forVariable(variable), INITS);
@@ -52,7 +52,7 @@ public class QOrderDetails extends EntityPathBase<OrderDetails> {
         super(type, metadata, inits);
         this.orders_detail = inits.isInitialized("orders_detail") ? new QOrders(forProperty("orders_detail"), inits.get("orders_detail")) : null;
         this.orders_ingredient = inits.isInitialized("orders_ingredient") ? new QIngredient(forProperty("orders_ingredient"), inits.get("orders_ingredient")) : null;
-        this.orders_member = inits.isInitialized("orders_member") ? new QMember(forProperty("orders_member")) : null;
+        this.ordersMember = inits.isInitialized("ordersMember") ? new QMember(forProperty("ordersMember")) : null;
     }
 
 }

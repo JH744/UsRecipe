@@ -17,10 +17,10 @@ public class Point {
     private int usePoint;
     private String pointContent;
     @ManyToOne
-    @JoinColumn(name = "memberId")
+    @JoinColumn(name = "member_id")
     private Member pointMember;
     @ManyToOne
-    @JoinColumn(name = "ordersId")
+    @JoinColumn(name = "orders_id")
     private Orders pointOrders;
 
     public Point(int usePoint, String pointContent, Member pointMember, Orders pointOrders) {

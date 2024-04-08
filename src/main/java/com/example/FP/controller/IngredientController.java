@@ -25,7 +25,7 @@ public class IngredientController {
 
 
 
-    // 모든 재료목록
+    // 재료 목록 불러오기 -페이지는 경로변수로 받고, 나머지는 쿼리스트링으로 받음
     @GetMapping("/listIngredient/{page}")
     public String listAll(@PathVariable("page") int page, Model model,
                           @RequestParam(required = false ) Long category,
@@ -34,6 +34,7 @@ public class IngredientController {
                           HttpSession session){
 
 
+        // **정렬 및 카테고리 상태유지** //
         //category에 null이 아닌 새값이 전달된 경우 세션에 새롭게 저장.
         if(category != null) {
             session.setAttribute("category", category);
@@ -58,9 +59,8 @@ public class IngredientController {
         }
 
 
-
+        //***정렬조건 유무 >>  로직 설정***//
         Pageable pageable;
-        //정렬조건 유무에 따른 로직 설정
         if (sortBy != null && !sortBy.isEmpty()) {  //정렬조건이 넘어 올 경우
             Sort.Direction Direction = (direction.equals("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC );
             pageable = PageRequest.of(page-1, 6, Direction, sortBy);
@@ -74,8 +74,7 @@ public class IngredientController {
 
 
 
-
-
+        //**** 카테고리 적용 ****//
 
         //카테고리가 전체보기(000)이라면 모든 목록 불러오기
         if(category == null || category == 000) {
@@ -93,26 +92,6 @@ public class IngredientController {
         }
 
 
-
-        return "listIngredient" ;
-    }
-
-
-
-
-    //재료목록 : 카테고리별로 조회
-    @GetMapping("/listIngredient/category/{categoryId}/page/{page}")
-    public String IngredientList(Model model,
-                                 @PathVariable(required = false) Long categoryId,
-                                 @PathVariable("page") int page){
-
-        Pageable pageable =PageRequest.of(page, 6);
-
-        Page<Ingredient>  list = is.listByCategory(categoryId,pageable);
-        int totalPage = list.getTotalPages();
-
-        model.addAttribute("list", list);
-        model.addAttribute("totalPage", totalPage);
 
         return "listIngredient" ;
     }

@@ -24,11 +24,11 @@ public class QRecipeOrder extends EntityPathBase<RecipeOrder> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final StringPath recipe_detail = createString("recipe_detail");
+    public final StringPath recipeDetail = createString("recipeDetail");
 
-    public final StringPath recipe_photo = createString("recipe_photo");
+    public final StringPath recipePhoto = createString("recipePhoto");
 
-    public final QRecipe recipe_recipe_order;
+    public final QRecipe recipeRecipeOrder;
 
     public QRecipeOrder(String variable) {
         this(RecipeOrder.class, forVariable(variable), INITS);
@@ -48,7 +48,7 @@ public class QRecipeOrder extends EntityPathBase<RecipeOrder> {
 
     public QRecipeOrder(Class<? extends RecipeOrder> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.recipe_recipe_order = inits.isInitialized("recipe_recipe_order") ? new QRecipe(forProperty("recipe_recipe_order"), inits.get("recipe_recipe_order")) : null;
+        this.recipeRecipeOrder = inits.isInitialized("recipeRecipeOrder") ? new QRecipe(forProperty("recipeRecipeOrder"), inits.get("recipeRecipeOrder")) : null;
     }
 
 }

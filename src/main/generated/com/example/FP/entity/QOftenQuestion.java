@@ -21,9 +21,9 @@ public class QOftenQuestion extends EntityPathBase<OftenQuestion> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final StringPath often_question_answer = createString("often_question_answer");
+    public final StringPath oftenQuestionAnswer = createString("oftenQuestionAnswer");
 
-    public final StringPath often_question_title = createString("often_question_title");
+    public final StringPath oftenQuestionTitle = createString("oftenQuestionTitle");
 
     public QOftenQuestion(String variable) {
         super(OftenQuestion.class, forVariable(variable));

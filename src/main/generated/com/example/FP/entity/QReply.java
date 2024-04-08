@@ -32,9 +32,9 @@ public class QReply extends EntityPathBase<Reply> {
 
     public final QIngredient reply_ingredient;
 
-    public final QMember reply_member;
-
     public final QRecipe reply_recipe;
+
+    public final QMember replyMember;
 
     public QReply(String variable) {
         this(Reply.class, forVariable(variable), INITS);
@@ -55,8 +55,8 @@ public class QReply extends EntityPathBase<Reply> {
     public QReply(Class<? extends Reply> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.reply_ingredient = inits.isInitialized("reply_ingredient") ? new QIngredient(forProperty("reply_ingredient"), inits.get("reply_ingredient")) : null;
-        this.reply_member = inits.isInitialized("reply_member") ? new QMember(forProperty("reply_member")) : null;
         this.reply_recipe = inits.isInitialized("reply_recipe") ? new QRecipe(forProperty("reply_recipe"), inits.get("reply_recipe")) : null;
+        this.replyMember = inits.isInitialized("replyMember") ? new QMember(forProperty("replyMember")) : null;
     }
 
 }

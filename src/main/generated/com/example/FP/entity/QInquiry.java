@@ -34,11 +34,11 @@ public class QInquiry extends EntityPathBase<Inquiry> {
 
     public final DateTimePath<java.time.LocalDateTime> inquiry_date = createDateTime("inquiry_date", java.time.LocalDateTime.class);
 
-    public final QMember inquiry_member;
-
     public final EnumPath<InquiryState> inquiry_state = createEnum("inquiry_state", InquiryState.class);
 
     public final StringPath inquiry_title = createString("inquiry_title");
+
+    public final QMember inquiryMember;
 
     public QInquiry(String variable) {
         this(Inquiry.class, forVariable(variable), INITS);
@@ -58,7 +58,7 @@ public class QInquiry extends EntityPathBase<Inquiry> {
 
     public QInquiry(Class<? extends Inquiry> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.inquiry_member = inits.isInitialized("inquiry_member") ? new QMember(forProperty("inquiry_member")) : null;
+        this.inquiryMember = inits.isInitialized("inquiryMember") ? new QMember(forProperty("inquiryMember")) : null;
     }
 
 }
