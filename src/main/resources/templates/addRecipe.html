@@ -12,6 +12,9 @@
 
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap_20211222.css">
     <link rel="stylesheet" type="text/css" href="../static/css/ez_recipe.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" href="../static/css/font_20230910.css">
     <link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css">
@@ -20,53 +23,52 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
-            var ingredientFrame ="<li class='ingredientCategory'>" +
-                "<select name=\"IngredientCategory\" class=\"ingredientSelect\">" +
-                "                    <option value=\"\">-종류-</option>\n" +
-                "                    <option value=\"70\">소고기</option>\n" +
-                "                    <option value=\"71\">돼지고기</option>\n" +
-                "                    <option value=\"72\">닭고기</option>\n" +
-                "                    <option value=\"23\">육류</option>\n" +
-                "                    <option value=\"28\">채소류</option>\n" +
-                "                    <option value=\"24\">해물류</option>\n" +
-                "                    <option value=\"50\">달걀/유제품</option>\n" +
-                "                    <option value=\"33\">가공식품류</option>\n" +
-                "                    <option value=\"47\">쌀</option>\n" +
-                "                    <option value=\"32\">밀가루</option>\n" +
-                "                    <option value=\"25\">건어물류</option>\n" +
-                "                    <option value=\"31\">버섯류</option>\n" +
-                "                    <option value=\"48\">과일류</option>\n" +
-                "                    <option value=\"27\">콩/견과류</option>\n" +
-                "                    <option value=\"26\">곡류</option>\n" +
-                "</select>"+
-                "                <select name=\"IngredientName\" className=\"IngredientName\">\n" +
-                "                    <option value=\"\">-재료명-</option>\n" +
-                "                    <option value=\"70\">안심</option>\n" +
-                "                    <option value=\"71\">윗등심</option>\n" +
-                "                    <option value=\"72\">꽃등심</option>\n" +
-                "                    <option value=\"23\">아래등심</option>\n" +
-                "                    <option value=\"28\">살치살</option>\n" +
-                "                    <option value=\"24\">채끝살</option>\n" +
-                "                    <option value=\"50\">목심</option>\n" +
-                "                    <option value=\"33\">꾸리살</option>\n" +
-                "                    <option value=\"47\">부채살</option>\n" +
-                "                    <option value=\"32\">앞다리살</option>\n" +
-                "                    <option value=\"25\">갈비덧살</option>\n" +
-                "                    <option value=\"31\">부채덮개살</option>\n" +
-                "                    <option value=\"48\">우둔살</option>\n" +
-                "                    <option value=\"27\">홍두깨살</option>\n" +
-                "                    <option value=\"26\">보섭살</option>\n" +
-                "                </select>\n" +
-                "                <input type=\"text\" className=\"form-control\" style=\"width:100px;\" placeholder=\"10(수량)\"/>\n" +
-                "                <input type=\"text\" className=\"form-control\" style=\"width:140px;\" placeholder=\"예) g,ml(단위)\"/>\n" +
-                "                <a  href=\"javascript:delMaterial(1,1)\" className=\"btn-del\" style=\"display: none;\"></a></li>"
+        var index = 1
 
-            function addMaterial() {
-                $("#testtest").append(ingredientFrame)
-            }
+        function addIngredient() {
+            var ingredientFrame =
+                "<li class='ingredientGroup' id='ingredientGroup_" + index + "'>" +
+                "<button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' id='ingredientModalBtn'>" +
+                "재료 선택" +
+                "</button>" +
+                "<input name=\"ingredientCategory\" class=\"ingredientCategory\" readonly='' value='-분류-' style='color:#898989'>" +
+                "<input name=\"ingredientName\" class=\"ingredientName\" value='-재료명-' readonly='' style='color:#898989'>\n" +
+                "<input type=\"text\" class=\"form-control\" style=\"width:100px;\" placeholder=\"10(수량)\"/>\n" +
+                "<input type=\"text\" class=\"form-control\" style=\"width:140px;\" placeholder=\"예) g,ml(단위)\"/>\n" +
+                "<a  href='javascript:delIngredient(" + index + ")' class=\"btn-del\" style=''></a></li>"
 
+            $("#ingredientInfo").append(ingredientFrame)
+            index = index + 1
+        }
 
+        var ingredientGroup_id
+        $(document).on('click', "#ingredientModalBtn", function () {
+            ingredientGroup_id = "#" + $(this).parent().attr('id')
+        })
+
+        $(document).on('click', "#ingredient_modal_save", function () {
+            var ingredientName = $("input[name=ingredient_radio]:checked").prev().text()
+            var ingredientCategory = $("input[name=ingredient_radio]:checked").prev().prev().text()
+            $(ingredientGroup_id).children(".ingredientCategory").val(ingredientCategory).css('color','').css('font-weight','bold')
+            $(ingredientGroup_id).children(".ingredientName").val(ingredientName).css('color','').css('font-weight','bold')
+            console.log(ingredientCategory)
+        })
+
+        function delIngredient(index) {
+            var ingredientGroup = "#ingredientGroup_" + index;
+            $("li").remove(ingredientGroup);
+        }
+
+        $(document).on('click','.modal_IngredientSelect',function(){
+            console.log("123")
+            var checkbox = $(this).find('input');
+            $(this).find('input').prop('checked',true)
+            // if($(this).is('input:checked'))
+            //     return;
+            // $(this).find('input:checkbox').attr('checked')
+        })
     </script>
+
 </head>
 <body>
 <div class="templateBody">
@@ -74,7 +76,6 @@
         <div class="header" th:replace="header :: header"></div>
     </header>
     <div class="mainBody">
-
         <form name="insFrm" id="insFrm" method="post">
 
             <div class="container recipe_regi">
@@ -86,30 +87,38 @@
                             <input type="hidden" name="main_photo" id="main_photo" value="">
                             <input type="hidden" name="new_main_photo" id="new_main_photo" value="">
                             <input type="hidden" name="del_main_photo" id="del_main_photo" value="">
-                            <div style="position:absolute;left:-3000px"><input type="file" name="q_main_file"
-                                                                               id="q_main_file"
-                                                                               file_gubun="main" accept="jpeg,png,gif"
-                                                                               style="display:;width:0px;height:0px;font-size:0px;"
-                                                                               text=""></div>
+                            <div style="position:absolute;left:-3000px">
+                                <input type="file" name="q_main_file"
+                                       id="q_main_file"
+                                       file_gubun="main" accept="jpeg,png,gif"
+                                       style="width:0px;height:0px;font-size:0px;"
+                                       text="">
+                            </div>
                             <div id="divMainPhotoBox" is_over="0">
                                 <img id="mainPhotoHolder" onclick="browseMainFile()"
                                      src="https://recipe1.ezmember.co.kr/img/pic_none4.gif"
                                      style="width: 250px; height: 250px; cursor:pointer">
                             </div>
                         </div>
-                        <div class="cont_line"><p class="cont_tit4">레시피 제목</p><input type="text" name="cok_title"
-                                                                                     id="cok_title"
-                                                                                     value="" class="form-control"
-                                                                                     placeholder="예) 소고기 미역국 끓이기"
-                                                                                     style="width:610px; "></div>
-                        <div class="cont_line pad_b_25"><p class="cont_tit4">요리소개</p><textarea name="cok_intro"
-                                                                                               id="cok_intro"
-                                                                                               class="form-control step_cont"
-                                                                                               placeholder="이 레시피의 탄생배경을 적어주세요. 예) 남편의 생일을 맞아 소고기 미역국을 끓여봤어요. 어머니로부터 배운 미역국 레시피를 남편의 입맛에 맞게 고안했습니다."
-                                                                                               style="height:100px; width:610px; resize:none;"></textarea>
+                        <div class="cont_line">
+                            <p class="cont_tit4">레시피 제목</p>
+                            <input type="text" name="cok_title"
+                                   id="cok_title"
+                                   value="" class="form-control"
+                                   placeholder="예) 소고기 미역국 끓이기"
+                                   style="width:610px; ">
+                        </div>
+                        <div class="cont_line pad_b_25">
+                            <p class="cont_tit4">요리소개</p>
+                            <textarea name="cok_intro"
+                                      id="cok_intro"
+                                      class="form-control step_cont"
+                                      placeholder="이 레시피의 탄생배경을 적어주세요. 예) 남편의 생일을 맞아 소고기 미역국을 끓여봤어요. 어머니로부터 배운 미역국 레시피를 남편의 입맛에 맞게 고안했습니다."
+                                      style="height:100px; width:610px; resize:none;"></textarea>
                         </div>
 
-                        <div class="cont_line pad_b_25"><p class="cont_tit4">동영상</p>
+                        <div class="cont_line pad_b_25">
+                            <p class="cont_tit4">동영상</p>
                             <input type="hidden" name="video_photo" id="video_photo" value="">
                             <input type="hidden" name="new_video_photo" id="new_video_photo" value="">
                             <input type="hidden" name="del_video_photo" id="del_video_photo" value="">
@@ -117,11 +126,13 @@
                             <textarea name="cok_video_url" id="cok_video_url" class="form-control step_cont" prev_url=""
                                       placeholder="동영상이 있으면 주소를 입력하세요.(Youtube,네이버tvcast,다음tvpot 만 가능) 예)http://youtu.be/lA0Bxo3IZmM"
                                       style="height:100px; width:380px; resize:none;"></textarea>
-                            <div style="position:absolute;left:-3000px"><input type="file" name="q_video_file"
-                                                                               id="q_video_file"
-                                                                               file_gubun="video" accept="jpeg,png,gif"
-                                                                               style="display:;width:0px;height:0px;font-size:0px;"
-                                                                               text=""></div>
+                            <div style="position:absolute;left:-3000px">
+                                <input type="file" name="q_video_file"
+                                       id="q_video_file"
+                                       file_gubun="video" accept="jpeg,png,gif"
+                                       style="display:;width:0px;height:0px;font-size:0px;"
+                                       text="">
+                            </div>
                         </div>
 
                         <div class="cont_line"><p class="cont_tit4">카테고리</p>
@@ -155,7 +166,8 @@
                         <p class="cont_tit3">재료 정보
                         </p>
                         <span class="guide mag_b_15" style="width:100%;">재료가 남거나 부족하지 않도록 정확한 계량정보를 적어주세요.</span>
-                        <div class="mag_b_25 ui-sortable" id="divMaterialGroupArea">
+                        <div class="mag_b_25 ui-sortable" id="divMaterialGroupArea"
+                             style="border-bottom: 4px solid #f1f1f2;">
                             <li>
                                 <p class="cont_tit6 st2 mag_r_15">
                                     <input
@@ -164,33 +176,32 @@
                                             class="form-control" style="font-weight:bold;font-size:18px;width:210px;"
                                             disabled="">
                                 </p>
-                                <ul className="ui-sortable" id="testtest"></ul>
-
+                                <ul class="ui-sortable" id="ingredientInfo">
+                                    <li class='ingredientGroup' id='ingredientGroup_0'>
+                                        <button type='button' class='btn btn-primary' data-bs-toggle='modal'
+                                                data-bs-target='#exampleModal' id='ingredientModalBtn'>
+                                            재료 선택
+                                        </button>
+                                        <input name="ingredientCategory" class="ingredientCategory" readonly=''
+                                               value='-분류-' style='color:#898989'>
+                                        <input name="ingredientName" class="ingredientName" value='-재료명-' readonly='' style='color:#898989'>
+                                        <input type="text" class="form-control" style="width:100px;"
+                                               placeholder="10(수량)"/>
+                                        <input type="text" class="form-control" style="width:140px;"
+                                               placeholder="예) g,ml(단위)"/>
                                 </ul>
                                 <div class="btn_add" style="padding:0 0 20px 350px; width:800px;">
-                                    <button type="button" onclick="addMaterial()" class="btn btn-default"><span
+                                    <button type="button" onclick="addIngredient()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-plus-sign"></span>추가
                                     </button>
                                 </div>
                             </li>
-                            <div class="noti">※ 양념, 양념장, 소스, 드레싱, 토핑, 시럽, 육수 밑간 등으로 구분해서 작성해주세요.
-                                <div class="noti_btn">
-                                    <button type="button" onclick="addMaterialGroup('',[],null,'1')"
-                                            class="btn-lg btn-default">
-                                        <span class="glyphicon glyphicon-plus"></span> 재료 묶음 추가
-                                    </button>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="cont_box pad_l_60">
                             <input type="file" name="file" id="multifile_1" file_gubun="step" style="display:none;"
                                    multiple="">
                             <p class="cont_tit3">요리순서
-                                <button type="button" onclick="document.getElementById('multifile_1').click();"
-                                        class="btn-sm btn-default"><span class="glyphicon glyphicon-plus"></span> 순서사진
-                                    한번에
-                                    넣기
-                                </button>
                             </p>
                             <span class="guide mag_b_15"><b>요리의 맛이 좌우될 수 있는 중요한 부분은 빠짐없이 적어주세요.</b><br>
 		예) 10분간 익혀주세요 ▷ 10분간 약한불로 익혀주세요.<br>
@@ -252,10 +263,6 @@
                                 <input type="file" name="file" id="multifile_2" file_gubun="work" style="display:none;"
                                        multiple="">
                                 <br>
-                                <button type="button" onclick="document.getElementById('multifile_2').click();"
-                                        class="btn-sm btn-default"><span class="glyphicon glyphicon-plus"></span> 사진 한번에
-                                    넣기
-                                </button>
                             </p>
                             <div id="divWorkArea" style="display:inline-block" class="ui-sortable">
                                 <div id="divWorkUpload_1" class="complete_pic">
@@ -275,57 +282,7 @@
                                              style="width: 140px; height: 140px; cursor:pointer">
                                     </div>
                                 </div>
-                                <div id="divWorkUpload_2" class="complete_pic">
-                                    <input type="hidden" name="work_photo[]" id="work_photo_2" value="">
-                                    <input type="hidden" name="new_work_photo[]" id="new_work_photo_2" value="">
-                                    <input type="hidden" name="del_work_photo[]" id="del_work_photo_2" value="">
-                                    <div style="position:absolute;left:-3000px"><input type="file" name="q_work_file_2"
-                                                                                       id="q_work_file_2"
-                                                                                       file_gubun="work"
-                                                                                       accept="jpeg,png,gif"
-                                                                                       style="display:;width:0px;height:0px;font-size:0px;"
-                                                                                       text=""></div>
-                                    <div id="divWorkPhotoBox_2" is_over="0">
-                                        <a href="#" class="pic_del" style="display:none"></a>
-                                        <img id="workPhotoHolder_2" onclick="browseWorkFile(2)"
-                                             src="https://recipe1.ezmember.co.kr/img/pic_none3.gif" alt="No Image"
-                                             style="width: 140px; height: 140px; cursor:pointer">
-                                    </div>
-                                </div>
-                                <div id="divWorkUpload_3" class="complete_pic">
-                                    <input type="hidden" name="work_photo[]" id="work_photo_3" value="">
-                                    <input type="hidden" name="new_work_photo[]" id="new_work_photo_3" value="">
-                                    <input type="hidden" name="del_work_photo[]" id="del_work_photo_3" value="">
-                                    <div style="position:absolute;left:-3000px"><input type="file" name="q_work_file_3"
-                                                                                       id="q_work_file_3"
-                                                                                       file_gubun="work"
-                                                                                       accept="jpeg,png,gif"
-                                                                                       style="display:;width:0px;height:0px;font-size:0px;"
-                                                                                       text=""></div>
-                                    <div id="divWorkPhotoBox_3" is_over="0">
-                                        <a href="#" class="pic_del" style="display:none"></a>
-                                        <img id="workPhotoHolder_3" onclick="browseWorkFile(3)"
-                                             src="https://recipe1.ezmember.co.kr/img/pic_none3.gif" alt="No Image"
-                                             style="width: 140px; height: 140px; cursor:pointer">
-                                    </div>
-                                </div>
-                                <div id="divWorkUpload_4" class="complete_pic">
-                                    <input type="hidden" name="work_photo[]" id="work_photo_4" value="">
-                                    <input type="hidden" name="new_work_photo[]" id="new_work_photo_4" value="">
-                                    <input type="hidden" name="del_work_photo[]" id="del_work_photo_4" value="">
-                                    <div style="position:absolute;left:-3000px"><input type="file" name="q_work_file_4"
-                                                                                       id="q_work_file_4"
-                                                                                       file_gubun="work"
-                                                                                       accept="jpeg,png,gif"
-                                                                                       style="display:;width:0px;height:0px;font-size:0px;"
-                                                                                       text=""></div>
-                                    <div id="divWorkPhotoBox_4" is_over="0">
-                                        <a href="#" class="pic_del" style="display:none"></a>
-                                        <img id="workPhotoHolder_4" onclick="browseWorkFile(4)"
-                                             src="https://recipe1.ezmember.co.kr/img/pic_none3.gif" alt="No Image"
-                                             style="width: 140px; height: 140px; cursor:pointer">
-                                    </div>
-                                </div>
+
                             </div>
                         </div><!--/cont_box-->
 
@@ -335,8 +292,8 @@
                         <button type="button" onclick="history.back();" class="btn-lg btn-default">취소</button>
                     </div>
                 </div><!-- /container -->
+            </div>
         </form>
-
 
         <!-- 최근 본 상품 js -->
         <script>
@@ -383,6 +340,7 @@
             })
         </script>
         <!-- 최근 본 상품 js -->
+
         <div id="recentRecipeDiv" class="container">
             <div class="rcp_lately_list">
                 <h3>최근 본 레시피</h3>
@@ -405,6 +363,57 @@
             </div>
         </div>
         <!-- 최근 본 상품 div -->
+
+        <!-- Modal -->
+        <div class="modal fade in" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:520px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">재료 검색 하기</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" style="display: flex; align-content: start; width: auto">
+                            <input type="text" placeholder="원하는 재료를 입력해주세요." name="keyword"
+                                   style="width: 85%;height:34px">
+                            <button class="btn btn-primary">검색</button>
+                        </form>
+                        <div style="width: auto; height:500px; border: 1px solid; overflow: auto">
+                            <div class="modal_IngredientSelect_column">
+                                <div>카테고리</div>
+                                <div>재료명</div>
+                                <div>선택</div>
+                            </div>
+                            <ul style="margin-right: 10px">
+                                <li class="modal_IngredientSelect">
+                                    <div>소고기</div>
+                                    <div>안창살</div>
+                                    <input type="radio" name="ingredient_radio"/>
+                                </li>
+                                <li class="modal_IngredientSelect">
+                                    <div>소고기</div>
+                                    <div>갈비</div>
+                                    <input type="radio" name="ingredient_radio"/>
+                                </li>
+                                <li class="modal_IngredientSelect">
+                                    <div>소고기</div>
+                                    <div>등심</div>
+                                    <input type="radio" name="ingredient_radio"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                        <button type="button" class="btn btn-primary" id="ingredient_modal_save"
+                                data-bs-dismiss="modal">저장
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
     <div class="footer" th:replace="footer :: footer"></div>
 </div>
