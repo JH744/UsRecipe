@@ -40,37 +40,42 @@ public class Member {
 
     @Builder.Default
     @OneToMany(mappedBy = "inquiryMember")
-    private List<Inquiry> inquiry_list = new ArrayList<>();
+    private List<Inquiry> inquiryList = new ArrayList<>();
 
     @Builder.Default
     @OneToMany(mappedBy = "wishlistMember")
-    private List<WishList> wishlist_list = new ArrayList<>();
+    private List<WishList> wishlistList = new ArrayList<>();
 
     @Builder.Default
     @OneToMany(mappedBy = "recipeMember")
-    private List<Recipe> recipe_list = new ArrayList<>();
+    private List<Recipe> recipeList = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "ordersMember")
-    private List<OrderDetails> order_member_list = new ArrayList<>();
+    @OneToMany(mappedBy = "ordersDetailsMember")
+    private List<OrderDetails> orderDetailsMemberList = new ArrayList<>();
 
     @Builder.Default
     @OneToMany(mappedBy = "cartMember")
-    private List<Cart> member_cart_list = new ArrayList<>();
+    private List<Cart> memberCartList = new ArrayList<>();
+
+
+    @Builder.Default
+    @OneToMany(mappedBy = "ordersMember")
+    private List<Orders> memberOrdersList = new ArrayList<>();
 
     @Builder.Default
     @OneToMany(mappedBy = "replyMember")
-    private List<Reply> member_reply_list = new ArrayList<>();
+    private List<Reply> memberReplyList = new ArrayList<>();
 
     @Builder.Default
     @OneToMany(mappedBy = "alarmMember")
-    private List<Alarm> member_alarm_list = new ArrayList<>();
+    private List<Alarm> memberAlarmList = new ArrayList<>();
 
     @Builder.Default
     @OneToMany(mappedBy = "pointMember")
-    private List<Point> member_point_list= new ArrayList<>();
+    private List<Point> memberPointList= new ArrayList<>();
 
-    public Member(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth, MemberRole role, List<Inquiry> inquiry_list, List<WishList> wishlist_list, List<Recipe> recipe_list, List<OrderDetails> order_member_list, List<Cart> member_cart_list, List<Reply> member_reply_list , List<Alarm> member_alarm_list,List<Point> member_point_list) {
+    public Member(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth, MemberRole role, List<Inquiry> inquiryList, List<WishList> wishlistList, List<Recipe> recipeList, List<OrderDetails> orderDetailsMemberList, List<Cart> memberCartList, List<Reply> memberReplyList , List<Alarm> memberAlarmList,List<Point> memberPointList,List<Orders> memberOrdersList) {
         this.userid = userid;
         this.password = password;
         this.name = name;
@@ -81,14 +86,15 @@ public class Member {
         this.point = point;
         this.birth = birth;
         this.role = role;
-        this.inquiry_list = inquiry_list;
-        this.wishlist_list = wishlist_list;
-        this.recipe_list = recipe_list;
-        this.order_member_list = order_member_list;
-        this.member_cart_list = member_cart_list;
-        this.member_reply_list = member_reply_list;
-        this.member_alarm_list = member_alarm_list;
-        this.member_point_list = member_point_list;
+        this.inquiryList = inquiryList;
+        this.wishlistList = wishlistList;
+        this.recipeList = recipeList;
+        this.orderDetailsMemberList = orderDetailsMemberList;
+        this.memberCartList = memberCartList;
+        this.memberReplyList = memberReplyList;
+        this.memberAlarmList = memberAlarmList;
+        this.memberPointList = memberPointList;
+        this.memberOrdersList = memberOrdersList;
     }
 
     public static Member createMember(MemberDto memberDto, PasswordEncoder passwordEncoder){
@@ -109,14 +115,14 @@ public class Member {
     }
 
     public void addPoint(Orders orders){
-        int savedPoint = (int)Math.round(orders.getOrders_sale_price()*0.01);
+        int savedPoint = (int)Math.round(orders.getOrdersSalePrice()*0.01);
         this.point += savedPoint;
         System.out.println(this.getUserid()+" 님의 포인트 "+savedPoint + "원이 적립되었습니다");
 
     }
 
     public void usePoint(Orders orders){
-        int usedPoint = orders.getOrders_used_point();
+        int usedPoint = orders.getOrdersUsedPoint();
         this.point-=usedPoint;
         System.out.println(this.getUserid()+" 님의 포인트 "+usedPoint+"원이 사용되었습니다");
     }

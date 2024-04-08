@@ -104,6 +104,12 @@ public class MemberService implements UserDetailsService {
         return false;
     }
 
+    //로그인 한 회원의 정보를 가져옴
+    public Member findByUseridInfo(String userid){
+        Member member = mr.findByUserid(userid);
+        return member;
+    }
+
     public HashMap<String, String> findByNameAndEmail(String name, String email){
         HashMap<String, String> map = new HashMap<>();
         Member m = mr.findByNameAndEmail(name, email);
