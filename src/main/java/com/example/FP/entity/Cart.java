@@ -16,18 +16,18 @@ public class Cart {
 
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member cart_member;
+    private Member cartMember;
 
     @ManyToOne
     @JoinColumn(name = "recipe_id")
-    private Recipe cart_recipe;
+    private Recipe cartRecipe;
     @ManyToOne
     @JoinColumn(name = "ingredient_id")
-    private Ingredient cart_ingredient;
+    private Ingredient cartIngredient;
 
     public Cart(Member cart_member, Recipe cart_recipe, Ingredient cart_ingredient) {
-        this.cart_member = cart_member;
-        this.cart_recipe = cart_recipe;
-        this.cart_ingredient = cart_ingredient;
+        this.cartMember = cart_member;
+        this.cartRecipe = cart_recipe;
+        this.cartIngredient = cart_ingredient;
     }
 }

@@ -18,7 +18,7 @@ public class Point {
     private String point_content;
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member point_member;
+    private Member pointMember;
     @ManyToOne
     @JoinColumn(name = "orders_id")
     private Orders point_orders;
@@ -26,7 +26,7 @@ public class Point {
     public Point(int use_point, String point_content, Member point_member, Orders point_orders) {
         this.use_point = use_point;
         this.point_content = point_content;
-        this.point_member = point_member;
+        this.pointMember = point_member;
         this.point_orders = point_orders;
     }
 }
