@@ -39,46 +39,43 @@ public class Member {
     private MemberRole role;
 
     @Builder.Default
-    @OneToMany(mappedBy = "inquiry_member")
-    private List<Inquiry> inquiry_list = new ArrayList<>();
+    @OneToMany(mappedBy = "inquiryMember")
+    private List<Inquiry> inquiryList = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "wishlist_member")
-    private List<WishList> wishlist_list = new ArrayList<>();
+    @OneToMany(mappedBy = "wishlistMember")
+    private List<WishList> wishlistList = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "recipe_member")
-    private List<Recipe> recipe_list = new ArrayList<>();
+    @OneToMany(mappedBy = "recipeMember")
+    private List<Recipe> recipeList = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "orderDetails_member")
-    private List<OrderDetails> orderDetails_member_list = new ArrayList<>();
+    @OneToMany(mappedBy = "ordersDetailsMember")
+    private List<OrderDetails> orderDetailsMemberList = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "orders_member")
-    private List<Orders> member_orders_list = new ArrayList<>();
-
-
-
-    @Builder.Default
-    @OneToMany(mappedBy = "cart_member")
-    private List<Cart> member_cart_list = new ArrayList<>();
-
+    @OneToMany(mappedBy = "cartMember")
+    private List<Cart> memberCartList = new ArrayList<>();
 
 
     @Builder.Default
-    @OneToMany(mappedBy = "reply_member")
-    private List<Reply> member_reply_list = new ArrayList<>();
+    @OneToMany(mappedBy = "ordersMember")
+    private List<Orders> memberOrdersList = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "alarm_member")
-    private List<Alarm> member_alarm_list = new ArrayList<>();
+    @OneToMany(mappedBy = "replyMember")
+    private List<Reply> memberReplyList = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "point_member")
-    private List<Point> member_point_list= new ArrayList<>();
+    @OneToMany(mappedBy = "alarmMember")
+    private List<Alarm> memberAlarmList = new ArrayList<>();
 
-    public Member(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth, MemberRole role, List<Inquiry> inquiry_list, List<WishList> wishlist_list, List<Recipe> recipe_list, List<OrderDetails> order_member_list, List<Cart> member_cart_list, List<Reply> member_reply_list , List<Alarm> member_alarm_list,List<Point> member_point_list,List<Orders> member_orders_list) {
+    @Builder.Default
+    @OneToMany(mappedBy = "pointMember")
+    private List<Point> memberPointList= new ArrayList<>();
+
+    public Member(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth, MemberRole role, List<Inquiry> inquiryList, List<WishList> wishlistList, List<Recipe> recipeList, List<OrderDetails> orderDetailsMemberList, List<Cart> memberCartList, List<Reply> memberReplyList , List<Alarm> memberAlarmList,List<Point> memberPointList,List<Orders> memberOrdersList) {
         this.userid = userid;
         this.password = password;
         this.name = name;
@@ -89,15 +86,15 @@ public class Member {
         this.point = point;
         this.birth = birth;
         this.role = role;
-        this.inquiry_list = inquiry_list;
-        this.wishlist_list = wishlist_list;
-        this.recipe_list = recipe_list;
-        this.orderDetails_member_list = order_member_list;
-        this.member_cart_list = member_cart_list;
-        this.member_reply_list = member_reply_list;
-        this.member_alarm_list = member_alarm_list;
-        this.member_point_list = member_point_list;
-        this.member_orders_list = member_orders_list;
+        this.inquiryList = inquiryList;
+        this.wishlistList = wishlistList;
+        this.recipeList = recipeList;
+        this.orderDetailsMemberList = orderDetailsMemberList;
+        this.memberCartList = memberCartList;
+        this.memberReplyList = memberReplyList;
+        this.memberAlarmList = memberAlarmList;
+        this.memberPointList = memberPointList;
+        this.memberOrdersList = memberOrdersList;
     }
 
     public static Member createMember(MemberDto memberDto, PasswordEncoder passwordEncoder){

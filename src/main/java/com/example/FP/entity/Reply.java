@@ -34,12 +34,13 @@ public class Reply {
     @JoinColumn(name ="member_id")
     private Member replyMember;
 
-    public Reply(String reply_content, LocalDateTime replyDate, int replyGrade, Ingredient replyIngredient, Recipe replyRecipe, Member replyMember) {
+    public Reply(String replyContent, LocalDateTime replyDate, int replyGrade, Ingredient replyIngredient, Recipe replyRecipe, Member replyMember) {
         this.replyContent = replyContent;
         this.replyDate = replyDate;
         this.replyGrade = replyGrade;
         this.replyIngredient = replyIngredient;
         this.replyRecipe = replyRecipe;
         this.replyMember = replyMember;
+
     }
 }

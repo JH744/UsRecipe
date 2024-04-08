@@ -29,7 +29,7 @@ public class Inquiry {
 
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member inquiry_member;
+    private Member inquiryMember;
 
     public Inquiry(String inquiry_title, String inquiry_content, String inquiry_answer, String inquiry_category,LocalDateTime inquiry_date, LocalDateTime inquiry_answer_date, InquiryState inquiry_state, Member inquiry_member) {
         this.inquiry_title = inquiry_title;
@@ -39,6 +39,6 @@ public class Inquiry {
         this.inquiry_date = inquiry_date;
         this.inquiry_answer_date = inquiry_answer_date;
         this.inquiry_state = inquiry_state;
-        this.inquiry_member = inquiry_member;
+        this.inquiryMember = inquiry_member;
     }
 }

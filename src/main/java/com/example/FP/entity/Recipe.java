@@ -26,7 +26,7 @@ public class Recipe {
     private int recipe_views;
 
     @Builder.Default
-    @OneToMany(mappedBy = "wishlist_recipe")
+    @OneToMany(mappedBy = "wishlistRecipe")
     private List<WishList> wishlist_list = new ArrayList<>();
 
     @ManyToOne
@@ -35,14 +35,14 @@ public class Recipe {
 
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member recipe_member;
+    private Member recipeMember;
 
     @Builder.Default
     @OneToMany(mappedBy = "recipe_ingredient_recipe")
     private List<RecipeIngredient> recipe_ingredient_list = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "cart_recipe")
+    @OneToMany(mappedBy = "cartRecipe")
     private List<Cart> recipe_cart_list = new ArrayList<>();
 
     @Builder.Default
@@ -66,7 +66,7 @@ public class Recipe {
         this.recipe_views = recipe_views;
         this.wishlist_list = wishlist_list;
         this.recipe_category = recipe_category;
-        this.recipe_member = recipe_member;
+        this.recipeMember = recipe_member;
         this.recipe_ingredient_list = recipe_ingredient_list;
         this.recipe_cart_list = recipe_cart_list;
         this.recipe_reply_list = recipe_reply_list;

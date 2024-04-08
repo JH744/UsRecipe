@@ -34,6 +34,7 @@ public class Orders {
     @JoinColumn(name = "member_id")
     private Member ordersMember;
 
+
     @ManyToOne
     @JoinColumn(name = "order_state_id")
     private OrderState ordersOrderState;
@@ -45,6 +46,8 @@ public class Orders {
     @Builder.Default
     @OneToMany(mappedBy = "pointOrders")
     private List<Point> orderPointList = new ArrayList<>();
+
+
 
     public Orders(LocalDateTime orders_date,
                   String orders_receiver,

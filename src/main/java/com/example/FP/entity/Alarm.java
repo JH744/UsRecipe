@@ -25,10 +25,12 @@ public class Alarm {
     @JoinColumn(name = "recipe_id")
     private Recipe alarmRecipe;
 
-    public Alarm(int alarm_state, String alarm_msg, Member alarm_member, Recipe alarm_recipe) {
-        this.alarmState = alarm_state;
-        this.alarmMsg = alarm_msg;
-        this.alarmMember = alarm_member;
-        this.alarmRecipe = alarm_recipe;
+    public Alarm(int alarmState, String alarmMsg, Member alarmMember, Recipe alarmRecipe) {
+
+        this.alarmState = alarmState;
+        this.alarmMsg = alarmMsg;
+        this.alarmMember = alarmMember;
+        this.alarmRecipe = alarmRecipe;
+
     }
 }

@@ -26,9 +26,11 @@ public class OrderDetails {
     @JoinColumn(name = "member_id")
     private Member orderDetailsMember;
 
+
     @ManyToOne
     @JoinColumn(name = "ingredient_id")
     private Ingredient ordersIngredient;
+
 
 
     public OrderDetails(int ingredientPrice, Orders ordersDetail, Member orderDetailsMember, Ingredient ordersIngredient) {
@@ -37,5 +39,6 @@ public class OrderDetails {
         this.ordersDetail = ordersDetail;
         this.orderDetailsMember = orderDetailsMember;
         this.ordersIngredient = ordersIngredient;
+
     }
 }

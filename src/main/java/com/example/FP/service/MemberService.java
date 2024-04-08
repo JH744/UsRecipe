@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+
 
 @Service
 @RequiredArgsConstructor
@@ -108,5 +110,20 @@ public class MemberService implements UserDetailsService {
         return member;
     }
 
+    public HashMap<String, String> findByNameAndEmail(String name, String email){
+        HashMap<String, String> map = new HashMap<>();
+        Member m = mr.findByNameAndEmail(name, email);
+        if (m != null) {
+            if (m.getUserid() == null) {
+                map.put("success", "false");
+                return map;
+            } else {
+                map.put("success", "true");
+                map.put("userid", m.getUserid());
+                return map;
+            }
+        }
+        return map;
+    }
 
 }

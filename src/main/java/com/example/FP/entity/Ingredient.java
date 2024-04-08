@@ -26,6 +26,7 @@ public class Ingredient {
     private String ingredientUnit;
     private int ingredientQty;
 
+
     @Builder.Default
     @OneToMany(mappedBy = "recipeIngredientIngredient")
     private List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
@@ -41,6 +42,7 @@ public class Ingredient {
     @Builder.Default
     @OneToMany(mappedBy = "cartIngredient")
     private List<Cart> ingredientCartList = new ArrayList<>();
+
 
     @Builder.Default
     @OneToMany(mappedBy = "replyIngredient")
