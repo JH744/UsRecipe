@@ -26,9 +26,9 @@ public class QOrderDetails extends EntityPathBase<OrderDetails> {
 
     public final NumberPath<Integer> ingredientPrice = createNumber("ingredientPrice", Integer.class);
 
-    public final QMember orderDetailsMember;
-
     public final QOrders ordersDetail;
+
+    public final QMember ordersDetailsMember;
 
     public final QIngredient ordersIngredient;
 
@@ -50,8 +50,8 @@ public class QOrderDetails extends EntityPathBase<OrderDetails> {
 
     public QOrderDetails(Class<? extends OrderDetails> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.orderDetailsMember = inits.isInitialized("orderDetailsMember") ? new QMember(forProperty("orderDetailsMember")) : null;
         this.ordersDetail = inits.isInitialized("ordersDetail") ? new QOrders(forProperty("ordersDetail"), inits.get("ordersDetail")) : null;
+        this.ordersDetailsMember = inits.isInitialized("ordersDetailsMember") ? new QMember(forProperty("ordersDetailsMember")) : null;
         this.ordersIngredient = inits.isInitialized("ordersIngredient") ? new QIngredient(forProperty("ordersIngredient"), inits.get("ordersIngredient")) : null;
     }
 
