@@ -19,7 +19,7 @@ public class Alarm {
 
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member alarm_member;
+    private Member alarmMember;
 
     @ManyToOne
     @JoinColumn(name = "recipe_id")
@@ -28,7 +28,7 @@ public class Alarm {
     public Alarm(int alarm_state, String alarm_msg, Member alarm_member, Recipe alarm_recipe) {
         this.alarm_state = alarm_state;
         this.alarm_msg = alarm_msg;
-        this.alarm_member = alarm_member;
+        this.alarmMember = alarm_member;
         this.alarm_recipe = alarm_recipe;
     }
 }

@@ -2,7 +2,6 @@ package com.example.FP.controller;
 
 import com.example.FP.dto.MemberDto;
 import com.example.FP.entity.Member;
-import com.example.FP.mapper.MemberMapper;
 import com.example.FP.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -11,12 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
-
     private final PasswordEncoder passwordEncoder;
 
 
@@ -68,20 +68,6 @@ public class MemberController {
         return "success";
     }
 
-    @PostMapping("/email_check")
-    @ResponseBody
-    public String checkEmail(@RequestBody String email){
-        System.out.println(email.replace("%40", "@"));
-        System.out.println("이메일중복 확인");
-        Boolean res = memberService.findByEmail(email.replace("%40", "@").trim());
-        if (res) {
-            System.out.println("실패");
-            return "fail";
-        }
-        System.out.println("성공");
-        return "success";
-    }
-
     @PostMapping("/nickname_check")
     @ResponseBody
     public String checkNickname(@RequestBody String nickname){
@@ -102,23 +88,40 @@ public class MemberController {
         return "/joinOk";
     }
 
-    @GetMapping("/findID")
-    public void findId(){}
+    @GetMapping("/findUserid")
+    public String findIdForm(){ return "/findUserid"; }
+
+    @PostMapping("/findUserid")
+    public String findIdSubmit(@RequestParam String name, @RequestParam String email, Model model){
+        String toEmail = email.replace("%40", "@").trim();
+        HashMap<String, String > map = memberService.findByNameAndEmail(name, toEmail);
+        if (map.get("success").equals("false")) {
+            return "redirect:/findUserid";
+        }
+
+
+        model.addAttribute("name", name);
+        model.addAttribute("userid", map.get("userid"));
+
+        return "/findUseridOk";
+    }
 
     @GetMapping("/findPwd")
-    public void findPwd(){}
+    public String findPwd(){ return "/findPwd"; }
+
+    public String fingPwdSubmit(){
+
+        return "redirect:/";
+    }
 
     @GetMapping("/pwChange")
-    public void pwChange(){}
+    public String pwChange(){ return "/newPwd"; }
 
     @GetMapping("/pwFindEmailCerti")
     public void pwFindEmailCerti(){}
 
     @GetMapping("/pwCheckDataChange")
     public String pwCheckDataChangeForm(){
-
-
-
         return "/pwCheckDataChange";
     }
     @PostMapping("/pwCheckDataChange")

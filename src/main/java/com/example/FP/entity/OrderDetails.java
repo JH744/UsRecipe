@@ -24,7 +24,7 @@ public class OrderDetails {
 
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member orders_member;
+    private Member ordersMember;
 
     @ManyToOne
     @JoinColumn(name = "ingredient_id")
@@ -34,7 +34,7 @@ public class OrderDetails {
     public OrderDetails(int ingredient_price, Orders orders_detail, Member orders_member, Ingredient orders_ingredient) {
         this.ingredient_price = ingredient_price;
         this.orders_detail = orders_detail;
-        this.orders_member = orders_member;
+        this.ordersMember = orders_member;
         this.orders_ingredient = orders_ingredient;
     }
 }

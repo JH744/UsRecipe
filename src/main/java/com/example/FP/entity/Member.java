@@ -39,35 +39,35 @@ public class Member {
     private MemberRole role;
 
     @Builder.Default
-    @OneToMany(mappedBy = "inquiry_member")
+    @OneToMany(mappedBy = "inquiryMember")
     private List<Inquiry> inquiry_list = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "wishlist_member")
+    @OneToMany(mappedBy = "wishlistMember")
     private List<WishList> wishlist_list = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "recipe_member")
+    @OneToMany(mappedBy = "recipeMember")
     private List<Recipe> recipe_list = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "orders_member")
+    @OneToMany(mappedBy = "ordersMember")
     private List<OrderDetails> order_member_list = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "cart_member")
+    @OneToMany(mappedBy = "cartMember")
     private List<Cart> member_cart_list = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "reply_member")
+    @OneToMany(mappedBy = "replyMember")
     private List<Reply> member_reply_list = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "alarm_member")
+    @OneToMany(mappedBy = "alarmMember")
     private List<Alarm> member_alarm_list = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "point_member")
+    @OneToMany(mappedBy = "pointMember")
     private List<Point> member_point_list= new ArrayList<>();
 
     public Member(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth, MemberRole role, List<Inquiry> inquiry_list, List<WishList> wishlist_list, List<Recipe> recipe_list, List<OrderDetails> order_member_list, List<Cart> member_cart_list, List<Reply> member_reply_list , List<Alarm> member_alarm_list,List<Point> member_point_list) {
