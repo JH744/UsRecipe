@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/oftenQuestions")
+@RequestMapping("/oftenQuestions")
 public class OftenQuestionController {
 
     private final OftenQuestionService oftenQuestionService;

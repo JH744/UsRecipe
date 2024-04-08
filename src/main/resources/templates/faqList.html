@@ -329,12 +329,12 @@
 
 
     </div>
-    <div class="footer" th:replace="footer :: footer"></div>
+
 </div>
 <script>
     $(document).ready(function() {
         $.ajax({
-            url: "/api/oftenQuestions",
+            url: "/oftenQuestions",
             method: "GET",
             success: function(data) {
                 var htmlContent = "";
@@ -352,5 +352,6 @@
         });
     });
 </script>
+<div class="footer" th:replace="footer :: footer"></div>
 </body>
 </html>
