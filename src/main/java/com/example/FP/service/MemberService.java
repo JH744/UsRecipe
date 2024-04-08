@@ -120,4 +120,16 @@ public class MemberService implements UserDetailsService {
         return map;
     }
 
+    public Boolean findByUseridAndEmail(String userid, String email){
+        Member m = mr.findByUseridAndEmail(userid, email);
+        if (m != null) {
+            if (m.getUserid() == null) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

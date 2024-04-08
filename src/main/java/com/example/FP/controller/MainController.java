@@ -6,13 +6,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
 
     @GetMapping("/")
-    public String index(HttpSession session){
+    public String index(HttpSession session, Model model){
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();
 

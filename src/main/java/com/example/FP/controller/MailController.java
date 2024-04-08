@@ -43,11 +43,8 @@ public class MailController {
     @PostMapping("/mailCheck")
     @ResponseBody
     public String mailCheck(@RequestBody String authCode) {
-
         boolean isMatch = authCode.equals(String.valueOf(number));
-
         if (isMatch) return "success";
-
         return "fail";
     }
 

@@ -25,9 +25,9 @@ public class Cart {
     @JoinColumn(name = "ingredient_id")
     private Ingredient cartIngredient;
 
-    public Cart(Member cart_member, Recipe cart_recipe, Ingredient cart_ingredient) {
-        this.cartMember = cart_member;
-        this.cartRecipe = cart_recipe;
-        this.cartIngredient = cart_ingredient;
+    public Cart(Member cartMember, Recipe cartRecipe, Ingredient cartIngredient) {
+        this.cartMember = cartMember;
+        this.cartRecipe = cartRecipe;
+        this.cartIngredient = cartIngredient;
     }
 }
