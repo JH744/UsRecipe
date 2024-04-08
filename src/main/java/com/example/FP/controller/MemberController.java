@@ -2,6 +2,7 @@ package com.example.FP.controller;
 
 import com.example.FP.dto.MemberDto;
 import com.example.FP.entity.Member;
+import com.example.FP.service.MailService;
 import com.example.FP.service.MemberService;
 import com.example.FP.service.OrdersService;
 import jakarta.servlet.http.HttpSession;
@@ -20,6 +21,8 @@ public class MemberController {
     private final OrdersService os;
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
+    private final MailService mailService;
+    private int number; // 이메일 인증 숫자를 저장하는 변수
 
 
 
@@ -109,11 +112,31 @@ public class MemberController {
     }
 
     @GetMapping("/findPwd")
-    public String findPwd(){ return "/findPwd"; }
+    public String findPwdForm(){ return "/findPwd"; }
 
-    public String fingPwdSubmit(){
+    @PostMapping("/findPwd")
+    public String fingPwdSubmit(@RequestParam String userid, @RequestParam String email, Model model){
+        String toEmail = email.replace("%40", "@").trim();
+        Boolean res = memberService.findByUseridAndEmail(userid, toEmail);
+        if (!res) {
+            return "/findPwd";
+        }
 
-        return "redirect:/";
+        try {
+            number = mailService.sendMail(toEmail);
+            String num = String.valueOf(number);
+            model.addAttribute("userid", userid);
+            model.addAttribute("num", num);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return "/emailAuthentication";
+    }
+
+    @PostMapping("/emailAuthentication")
+    public String emailAuthentication(){
+
+        return "/findPwdOk";
     }
 
     @GetMapping("/pwChange")

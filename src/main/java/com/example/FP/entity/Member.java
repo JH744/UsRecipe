@@ -51,13 +51,14 @@ public class Member {
     private List<Recipe> recipeList = new ArrayList<>();
 
     @Builder.Default
+
     @OneToMany(mappedBy = "ordersDetailsMember")
     private List<OrderDetails> orderDetailsMemberList = new ArrayList<>();
+
 
     @Builder.Default
     @OneToMany(mappedBy = "cartMember")
     private List<Cart> memberCartList = new ArrayList<>();
-
 
     @Builder.Default
     @OneToMany(mappedBy = "ordersMember")
@@ -95,6 +96,7 @@ public class Member {
         this.memberAlarmList = memberAlarmList;
         this.memberPointList = memberPointList;
         this.memberOrdersList = memberOrdersList;
+
     }
 
     public static Member createMember(MemberDto memberDto, PasswordEncoder passwordEncoder){
