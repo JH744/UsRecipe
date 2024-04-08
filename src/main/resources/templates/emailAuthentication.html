@@ -14,7 +14,14 @@
 
     <script>
         $(function (){
+            $("#check").click(function (event){
 
+                if ($("cert").val() == "") {
+                    alert("인증번호를 입력하세요");
+                    event.preventDefault()
+                    return;
+                }
+            })
         })
     </script>
 </head>
@@ -39,7 +46,7 @@
                     <input class="e65_428" type="text" id="cert"/>
                 </div>
                 <div>
-                    <input class="e65_429" type="submit" value="인증하기"/>
+                    <input class="e65_429" type="submit" id="check" value="인증하기"/>
                 </div>
             </form>
         </div>

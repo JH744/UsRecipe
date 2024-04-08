@@ -135,21 +135,23 @@ public class MemberController {
 
     @PostMapping("/emailAuthentication")
     public String emailAuthentication(@RequestParam String userid, @RequestParam String password){
-
         return "/newPwd";
     }
 
-    // 인증번호 일치여부 확인
-    @PostMapping("/mailCheck")
-    @ResponseBody
-    public String mailCheck(@RequestBody String authCode) {
-        boolean isMatch = authCode.equals(String.valueOf(number));
-        if (isMatch) return "success";
-        return "fail";
-    }
+//    // 인증번호 일치여부 확인
+//    @PostMapping("/mailCheck")
+//    @ResponseBody
+//    public String mailCheck(@RequestBody String authCode) {
+//        boolean isMatch = authCode.equals(String.valueOf(number));
+//        if (isMatch) return "success";
+//        return "fail";
+//    }
 
-    @GetMapping("/pwChange")
-    public String pwChange(){ return "/newPwd"; }
+    @GetMapping("/newPwd")
+    public String pwChange(){
+//        memberService.findById();
+        return "/newPwd";
+    }
 
     @GetMapping("/pwFindEmailCerti")
     public void pwFindEmailCerti(){}

@@ -55,9 +55,8 @@ public class MemberService implements UserDetailsService {
         return user;
     }
 
-    public Long findById(String userid){
-        Member byUserid = mr.findByUserid(userid);
-        return byUserid.getId();
+    public Member findById(String userid){
+        return mr.findByUserid(userid);
     }
 
 

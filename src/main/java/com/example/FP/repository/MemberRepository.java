@@ -17,8 +17,8 @@ public interface MemberRepository extends JpaRepository<Member,Long>,MemberRepos
 
     Member findByUseridAndEmail(String userid, String email);
 
-    @Modifying
-    @Query(name = "update member set password=?1 where userid=?2", nativeQuery = true)
-    Member updatePwd(String password, String userid);
+//    @Modifying
+//    @Query(name = "update member set password=?1 where userid=?2", nativeQuery = true)
+//    Member updatePwd(String password, String userid);
 
 }
