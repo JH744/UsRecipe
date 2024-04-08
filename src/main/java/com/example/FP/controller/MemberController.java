@@ -68,20 +68,6 @@ public class MemberController {
         return "success";
     }
 
-    @PostMapping("/email_check")
-    @ResponseBody
-    public String checkEmail(@RequestBody String email){
-        System.out.println(email.replace("%40", "@"));
-        System.out.println("이메일중복 확인");
-        Boolean res = memberService.findByEmail(email.replace("%40", "@").trim());
-        if (res) {
-            System.out.println("실패");
-            return "fail";
-        }
-        System.out.println("성공");
-        return "success";
-    }
-
     @PostMapping("/nickname_check")
     @ResponseBody
     public String checkNickname(@RequestBody String nickname){
