@@ -19,67 +19,62 @@ public class Recipe {
     @Column(name = "recipe_id")
     private Long id;
 
-    private String recipe_title;
-    private String recipe_writer;
-    private String recipe_url;
-    private String recipe_thumbnail;
-    private int recipe_views;
+    private String recipeTitle;
+    private String recipeWriter;
+    private String recipeUrl;
+    private String recipeThumbnail;
+    private int recipeViews;
 
     @Builder.Default
-    @OneToMany(mappedBy = "wishlist_recipe")
-    private List<WishList> wishlist_list = new ArrayList<>();
+    @OneToMany(mappedBy = "wishlistRecipe")
+    private List<WishList> wishlistList = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "recipe_category_id")
-    private RecipeCategory recipe_category;
-
-    @ManyToOne
-    @JoinColumn(name = "ingredient_id")
-    private Ingredient recipe_ingredient;
+    @JoinColumn(name = "recipeCategory_id")
+    private RecipeCategory recipeCategory;
 
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member recipe_member;
+    private Member recipeMember;
 
     @Builder.Default
-    @OneToMany(mappedBy = "recipe_ingredient_recipe")
-    private List<RecipeIngredient> recipe_ingredient_list = new ArrayList<>();
+    @OneToMany(mappedBy = "recipeIngredientRecipe")
+    private List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "cart_recipe")
-    private List<Cart> recipe_cart_list = new ArrayList<>();
+    @OneToMany(mappedBy = "cartRecipe")
+    private List<Cart> recipeCartList = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "reply_recipe")
-    private List<Reply> recipe_reply_list = new ArrayList<>();
+    @OneToMany(mappedBy = "replyRecipe")
+    private List<Reply> recipeReplyList = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "recipe_recipe_order")
-    private List<RecipeOrder> recipe_recipe_order_list = new ArrayList<>();
+    @OneToMany(mappedBy = "recipeRecipeOrder")
+    private List<RecipeOrder> recipeRecipeOrderList = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "alarm_recipe")
-    private List<Alarm> recipe_alarm = new ArrayList<>();
+    @OneToMany(mappedBy = "alarmRecipe")
+    private List<Alarm> recipeAlarm = new ArrayList<>();
 
 
-    public Recipe(String recipe_title, String recipe_writer, String recipe_url, String recipe_thumbnail, int recipe_views, List<WishList> wishlist_list, RecipeCategory recipe_category, Ingredient recipe_ingredient, Member recipe_member, List<RecipeIngredient> recipe_ingredient_list, List<Cart> recipe_cart_list, List<Reply> recipe_reply_list, List<RecipeOrder> recipe_recipe_order_list, List<Alarm> recipe_alarm) {
-        this.recipe_title = recipe_title;
-        this.recipe_writer = recipe_writer;
-        this.recipe_url = recipe_url;
-        this.recipe_thumbnail = recipe_thumbnail;
-        this.recipe_views = recipe_views;
-        this.wishlist_list = wishlist_list;
-        this.recipe_category = recipe_category;
-        this.recipe_ingredient = recipe_ingredient;
-        this.recipe_member = recipe_member;
-        this.recipe_ingredient_list = recipe_ingredient_list;
-        this.recipe_cart_list = recipe_cart_list;
-        this.recipe_reply_list = recipe_reply_list;
-        this.recipe_recipe_order_list = recipe_recipe_order_list;
-        this.recipe_alarm = recipe_alarm;
+    public Recipe(String recipeTitle, String recipeWriter, String recipeUrl, String recipeThumbnail, int recipeViews, List<WishList> wishlistList, RecipeCategory recipeCategory, Member recipeMember, List<RecipeIngredient> recipeIngredientList, List<Cart> recipeCartList, List<Reply> recipeReplyList, List<RecipeOrder> recipeRecipeOrderList, List<Alarm> recipeAlarm) {
+        this.recipeTitle = recipeTitle;
+        this.recipeWriter = recipeWriter;
+        this.recipeUrl = recipeUrl;
+        this.recipeThumbnail = recipeThumbnail;
+        this.recipeViews = recipeViews;
+        this.wishlistList = wishlistList;
+        this.recipeCategory = recipeCategory;
+        this.recipeMember = recipeMember;
+        this.recipeIngredientList = recipeIngredientList;
+        this.recipeCartList = recipeCartList;
+        this.recipeReplyList = recipeReplyList;
+        this.recipeRecipeOrderList = recipeRecipeOrderList;
+        this.recipeAlarm = recipeAlarm;
     }
 
-    public Recipe(String recipe_title) {
-        this.recipe_title = recipe_title;
+    public Recipe(String recipeTitle) {
+        this.recipeTitle = recipeTitle;
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
@@ -10,6 +10,8 @@
     <link rel='stylesheet' href='../static/css/style.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
     <link rel='stylesheet' href='../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+    <link rel="stylesheet" href="../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
     <style>
 
         *{
@@ -109,10 +111,10 @@
             float: right;
             margin-right: 15px;
         }
-        .news-ul a:link, .news-ul a:visited, .news-ul a:active{
-            text-decoration: none;
-            color: #ffa550;
-        }
+        /*.news-ul a:link, .news-ul a:visited, .news-ul a:active{*/
+        /*    text-decoration: none;*/
+        /*    color: #ffa550;*/
+        /*}*/
         .news-ul a:hover{
             color: #D65454;
             font-weight: bold;
@@ -144,21 +146,46 @@
             text-decoration: underline;
             font-weight: bold;
         }
+        #pwdCheck{
+            width: 150px;
+            height: 50px;
+            background-color: #D65454;
+            color: white;
+            margin-left: 300px;
 
-
-
-
+        }
     </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $("header").load("./header.html");
-            $(".footer").load("./footer.html");
-        });
+
+        $(function(){
+            let pwd;
+            $("#pwdCheck").click(function(e){
+                pwd = $("#enterPassword").val()
+                e.preventDefault()
+                $.ajax({
+                    type:'post',
+                    data:{password:pwd},
+                    url:"/pwCheckDataChange",
+                    success : function(data){
+                        if(data==true){
+                            location.href="/dataChange"
+                        }else{
+                            $(".pwdResult").html("패스워드가 틀립니다!").css("color","red").css("font-family","Cafe24Dangdanghae").css("font-size","24px").css("margin-left","200px")
+                        }
+                    }
+                })
+            })
+
+        })
+
     </script>
 </head>
 <body>
 <div class="templateBody">
-    <header></header>
+    <header>
+        <div class="header" th:replace="header :: header"></div>
+    </header>
     <div class="mainBody">
 
         <aside id="news_aside" style="margin-right: 10px;">
@@ -193,11 +220,12 @@
                                 <div id="primary" class="content-area column full" style="margin-top: -30px;">
                                     <main id="main" class="site-main" role="main">
 
-                                        <form action="" >
-                                            <span style="margin-left: 310px;margin-bottom: 50px">비밀번호 확인</span><br>
-                                            <input type="password" style="width: 350px; height: 55px;margin-left: 200px; border: none "><br>
-                                            <input type="submit" style="margin-left: 290px; background-color:#D65454; width: 150px;height: 50px; color: white" value="확인">
-                                        </form>
+
+                                            <span style="margin-left: 320px;margin-bottom: 50px">비밀번호 확인</span><br>
+                                            <input type="password" style="width: 350px; height: 55px;margin-left: 200px; border: none " name="enterPassword" id="enterPassword"><br>
+                                            <p class="pwdResult"></p>
+                                            <button id="pwdCheck" >확인</button>
+
 
 
                                     </main>
@@ -231,7 +259,7 @@
 
 
     </div>
-    <div class="footer"></div>
+    <div class="footer" th:replace="footer :: footer"></div>
 </div>
 </body>
 </html>

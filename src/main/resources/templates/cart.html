@@ -1,23 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
     <link rel="stylesheet" href="../static/css/templateBody.css" />
     <link rel="stylesheet" href="../static/css/orderPage.css" />
+    <link rel="stylesheet" href="../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(function(){
-            $("header").load("./header.html");
-            $(".footer").load("./footer.html");
+            $("header").load("../static/header.html");
+            $(".footer").load("../static/footer.html");
         });
     </script>
 </head>
 <body >
     <div class="templateBody">
-        <header></header>
+        <header>
+            <div class="header" th:replace="header :: header"></div>
+        </header>
         <div class="mainBody">
             <div class="orderTop">
                 <h2 class="orderTopLeft">장바구니</h2>
@@ -35,7 +39,7 @@
                     <thead class="cartTableCol">
                     <tr >
                         <th>전체</th>
-                        <th>체크</th>
+                        <th><input type="checkbox"></th>
                         <th>상품명</th>
                         <th>판매가</th>
                         <th>회원할인</th>
@@ -49,7 +53,7 @@
                     <tbody>
                     <tr>
                         <td>1</td>
-                        <td>체크</td>
+                        <td><input type="checkbox"></td>
                         <td>
                             <span class="cartTableGoodsName">상품명</span>
                         </td>
@@ -67,7 +71,7 @@
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>체크</td>
+                        <td><input type="checkbox"></td>
                         <td>
                             <span class="cartTableGoodsName">상품명</span>
                         </td>
@@ -105,7 +109,7 @@
 
 
         </div>
-        <div class="footer"></div>
+        <div class="footer" th:replace="footer :: footer"></div>
     </div>
 </body>
 </html>

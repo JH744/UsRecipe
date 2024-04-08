@@ -1,25 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  class=""><!--[endif]-->
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
     <title>유스레시피</title>
-    <link rel="stylesheet" href="../static/css/templateBody.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/templateBody.css"/>
+    <link rel="stylesheet" href="../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
+
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $("header").load("./header.html");
-            $(".footer").load("./footer.html");
-        });
-    </script>
 </head>
 <body >
-    <div class="templateBody">
-        <header></header>
-        <div class="mainBody">
-        </div>
-        <div class="footer"></div>
+<div class="templateBody">
+    <header>
+        <div class="header" th:replace="header :: header"></div>
+    </header>
+    <div class="mainBody">
+        ewedsafdsaf
     </div>
+    <div class="footer" th:replace="footer :: footer"></div>
+</div>
 </body>
 </html>

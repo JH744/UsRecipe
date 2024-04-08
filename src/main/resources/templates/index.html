@@ -1,28 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
     <link rel="stylesheet" href="../static/css/templateBody.css"/>
     <link rel="stylesheet" href="../static/css/main.css"/>
+    <link rel="stylesheet" href="../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("header").load("./header.html");
-            $(".footer").load("./footer.html");
-        });
-    </script>
-    <style>
 
-
-
-    </style>
 </head>
 <body>
 <div class="templateBody">
-    <header></header>
+    <header>
+        <div class="header" th:replace="header :: header"></div>
+    </header>
     <div class="mainBody">
         <div class=e56_3>
             <div class=e56_56>
@@ -46,14 +40,7 @@
             <div>
                 <span class="e56_55">주간 인기 레시피</span>
             </div>
-            <div class=e56_9>
-                <div class=e56_52>
-                    <div class="e56_53" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_16.png')">
-                        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-                            <span class="e56_39">초간단 김치볶음밥</span>
-                        </div>
-                    </div>
-                </div>
+            <div class=e56_9 style="margin-left: 150px">
                 <div class=e56_52>
                     <div class="e56_53" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_16.png')">
                         <div style="display: flex; flex-direction: column; justify-content: flex-end;">
@@ -129,14 +116,8 @@
             <div>
                 <span class="e56_23">회원님께 추천하는 레시피</span>
             </div>
-            <div class=e56_9>
-                <div class=e56_52>
-                    <div class="e56_53" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_25.png')">
-                        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-                            <span class="e56_39">초간단 김치볶음밥</span>
-                        </div>
-                    </div>
-                </div>
+            <div class=e56_9 style="margin-left: 150px">
+
                 <div class=e56_52>
                     <div class="e56_53" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_25.png')">
                         <div style="display: flex; flex-direction: column; justify-content: flex-end;">
@@ -169,7 +150,7 @@
             </div>
         </div>
     </div>
-    <div class="footer"></div>
+    <div class="footer" th:replace="footer :: footer"></div>
 </div>
 </body>
 </html>

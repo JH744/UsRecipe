@@ -1,4 +1,4 @@
-<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" class=""><!--[endif]-->
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" class=""><!--[endif]-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="../static/css/templateBody.css"/>
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(function () {
-            $("header").load("./header.html");
-            $(".footer").load("./footer.html");
+            $("header").load("../static/header.html");
+            $(".footer").load("../static/footer.html");
         });
     </script>
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap_20211222.css">
@@ -22,7 +24,9 @@
 
 <body>
 <div class="templateBody">
-    <header></header>
+    <header>
+        <div class="header" th:replace="header :: header"></div>
+    </header>
     <div class="mainBody">
         <div class="contentBody">
             <style type="text/css">
@@ -490,7 +494,7 @@
         </div>
     </div><!-- /contents_area -->
 </div>
-<div class="footer"></div>
+<div class="footer" th:replace="footer :: footer"></div>
 </div>
 </body>
 </html>

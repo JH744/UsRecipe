@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
@@ -10,6 +10,8 @@
     <link rel='stylesheet' href='../static/css/style.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
     <link rel='stylesheet' href='../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+    <link rel="stylesheet" href="../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
     <style>
 
         *{
@@ -109,10 +111,10 @@
             float: right;
             margin-right: 15px;
         }
-        .news-ul a:link, .news-ul a:visited, .news-ul a:active{
-            text-decoration: none;
-            color: #ffa550;
-        }
+        /*.news-ul a:link, .news-ul a:visited, .news-ul a:active{*/
+        /*    text-decoration: none;*/
+        /*    color: #ffa550;*/
+        /*}*/
         .news-ul a:hover{
             color: #D65454;
             font-weight: bold;
@@ -143,21 +145,24 @@
             text-decoration: underline;
             font-weight: bold;
         }
+        .input_span{
+            color: black;
+            font-family: Cafe24Dangdanghae;
+            font-size: 18px;
+            font-weight: bold;
+        }
 
 
 
 
     </style>
-    <script>
-        $(document).ready(function(){
-            $("header").load("./header.html");
-            $(".footer").load("./footer.html");
-        });
-    </script>
+
 </head>
 <body>
 <div class="templateBody">
-    <header></header>
+    <header>
+        <div class="header" th:replace="header :: header"></div>
+    </header>
     <div class="mainBody">
 
         <aside id="news_aside" style="margin-right: 10px;">
@@ -192,18 +197,16 @@
                                 <div id="primary" class="content-area column full" style="margin-top: -30px;">
                                     <main id="main" class="site-main" role="main">
 
-                                        <form action="" >
-                                            <span>아이디</span><br>
-                                            <input type="text" style="width: 350px; height: 55px; border: none" readonly><br>
-                                            <span>이메일</span><br>
-                                            <input type="email" style="width: 350px; height: 55px; border: none" readonly><br>
-                                            <span>주소 입력</span><br>
+                                        <form th:action method="post"> <!--th:object="*{memberDto}"-->
+                                            <span class="input_span">아이디</span><br>
+                                            <input type="text" style="width: 350px; height: 55px; border: none" th:value="${session.userid}" readonly><br>
+                                            <span class="input_span">주소 입력</span><br>
                                             <input type="text" style="width: 350px; height: 55px; border: none; margin-bottom: 10px;" placeholder="주소를 입력해주세요" >
                                             <button id="addrFind" style="width: 70px;height: 30px;  background-color:#D65454; border: none ; color: white">주소찾기</button><br>
                                             <input type="text" style="width: 350px; height: 55px; border: none" placeholder="상세주소 입력"><br>
-                                            <span>닉네임</span><br>
+                                            <span class="input_span">닉네임</span><br>
                                             <input type="text" style="width: 350px; height: 55px;  border: none" placeholder="닉네임을 입력해주세요"><br>
-                                            <span>비밀번호</span><br>
+                                            <span class="input_span">비밀번호</span><br>
                                             <input type="password" style="width: 350px; height: 55px; border: none" placeholder="새 비밀번호"><br>
                                             <input type="password" style="width: 350px; height: 55px; border: none" placeholder="비밀번호 확인"><br>
                                             <input type="submit" style="margin-left: 120px; background-color:#D65454; width: 150px;height: 50px; color: white" value="변경하기">
@@ -241,7 +244,7 @@
 
 
     </div>
-    <div class="footer"></div>
+    <div class="footer" th:replace="footer :: footer"></div>
 </div>
 </body>
 </html>

@@ -18,17 +18,17 @@ public class IngredientCategory {
     @Column(name = "ingredient_category_id")
     private Long id;
 
-    private String ingredient_category_name;
+    private String ingredientCategoryName;
 
     @Builder.Default
-    @OneToMany(mappedBy = "ingredient_ingredient_category")
-    private List<Ingredient> ingredient_list = new ArrayList<>();
+    @OneToMany(mappedBy = "ingredientIngredientCategory")
+    private List<Ingredient> ingredientList = new ArrayList<>();
 
     public IngredientCategory() {
     }
 
-    public IngredientCategory(String ingredient_category_name, List<Ingredient> ingredient_list) {
-        this.ingredient_category_name = ingredient_category_name;
-        this.ingredient_list = ingredient_list;
+    public IngredientCategory(String ingredientCategoryName, List<Ingredient> ingredientList) {
+        this.ingredientCategoryName = ingredientCategoryName;
+        this.ingredientList = ingredientList;
     }
 }

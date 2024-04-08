@@ -5,10 +5,6 @@
 .navbar-header, .navbar-form, .navbar-nav, .navbar-nav > li { float: left ;}
 /*a, a:focus, input:focus,bu:focus, .btn:active, .btn:hover {outline-style:none; }*/
 
-.materialCategory{
-    width:100px;
-    height: 50px;
-}
 
 
 /*main*/
@@ -6588,10 +6584,10 @@ a.label_like span {color:#f64000; padding:0 5px 0 0; vertical-align:middle;}
 .regi_left .regi_cont {padding:15px;}
 .regi_cont div:last-child {border:none;}
 .cont_box {padding:26px 30px; border-bottom:4px solid #f1f1f2; margin:0 -1px;}
-.cont_box input {background:#f5f5f5; border:1px solid #e1e1e1; font-size:16px; padding-left:15px; height:50px; vertical-align:middle; margin-top:-1px;}
-.cont_box select {background:#f5f5f5; border:1px solid #e1e1e1; font-size:16px; padding:8px 2px; margin:0 2px 0 0; border-radius:4px;}
+.cont_box input {background:#f5f5f5; border:1px solid #e1e1e1; font-size:16px;  height:50px; vertical-align:middle; margin-top:-1px;}
+.cont_box select {background:#f5f5f5; border:1px solid #e1e1e1; font-size:16px; padding:8px 2px; border-radius:4px;}
 
-.cont_box li input {display:inline-block; margin:0 3px; vertical-align:middle;}
+.cont_box li input {display:inline-block; margin:0 3px; vertical-align:middle; border-radius: 4px;}
 .cont_pic {width:170px; float:right; text-align:center;}
 .cont_pic p {margin:0 0 0 0 !important;}
 .cont_pic img {border:1px solid #e1e1e1;}
@@ -6623,8 +6619,8 @@ a.label_like span {color:#f64000; padding:0 5px 0 0; vertical-align:middle;}
 .cont_box .noti_btn {margin:15px 0 6px 0;}
 .cont_box ul {display:inline-block;}
 .cont_box ul, .cont_box li {list-style:none; margin:0; padding:0;}
-.cont_box li {margin-bottom:8px;}
-.cont_box .btn-del { background:url(//recipe1.ezmember.co.kr/img/btn_del2.gif) center no-repeat; display:inline-block; width:30px; height:30px; vertical-align:middle;}
+.cont_box li {margin-bottom:12px;}
+.cont_box .btn-del { background:url(//recipe1.ezmember.co.kr/img/btn_del2.gif) center no-repeat; display:inline-block; width:30px; height:30px; vertical-align:middle;margin-top:10px;}
 .cont_box .btn-lineup { background:url(//recipe1.ezmember.co.kr/img/btn_lineup.gif) center no-repeat; display:inline-block; width:30px; height:30px; vertical-align:middle;}
 .note-editor p {font-size:16px; line-height:200%; margin:0;}
 .note-editor ul {display:none;}
@@ -7274,42 +7270,41 @@ a.label_like span {color:#f64000; padding:0 5px 0 0; vertical-align:middle;}
 .etc_wrap .form-group .form-control {width:320px; margin:0 auto; height:50px; background:#f5f5f5;}
 .etc_wrap .btn-success, .etc_wrap .btn-primary {margin-top:10px;}
 
-.footer {background:#fff; color:#999; padding:2px 0 5px 0; margin-top:30px; border-top:1px solid #dcdcdc;}
-.footer .intro {width:428px; padding:26px 0 0 24px;}
-.footer .intro h3 {font-weight:bold;}
-.footer .intro p.f_link {margin:0; padding-bottom:16px;}
-.footer .intro p.f_info {font-size:13px; line-height:1.6; margin-bottom:16px; }
-.footer .intro p.f_link a { font-size:13px; color:#999;}
-.footer .intro p.f_link span {color:#ddd; padding:0 4px;}
-.footer .intro .copyright {font-size:12px; padding:20px 0; color:#999; font-family:Helvetica;}
-.footer .banner {width:200px; padding:25px 0 0 0; position:relative;}
-.footer .banner a {margin-bottom:9px; display:block;}
-.footer .facebook {width:320px; padding:25px 0 0 22px;}
-.footer .comment {width:300px; padding:28px 0 0 0;}
-.footer .comment b {padding-bottom:14px; display:block;}
-.footer .comment textarea {width:300px; height:150px; font-size:13px; background:#f5f5f5; border:1px solid #e6e7e8;}
-.footer .comment button {border:1px solid #dcdcdc; background:#fff; border-radius:0; color:#444; width:300px; margin:8px 0 0 -1px;}
-.footer .comment p.noti {margin:0; padding:10px 0 0 0; text-align:center; width:300px; font-size:13px; color:#999; display:block;}
-.footer .app_layer {background:url(//recipe1.ezmember.co.kr/img/bg_layer4.png) left top; width:372px; height:321px; position:absolute; left:-10px; top:-300px; padding:12px 12px; z-index:1000;}
+ .intro {width:428px; padding:26px 0 0 24px;}
+ .intro h3 {font-weight:bold;}
+ .intro p.f_link {margin:0; padding-bottom:16px;}
+ .intro p.f_info {font-size:13px; line-height:1.6; margin-bottom:16px; }
+ .intro p.f_link a { font-size:13px; color:#999;}
+ .intro p.f_link span {color:#ddd; padding:0 4px;}
+ .intro .copyright {font-size:12px; padding:20px 0; color:#999; font-family:Helvetica;}
+ .banner {width:200px; padding:25px 0 0 0; position:relative;}
+ .banner a {margin-bottom:9px; display:block;}
+ .facebook {width:320px; padding:25px 0 0 22px;}
+ .comment {width:300px; padding:28px 0 0 0;}
+ .comment b {padding-bottom:14px; display:block;}
+ .comment textarea {width:300px; height:150px; font-size:13px; background:#f5f5f5; border:1px solid #e6e7e8;}
+ .comment button {border:1px solid #dcdcdc; background:#fff; border-radius:0; color:#444; width:300px; margin:8px 0 0 -1px;}
+ .comment p.noti {margin:0; padding:10px 0 0 0; text-align:center; width:300px; font-size:13px; color:#999; display:block;}
+ .app_layer {background:url(//recipe1.ezmember.co.kr/img/bg_layer4.png) left top; width:372px; height:321px; position:absolute; left:-10px; top:-300px; padding:12px 12px; z-index:1000;}
 .app_layer  p.tit {font-size:14px; color:#444; border-bottom:1px solid #ebebeb; padding:10px 0; background:#f8f8f8; text-align:center; font-weight:bold; line-height:18px; margin:0;}
-.footer .app_layer .layer_l {width:172px; border-right:1px solid #ebebeb; display:inline-block; text-align:center; padding:12px 0 8px;}
-.footer .app_layer .layer_r {width:172px; display:inline-block; text-align:center; padding:12px 0 8px;}
-.footer .app_layer .layer_l a, .footer .app_layer .layer_r a {margin-top:14px;}
-.footer .banner_sns {padding-top:20px;}
-.footer .banner_sns a {display:table-cell;}
+ .app_layer .layer_l {width:172px; border-right:1px solid #ebebeb; display:inline-block; text-align:center; padding:12px 0 8px;}
+ .app_layer .layer_r {width:172px; display:inline-block; text-align:center; padding:12px 0 8px;}
+ .app_layer .layer_l a,  .app_layer .layer_r a {margin-top:14px;}
+ .banner_sns {padding-top:20px;}
+ .banner_sns a {display:table-cell;}
 
-.footer.st2 {background:#289f5d; margin-top:0; border-top:none;}
-.footer.st2 .container {padding:18px 0 18px 40px;}
-.footer.st2 .btm_stats {background:url(//recipe1.ezmember.co.kr/img/btm_line.png) 32px 24px no-repeat; display:inline-block; vertical-align:middle; padding:0; margin-left:22px;}
-.footer.st2 .btm_stats li {text-align:center; display:inline-block; color:#fff; font-size:12px; width:160px;}
-.footer.st2 .btm_stats li span {width:100%; height:66px; display:block; margin-bottom:6px;}
-.footer.st2 .btm_stats li b {color:#fdff51; display:block; font-size:18px; font-weight:normal; margin-top:4px;}
-.footer.st2 .btm_stats_1 {background:url(//recipe1.ezmember.co.kr/img/btm_icon1.png) center no-repeat;}
-.footer.st2 .btm_stats_2 {background:url(//recipe1.ezmember.co.kr/img/btm_icon2.png) center no-repeat;}
-.footer.st2 .btm_stats_3 {background:url(//recipe1.ezmember.co.kr/img/btm_icon3.png) center no-repeat;}
-.footer.st2 .btm_stats_4 {background:url(//recipe1.ezmember.co.kr/img/btm_icon4.png) center no-repeat;}
-.footer.st2 .btm_stats_5 {background:url(//recipe1.ezmember.co.kr/img/btm_icon5.png) center no-repeat;}
-.footer.st2 .btm_mail {background:url(//recipe1.ezmember.co.kr/img/btm_img1.png) left top no-repeat; padding:12px 0 0 108px; display:inline-block; margin-left:10px;}
+.st2 {margin-top:0; border-top:none;}
+.st2 .container {padding:18px 0 18px 40px;}
+.st2 .btm_stats {background:url(//recipe1.ezmember.co.kr/img/btm_line.png) 32px 24px no-repeat; display:inline-block; vertical-align:middle; padding:0; margin-left:22px;}
+.st2 .btm_stats li {text-align:center; display:inline-block; color:#fff; font-size:12px; width:160px;}
+.st2 .btm_stats li span {width:100%; height:66px; display:block; margin-bottom:6px;}
+.st2 .btm_stats li b {color:#fdff51; display:block; font-size:18px; font-weight:normal; margin-top:4px;}
+.st2 .btm_stats_1 {background:url(//recipe1.ezmember.co.kr/img/btm_icon1.png) center no-repeat;}
+.st2 .btm_stats_2 {background:url(//recipe1.ezmember.co.kr/img/btm_icon2.png) center no-repeat;}
+.st2 .btm_stats_3 {background:url(//recipe1.ezmember.co.kr/img/btm_icon3.png) center no-repeat;}
+.st2 .btm_stats_4 {background:url(//recipe1.ezmember.co.kr/img/btm_icon4.png) center no-repeat;}
+.st2 .btm_stats_5 {background:url(//recipe1.ezmember.co.kr/img/btm_icon5.png) center no-repeat;}
+.st2 .btm_mail {background:url(//recipe1.ezmember.co.kr/img/btm_img1.png) left top no-repeat; padding:12px 0 0 108px; display:inline-block; margin-left:10px;}
 
 .chef_apply .apply_info {background:#fff; padding:50px 0 60px 0; text-align:center; color:#444;}
 .chef_apply .apply_info dl {padding:0 0 50px 0;}
@@ -9133,4 +9128,41 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 .rcp_list2022_new_cont_hit_rv .hit_rv_ea { color: #929393; line-height: 1; margin-left: 1px; vertical-align: 0; font-size: 12px; margin-top: -1px; }
 .rcp_list2022_new_cont_hit_ea { display: inline-block; line-height: 1; color: #999; background: url(//recipe1.ezmember.co.kr/img/mobile/icon_dot7.png) left 2px no-repeat; background-size: 1px 12px; padding-left: 8px; font-size: 12px;}
 .rcp_list2022_new_cont_hit_ea a { color: #999;}
+
+.ingredientGroup{
+    display: flex;
+    align-content: start;
+}
+
+.ingredientCategory{
+    width:130px;
+    height: 50px;
+    margin: 0 3px;
+    text-align: center;
+}
+
+.ingredientName{
+    width:240px;
+    height: 50px;
+    margin: 0 3px;
+    text-align: center;
+}
+
+#cok_sq_category_4{
+    margin: 0;
+}
+
+.modal_IngredientSelect{
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal_IngredientSelect_column{
+    display: flex;
+    justify-content: space-between;
+    background:#9fa094;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0 10px 0 30px;
+}
 

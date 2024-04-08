@@ -9,24 +9,29 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig{
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests()
-                .requestMatchers("/", "/join", "/all/**", "/joinOk", "/css/**", "/font/**", "/images/**").permitAll()
+        http
+                .authorizeRequests()
+                .requestMatchers("/", "/join","/joinOk","/static/**","/recipe/**","/listIngredient/**","/cart/**","/order/**","/orderOK")
+                .permitAll()
                 .requestMatchers("/admin/**").hasRole("admin")
-                .anyRequest().authenticated();
+                .anyRequest().authenticated()
+                .and()
+                .csrf().disable();
 
-        http.formLogin().loginPage("/login").permitAll();
+        http.formLogin().loginPage("/login").permitAll()
+                .defaultSuccessUrl("/");
 
         http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .invalidateHttpSession(true)
                 .logoutSuccessUrl("/login");
 
-
         http.httpBasic();
-        return http.build();
 
+
+        return http.build();
     }
 }

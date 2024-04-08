@@ -5,7 +5,7 @@
     <title>회원가입</title>
 </head>
 <body>
-<form th:action="@{/join}" method="post" th:object="${memberFormDto}" name="memberFormDto">
+<form th:action="@{/jointest}" method="post" th:object="${memberFormDto}" name="memberFormDto">
     <div>
         <label for="userid">아이디:</label>
         <input type="text" id="userid" name="userid" th:field="*{userid}" required />

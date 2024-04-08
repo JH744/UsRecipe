@@ -16,17 +16,17 @@ import java.util.List;
 @Getter
 public class RecipeCategory {
     @Id@GeneratedValue
-    @Column(name = "recipe_category_id")
+    @Column(name = "recipeCategory_id")
     private Long id;
 
-    private String recipe_category_name;
+    private String recipeCategoryName;
 
     @Builder.Default
-    @OneToMany(mappedBy = "recipe_category")
-    private List<Recipe> recipe_list = new ArrayList<>();
+    @OneToMany(mappedBy = "recipeCategory")
+    private List<Recipe> recipeList = new ArrayList<>();
 
-    public RecipeCategory(String recipe_category_name, List<Recipe> recipe_list) {
-        this.recipe_category_name = recipe_category_name;
-        this.recipe_list = recipe_list;
+    public RecipeCategory(String recipeCategoryName, List<Recipe> recipeList) {
+        this.recipeCategoryName = recipeCategoryName;
+        this.recipeList = recipeList;
     }
 }
