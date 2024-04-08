@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -28,27 +29,54 @@ public class IngredientController {
     @GetMapping("/listIngredient/{page}")
     public String listAll(@PathVariable("page") int page, Model model,
                           @RequestParam(required = false ) Long category,
-                          @RequestParam(required = false ) String sort,
+                          @RequestParam(required = false ) String sortBy,
+                          @RequestParam(required = false ) String direction,
                           HttpSession session){
 
-        Pageable pageable =PageRequest.of(page-1, 6);
 
         //category에 null이 아닌 새값이 전달된 경우 세션에 새롭게 저장.
         if(category != null) {
             session.setAttribute("category", category);
         }else {
             //category가 null이라면 기존session에서 값을 가져옴
-             category= (Long) session.getAttribute("category");
+            category= (Long) session.getAttribute("category");
         }
 
 
         //sort에 null이 아닌 새값이 전달된 경우 세션에 새롭게 저장.
-        if(sort != null) {
-            session.setAttribute("sort", sort);
+        if(sortBy != null) {
+            session.setAttribute("sort", sortBy);
+            System.out.println("sortBy저장됨");
+            System.out.println(session.getAttribute("sort"));
+            session.setAttribute("direction", direction);
+            System.out.println("direction저장됨");
+            System.out.println(session.getAttribute("direction"));
         }else {
             //sort가 null이면 기존session에서 값을 가져옴
-           sort = (String) session.getAttribute("sort");
+            sortBy = (String) session.getAttribute("sort");
+            direction = (String) session.getAttribute("direction");
         }
+
+
+
+        Pageable pageable;
+        //정렬조건 유무에 따른 로직 설정
+        if (sortBy != null && !sortBy.isEmpty()) {  //정렬조건이 넘어 올 경우
+            Sort.Direction Direction = (direction.equals("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC );
+            pageable = PageRequest.of(page-1, 6, Direction, sortBy);
+            System.out.println("소트 뽑아봄");
+            System.out.println(sortBy);
+            System.out.println(pageable.getSort());
+        } else {  // 정렬 방향이 지정되지 않았을 경우 기본값 사용
+            pageable = PageRequest.of(page-1, 6);
+        }
+
+
+
+
+
+
+
         //카테고리가 전체보기(000)이라면 모든 목록 불러오기
         if(category == null || category == 000) {
             Page<Ingredient>  list = is.listAll(pageable);
