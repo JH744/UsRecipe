@@ -4,6 +4,7 @@ import com.example.FP.dto.MemberDto;
 import com.example.FP.entity.Member;
 import com.example.FP.mapper.MemberMapper;
 import com.example.FP.service.MemberService;
+import com.example.FP.service.OrdersService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class MemberController {
 
+    private final OrdersService os;
     private final MemberService memberService;
 
     private final PasswordEncoder passwordEncoder;
@@ -151,6 +153,13 @@ public class MemberController {
 //        memberService.join(member);
 
         return "redirect:/";
+
+    }
+    @GetMapping("/orderList")
+    public String orderList(Model model,HttpSession session){
+        String userid = (String)session.getAttribute("userid");
+        model.addAttribute("list",os.listAllByUserId(userid));
+        return "/orderList";
 
     }
 

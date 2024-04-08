@@ -25,7 +25,6 @@ public class MainController {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String username = userDetails.getUsername();
             session.setAttribute("userid", username);
-            model.addAttribute("info",ms.findByUseridInfo(username));
             System.out.println(username);
         }
 
@@ -33,4 +32,5 @@ public class MainController {
         return "index";
 
     }
+
 }
