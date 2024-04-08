@@ -20,11 +20,11 @@ public class OftenQuestion {
     @Column(name = "often_question_id")
     private Long id;
 
-    private String often_question_title;
-    private String often_question_answer;
+    private String oftenQuestionTitle;
+    private String oftenQuestionAnswer;
 
-    public OftenQuestion(String often_question_title, String often_question_answer) {
-        this.often_question_title = often_question_title;
-        this.often_question_answer = often_question_answer;
+    public OftenQuestion(String oftenQuestionTitle, String oftenQuestionAnswer) {
+        this.oftenQuestionTitle = oftenQuestionTitle;
+        this.oftenQuestionAnswer = oftenQuestionAnswer;
     }
 }
