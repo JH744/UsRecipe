@@ -19,15 +19,15 @@ public class WishList {
 
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member wishlist_member;
+    private Member wishlistMember;
 
     @ManyToOne
     @JoinColumn(name = "recipe_id")
-    private Recipe wishlist_recipe;
+    private Recipe wishlistRecipe;
 
-    public WishList(Member wishlist_member, Recipe wishlist_recipe) {
-        this.wishlist_member = wishlist_member;
-        this.wishlist_recipe = wishlist_recipe;
+    public WishList(Member wishlistMember, Recipe wishlistRecipe) {
+        this.wishlistMember = wishlistMember;
+        this.wishlistRecipe = wishlistRecipe;
     }
 
     public static WishList createCart(Recipe recipe,Member member){

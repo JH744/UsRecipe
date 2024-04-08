@@ -22,6 +22,7 @@
             var check_id = false;
             var email_check = false;
             var nickname_check = false;
+            var authcode_check = false;
             function id_check(){
                 var id = $(".field_id input").val();             // 변수 id에  id값 대입
                 var spe = /[~!@#$%^&*()_+|<>?:{}]/;
@@ -205,6 +206,18 @@
                 pw2_check();
             });
 
+            function on_addr1_check(){             //주소
+                var addr = $(".field_address input").val();
+                if(addr.length == 0){
+
+                    alert('주소를 입력해주세요');
+                    return false;
+                }else{
+
+                    return true;
+                }
+            }
+
 
             //아이디 중복 체크
             $('.field_id .btn').click(function(){
@@ -238,30 +251,30 @@
                 });
             });
 
-            //이메일 중복 체크
-            $('.field_email .btn').click(function(){
-                if ($('.field_email input').val() == '') {    //만약에 아무것도 입력 되지 않은 상태면
+            //이메일 인증 체크
+            $('.field_email #check').click(function(){
+                if ($('#email').val() == '') {    //만약에 아무것도 입력 되지 않은 상태면
                     alert('이메일을 입력해주세요');
                     return;
                 }
                 email_overlap_input = document.querySelector('input[name="email"]');
-                var email = encodeURIComponent($('.field_email input').val())
+                var email = encodeURIComponent($('#email').val())
                 console.log(email);
                 $.ajax({
                     type: "POST",
-                    url: "/email_check",    //해당 url로 데이터를 넘김
+                    url: "/sendEmail",    //해당 url로 데이터를 넘김
                     data: email,
                     success: function (data) {
                         console.log(data);
-                        if (data == "fail") {
+                        if (data['success'] == "fail") {
                             alert("이미 존재하는 이메일 입니다.");
                             email_overlap_input.focus();
                             email_check = false;
                             return;
                         } else {
-                            alert("사용가능한 이메일 입니다.");
+                            alert("사용가능한 이메일 입니다. 인증번호 발송");
                             $('#authForm').show();
-                            $('input[name="authCodeInput"]').removeAttr('disabled');
+                            $('input[name="authCode"]').removeAttr('disabled');
                             email_check = true;
                             return;
                         }
@@ -292,6 +305,34 @@
                         } else {
                             alert("사용가능한 닉네임 입니다.");
                             nickname_check = true;
+                            return;
+                        }
+                    }
+                });
+            });
+
+            // 인증번호 체크
+            $('#auth_btn').click(function(){
+                if ($('#authCode').val() == '') {    //만약에 아무것도 입력 되지 않은 상태면
+                    alert('인증번호을 입력해주세요');
+                    return;
+                }
+                authForm_overlap_input = document.querySelector('input[name="authCode"]');
+                var authCode = $('#authCode').val();
+                console.log(authCode);
+                $.ajax({
+                    type: "POST",
+                    url: "/mailCheck",    //해당 url로 데이터를 넘김
+                    data: authCode,
+                    success: function (data) {
+                        console.log(data);
+                        if (data == "fail") {
+                            alert("인증번호가 틀렸습니다.");
+                            authcode_check = false;
+                            return;
+                        } else {
+                            alert("인증 완료.");
+                            authcode_check = true;
                             return;
                         }
                     }
@@ -385,7 +426,15 @@
                     event.preventDefault()
                     alert("닉네임 중복확인 하시오")
                     return false;
+                } else if(on_addr1_check() == check) {
+                    event.preventDefault()
+                    return false;
+                } else if(authcode_check == check) {
+                    event.preventDefault()
+                    alert("인증번호를 입력하시오")
+                    return false;
                 }
+
             })
         });
     </script>
@@ -497,9 +546,9 @@
 
                                         <td>
                                             <input type="email" th:name="email" th:field="*{email}" size="30" required="" option="regEmail" label="이메일" placeholder="예: recipe@recipe.com">
-                                            <a href="#" class="btn default">인증하기</a>
+                                            <a href="#" id="check" class="btn default">인증하기</a>
                                             <div id="authForm" style="display: none;">
-                                                <input type="text" size="30" required="" label="이메일" placeholder="인증번호 입력" id="authCodeInput" name="authCodeInput" disabled>
+                                                <input type="text" size="30" required="" placeholder="인증번호 입력" id="authCode" name="authCode" disabled>
                                                 <button href="#" id="auth_btn" class="btn default">확인</button>
                                             </div>
                                         </td>

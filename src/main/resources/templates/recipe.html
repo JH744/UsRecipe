@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
@@ -19,147 +19,77 @@
     </script>
 </head>
 <body >
-<div class="templateBody">
-    <header></header>
-    <div class="mainBody">
-        <div class="sortContainer">
-            <ul class="sortbox1" id="sortbox1">
-                <li>전체</li>
-                <li>중식</li>
-                <li>간편식</li>
-                <li>한식</li>
-                <li>일식</li>
-                <li>퓨전</li>
-            </ul>
-            <ul class="sortbox2" id="sortbox2">
-                <li>최신 순</li>
-                <li>오래된 순</li>
-                <li>크리에이터 순</li>
-                <li>조회수 순</li>
-                <li>닉네임 순</li>
-            </ul>
-        </div>
-        <div class="HowAboutContainer">
-            <h3>이 레시피는 어때요?</h3>
-            <div class="serchbox">
-                <input type="text" class="searchbar" id="searchbar">
-                <button class="btnsearch" id="btnsearch">
+
+    <div class="templateBody">
+        <header></header>
+        <div class="mainBody">
+            <div class="sortContainer">
+                <ul class="sortbox1" id="sortbox1">
+                    <li>전체</li>
+                    <li>중식</li>
+                    <li>간편식</li>
+                    <li>한식</li>
+                    <li>일식</li>
+                    <li>퓨전</li>
+                </ul>
+                <ul class="sortbox2" id="sortbox2">
+                    <li>최신 순</li>
+                    <li>오래된 순</li>
+                    <li>크리에이터 순</li>
+                    <li>조회수 순</li>
+                    <li>닉네임 순</li>
+                </ul>
+            </div>
+            <div class="HowAboutContainer">
+                <h3>이 레시피는 어때요?</h3>
+                <div class="serchbox">
+                    <input type="text" class="searchbar" id="searchbar">
+                    <button class="btnsearch" id="btnsearch">
                     검색
-                </button>
-            </div>
-            <div class="Thisrecipe">
-                <h3>골-든 오믈렛</h3>
-            </div>
-            <div class="ThisrecipeInfo">
-                <div class="infobox">
-                    <h4>아침을 깨우는 예술, 부드러운 향연</h4>
-                    <p>황금빛 겉면 아래 숨겨진 부드러움과 고소한 치즈의 조화,
-                        오믈렛은 당신의 아침 식탁을 예술작품으로 변모시킵니다.
-                        신선한 허브와 다채로운 재료가 더해져 매 순간을
-                        특별하게 만드는 이 요리로 하루를 긍정적으로 시작해보세요.</p>
+                    </button>
+                 </div>
+                 <div class="Thisrecipe">
+                    <h3>골-든 오믈렛</h3>
+                 </div>
+                 <div class="ThisrecipeInfo">
+                    <div class="infobox">
+                        <h4>아침을 깨우는 예술, 부드러운 향연</h4>
+                        <p>황금빛 겉면 아래 숨겨진 부드러움과 고소한 치즈의 조화, 
+                            오믈렛은 당신의 아침 식탁을 예술작품으로 변모시킵니다. 
+                            신선한 허브와 다채로운 재료가 더해져 매 순간을 
+                            특별하게 만드는 이 요리로 하루를 긍정적으로 시작해보세요.</p>
+                    </div>
                 </div>
-            </div>
 
-        </div>
-        <div class="hotrecipecontainer">
+            </div>
+            <div class="hotrecipecontainer">
 
-            <h3>주간 인기 레시피</h3>
-            <div class="hotrecipebox">
-                <div class="hotrecipe1"><span>초간단 김치볶음밥</span></div>
-                <div class="hotrecipe2"><span>초간단 김치볶음밥</span></div>
-                <div class="hotrecipe3"><span>초간단 김치볶음밥</span></div>
-                <div class="hotrecipe4"><span>초간단 김치볶음밥</span></div>
+                <h3>주간 인기 레시피</h3>
+                <div class="hotrecipebox">
+                    <div class="hotrecipe1"><span>초간단 김치볶음밥</span></div>
+                    <div class="hotrecipe2"><span>초간단 김치볶음밥</span></div>
+                    <div class="hotrecipe3"><span>초간단 김치볶음밥</span></div>
+                    <div class="hotrecipe4"><span>초간단 김치볶음밥</span></div>
+                </div>
             </div>
-        </div>
+            
+            <div class="recipeContainer">
 
-        <div class="recipeContainer">
+                <div class="recipeItem"  th:each=" r : ${list}">
+                    <div class="recipeItem_img"></div>
+                    <div class="recipeItem_info">
+                        <p th:text="${r.recipe_title}"></p>
+                        <span th:text="${r.recipe_writer}">닉네임</span><br>
+                        <span>조회수</span>
+                    </div>
+                </div>
 
-            <div class="recipeItem">
-                <div class="recipeItem_img"></div>
-                <div class="recipeItem_info">
-                    <p>레시피명</p>
-                    <span>닉네임</span><br>
-                    <span>조회수</span>
-                </div>
-            </div>
-            <div class="recipeItem">
-                <div class="recipeItem_img"></div>
-                <div class="recipeItem_info">
-                    <p>레시피명</p>
-                    <span>닉네임</span><br>
-                    <span>조회수</span>
-                </div>
-            </div>
-            <div class="recipeItem">
-                <div class="recipeItem_img"></div>
-                <div class="recipeItem_info">
-                    <p>레시피명</p>
-                    <span>닉네임</span><br>
-                    <span>조회수</span>
-                </div>
-            </div>
-            <div class="recipeItem">
-                <div class="recipeItem_img"></div>
-                <div class="recipeItem_info">
-                    <p>레시피명</p>
-                    <span>닉네임</span><br>
-                    <span>조회수</span>
-                </div>
-            </div>
-            <div class="recipeItem">
-                <div class="recipeItem_img"></div>
-                <div class="recipeItem_info">
-                    <p>레시피명</p>
-                    <span>닉네임</span><br>
-                    <span>조회수</span>
-                </div>
-            </div>
-            <div class="recipeItem">
-                <div class="recipeItem_img"></div>
-                <div class="recipeItem_info">
-                    <p>레시피명</p>
-                    <span>닉네임</span><br>
-                    <span>조회수</span>
-                </div>
-            </div>
-            <div class="recipeItem">
-                <div class="recipeItem_img"></div>
-                <div class="recipeItem_info">
-                    <p>레시피명</p>
-                    <span>닉네임</span><br>
-                    <span>조회수</span>
-                </div>
-            </div>
-            <div class="recipeItem">
-                <div class="recipeItem_img"></div>
-                <div class="recipeItem_info">
-                    <p>레시피명</p>
-                    <span>닉네임</span><br>
-                    <span>조회수</span>
-                </div>
-            </div>
 
+
+            </div>
 
 
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -170,5 +100,6 @@
     </div>
     <div class="footer"></div>
 </div>
+
 </body>
 </html>
