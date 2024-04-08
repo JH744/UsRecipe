@@ -3,225 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
-    <link rel="stylesheet" href="../static/css/templateBody.css" />
-    <link rel="stylesheet" href="../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/templateBody.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/footer.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/join.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/join.css">
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <script>
-        $(document).ready(function(){
-            $("header").load("../static/header.html");
-            $(".footer").load("../static/footer.html");
-        });
+
     </script>
-    <link rel="stylesheet" href="/static/css/join.css">
-
-    <link rel="stylesheet" href="../main/css/reset.css">
-    <link rel="stylesheet" href="../main/css/common.css">
-    <link rel="stylesheet" href="./css/join.css">
-
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="./js/join.js"></script>
-    <script src="../main/js/common.js"></script>
-
-
-    <link rel="stylesheet" type="text/css" href="../static/css/join.css">
-    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
     <script>
-        function id_check(){
-            var id = $(".field_id input").val();             // 변수 id에  id값 대입
-            var spe = /[~!@#$%^&*()_+|<>?:{}]/;
+        $(function (){
+            var check_id = false;
+            var email_check = false;
+            var nickname_check = false;
+            function id_check(){
+                var id = $(".field_id input").val();             // 변수 id에  id값 대입
+                var spe = /[~!@#$%^&*()_+|<>?:{}]/;
 
 
 
-            if(id.length < 6){                     //만약에 id의 길이가 6보다 작으면
-                $(".field_id .txt_guide .txt_case1").css('color', '#b3130b');   //글자색 변경
-            }else if(spe.test(id) == 1){    //spe.test(id) --> id안에 특수문자가 있으면 true반환 없으면 false반환
-                $(".field_id .txt_guide .txt_case1").css('color', '#b3130b');   //글자색 변경
-            }else{          // 모든 조건이 일치하지 않다면
-                $(".field_id .txt_guide .txt_case1").css('color', '#0f851a');  //글자색 초록색으로 변경
-            }
-        }
-
-        function pw_check(){
-            var pw = $(".field_pw input").val();                   // 변수 pw에 pw값 대입
-            var num = /[0-9]/;
-            var eng = /[a-zA-Z]/;
-            var spe = /[~!@#$%^&*()_+|<>?:{}]/;
-
-            if(pw.length < 10){                                  //pw의 길이가 10 이하일 때
-                $(".field_pw .txt_guide .txt_case1").css('color', '#b3130b');
-            }
-
-            if(pw.length >= 10){                                  //pw의 길이가 10 이상일 때
-                $(".field_pw .txt_guide .txt_case1").css('color', '#0f851a');
-            }
-
-            if(num.test(pw) == 0 || eng.test(pw) == 0 || spe.test(pw) == 0){    // pw의 숫자가 없거나 , 영어가 없거나, 특수문자가 없을경우 실패
-                $(".field_pw .txt_guide .txt_case2").css('color', '#b3130b');
-            }
-
-
-            if(num.test(pw) == 1 && eng.test(pw) == 1 && spe.test(pw) == 1){ // pw의 숫자,영어,특수문자가 1개이상씩 있을경우 성공
-                $(".field_pw .txt_guide .txt_case2").css('color', '#0f851a');
-            }
-
-        }
-
-
-
-        function pw2_check(){
-            var pwd1 = $(".field_pw input").val();
-            var pwd2 = $(".field_repw input").val();
-
-            if ( pwd1 != '' && pwd2 == '' ) {          //둘다 빈칸일 경우 아무것도 하지 않음
-                null;
-            } else if (pwd1 != "" || pwd2 != "") {     // 빈칸이 아닐 경우
-                if (pwd1 == pwd2) {                    // 비교해서 같으면
-                    $(".field_repw .txt_guide .txt_case1").css('color', '#0f851a');
-                    $(".field_repw .txt_guide .txt_case1").text("비밀번호가 동일합니다.");
-
-
-                } else {        // 비교해서 같지 않으면
-                    $(".field_repw .txt_guide .txt_case1").css('color', '#b3130b');
-                    $(".field_repw .txt_guide .txt_case1").text("비밀번호가 일치하지 않습니다.");
+                if(id.length < 6){                     //만약에 id의 길이가 6보다 작으면
+                    $(".field_id .txt_guide .txt_case1").css('color', '#b3130b');   //글자색 변경
+                }else if(spe.test(id) == 1){    //spe.test(id) --> id안에 특수문자가 있으면 true반환 없으면 false반환
+                    $(".field_id .txt_guide .txt_case1").css('color', '#b3130b');   //글자색 변경
+                }else{          // 모든 조건이 일치하지 않다면
+                    $(".field_id .txt_guide .txt_case1").css('color', '#0f851a');  //글자색 초록색으로 변경
                 }
             }
-        }
-    </script>
 
-    <script>
-        // onsubmit 관련된 코드짜기
-        function on_id_check(){          //id 검사 함수
-            // var id = $(".field_id input").val();
-            // var spe = /[~!@#$%^&*()_+|<>?:{}]/;
-            // if(id.length < 6){
-            //     alert('아이디를 정확히 입력해주세요');
-            //     return false;
-            // }else if(spe.test(id) == 1){
-            //
-            //     alert('아이디를 정확히 입력해주세요');
-            //     return false;
-            // }
-            // else{
-            //
-            //     return true;
-            // }
-            return true;
-        }
+            function pw_check(){
+                var pw = $(".field_pw input").val();                   // 변수 pw에 pw값 대입
+                var num = /[0-9]/;
+                var eng = /[a-zA-Z]/;
+                var spe = /[~!@#$%^&*()_+|<>?:{}]/;
 
-        function on_pw_check(){           //비밀번호 검사 함수
-            var pw = $(".field_pw input").val();
-            var num = /[0-9]/;
-            var eng = /[a-zA-Z]/;
-            var spe = /[~!@#$%^&*()_+|<>?:{}]/;
-            if(pw.length < 10){
+                if(pw.length < 10){                                  //pw의 길이가 10 이하일 때
+                    $(".field_pw .txt_guide .txt_case1").css('color', '#b3130b');
+                }
 
-                alert('비밀번호를 정확히 입력해주세요');
-                return false;
-            }else if(num.test(pw) == 0 || eng.test(pw) == 0 || spe.test(pw) == 0){
+                if(pw.length >= 10){                                  //pw의 길이가 10 이상일 때
+                    $(".field_pw .txt_guide .txt_case1").css('color', '#0f851a');
+                }
 
-                alert('비밀번호를 정확히 입력해주세요');
-                return false;
+                if(num.test(pw) == 0 || eng.test(pw) == 0 || spe.test(pw) == 0){    // pw의 숫자가 없거나 , 영어가 없거나, 특수문자가 없을경우 실패
+                    $(".field_pw .txt_guide .txt_case2").css('color', '#b3130b');
+                }
+
+
+                if(num.test(pw) == 1 && eng.test(pw) == 1 && spe.test(pw) == 1){ // pw의 숫자,영어,특수문자가 1개이상씩 있을경우 성공
+                    $(".field_pw .txt_guide .txt_case2").css('color', '#0f851a');
+                }
+
             }
-            else{
 
+
+
+            function pw2_check(){
+                var pwd1 = $(".field_pw input").val();
+                var pwd2 = $(".field_repw input").val();
+
+                if ( pwd1 != '' && pwd2 == '' ) {          //둘다 빈칸일 경우 아무것도 하지 않음
+                    null;
+                } else if (pwd1 != "" || pwd2 != "") {     // 빈칸이 아닐 경우
+                    if (pwd1 == pwd2) {                    // 비교해서 같으면
+                        $(".field_repw .txt_guide .txt_case1").css('color', '#0f851a');
+                        $(".field_repw .txt_guide .txt_case1").text("비밀번호가 동일합니다.");
+
+
+                    } else {        // 비교해서 같지 않으면
+                        $(".field_repw .txt_guide .txt_case1").css('color', '#b3130b');
+                        $(".field_repw .txt_guide .txt_case1").text("비밀번호가 일치하지 않습니다.");
+                    }
+                }
+            }
+
+            // onsubmit 관련된 코드짜기
+            function on_id_check(){          //id 검사 함수
+                var id = $(".field_id input").val();
+                var spe = /[~!@#$%^&*()_+|<>?:{}]/;
+                if(id.length < 6){
+                    alert('아이디를 정확히 입력해주세요');
+                    return false;
+                }else if(spe.test(id) == 1){
+                    alert('아이디를 정확히 입력해주세요');
+                    return false;
+                }
+                else{
+
+                    return true;
+                }
                 return true;
             }
-        }
 
-        function on_pw2_check(){           //비밀번호 확인 검사 함수
-            var pw = $(".field_pw input").val();
-            var pw2 = $(".field_repw input").val();
-            if(pw2.length == 0){
+            function on_pw_check(){           //비밀번호 검사 함수
+                var pw = $(".field_pw input").val();
+                var num = /[0-9]/;
+                var eng = /[a-zA-Z]/;
+                var spe = /[~!@#$%^&*()_+|<>?:{}]/;
+                if(pw.length < 10){
 
-                alert('비밀번호 확인을 다시해주세요');
-                return false;
-            }else if(pw != pw2){
+                    alert('비밀번호를 정확히 입력해주세요');
+                    return false;
+                }else if(num.test(pw) == 0 || eng.test(pw) == 0 || spe.test(pw) == 0){
 
-                alert('비밀번호 확인을 다시해주세요');
-                return false;
+                    alert('비밀번호를 정확히 입력해주세요');
+                    return false;
+                }
+                else{
+
+                    return true;
+                }
             }
-            else{
 
-                return true;
+            function on_pw2_check(){           //비밀번호 확인 검사 함수
+                var pw = $(".field_pw input").val();
+                var pw2 = $(".field_repw input").val();
+                if(pw2.length == 0){
+
+                    alert('비밀번호 확인을 다시해주세요');
+                    return false;
+                }else if(pw != pw2){
+
+                    alert('비밀번호 확인을 다시해주세요');
+                    return false;
+                }
+                else{
+
+                    return true;
+                }
             }
-        }
 
-        function on_name_check(){             //이름 검사 함수
-            var name = $(".field_name input").val();
-            if(name.length == 0){
+            function on_name_check(){             //이름 검사 함수
+                var name = $(".field_name input").val();
+                if(name.length == 0){
 
-                alert('이름을 입력해주세요');
-                return false;
-            }else{
+                    alert('이름을 입력해주세요');
+                    return false;
+                }else{
 
-                return true;
+                    return true;
+                }
             }
-        }
 
-        function on_email_check(){             //이메일 검사 함수
-            var email = $(".field_email input").val();
-            if(email.length == 0){
+            function on_email_check(){             //이메일 검사 함수
+                var email = $(".field_email input").val();
+                if(email.length == 0){
 
-                alert('이메일을 정확히 입력해주세요');
-                return false;
-            }else{
+                    alert('이메일을 정확히 입력해주세요');
+                    return false;
+                }else{
 
-                return true;
+                    return true;
+                }
             }
-        }
 
-        function on_phone_check(){               //휴대폰번호 검사함수
-            var phone = $(".field_phone input").val();
-            if(phone.length == 0){
+            function on_phone_check(){               //휴대폰번호 검사함수
+                var phone = $(".field_phone input").val();
+                if(phone.length == 0){
 
-                alert('휴대폰 번호를 입력해주세요');
-                return false;
-            }else{
+                    alert('휴대폰 번호를 입력해주세요');
+                    return false;
+                }else{
 
-                return true;
+                    return true;
+                }
             }
-        }
 
-
-        function on_submit_check(){               // fomr에 onsubmit으로 최종적으로 넘겨야될 함수
-            var check = false;                   //check변수에 false를 넣어주고 다른 함수들이 false를 반환하면 다음페이지로 못넘어가게 설정
-            if(on_id_check() == check){
-                return false;
-            }else if(on_pw_check() == check){
-                return false;
-            }else if(on_pw2_check() == check){
-                return false;
-            }else if(on_name_check() == check){
-                return false;
-            }else if(on_email_check() == check){
-                return false;
-            }else if(on_phone_check() == check){
-                return false;
-            }
-            else{
-                return true;
-            }
-        }
-    </script>
-
-    <script>
-        $(document).ready(function(){
-            $("header").load("../static/header.html");
-            $(".footer").load("../static/footer.html");
             //아이디 조건 만족 불만족 확인하기
             var text_id = $('.field_id input');
             text_id.focus(function(){               //포커스 되면
                 $('.field_id .txt_guide').css('display', 'block');
             });
             text_id.blur(function(){              //포커스에서 벗어나면
-
                 id_check();              //id_check() 함수 실행
-
             });
 
 
@@ -248,7 +208,6 @@
 
             //아이디 중복 체크
             $('.field_id .btn').click(function(){
-
                 if ($('.field_id input').val() == '') {    //만약에 아무것도 입력 되지 않은 상태면
                     alert('아이디를 입력해주세요');
                     $(".field_id .txt_guide .txt_case2").css('color', '#b3130b');
@@ -257,58 +216,86 @@
 
                 id_overlap_input = document.querySelector('input[name="userid"]');
 
-                // $.ajax({
-                //     type: "GET",
-                //     url: "./id_check?id="+id_overlap_input,    //해당 url로 데이터를 넘김
-                //     data: {
-                //         'username': $('.field_id input').val()
-                //     },
-                //     datatype: 'json',
-                //     success: function (data) {
-                //         console.log(data['overlap']);
-                //         if (data['overlap'] == "fail") {
-                //             alert("이미 존재하는 아이디 입니다.");
-                //             $(".field_id .txt_guide .txt_case2").css('color', '#b3130b');
-                //             id_overlap_input.focus();
-                //             return;
-                //         } else {
-                //             alert("사용가능한 아이디 입니다.");
-                //             $(".field_id .txt_guide .txt_case2").css('color', '#0f851a');
-                //             return;
-                //         }
-                //     }
-                // });
+                $.ajax({
+                    type: "POST",
+                    url: "/id_check",    //해당 url로 데이터를 넘김
+                    data: $('.field_id input').val(),
+                    success: function (data) {
+                        console.log(data);
+                        if (data == "fail") {
+                            alert("이미 존재하는 아이디 입니다.");
+                            $(".field_id .txt_guide .txt_case2").css('color', '#b3130b');
+                            id_overlap_input.focus();
+                            check_id = false;
+                            return;
+                        } else {
+                            alert("사용가능한 아이디 입니다.");
+                            $(".field_id .txt_guide .txt_case2").css('color', '#0f851a');
+                            check_id = true;
+                            return;
+                        }
+                    }
+                });
             });
 
             //이메일 중복 체크
             $('.field_email .btn').click(function(){
-
                 if ($('.field_email input').val() == '') {    //만약에 아무것도 입력 되지 않은 상태면
                     alert('이메일을 입력해주세요');
                     return;
                 }
-
                 email_overlap_input = document.querySelector('input[name="email"]');
+                var email = encodeURIComponent($('.field_email input').val())
+                console.log(email);
+                $.ajax({
+                    type: "POST",
+                    url: "/email_check",    //해당 url로 데이터를 넘김
+                    data: email,
+                    success: function (data) {
+                        console.log(data);
+                        if (data == "fail") {
+                            alert("이미 존재하는 이메일 입니다.");
+                            email_overlap_input.focus();
+                            email_check = false;
+                            return;
+                        } else {
+                            alert("사용가능한 이메일 입니다.");
+                            $('#authForm').show();
+                            $('input[name="authCodeInput"]').removeAttr('disabled');
+                            email_check = true;
+                            return;
+                        }
+                    }
+                });
+            });
 
-                // $.ajax({
-                //     type: "GET",
-                //     url: "./email_check?id="+email_overlap_input,    //해당 url로 데이터를 넘김
-                //     data: {
-                //         'email': $('.field_email input').val()
-                //     },
-                //     datatype: 'json',
-                //     success: function (data) {
-                //         console.log(data['overlap']);
-                //         if (data['overlap'] == "fail") {
-                //             alert("이미 존재하는 이메일 입니다.");
-                //             email_overlap_input.focus();
-                //             return;
-                //         } else {
-                //             alert("사용가능한 이메일 입니다.");
-                //             return;
-                //         }
-                //     }
-                // });
+            //닉네임 중복 체크
+            $('.field_nickname .btn').click(function(){
+                if ($('.field_nickname input').val() == '') {    //만약에 아무것도 입력 되지 않은 상태면
+                    alert('닉네임을 입력해주세요');
+                    return;
+                }
+                nickname_overlap_input = document.querySelector('input[name="nickname"]');
+                var nickname = $('.field_nickname input').val();
+                console.log(nickname);
+                $.ajax({
+                    type: "POST",
+                    url: "/nickname_check",    //해당 url로 데이터를 넘김
+                    data: nickname,
+                    success: function (data) {
+                        console.log(data);
+                        if (data == "fail") {
+                            alert("이미 존재하는 닉네임 입니다.");
+                            nickname_overlap_input.focus();
+                            nickname_check = false;
+                            return;
+                        } else {
+                            alert("사용가능한 닉네임 입니다.");
+                            nickname_check = true;
+                            return;
+                        }
+                    }
+                });
             });
 
 
@@ -346,16 +333,11 @@
                             }
                             // 조합된 참고항목을 해당 필드에 넣는다.
 
-
                         } else {
-
                         }
 
                         // 우편번호와 주소 정보를 해당 필드에 넣는다.
-
                         document.getElementById("user_address").value = addr;
-
-
 
                         //주소 검색이 완료된 후 변하는 css 목록
                         $('.field_address input').css('display', 'block');
@@ -364,11 +346,47 @@
                         // 커서를 상세주소 필드로 이동한다.
                         document.getElementById("user_detail_address").focus();
                         // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+
                         // 예제를 참고하여 다양한 활용법을 확인해 보세요.
                         // http://postcode.map.daum.net/guide  api주소
                     }
-                }).open();
+                }).open()
             });
+
+            $("#singup").click(function (event){
+                var check = false;                   //check변수에 false를 넣어주고 다른 함수들이 false를 반환하면 다음페이지로 못넘어가게 설정
+                if(on_id_check() == check){
+                    event.preventDefault()
+                    return false;
+                }else if(on_pw_check() == check){
+                    event.preventDefault()
+                    return false;
+                }else if(on_pw2_check() == check){
+                    event.preventDefault()
+                    return false;
+                }else if(on_name_check() == check){
+                    event.preventDefault()
+                    return false;
+                }else if(on_email_check() == check){
+                    event.preventDefault()
+                    return false;
+                }else if(on_phone_check() == check){
+                    event.preventDefault()
+                    return false;
+                } else if(email_check == check) {
+                    event.preventDefault()
+                    alert("이메일 중복확인 하시오")
+                    return false;
+                } else if(check_id == check) {
+                    event.preventDefault()
+                    alert("아이디 중복확인 하시오")
+                    return false;
+                } else if(nickname_check == check) {
+                    event.preventDefault()
+                    alert("닉네임 중복확인 하시오")
+                    return false;
+                }
+            })
         });
     </script>
 </head>
@@ -403,7 +421,7 @@
                                             </span>
                                         </th>
                                         <td>
-                                            <input type="text" th:field="*{userid}" maxlength="16" required="" option="regId" onkeyup="id_check()" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">
+                                            <input type="text" th:name="userid" th:field="*{userid}" maxlength="16" required="" option="regId" onkeyup="id_check()" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">
                                             <a class="btn default" href="#">중복확인</a>
                                             <p class="txt_guide square">
                                                 <span class="txt txt_case1">
@@ -424,7 +442,8 @@
                                             </span>
                                         </th>
                                         <td>
-                                            <input type="password" th:field="*{password}" required="" option="regPass" onkeyup="pw_check()" maxlength="16" class="reg_pw bad" placeholder="비밀번호를 입력해주세요">
+                                            <input type="password"
+                                                   th:field="*{password}" required="" option="regPass" onkeyup="pw_check()" maxlength="16" class="reg_pw bad" placeholder="비밀번호를 입력해주세요">
                                             <p class="txt_guide square">
                                                 <span class="txt txt_case1">
                                                     10자 이상 입력
@@ -436,7 +455,7 @@
                                         </td>
                                     </tr>
 
-                                    <tr class="member_pwd field_repw">
+                                    <tr class="field_repw">
                                         <th>
                                             비밀번호확인
                                             <span class="ico">
@@ -445,7 +464,7 @@
                                             </span>
                                         </th>
                                         <td>
-                                            <input type="password" required=""  option="regPass" onkeyup="pw2_check()" maxlength="16" class="confirm_pw" placeholder="비밀번호를 한번 더 입력해주세요">
+                                            <input type="password" required="" option="regPass" onkeyup="pw2_check()" maxlength="16" class="confirm_pw" placeholder="비밀번호를 한번 더 입력해주세요">
                                             <p class="txt_guide square">
                                                 <span class="txt txt_case1">
                                                     동일한 비밀번호를 입력해주세요.
@@ -463,7 +482,7 @@
                                             </span>
                                         </th>
                                         <td>
-                                            <input type="text" th:field="*{name}" required=""  label="이름" placeholder="이름을 입력해주세요">
+                                            <input type="text" th:name="name" th:field="*{name}" required=""  label="이름" placeholder="이름을 입력해주세요">
                                         </td>
                                     </tr>
 
@@ -477,12 +496,16 @@
                                         </th>
 
                                         <td>
-                                            <input type="text" th:field="*{email}" size="30" required="" option="regEmail" label="이메일" placeholder="예: recipe@recipe.com">
-                                            <a href="#" class="btn default">중복확인</a>
+                                            <input type="email" th:name="email" th:field="*{email}" size="30" required="" option="regEmail" label="이메일" placeholder="예: recipe@recipe.com">
+                                            <a href="#" class="btn default">인증하기</a>
+                                            <div id="authForm" style="display: none;">
+                                                <input type="text" size="30" required="" label="이메일" placeholder="인증번호 입력" id="authCodeInput" name="authCodeInput" disabled>
+                                                <button href="#" id="auth_btn" class="btn default">확인</button>
+                                            </div>
                                         </td>
                                     </tr>
 
-                                    <tr class="field_name">
+                                    <tr class="field_nickname">
                                         <th>
                                             닉네임
                                             <span class="ico">
@@ -491,7 +514,7 @@
                                             </span>
                                         </th>
                                         <td>
-                                            <input type="text" th:field="*{nickname}" required=""  label="닉네임" placeholder="닉네임을 입력해주세요">
+                                            <input type="text" th:name="nickname" th:field="*{nickname}" required=""  label="닉네임" placeholder="닉네임을 입력해주세요">
                                             <a href="#" class="btn default">중복확인</a>
                                         </td>
                                     </tr>
@@ -545,7 +568,7 @@
                                     </tbody>
                                 </table>
                                 <div id="formSubmit" class="form_footer" style="border-top: 1px solid #333;">
-                                    <button type="submit" class="btn active btn_join" >가입하기</button>
+                                    <button type="submit" id="singup" class="btn active btn_join">가입하기</button>
                                 </div>
                             </form>
                         </div>
