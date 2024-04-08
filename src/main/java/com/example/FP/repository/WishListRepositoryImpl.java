@@ -16,11 +16,11 @@ import static com.example.FP.entity.QWishList.wishList;
 public class WishListRepositoryImpl implements WishListRepositoryCustom{
 
     private final JPAQueryFactory queryFactory;
-    private final EntityManager em;
+
 
     public WishListRepositoryImpl(EntityManager em) {
         this.queryFactory = new JPAQueryFactory(em);
-        this.em = em;
+
     }
 
     //유저아이디별 찜목록을 가져오기 위한 메소드

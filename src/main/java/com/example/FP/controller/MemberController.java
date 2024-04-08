@@ -2,14 +2,14 @@ package com.example.FP.controller;
 
 import com.example.FP.dto.MemberDto;
 import com.example.FP.entity.Member;
+import com.example.FP.mapper.MemberMapper;
 import com.example.FP.service.MemberService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,6 +18,8 @@ public class MemberController {
     private final MemberService memberService;
 
     private final PasswordEncoder passwordEncoder;
+
+
 
     @GetMapping("/login")
     public void loginForm(){}
@@ -52,10 +54,48 @@ public class MemberController {
 
         return "redirect:/joinOk";
     }
-    @GetMapping("/dataChange")
-    public String dataChangeForm(){
-        return "/dataChange";
+
+    @PostMapping("/id_check")
+    @ResponseBody
+    public String checkId(@RequestBody String userid){
+        System.out.println("아이디중복");
+        Boolean res = memberService.findByUserid(userid);
+        if (res) {
+            System.out.println("실패");
+            return "fail";
+        }
+        System.out.println("성공");
+        return "success";
     }
+
+    @PostMapping("/email_check")
+    @ResponseBody
+    public String checkEmail(@RequestBody String email){
+        System.out.println(email.replace("%40", "@"));
+        System.out.println("이메일중복 확인");
+        Boolean res = memberService.findByEmail(email.replace("%40", "@").trim());
+        if (res) {
+            System.out.println("실패");
+            return "fail";
+        }
+        System.out.println("성공");
+        return "success";
+    }
+
+    @PostMapping("/nickname_check")
+    @ResponseBody
+    public String checkNickname(@RequestBody String nickname){
+        System.out.println(nickname);
+        System.out.println("이메일중복 확인");
+        Boolean res = memberService.findByNickname(nickname);
+        if (res) {
+            System.out.println("실패");
+            return "fail";
+        }
+        System.out.println("성공");
+        return "success";
+    }
+
 
     @GetMapping("/joinOk")
     public String joinOk(){
@@ -73,6 +113,46 @@ public class MemberController {
 
     @GetMapping("/pwFindEmailCerti")
     public void pwFindEmailCerti(){}
+
+    @GetMapping("/pwCheckDataChange")
+    public String pwCheckDataChangeForm(){
+
+
+
+        return "/pwCheckDataChange";
+    }
+    @PostMapping("/pwCheckDataChange")
+    @ResponseBody
+    public Boolean pwCheckDataChangeSubmit(HttpSession session, @RequestParam String password){
+        String id = (String)session.getAttribute("userid");
+        String pw = memberService.pwCheck(id);
+        System.out.println("입력 비번 : " + password);
+        boolean matches = passwordEncoder.matches(password, pw);
+
+        return matches;
+
+    }
+    @GetMapping("/dataChange")
+    public String dataChangeForm(Model model,MemberDto memberDto){
+        model.addAttribute("memberDto",memberDto);
+        return "/dataChange";
+    }
+    @PostMapping("/dataChange")
+    public String dataChangeSubmit(MemberDto memberDto){
+
+        Member member = Member.createMember(memberDto,passwordEncoder);
+        memberService.dataChange(member);
+
+//        String addr = addr1 + " " + addr2;
+//        String birth = year + month + day;
+//        memberFormDto.setAddr(addr);
+//        memberFormDto.setBirth(birth);
+//        Member member = Member.createMember(memberFormDto, passwordEncoder);
+//        memberService.join(member);
+
+        return "redirect:/";
+
+    }
 
 
 }
