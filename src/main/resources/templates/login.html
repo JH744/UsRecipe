@@ -9,7 +9,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/login.css">
 
-
 </head>
 <body>
 <!--<script>-->
@@ -102,6 +101,7 @@
 
 
 <!--</script>-->
+
 <div class="templateBody" style="align-content: flex-start; min-height: 700px">
     <header>
         <div class="header" th:replace="header :: header"></div>
@@ -132,12 +132,12 @@
                     <a href="/join">회원가입</a>
                 </div>
             </div>
-            <div class="join_btn2_k">
-                <button type="submit" onclick="loginWithKakao()" class="btn" style="background-color: #FFE701">
+            <a class="join_btn2_k">
+                <button type="submit" onclick="loginWithKakao()" class="btn" id="kakao" style="background-color: #FFE701">
                     <img src="/static/images/image_31.png" alt="카카오" style="width: 10%; padding-bottom: 5px">
                     <span>카카오로 간편 시작</span>
                 </button>
-            </div>
+            </a>
             <div class="join_btn2_k">
                 <button type="submit" onclick="loginWithNaver()" class="btn" style="background-color: #01C73C">
                     <img src="/static/images/image_29.png" alt="네이버" style="width: 10%; padding-bottom: 5px">
