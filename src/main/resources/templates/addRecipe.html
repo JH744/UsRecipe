@@ -35,6 +35,7 @@
                 "<input name=\"ingredientName\" class=\"ingredientName\" value='-재료명-' readonly='' style='color:#898989'>\n" +
                 "<input type=\"text\" class=\"form-control\" style=\"width:100px;\" placeholder=\"10(수량)\"/>\n" +
                 "<input type=\"text\" class=\"form-control\" style=\"width:140px;\" placeholder=\"예) g,ml(단위)\"/>\n" +
+                "<input type='hidden' name='ingredient_id' class='ingredient_id'>"+
                 "<a  href='javascript:delIngredient(" + index + ")' class=\"btn-del\" style=''></a></li>"
 
             $("#ingredientInfo").append(ingredientFrame)
@@ -49,9 +50,10 @@
         $(document).on('click', "#ingredient_modal_save", function () {
             var ingredientName = $("input[name=ingredient_radio]:checked").prev().text()
             var ingredientCategory = $("input[name=ingredient_radio]:checked").prev().prev().text()
+            var ingredient_id = $("input[name=ingredient_radio]:checked").next().val()
             $(ingredientGroup_id).children(".ingredientCategory").val(ingredientCategory).css('color','').css('font-weight','bold')
             $(ingredientGroup_id).children(".ingredientName").val(ingredientName).css('color','').css('font-weight','bold')
-            console.log(ingredientCategory)
+            $(ingredientGroup_id).children(".ingredient_id").val(ingredient_id)
         })
 
         function delIngredient(index) {
@@ -60,13 +62,44 @@
         }
 
         $(document).on('click','.modal_IngredientSelect',function(){
-            console.log("123")
             var checkbox = $(this).find('input');
             $(this).find('input').prop('checked',true)
-            // if($(this).is('input:checked'))
-            //     return;
-            // $(this).find('input:checkbox').attr('checked')
         })
+
+        function browseMainFile() {
+
+            $("#q_main_file").click();
+        }
+
+        $(document).on('change',"#q_main_file", handlePhotoFiles)
+
+        function handlePhotoFiles(){
+            var image = $("#q_main_file")[0].files
+            data = new FormData();
+            data.append("file", image[0]);
+            $("#mainPhotoHolder").attr("src",'/static/images/loding.gif');
+            $.ajax({
+                data : data,
+                type : "POST",
+                url : "/uploadRecipeMainPhoto",
+                contentType : false,
+                processData : false,
+                success : function(data) {
+                    //항상 업로드된 파일의 url이 있어야 한다.
+                    $("#recipe_thumbnail").val(data.imgName);
+                    wait(1.5,data.url);
+                    $("#mainPhotoHolder").attr("src",'/'+$("#q_main_file").val());
+                }
+            });
+        }
+
+        function wait(sec,url) {
+            let start = Date.now(), now = start;
+            while (now - start < sec * 1000) {
+                now = Date.now();
+            }
+
+        }
     </script>
 
 </head>
@@ -89,15 +122,15 @@
                             <input type="hidden" name="del_main_photo" id="del_main_photo" value="">
                             <div style="position:absolute;left:-3000px">
                                 <input type="file" name="q_main_file"
-                                       id="q_main_file"
-                                       file_gubun="main" accept="jpeg,png,gif"
+                                       id="q_main_file" accept="jpeg,png,gif"
                                        style="width:0px;height:0px;font-size:0px;"
                                        text="">
                             </div>
                             <div id="divMainPhotoBox" is_over="0">
                                 <img id="mainPhotoHolder" onclick="browseMainFile()"
-                                     src="https://recipe1.ezmember.co.kr/img/pic_none4.gif"
+                                     src="../static/images/pic_none4.gif"
                                      style="width: 250px; height: 250px; cursor:pointer">
+                                <input type="hidden" id="recipe_thumbnail" name="recipe_thumbnail">
                             </div>
                         </div>
                         <div class="cont_line">
@@ -130,7 +163,7 @@
                                 <input type="file" name="q_video_file"
                                        id="q_video_file"
                                        file_gubun="video" accept="jpeg,png,gif"
-                                       style="display:;width:0px;height:0px;font-size:0px;"
+                                       style="width:0px;height:0px;font-size:0px;"
                                        text="">
                             </div>
                         </div>
@@ -189,6 +222,7 @@
                                                placeholder="10(수량)"/>
                                         <input type="text" class="form-control" style="width:140px;"
                                                placeholder="예) g,ml(단위)"/>
+                                        <input type='hidden' name='ingredient_id' class='ingredient_id'>
                                 </ul>
                                 <div class="btn_add" style="padding:0 0 20px 350px; width:800px;">
                                     <button type="button" onclick="addIngredient()" class="btn btn-default"><span
@@ -231,7 +265,7 @@
                                                                                            text=""></div>
                                         <div id="divStepPhotoBox_1" is_over="0">
                                             <img id="stepPhotoHolder_1" onclick="browseStepFile(1)"
-                                                 src="https://recipe1.ezmember.co.kr/img/pic_none2.gif" width="160"
+                                                 src="../static/images/pic_none2.gif" width="160"
                                                  height="160"
                                                  style="cursor:pointer">
                                         </div>
@@ -278,7 +312,7 @@
                                     <div id="divWorkPhotoBox_1" is_over="0">
                                         <a href="#" class="pic_del" style="display:none"></a>
                                         <img id="workPhotoHolder_1" onclick="browseWorkFile(1)"
-                                             src="https://recipe1.ezmember.co.kr/img/pic_none3.gif" alt="No Image"
+                                             src="../static/images/pic_none3.gif" alt="No Image"
                                              style="width: 140px; height: 140px; cursor:pointer">
                                     </div>
                                 </div>
@@ -389,16 +423,19 @@
                                     <div>소고기</div>
                                     <div>안창살</div>
                                     <input type="radio" name="ingredient_radio"/>
+                                    <input type="hidden" name="ingredient_id" value="1"/>
                                 </li>
                                 <li class="modal_IngredientSelect">
                                     <div>소고기</div>
                                     <div>갈비</div>
                                     <input type="radio" name="ingredient_radio"/>
+                                    <input type="hidden" name="ingredient_id" value="2"/>
                                 </li>
                                 <li class="modal_IngredientSelect">
                                     <div>소고기</div>
                                     <div>등심</div>
                                     <input type="radio" name="ingredient_radio"/>
+                                    <input type="hidden" name="ingredient_id" value="3"/>
                                 </li>
                             </ul>
                         </div>
