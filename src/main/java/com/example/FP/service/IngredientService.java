@@ -65,6 +65,9 @@ public class IngredientService {
         return ir.findByCategoryId(categoryId, pageable);
     }
 
+    public List<Ingredient> findAllByIngredientNameContaining(String keyword){
 
+        return ir.findas(keyword);
+    }
 
 }
