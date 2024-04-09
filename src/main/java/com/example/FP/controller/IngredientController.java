@@ -2,6 +2,7 @@ package com.example.FP.controller;
 
 import com.example.FP.entity.Ingredient;
 import com.example.FP.service.IngredientService;
+import com.google.gson.Gson;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -105,11 +106,15 @@ public class IngredientController {
 
     }
 
-
-
-
-
-
+    @PostMapping("/searchIngredient")
+    @ResponseBody
+    public List<Ingredient> searchIngredient(@RequestParam("keyword") String keyword){
+        List<Ingredient> list = is.findAllByIngredientNameContaining(keyword);
+        for (Ingredient i : list){
+            System.out.println("재료명 : "+i.getIngredientName());
+        }
+        return list;
+    }
 
 
 }

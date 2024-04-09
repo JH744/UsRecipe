@@ -77,7 +77,6 @@
             var image = $("#q_main_file")[0].files
             data = new FormData();
             data.append("file", image[0]);
-            $("#mainPhotoHolder").attr("src",'/static/images/loding.gif');
             $.ajax({
                 data : data,
                 type : "POST",
@@ -85,21 +84,42 @@
                 contentType : false,
                 processData : false,
                 success : function(data) {
-                    //항상 업로드된 파일의 url이 있어야 한다.
-                    $("#recipe_thumbnail").val(data.imgName);
-                    wait(1.5,data.url);
-                    $("#mainPhotoHolder").attr("src",'/'+$("#q_main_file").val());
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#mainPhotoHolder').attr('src', e.target.result); // 이미지 미리보기 설정
+                    };
+                    reader.readAsDataURL(image[0]); // 파일을 읽어서 Data URL로 변환하여 이미지에 적용
+                    $("#recipe_thumbnail").val(data.url)
                 }
             });
         }
 
-        function wait(sec,url) {
-            let start = Date.now(), now = start;
-            while (now - start < sec * 1000) {
-                now = Date.now();
-            }
-
-        }
+        $(document).on('click','#ingredientSearchBtn',function(){
+            $("#ingredientList").empty()
+            var keyword = $("#keyword").val()
+            data = {keyword:keyword};
+            $.ajax({
+                data : data,
+                type:'POST',
+                url:'/searchIngredient',
+                success:function (listarray){
+                    console.log(listarray)
+                    $.each(listarray,function(idx,val){
+                        console.log(idx+" "+val.ingredientName)
+                        var ingredientCategoryName = this.ingredientIngredientCategory.ingredientCategoryName
+                        var ingredientName = this.ingredientName
+                        var ingredient_id = this.id
+                        var li = '<li class="modal_IngredientSelect">' +
+                            '<div>'+ingredientCategoryName+'</div>' +
+                            '<div>'+ingredientName+'</div>' +
+                            '<input type="radio" name="ingredient_radio"/>' +
+                            '<input type="hidden" name="ingredient_id" value="'+ingredient_id+'"/>' +
+                            '</li>'
+                        $("#ingredientList").append($(li));
+                    });
+                }
+            })
+        })
     </script>
 
 </head>
@@ -407,36 +427,17 @@
                         <h5 class="modal-title" id="exampleModalLabel">재료 검색 하기</h5>
                     </div>
                     <div class="modal-body">
-                        <form action="" style="display: flex; align-content: start; width: auto">
-                            <input type="text" placeholder="원하는 재료를 입력해주세요." name="keyword"
-                                   style="width: 85%;height:34px">
-                            <button class="btn btn-primary">검색</button>
-                        </form>
+                        <input type="text" placeholder="원하는 재료를 입력해주세요." name="keyword" id="keyword"
+                               style="width: 80%;height:34px">
+                        <button class="btn btn-primary" id="ingredientSearchBtn">검색</button>
                         <div style="width: auto; height:500px; border: 1px solid; overflow: auto">
                             <div class="modal_IngredientSelect_column">
                                 <div>카테고리</div>
                                 <div>재료명</div>
                                 <div>선택</div>
                             </div>
-                            <ul style="margin-right: 10px">
-                                <li class="modal_IngredientSelect">
-                                    <div>소고기</div>
-                                    <div>안창살</div>
-                                    <input type="radio" name="ingredient_radio"/>
-                                    <input type="hidden" name="ingredient_id" value="1"/>
-                                </li>
-                                <li class="modal_IngredientSelect">
-                                    <div>소고기</div>
-                                    <div>갈비</div>
-                                    <input type="radio" name="ingredient_radio"/>
-                                    <input type="hidden" name="ingredient_id" value="2"/>
-                                </li>
-                                <li class="modal_IngredientSelect">
-                                    <div>소고기</div>
-                                    <div>등심</div>
-                                    <input type="radio" name="ingredient_radio"/>
-                                    <input type="hidden" name="ingredient_id" value="3"/>
-                                </li>
+                            <ul style="margin-right: 10px" id="ingredientList">
+
                             </ul>
                         </div>
                     </div>
