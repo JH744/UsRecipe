@@ -83,5 +83,16 @@ public class MemberDto {
         this.phone = phone;
     }
 
+    public MemberDto(Member m){
+        this.userid = m.getUserid();
+        this.password = m.getPassword();
+        this.name = m.getName();
+        this.nickname = m.getNickname();
+        this.email = m.getEmail();
+        this.phone = m.getPhone();
+        this.addr = m.getAddr();
+        this.role = m.getRole();
+    }
+
     public MemberDto() {}
 }

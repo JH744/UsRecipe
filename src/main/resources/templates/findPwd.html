@@ -10,6 +10,32 @@
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $(function (){
+            $("#check").click(function (event){
+                if ($("#userid").val() == ""){
+                    alert("아이디을 입력하세요")
+                    event.preventDefault()
+                    return;
+                }
+
+                if ($("#email").val() == ""){
+                    alert("이메일을 입력하세요")
+                    event.preventDefault()
+                    return;
+                }
+            })
+
+            $(".e138_615").click(function (){
+                location.href = "/findUserPwd";
+            })
+
+            $(".e138_612").click(function (){
+                location.href = "/findUserid";
+            })
+        })
+    </script>
 </head>
 <body>
 <div class="templateBody">
@@ -31,18 +57,19 @@
                 <div class="e138_608"></div>
             </div>
 
-            <form action="">
+            <form action="/findUserPwd" method="post">
+                <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
                 <div class=e138_604>
                     <span class="e138_600">아이디</span>
-                    <input class="e138_605" type="text" placeholder="아이디를 입력하세요"/>
+                    <input class="e138_605" name="userid" id="userid" type="text" placeholder="아이디를 입력하세요"/>
                 </div>
 
                 <div class=e138_601>
                     <span class="e138_599">이메일</span>
-                    <input class="e138_602" type="text" placeholder="이메일 example@email.com"/>
+                    <input class="e138_602" name="email" id="email"  type="text" placeholder="이메일 example@email.com"/>
                 </div>
                 <div class=e138_609>
-                    <input class="e138_610" type="submit" value="비밀번호 찾기"/>
+                    <input class="e138_610" type="submit" id="check" value="비밀번호 찾기"/>
                 </div>
             </form>
         </div>
