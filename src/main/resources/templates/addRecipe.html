@@ -73,6 +73,8 @@
 
         $(document).on('change',"#q_main_file", handlePhotoFiles)
 
+
+
         function handlePhotoFiles(){
             var image = $("#q_main_file")[0].files
             data = new FormData();
@@ -94,7 +96,20 @@
             });
         }
 
-        $(document).on('click','#ingredientSearchBtn',function(){
+        // 모달창에서 엔터 누르면 검색 되는 함수
+        $(document).on('keyup','#keyword',function enter_search(e){
+            console.log(e.code)
+            const code = e.code;
+
+            if(code == 'Enter'){
+                searchIngredient();
+            }
+        })
+
+        $(document).on('click','#ingredientSearchBtn',searchIngredient)
+
+        //재료 검색 ajax 통신 함수
+        function searchIngredient(){
             $("#ingredientList").empty()
             var keyword = $("#keyword").val()
             data = {keyword:keyword};
@@ -110,16 +125,16 @@
                         var ingredientName = this.ingredientName
                         var ingredient_id = this.id
                         var li = '<li class="modal_IngredientSelect">' +
-                            '<div>'+ingredientCategoryName+'</div>' +
-                            '<div>'+ingredientName+'</div>' +
-                            '<input type="radio" name="ingredient_radio"/>' +
+                            '<div class="cell">'+ingredientCategoryName+'</div>' +
+                            '<div class="cell">'+ingredientName+'</div>' +
+                            '<input type="radio" name="ingredient_radio" class="cell"/>' +
                             '<input type="hidden" name="ingredient_id" value="'+ingredient_id+'"/>' +
                             '</li>'
                         $("#ingredientList").append($(li));
                     });
                 }
             })
-        })
+        }
     </script>
 
 </head>
@@ -432,11 +447,11 @@
                         <button class="btn btn-primary" id="ingredientSearchBtn">검색</button>
                         <div style="width: auto; height:500px; border: 1px solid; overflow: auto">
                             <div class="modal_IngredientSelect_column">
-                                <div>카테고리</div>
-                                <div>재료명</div>
-                                <div>선택</div>
+                                <div class="cell">카테고리</div>
+                                <div class="cell">재료명</div>
+                                <div class="cell">선택</div>
                             </div>
-                            <ul style="margin-right: 10px" id="ingredientList">
+                            <ul style="margin-right: 10px; padding:0 0 0 0" id="ingredientList">
 
                             </ul>
                         </div>

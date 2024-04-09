@@ -9154,15 +9154,18 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 .modal_IngredientSelect{
     display: flex;
-    justify-content: space-between;
 }
 
 .modal_IngredientSelect_column{
     display: flex;
-    justify-content: space-between;
     background:#9fa094;
+    width: auto;
     font-weight: bold;
     font-size: 16px;
-    padding: 0 10px 0 30px;
+    /*padding: 0 10px 0 30px;*/
 }
 
+.cell{
+    width: 33.33333%;
+    text-align: center;
+}
