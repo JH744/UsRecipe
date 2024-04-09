@@ -24,8 +24,6 @@ public class IngredientController {
     private final IngredientService is;
 
 
-
-
     // 재료 목록 불러오기 -페이지는 경로변수로 받고, 나머지는 쿼리스트링으로 받음
     @GetMapping("/listIngredient/{page}")
     public String listAll(@PathVariable("page") int page, Model model,
@@ -71,7 +69,6 @@ public class IngredientController {
         } else {  // 정렬 방향이 지정되지 않았을 경우 기본값 사용
             pageable = PageRequest.of(page-1, 6);
         }
-
 
 
 

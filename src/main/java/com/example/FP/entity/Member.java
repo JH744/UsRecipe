@@ -21,7 +21,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class Member {
     @Id@GeneratedValue
     @Column(name = "member_id")
@@ -117,6 +116,10 @@ public class Member {
                 .role(MemberRole.MEMBER)
                 .build();
         return member;
+    }
+
+    public void newPwd(String password){
+        this.password = password;
     }
 
     public void addPoint(Orders orders){

@@ -1,6 +1,8 @@
 package com.example.FP.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,7 +17,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @Getter
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+
 public class IngredientCategory {
     @Id@GeneratedValue
     @Column(name = "ingredient_category_id")
@@ -23,6 +25,7 @@ public class IngredientCategory {
 
     private String ingredientCategoryName;
 
+    @JsonBackReference
     @Builder.Default
     @OneToMany(mappedBy = "ingredientIngredientCategory")
     private List<Ingredient> ingredientList = new ArrayList<>();

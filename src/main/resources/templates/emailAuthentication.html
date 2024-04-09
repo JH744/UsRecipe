@@ -11,6 +11,24 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="../static/css/emailAuthentication.css"/>
 
+
+    <script>
+        $(function (){
+            $("#check").click(function (event){
+                if ($("cert").val() == "") {
+                    alert("인증번호를 입력하세요");
+                    event.preventDefault();
+                    return;
+                }
+
+                if ($("#num").val() != $("#cert").val()){
+                    alert("인증번호가 틀렸습니다");
+                    event.preventDefault();
+                    return;
+                }
+            })
+        })
+    </script>
 </head>
 <body>
 <div class="templateBody">
@@ -26,13 +44,18 @@
                 <span class="e65_469">입력하신 이메일로 인증코드를 발송하였습니다.<br>
                  인증코드를 입력해주세요 </span>
             </div>
-            <div style="width: 390px">
-                <span class="e65_432">인증코드</span>
-                <input class="e65_428" type="text"/>
-            </div>
-            <div>
-                <input class="e65_429" type="submit" value="인증하기"/>
-            </div>
+            <form action="/emailAuthentication" method="post">
+                <div style="width: 390px">
+                    <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+                    <input type="hidden" th:value="${num}" name="num" id="num">
+                    <input type="hidden" th:value="${userid}" name="userid">
+                    <span class="e65_432">인증코드</span>
+                    <input class="e65_428" type="text" id="cert"/>
+                </div>
+                <div>
+                    <input class="e65_429" type="submit" id="check" value="인증하기"/>
+                </div>
+            </form>
         </div>
 
     </div>

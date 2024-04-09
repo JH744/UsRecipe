@@ -7,6 +7,7 @@ import com.example.FP.service.MemberService;
 import com.example.FP.service.OrdersService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.eclipse.jdt.internal.compiler.ast.Block;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +47,7 @@ public class MemberController {
                              String month,
                              String day
                              ){
-        System.out.println("회원가입 와뇨");
+        System.out.println("회원가입 완료");
         System.out.println(memberFormDto.getUserid());
 
 
@@ -111,15 +112,16 @@ public class MemberController {
         return "/findUseridOk";
     }
 
-    @GetMapping("/findPwd")
+    @GetMapping("/findUserPwd")
     public String findPwdForm(){ return "/findPwd"; }
 
-    @PostMapping("/findPwd")
-    public String fingPwdSubmit(@RequestParam String userid, @RequestParam String email, Model model){
+    @PostMapping("/findUserPwd")
+    public String findPwdSubmit(@RequestParam String userid, @RequestParam String email, Model model){
+        System.out.println("비밀번호 찾기 클릭");
         String toEmail = email.replace("%40", "@").trim();
         Boolean res = memberService.findByUseridAndEmail(userid, toEmail);
         if (!res) {
-            return "/findPwd";
+            return "redirect:/findUserPwd";
         }
 
         try {
@@ -134,16 +136,28 @@ public class MemberController {
     }
 
     @PostMapping("/emailAuthentication")
-    public String emailAuthentication(){
-
-        return "/findPwdOk";
+    public String emailAuthentication(@RequestParam String userid, Model model){
+        model.addAttribute("userid", userid);
+        return "/newPwd";
     }
 
-    @GetMapping("/pwChange")
-    public String pwChange(){ return "/newPwd"; }
 
-    @GetMapping("/pwFindEmailCerti")
-    public void pwFindEmailCerti(){}
+    @GetMapping("/newPwd")
+    public String pwChangeForm(){
+        return "/newPwd";
+    }
+
+    @PostMapping("/newPwd")
+    public String pwChangeSubmit(@RequestParam String userid, @RequestParam String password){
+        Member m = memberService.findById(userid);
+        if (m != null) {
+            m.newPwd(passwordEncoder.encode(password));
+            memberService.save(m);
+            return "/findPwdOk";
+        }
+
+        return "/index";
+    }
 
     @GetMapping("/pwCheckDataChange")
     public String pwCheckDataChangeForm(){
