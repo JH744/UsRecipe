@@ -82,19 +82,25 @@
         }
 
         function delStep(idx) {
-            var divStep = $("#divStepItem_" + idx);
-            var nextDivs = []
-            nextDivs = divStep.nextAll()
-            $.each(nextDivs, function (num) {
-                var index = idx + num
-                console.log(index)
-                $(this).attr("id","divStepItem_" + index)
-                $(this).children("p").text("Step" + index)
-                $(this).children("#stepPhotoHolder_" + (index + 1)).attr("id", "stepPhotoHolder_" + index)
-                $(this).children(".step_btn").children("a").attr('href', "javascript:delStep(" + index + ")")
-                stepIndex = index + 1;
-            })
-            divStep.remove()
+            var re = confirm("정말 해당 요리 순서를 삭제하시겠습니까?")
+            if(re==1) {
+                var divStep = $("#divStepItem_" + idx);
+                var nextDivs = []
+                nextDivs = divStep.nextAll()
+                if (nextDivs.length === 0) {
+                    stepIndex = 2;
+                }
+                $.each(nextDivs, function (num) {
+                    var index = idx + num
+                    console.log(index)
+                    $(this).attr("id", "divStepItem_" + index)
+                    $(this).children("p").text("Step" + index)
+                    $(this).children("#stepPhotoHolder_" + (index + 1)).attr("id", "stepPhotoHolder_" + index)
+                    $(this).children(".step_btn").children("a").attr('href', "javascript:delStep(" + index + ")")
+                    stepIndex = index + 1;
+                })
+                divStep.remove()
+            }
         }
 
         var ingredientGroup_id
