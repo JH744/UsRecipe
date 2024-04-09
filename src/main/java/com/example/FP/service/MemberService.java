@@ -140,13 +140,4 @@ public class MemberService implements UserDetailsService {
         return false;
     }
 
-    public Boolean updatePwd(String userid, String password){
-        System.out.println(password);
-        int m = mr.updatePwd(userid, password);
-        System.out.println(m);
-        if (m < 1) {
-            return false;
-        }
-        return true;
-    }
 }

@@ -19,8 +19,4 @@ public interface MemberRepository extends JpaRepository<Member,Long>,MemberRepos
 
     Member findByUseridAndEmail(String userid, String email);
 
-    @Modifying()
-    @Query("UPDATE Member m SET m.password= :password WHERE m.userid= :userid")
-    int updatePwd(@Param("password") String password,@Param("userid") String userid);
-
 }
