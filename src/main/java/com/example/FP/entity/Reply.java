@@ -1,5 +1,7 @@
 package com.example.FP.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,33 +15,35 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class Reply {
     @Id@GeneratedValue
     @Column(name = "reply_id")
     private Long id;
 
-    private String reply_content;
-    private LocalDateTime reply_date;
-    private int reply_grade;
+    private String replyContent;
+    private LocalDateTime replyDate;
+    private int replyGrade;
 
     @ManyToOne
     @JoinColumn(name = "ingredient_id")
-    private Ingredient reply_ingredient;
+    private Ingredient replyIngredient;
 
     @ManyToOne
     @JoinColumn(name = "recipe_id")
-    private Recipe reply_recipe;
+    private Recipe replyRecipe;
 
     @ManyToOne
     @JoinColumn(name ="member_id")
-    private Member reply_member;
+    private Member replyMember;
 
-    public Reply(String reply_content, LocalDateTime reply_date, int reply_grade, Ingredient reply_ingredient, Recipe reply_recipe, Member reply_member) {
-        this.reply_content = reply_content;
-        this.reply_date = reply_date;
-        this.reply_grade = reply_grade;
-        this.reply_ingredient = reply_ingredient;
-        this.reply_recipe = reply_recipe;
-        this.reply_member = reply_member;
+    public Reply(String replyContent, LocalDateTime replyDate, int replyGrade, Ingredient replyIngredient, Recipe replyRecipe, Member replyMember) {
+        this.replyContent = replyContent;
+        this.replyDate = replyDate;
+        this.replyGrade = replyGrade;
+        this.replyIngredient = replyIngredient;
+        this.replyRecipe = replyRecipe;
+        this.replyMember = replyMember;
+
     }
 }

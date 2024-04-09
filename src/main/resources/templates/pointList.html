@@ -226,10 +226,10 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td class="orderList_td"><a>이벤트 당첨</a></td>
-                                    <td class="orderList_td">1000</td>
-                                    <td class="orderList_td">2024-04-03</td>
+                                <tr th:each="list:${list}">
+                                    <td th:text="${list.getPoint_content()}"></td>
+                                    <td th:text="${list.getUse_point()}"></td>
+                                    <td th:text="${list.getPoint_orders().getOrders_date()}"></td>
                                 </tr>
 
                                 </tbody>

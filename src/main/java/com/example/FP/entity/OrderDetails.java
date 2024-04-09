@@ -1,5 +1,7 @@
 package com.example.FP.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,30 +13,35 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class OrderDetails {
     @Id@GeneratedValue
     @Column(name = "order_detail_id")
     private Long id;
 
-    private int ingredient_price;
+    private int ingredientPrice;
 
     @ManyToOne
     @JoinColumn(name = "orders_id")
-    private Orders orders_detail;
+    private Orders ordersDetail;
 
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member orders_member;
+    private Member ordersDetailsMember;
+
 
     @ManyToOne
     @JoinColumn(name = "ingredient_id")
-    private Ingredient orders_ingredient;
+    private Ingredient ordersIngredient;
 
 
-    public OrderDetails(int ingredient_price, Orders orders_detail, Member orders_member, Ingredient orders_ingredient) {
-        this.ingredient_price = ingredient_price;
-        this.orders_detail = orders_detail;
-        this.orders_member = orders_member;
-        this.orders_ingredient = orders_ingredient;
+
+    public OrderDetails(int ingredientPrice, Orders ordersDetail, Member orderDetailsMember, Ingredient ordersIngredient) {
+
+        this.ingredientPrice = ingredientPrice;
+        this.ordersDetail = ordersDetail;
+        this.ordersDetailsMember = orderDetailsMember;
+        this.ordersIngredient = ordersIngredient;
+
     }
 }

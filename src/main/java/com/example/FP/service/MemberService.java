@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+
 
 @Service
 @RequiredArgsConstructor
@@ -94,6 +96,40 @@ public class MemberService implements UserDetailsService {
         Member byNickname = mr.findByNickname(nickname);
         if (byNickname != null) {
             if (byNickname.getNickname() == null) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //로그인 한 회원의 정보를 가져옴
+    public Member findByUseridInfo(String userid){
+        Member member = mr.findByUserid(userid);
+        return member;
+    }
+
+    public HashMap<String, String> findByNameAndEmail(String name, String email){
+        HashMap<String, String> map = new HashMap<>();
+        Member m = mr.findByNameAndEmail(name, email);
+        if (m != null) {
+            if (m.getUserid() == null) {
+                map.put("success", "false");
+                return map;
+            } else {
+                map.put("success", "true");
+                map.put("userid", m.getUserid());
+                return map;
+            }
+        }
+        return map;
+    }
+
+    public Boolean findByUseridAndEmail(String userid, String email){
+        Member m = mr.findByUseridAndEmail(userid, email);
+        if (m != null) {
+            if (m.getUserid() == null) {
                 return false;
             } else {
                 return true;

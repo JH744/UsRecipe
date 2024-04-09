@@ -14,16 +14,20 @@
 </head>
 <body >
     <div class="templateBody">
+
         <header>
             <div class="header" th:replace="header :: header"></div>
         </header>
+
         <div class="mainBody">
-            <div class="successBox">
-                <span class="sucBox_coment1">주문완료</span><br>
-                <img src="./successicon.png" class="suclogo">
-                <p class="sucBox_coment2">주문이<br> 완료되었습니다.</p>
-                <span class="sucBox_coment3">결제해주셔서 감사합니다.</span>
-                <button class="btnToOrderList">주문목록</button>
+            <div class="orderOKmain">
+                <div class="successBox">
+                    <span class="sucBox_coment1">주문완료</span><br>
+                    <img src="../static/images/icon/successicon.png" class="suclogo">
+                    <p class="sucBox_coment2">주문이<br> 완료되었습니다.</p>
+                    <span class="sucBox_coment3">결제해주셔서 감사합니다.</span>
+                    <button class="btnToOrderList">주문목록</button>
+                </div>
             </div>
         </div>
         <div class="footer" th:replace="footer :: footer"></div>

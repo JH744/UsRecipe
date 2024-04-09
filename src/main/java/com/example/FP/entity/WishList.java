@@ -1,5 +1,7 @@
 package com.example.FP.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class WishList {
     @Id@GeneratedValue
     @Column(name = "wishlist_id")
@@ -19,15 +22,15 @@ public class WishList {
 
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member wishlist_member;
+    private Member wishlistMember;
 
     @ManyToOne
     @JoinColumn(name = "recipe_id")
-    private Recipe wishlist_recipe;
+    private Recipe wishlistRecipe;
 
-    public WishList(Member wishlist_member, Recipe wishlist_recipe) {
-        this.wishlist_member = wishlist_member;
-        this.wishlist_recipe = wishlist_recipe;
+    public WishList(Member wishlistMember, Recipe wishlistRecipe) {
+        this.wishlistMember = wishlistMember;
+        this.wishlistRecipe = wishlistRecipe;
     }
 
     public static WishList createCart(Recipe recipe,Member member){

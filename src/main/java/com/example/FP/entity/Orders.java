@@ -1,5 +1,7 @@
 package com.example.FP.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,36 +17,40 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class Orders {
     @Id
     @GeneratedValue
     @Column(name = "orders_id")
     private Long id;
 
-    private LocalDateTime orders_date;
-    private String orders_receiver;
-    private String orders_receiver_addr;
-    private String orders_receiver_phone;
-    private int orders_total_price;
-    private int orders_sale_price;
-    private int orders_used_point;
-    private String orders_request;
+    private LocalDateTime ordersDate;
+    private String ordersReceiver;
+    private String ordersReceiverAddr;
+    private String ordersReceiverPhone;
+    private int ordersTotalPrice;
+    private int ordersSalePrice;
+    private int ordersUsedPoint;
+    private String ordersRequest;
 
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member orders_member;
+    private Member ordersMember;
+
 
     @ManyToOne
     @JoinColumn(name = "order_state_id")
-    private OrderState orders_order_state;
+    private OrderState ordersOrderState;
 
     @Builder.Default
-    @OneToMany(mappedBy = "orders_detail")
-    private List<OrderDetails> order_ordersdetail_list = new ArrayList<>();
+    @OneToMany(mappedBy = "ordersDetail")
+    private List<OrderDetails> orderOrdersdetailList = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "point_orders")
-    private List<Point> order_point_list = new ArrayList<>();
+    @OneToMany(mappedBy = "pointOrders")
+    private List<Point> orderPointList = new ArrayList<>();
+
+
 
     public Orders(LocalDateTime orders_date,
                   String orders_receiver,
@@ -60,18 +66,18 @@ public class Orders {
                   List<Point> orders_point_list
     ) {
 
-        this.orders_date = orders_date;
-        this.orders_receiver = orders_receiver;
-        this.orders_receiver_addr = orders_receiver_addr;
-        this.orders_receiver_phone = orders_receiver_phone;
-        this.orders_total_price = orders_total_price;
-        this.orders_sale_price = orders_sale_price;
-        this.orders_used_point = orders_used_point;
-        this.orders_request = orders_request;
-        this.orders_member = orders_member;
-        this.order_ordersdetail_list = order_ordersdetail_list;
-        this.orders_order_state = orders_order_state;
-        this.order_point_list = orders_point_list;
+        this.ordersDate = orders_date;
+        this.ordersReceiver = orders_receiver;
+        this.ordersReceiverAddr = orders_receiver_addr;
+        this.ordersReceiverPhone = orders_receiver_phone;
+        this.ordersTotalPrice = orders_total_price;
+        this.ordersSalePrice = orders_sale_price;
+        this.ordersUsedPoint = orders_used_point;
+        this.ordersRequest = orders_request;
+        this.ordersMember = orders_member;
+        this.orderOrdersdetailList = order_ordersdetail_list;
+        this.ordersOrderState = orders_order_state;
+        this.orderPointList = orders_point_list;
 
     }
 }

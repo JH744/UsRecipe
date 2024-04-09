@@ -1,5 +1,7 @@
 package com.example.FP.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,25 +10,26 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class Point {
 
     @Id@GeneratedValue
     @Column(name = "point_id")
     private Long id;
 
-    private int use_point;
-    private String point_content;
+    private int usePoint;
+    private String pointContent;
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member point_member;
+    private Member pointMember;
     @ManyToOne
     @JoinColumn(name = "orders_id")
-    private Orders point_orders;
+    private Orders pointOrders;
 
-    public Point(int use_point, String point_content, Member point_member, Orders point_orders) {
-        this.use_point = use_point;
-        this.point_content = point_content;
-        this.point_member = point_member;
-        this.point_orders = point_orders;
+    public Point(int usePoint, String pointContent, Member pointMember, Orders pointOrders) {
+        this.usePoint = usePoint;
+        this.pointContent = pointContent;
+        this.pointMember = pointMember;
+        this.pointOrders = pointOrders;
     }
 }

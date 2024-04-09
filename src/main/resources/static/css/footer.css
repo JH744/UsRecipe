@@ -1,8 +1,8 @@
 
 .footer {
-
     margin-top: 5px;
     width:100%;
+    min-width:1280px;
     padding: 0;
     background:rgba(242.24999696016312, 242.24999696016312, 242.24999696016312, 1);
     box-sizing: border-box;
@@ -15,14 +15,16 @@
     height:200px;
 
 }
-.footerSpanTag {
+.footerPTag {
     margin: 50px;
-    color:rgba(0,0,0,5);
+    color: #727171;
+    font-weight: 500;
     left:352px;
     top:29px;
-    font-family: Cafe24Simplehae;
+    font-family: 'Noto Sans KR', sans-serif;
     text-align:left;
-    font-size:22px;
+    font-size:13px;
+    line-height: 1.6;
     letter-spacing:0;
 }
 

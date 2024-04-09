@@ -1,5 +1,7 @@
 package com.example.FP.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class OrderState {
 
     @Id@GeneratedValue
@@ -20,11 +23,11 @@ public class OrderState {
     private String state;
 
     @Builder.Default
-    @OneToMany(mappedBy = "orders_order_state")
-    private List<Orders> orders_state_list = new ArrayList<>();
+    @OneToMany(mappedBy = "ordersOrderState")
+    private List<Orders> ordersStateList = new ArrayList<>();
 
     public OrderState(String state, List<Orders> orders_state_list) {
         this.state = state;
-        this.orders_state_list = orders_state_list;
+        this.ordersStateList = orders_state_list;
     }
 }
