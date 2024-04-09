@@ -55,11 +55,13 @@ public class MemberService implements UserDetailsService {
         return user;
     }
 
-    public Long findById(String userid){
-        Member byUserid = mr.findByUserid(userid);
-        return byUserid.getId();
+    public Member findById(String userid){
+        return mr.findByUserid(userid);
     }
 
+    public void save(Member m){
+        mr.save(m);
+    }
 
     public String pwCheck(String userid){
         String passwordById = mr.findPasswordById(userid);

@@ -1,6 +1,8 @@
 package com.example.FP.entity;
 
 import com.example.FP.dto.MemberDto;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -114,6 +116,10 @@ public class Member {
                 .role(MemberRole.MEMBER)
                 .build();
         return member;
+    }
+
+    public void newPwd(String password){
+        this.password = password;
     }
 
     public void addPoint(Orders orders){

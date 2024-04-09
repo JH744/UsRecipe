@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface IngredientRepository extends JpaRepository<Ingredient,Long> {
 
     //재료목록 전체 불러오기
@@ -17,4 +19,6 @@ public interface IngredientRepository extends JpaRepository<Ingredient,Long> {
     @Query("SELECT i FROM Ingredient i WHERE (:categoryId IS NULL OR i.ingredientIngredientCategory.id = :categoryId)")
     Page<Ingredient> findByCategoryId(@Param("categoryId") Long categoryId, Pageable pageable);
 
+    @Query(value = "select * from Ingredient where ingredient_name like %:keyword%",nativeQuery = true)
+    List<Ingredient> findas(String keyword);
 }
