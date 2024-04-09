@@ -1,8 +1,8 @@
 
 .footer {
-
     margin-top: 5px;
     width:100%;
+    min-width:1280px;
     padding: 0;
     background:rgba(242.24999696016312, 242.24999696016312, 242.24999696016312, 1);
     box-sizing: border-box;
@@ -15,7 +15,7 @@
     height:200px;
 
 }
-.footerSpanTag {
+.footerPTag {
     margin: 50px;
     color: #727171;
     font-weight: 500;
@@ -26,6 +26,7 @@
     font-size:13px;
     line-height: 1.6;
     letter-spacing:0;
+    color:#999;
 }
 
 .footerLogo {
