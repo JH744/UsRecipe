@@ -26,6 +26,7 @@ public class OrdersDto {
     private Integer orders_used_point;
     private String orders_request;
     private Member orders_member;
+    private String orders_content;
 
 
     private List<OrderDetails> order_ordersdetail_list = new ArrayList<>();

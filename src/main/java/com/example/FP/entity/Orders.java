@@ -29,6 +29,7 @@ public class Orders {
     private int ordersSalePrice;
     private int ordersUsedPoint;
     private String ordersRequest;
+    private String ordersContent;
 
     @ManyToOne
     @JoinColumn(name = "member_id")
@@ -49,32 +50,35 @@ public class Orders {
 
 
 
-    public Orders(LocalDateTime orders_date,
-                  String orders_receiver,
-                  String orders_receiver_addr,
-                  String orders_receiver_phone,
-                  int orders_total_price,
-                  int orders_sale_price,
-                  Integer orders_used_point,
-                  String orders_request,
-                  Member orders_member,
-                  List<OrderDetails> order_ordersdetail_list,
-                  OrderState orders_order_state,
-                  List<Point> orders_point_list
+    public Orders(LocalDateTime ordersDate,
+                  String ordersReceiver,
+                  String ordersReceiverAddr,
+                  String ordersReceiverPhone,
+                  int ordersTotalPrice,
+                  int ordersSalePrice,
+                  Integer ordersUsedPoint,
+                  String ordersRequest,
+                  Member ordersMember,
+                  List<OrderDetails> orderOrdersdetailList,
+                  OrderState ordersOrderState,
+                  List<Point> orderPointList,
+                  String ordersContent
+
     ) {
 
-        this.ordersDate = orders_date;
-        this.ordersReceiver = orders_receiver;
-        this.ordersReceiverAddr = orders_receiver_addr;
-        this.ordersReceiverPhone = orders_receiver_phone;
-        this.ordersTotalPrice = orders_total_price;
-        this.ordersSalePrice = orders_sale_price;
-        this.ordersUsedPoint = orders_used_point;
-        this.ordersRequest = orders_request;
-        this.ordersMember = orders_member;
-        this.orderOrdersdetailList = order_ordersdetail_list;
-        this.ordersOrderState = orders_order_state;
-        this.orderPointList = orders_point_list;
+        this.ordersDate = ordersDate;
+        this.ordersReceiver = ordersReceiver;
+        this.ordersReceiverAddr = ordersReceiverAddr;
+        this.ordersReceiverPhone = ordersReceiverPhone;
+        this.ordersTotalPrice = ordersTotalPrice;
+        this.ordersSalePrice = ordersSalePrice;
+        this.ordersUsedPoint = ordersUsedPoint;
+        this.ordersRequest = ordersRequest;
+        this.ordersMember = ordersMember;
+        this.orderOrdersdetailList = orderOrdersdetailList;
+        this.ordersOrderState = ordersOrderState;
+        this.orderPointList = orderPointList;
+        this.ordersContent = ordersContent;
 
     }
 }
