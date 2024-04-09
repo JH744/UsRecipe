@@ -12,6 +12,9 @@ import java.util.List;
 public class OrdersService {
     private final OrdersRepository or;
 
+    public List<Orders> findAllOrderListByUserid(String userid){
+        return or.findOrdersListByUserid(userid);
+    }
 
 
 }

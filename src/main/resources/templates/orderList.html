@@ -220,19 +220,17 @@
                                 <thead>
                                 <tr>
                                     <th scope="col" class="orderList_th">번호</th>
-                                    <th scope="col" class="orderList_th">사진</th>
                                     <th scope="col" class="orderList_th">제품명</th>
                                     <th scope="col" class="orderList_th">가격</th>
                                     <th scope="col" class="orderList_th">주문상태</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td class="orderList_td" th:text="${list.}">1</td>
-                                    <td class="orderList_td"><img src="../static/images/image_11.png" style="width: 50px;height: 60px"></td>
-<!--                                    <td class="orderList_td" th:text="${list.}">Otto</td>-->
-                                    <td class="orderList_td">10000원</td>
-                                    <td class="orderList_td">배송완료</td>
+                                <tr th:each="list:${list}">
+                                    <td class="orderList_td" th:text="${list.getId()}">1</td>
+                                    <td class="orderList_td" th:text="${list.getOrdersContent()}">Otto</td>
+                                    <td class="orderList_td" th:text="${list.getOrdersSalePrice()}">10000원</td>
+                                    <td class="orderList_td" th:text="${list.getOrdersOrderState()}"></td>
                                 </tr>
 
                                 </tbody>

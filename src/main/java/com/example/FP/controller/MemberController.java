@@ -18,7 +18,7 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final OrdersService os;
+
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
     private final MailService mailService;
@@ -181,12 +181,7 @@ public class MemberController {
         return "redirect:/";
 
     }
-    @GetMapping("/orderList")
-    public String orderList(Model model,HttpSession session){
 
-        return "/orderList";
-
-    }
 
 
 }
