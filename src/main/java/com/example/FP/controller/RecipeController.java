@@ -60,7 +60,6 @@ public class RecipeController {
     @ResponseBody
     public String uploadRecipeMainPhoto(@RequestParam("file") MultipartFile multipartFile){
         JsonObject jsonObject = new JsonObject();
-        System.out.println(multipartFile);
         String fileRoot = "src/main/resources/static/images/";	//저장될 외부 파일 경로
         String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
         String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
@@ -72,9 +71,7 @@ public class RecipeController {
         try {
             InputStream fileStream = multipartFile.getInputStream();
             FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
-//            jsonObject.addProperty("url", "../static/images/"+savedFileName);
-            jsonObject.addProperty("url", multipartFile.getBytes().toString());
-            jsonObject.addProperty("imgName", savedFileName);
+            jsonObject.addProperty("url", "../static/images/"+savedFileName);
             jsonObject.addProperty("responseCode", "success");
         } catch (Exception e) {
             System.out.println("예외발생 : "+e.getMessage());
