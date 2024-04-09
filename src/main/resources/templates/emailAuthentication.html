@@ -15,10 +15,15 @@
     <script>
         $(function (){
             $("#check").click(function (event){
-
                 if ($("cert").val() == "") {
                     alert("인증번호를 입력하세요");
-                    event.preventDefault()
+                    event.preventDefault();
+                    return;
+                }
+
+                if ($("#num").val() != $("#cert").val()){
+                    alert("인증번호가 틀렸습니다");
+                    event.preventDefault();
                     return;
                 }
             })
@@ -42,6 +47,8 @@
             <form action="/emailAuthentication" method="post">
                 <div style="width: 390px">
                     <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+                    <input type="hidden" th:value="${num}" name="num" id="num">
+                    <input type="hidden" th:value="${userid}" name="userid">
                     <span class="e65_432">인증코드</span>
                     <input class="e65_428" type="text" id="cert"/>
                 </div>

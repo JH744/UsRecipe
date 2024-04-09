@@ -59,6 +59,9 @@ public class MemberService implements UserDetailsService {
         return mr.findByUserid(userid);
     }
 
+    public void save(Member m){
+        mr.save(m);
+    }
 
     public String pwCheck(String userid){
         String passwordById = mr.findPasswordById(userid);
@@ -137,5 +140,13 @@ public class MemberService implements UserDetailsService {
         return false;
     }
 
-
+    public Boolean updatePwd(String userid, String password){
+        System.out.println(password);
+        int m = mr.updatePwd(userid, password);
+        System.out.println(m);
+        if (m < 1) {
+            return false;
+        }
+        return true;
+    }
 }

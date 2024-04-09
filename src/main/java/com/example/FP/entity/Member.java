@@ -116,6 +116,10 @@ public class Member {
         return member;
     }
 
+    public void newPwd(String password){
+        this.password = password;
+    }
+
     public void addPoint(Orders orders){
         int savedPoint = (int)Math.round(orders.getOrdersSalePrice()*0.01);
         this.point += savedPoint;

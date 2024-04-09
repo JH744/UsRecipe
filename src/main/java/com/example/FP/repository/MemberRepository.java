@@ -1,9 +1,11 @@
 package com.example.FP.repository;
 
 import com.example.FP.entity.Member;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -17,8 +19,8 @@ public interface MemberRepository extends JpaRepository<Member,Long>,MemberRepos
 
     Member findByUseridAndEmail(String userid, String email);
 
-//    @Modifying
-//    @Query(name = "update member set password=?1 where userid=?2", nativeQuery = true)
-//    Member updatePwd(String password, String userid);
+    @Modifying()
+    @Query("UPDATE Member m SET m.password= :password WHERE m.userid= :userid")
+    int updatePwd(@Param("password") String password,@Param("userid") String userid);
 
 }
