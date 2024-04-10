@@ -3,7 +3,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <title>유스레시피</title>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <link rel="stylesheet" type="text/css" href="../static/css/templateBody.css"/>
     <link rel="stylesheet" href="../static/css/footer.css"/>
     <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
@@ -83,13 +83,17 @@
         }
 
         function delStep(idx) {
-            swal({
+            Swal.fire({
                 title: "요리순서 삭제",
-                text: "정말 해당 요리 순서를 삭제하시겠습니까?",
-                icon: "../static/images/image_11.png",
-                buttons: ["NO", "YES"]
-            }).then((YES) => {
-                if (YES) {
+                text: "해당 요리 순서를 정말 삭제하시겠습니까?",
+                imageUrl: "../static/images/image_11.png",
+                imageAlt: "Custom image",
+                fontSize:150,
+                showCancelButton: true,
+                confirmButtonText: '삭제',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
                     var divStep = $("#divStepItem_" + idx);
                     var nextDivs = []
                     nextDivs = divStep.nextAll()
@@ -110,7 +114,7 @@
                 }
             });
 
-            // var re = confirm("정말 해당 요리 순서를 삭제하시겠습니까?")
+            // var re = confirm("해당 요리 순서를 정말 삭제하시겠습니까?")
             // if(re==1) {
             //     var divStep = $("#divStepItem_" + idx);
             //     var nextDivs = []

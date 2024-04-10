@@ -1,4 +1,8 @@
 @charset "utf-8";
+.swal2-popup {
+    font-size: 16px;
+}
+
 .container {
     width: 1240px;
     max-width: none !important;
