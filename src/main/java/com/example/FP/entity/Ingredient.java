@@ -1,5 +1,9 @@
 package com.example.FP.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,6 +35,8 @@ public class Ingredient {
     @OneToMany(mappedBy = "recipeIngredientIngredient")
     private List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
 
+
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "ingredient_category_id")
     private IngredientCategory ingredientIngredientCategory;
