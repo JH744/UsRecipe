@@ -27483,3 +27483,15 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     animation-duration: 1.5s;
     animation-name: slidein;
 }
+
+.ingredientSearchBox{
+    display:flex;
+    margin-bottom: 5px;
+    justify-content: flex-start;
+    width:100%;
+}
+
+.ingredientSearchInput{
+    width: 100%;
+    height:34px
+}

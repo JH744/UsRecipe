@@ -521,9 +521,11 @@
                         <h5 class="modal-title" id="exampleModalLabel">재료 검색 하기</h5>
                     </div>
                     <div class="modal-body">
-                        <input type="text" placeholder="원하는 재료를 입력해주세요." name="keyword" id="keyword"
-                               style="width: 80%;height:34px">
-                        <button class="btn btn-primary" id="ingredientSearchBtn">검색</button>
+                        <div class="ingredientSearchBox">
+                            <input type="text" placeholder="원하는 재료를 입력해주세요." name="keyword" id="keyword"
+                                   class="ingredientSearchInput">
+                            <button class="btn btn-primary" id="ingredientSearchBtn">검색</button>
+                        </div>
                         <div style="width: auto; height:500px; border: 1px solid; overflow: auto">
                             <div class="modal_IngredientSelect_column">
                                 <div class="cell">카테고리</div>
