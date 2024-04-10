@@ -47,7 +47,7 @@
                     <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='id',direction='ASC')}">오래된순</a></li>
                     <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='recipeWriter', direction='DESC')}">닉네임순</a></li>
                     <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='recipeViews', direction='DESC')}">조회수순</a></li>
-                    <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='', direction='DESC')}">레시피명순</a></li>
+                    <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='recipeTitle', direction='ASC')}">레시피명순</a></li>
                 </ul>
             </div>
             <div class="HowAboutContainer">
