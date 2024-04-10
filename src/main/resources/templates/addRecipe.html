@@ -3,6 +3,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <title>유스레시피</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../static/css/templateBody.css"/>
     <link rel="stylesheet" href="../static/css/footer.css"/>
     <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
@@ -82,25 +83,52 @@
         }
 
         function delStep(idx) {
-            var re = confirm("정말 해당 요리 순서를 삭제하시겠습니까?")
-            if(re==1) {
-                var divStep = $("#divStepItem_" + idx);
-                var nextDivs = []
-                nextDivs = divStep.nextAll()
-                if (nextDivs.length === 0) {
-                    stepIndex = 2;
+            swal({
+                title: "요리순서 삭제",
+                text: "정말 해당 요리 순서를 삭제하시겠습니까?",
+                icon: "../static/images/image_11.png",
+                buttons: ["NO", "YES"]
+            }).then((YES) => {
+                if (YES) {
+                    var divStep = $("#divStepItem_" + idx);
+                    var nextDivs = []
+                    nextDivs = divStep.nextAll()
+                    if (nextDivs.length === 0) {
+                        stepIndex = 2;
+                    }
+                    $.each(nextDivs, function (num) {
+                        var index = idx + num
+                        console.log(index)
+                        $(this).attr("id", "divStepItem_" + index)
+                        $(this).children("p").text("Step" + index)
+                        $(this).children("#stepPhotoHolder_" + (index + 1)).attr("id", "stepPhotoHolder_" + index)
+                        $(this).children(".step_btn").children("a").attr('href', "javascript:delStep(" + index + ")")
+                        stepIndex = index + 1;
+                    })
+                    divStep.remove()
+                }else{
                 }
-                $.each(nextDivs, function (num) {
-                    var index = idx + num
-                    console.log(index)
-                    $(this).attr("id", "divStepItem_" + index)
-                    $(this).children("p").text("Step" + index)
-                    $(this).children("#stepPhotoHolder_" + (index + 1)).attr("id", "stepPhotoHolder_" + index)
-                    $(this).children(".step_btn").children("a").attr('href', "javascript:delStep(" + index + ")")
-                    stepIndex = index + 1;
-                })
-                divStep.remove()
-            }
+            });
+
+            // var re = confirm("정말 해당 요리 순서를 삭제하시겠습니까?")
+            // if(re==1) {
+            //     var divStep = $("#divStepItem_" + idx);
+            //     var nextDivs = []
+            //     nextDivs = divStep.nextAll()
+            //     if (nextDivs.length === 0) {
+            //         stepIndex = 2;
+            //     }
+            //     $.each(nextDivs, function (num) {
+            //         var index = idx + num
+            //         console.log(index)
+            //         $(this).attr("id", "divStepItem_" + index)
+            //         $(this).children("p").text("Step" + index)
+            //         $(this).children("#stepPhotoHolder_" + (index + 1)).attr("id", "stepPhotoHolder_" + index)
+            //         $(this).children(".step_btn").children("a").attr('href', "javascript:delStep(" + index + ")")
+            //         stepIndex = index + 1;
+            //     })
+            //     divStep.remove()
+            // }
         }
 
         var ingredientGroup_id
