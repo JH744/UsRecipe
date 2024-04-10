@@ -1,17 +1,21 @@
 package com.example.FP.controller;
 
+import com.example.FP.entity.Ingredient;
+import com.example.FP.entity.Recipe;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import jakarta.servlet.http.HttpSession;
 import org.apache.commons.io.FileUtils;
 import com.example.FP.service.RecipeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -27,11 +31,59 @@ public class RecipeController {
 
     private final RecipeService rs;
 
-    @GetMapping("/recipe")
-    public String recipeList(Model model){
+    @GetMapping("/listRecipe/{page}")
+    public String recipeList(@PathVariable("page") int page, Model model,
+                             @RequestParam(required = false ) Long category,
+                             @RequestParam(required = false ) String sortBy,
+                             @RequestParam(required = false ) String direction,
+                             @RequestParam(required = false ) String keyword,
+                             HttpSession session){
 
-        //레시피목록 불러오기
-        model.addAttribute("list",rs.list());
+
+        System.out.println("전달받은"+ keyword);
+
+
+        //***정렬조건 유무 >>  로직 설정***//
+        Pageable pageable;
+        if (sortBy != null && !sortBy.isEmpty()) {  //정렬조건이 넘어 올 경우
+            Sort.Direction Direction = (direction.equals("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC );
+            pageable = PageRequest.of(page-1, 8, Direction, sortBy);
+            System.out.println("소트 뽑아봄");
+            System.out.println(sortBy);
+            System.out.println(pageable.getSort());
+        } else {  // 정렬 방향이 지정되지 않았을 경우 기본값 사용
+            pageable = PageRequest.of(page-1, 8);
+        }
+
+
+
+
+        Page<Recipe>  list =null;
+        int totalPage = 0;
+        //카테고리가 전체보기(000)이라면 모든 목록 불러오기
+        if(category == null || category == 000) {
+             list = rs.listAll(pageable, keyword);
+            totalPage = list.getTotalPages();
+        }
+        //카테고리가 전체보기(000)이 아니라면 카테고리 목록 불러오기
+        else if(category != 000) {
+             list = rs.listRecipes(keyword, category, pageable);
+            totalPage = list.getTotalPages();
+        }
+        model.addAttribute("list", list);
+        model.addAttribute("totalPage", totalPage);
+
+
+
+
+
+
+
+
+
+
+
+
 
         //이 레시피는 어때요?
         long HowAboutToday ;

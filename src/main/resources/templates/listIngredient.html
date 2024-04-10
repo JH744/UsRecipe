@@ -10,9 +10,7 @@
     <link rel="stylesheet" href="../static/css/footer.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script>
 
-    </script>
 </head>
 <body >
     <div class="templateBody">
@@ -38,10 +36,10 @@
 
                 <div class="Container1_box2">
                     <ul class="Container1_box2ul">
-                        <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='id', direction='DESC')}">최신순</a></a></li>
-                        <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='id',direction='ASC')}">오래된순</a></a></li>
-                        <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='ingredientPrice', direction='DESC')}">가격높은순</a></a></li>
-                        <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='ingredientPrice',direction='ASC')}">가격낮은순</a></a></li>
+                        <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='id', direction='DESC')}">최신순</a></li>
+                        <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='id',direction='ASC')}">오래된순</a></li>
+                        <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='ingredientPrice', direction='DESC')}">가격높은순</a></li>
+                        <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='ingredientPrice',direction='ASC')}">가격낮은순</a></li>
                     </ul>
                 </div>
             </div>

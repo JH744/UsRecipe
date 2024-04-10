@@ -11,33 +11,43 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $("header").load("./header.html");
-            $(".footer").load("./footer.html");
+    <link rel="stylesheet" href="../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
+<script>
+    //검색 기능
+    $(document).ready(function() {
+        $('#btnsearch').click(function() {
+            console.log("검색버튼 클릭됨")
+            var keyword = $('#searchbar').val(); // input 태그에서 값 가져오기
+            var pageNum = 1; // pageNum 값 설정
+            // '/listRecipe'로 GET 요청 수행, 'pageNum' 경로 변수  + 'keyword' 쿼리 파라미터 포함
+            window.location.href = `/listRecipe/${pageNum}?keyword=${encodeURIComponent(keyword)}`;
         });
-    </script>
+    });
+</script>
 </head>
-<body >
+<body>
 
-    <div class="templateBody">
-        <header></header>
+<div class="templateBody">
+        <header>
+            <div class="header" th:replace="header :: header"></div>
+        </header>
         <div class="mainBody">
             <div class="sortContainer">
                 <ul class="sortbox1" id="sortbox1">
-                    <li>전체</li>
-                    <li>중식</li>
-                    <li>간편식</li>
-                    <li>한식</li>
-                    <li>일식</li>
-                    <li>퓨전</li>
+                    <li><a th:href="@{/listRecipe/{i}(i=1, category='000')}">전체보기</a></li>
+                    <li><a th:href="@{/listRecipe/{i}(i=1, category='1')}">분식류</a></li>
+                    <li><a th:href="@{/listRecipe/{i}(i=1, category='2')}">찜류</a></li>
+                    <li><a th:href="@{/listRecipe/{i}(i=1, category='3')}">국/찌개류</a></li>
+                    <li><a th:href="@{/listRecipe/{i}(i=1, category='4')}">간식류</a></li>
+                    <li><a th:href="@{/listRecipe/{i}(i=1, category='5')}">훈제/구이류</a></li>
                 </ul>
                 <ul class="sortbox2" id="sortbox2">
-                    <li>최신 순</li>
-                    <li>오래된 순</li>
-                    <li>크리에이터 순</li>
-                    <li>조회수 순</li>
-                    <li>닉네임 순</li>
+                    <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='id', direction='DESC')}">최신순</a></li>
+                    <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='id',direction='ASC')}">오래된순</a></li>
+                    <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='recipeWriter', direction='DESC')}">닉네임순</a></li>
+                    <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='recipeViews', direction='DESC')}">조회수순</a></li>
+                    <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='', direction='DESC')}">레시피명순</a></li>
                 </ul>
             </div>
             <div class="HowAboutContainer">
@@ -78,15 +88,19 @@
                 <div class="recipeItem"  th:each=" r : ${list}">
                     <div class="recipeItem_img"></div>
                     <div class="recipeItem_info">
-                        <p th:text="${r.recipe_title}"></p>
-                        <span th:text="${r.recipe_writer}">닉네임</span><br>
-                        <span>조회수</span>
+                        <p th:text="${r.recipeTitle}">레시피명</p>
+                        <span th:text="${r.recipeWriter}">닉네임</span><br>
+                        <span th:text="${r.recipeViews}">조회수</span>
                     </div>
                 </div>
 
 
 
             </div>
+            <div class="pageBox">
+                <th:block th:each="i:${#numbers.sequence(1,totalPage)}">
+                    <a class="pageNum" th:href="@{|/listRecipe/${i}|}" th:text="${i}"></a> <!--URI방식임  -->
+                </th:block>
 
 
         </div>
@@ -98,7 +112,7 @@
 
 
     </div>
-    <div class="footer"></div>
+    <div class="footer" th:replace="footer :: footer"></div>
 </div>
 
 </body>
