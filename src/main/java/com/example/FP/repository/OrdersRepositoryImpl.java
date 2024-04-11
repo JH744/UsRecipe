@@ -22,4 +22,6 @@ public class OrdersRepositoryImpl implements OrdersRepositoryCustom {
     public List<Orders> findOrdersListByUserid(String userid) {
         return queryFactory.select(orders).from(orders).where(orders.ordersMember.userid.eq(userid)).fetch();
     }
+
+
 }

@@ -30,6 +30,8 @@ public class MemberService implements UserDetailsService {
         }
     }
 
+
+
     public Long join(Member member){
         validateDuplicateMember(member);
         System.out.println("맴버 서비스");

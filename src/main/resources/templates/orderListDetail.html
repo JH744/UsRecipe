@@ -196,72 +196,72 @@
             <hr>
             <div id="notion_box">
                 <h3>구매자 &nbsp; 정보</h3>
-                <table>
+                <table  th:each="list:${list}">
                     <tr>
                         <td style="width: 20%" class="orderListDetailTable_td1">이름</td>
-                        <td class="orderListDetailTable_td2">김김김</td>
+                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetailsMember().name}">김김김</td>
                     </tr>
                     <tr>
                         <td style="width: 20%" class="orderListDetailTable_td1">이메일</td>
-                        <td class="orderListDetailTable_td2">example@gmail.com</td>
+                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetailsMember().email}">example@gmail.com</td>
                     </tr>
                     <tr>
                         <td style="width: 20%" class="orderListDetailTable_td1">연락처</td>
-                        <td class="orderListDetailTable_td2">010-0000-0000</td>
+                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetailsMember().phone}">010-0000-0000</td>
                     </tr>
                 </table>
                 <br><br>
                 <h3>받는사람 &nbsp;정보</h3>
-                <table>
+                <table  th:each="list:${list}">
                     <tr>
                         <td style="width: 20%" class="orderListDetailTable_td1">이름</td>
-                        <td class="orderListDetailTable_td2">김김김</td>
+                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersReceiver()}">김김김</td>
                     </tr>
                     <tr>
                         <td style="width: 20%" class="orderListDetailTable_td1">주소</td>
-                        <td class="orderListDetailTable_td2">서울시 마포구 어쩌구 저쩌구</td>
+                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersReceiverAddr()}">서울시 마포구 어쩌구 저쩌구</td>
                     </tr>
                     <tr>
                         <td style="width: 20%" class="orderListDetailTable_td1">연락처</td>
-                        <td class="orderListDetailTable_td2">010-0000-0000</td>
+                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersReceiverPhone()}">010-0000-0000</td>
                     </tr>
                 </table>
             </div>
             <br><br>
             <h3>배송물품 정보</h3>
-            <table>
-                <tr>
+            <table  th:each="list:${list}">
+                <tr >
                     <th style="width: 60% ;text-align: center" class="orderListDetailTable_th1">상품명</th>
                     <th style="width: 15%;margin-right: 20px;"class="orderListDetailTable_th1">수량</th>
                     <th style="width: 20%"class="orderListDetailTable_th1">가격</th>
                 </tr>
                 <tr>
-                    <td>충북 음성 사과</td>
+                    <td th:text="${list.getOrdersIngredient().getIngredientName()}">충북 음성 사과</td>
                     <td>1</td>
-                    <td>10000</td>
+                    <td th:text="${list.getOrdersIngredient().getIngredientPrice()}">10000</td>
                 </tr>
             </table>
             <br><br>
             <h3>결제정보</h3>
-            <table>
-                <tr>
+            <table >
+                <tr th:each="list:${list}">
                     <td style="width: 20%" class="orderListDetailTable_td1">총 상품가격</td>
-                    <td class="orderListDetailTable_td2">10000원</td>
+                    <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersTotalPrice()}">10000원</td>
                 </tr>
                 <tr>
                     <td style="width: 20%" class="orderListDetailTable_td1">배송비</td>
                     <td class="orderListDetailTable_td2">0원</td>
                 </tr>
-                <tr>
+                <tr th:each="list:${list}">
                     <td style="width: 20%" class="orderListDetailTable_td1">총결제금액</td>
-                    <td class="orderListDetailTable_td2">10000원</td>
+                    <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersSalePrice()}">10000원</td>
                 </tr>
                     <td style="width: 20%" class="orderListDetailTable_td1">결제방법</td>
                     <td class="orderListDetailTable_td2">카드</td>
                 </tr>
             </table>
             <br><br>
-            <button style="border: none; color: white; background-color:#D65454;width: 150px;height: 50px; margin-left: 350px;"> 목록으로 </button>
+            <button style="border: none; color: white; background-color:#D65454;width: 150px;height: 50px; margin-left: 350px;" th:onclick="|window.location.href='@{/orderList}'|"> 목록으로 </button>
             <br><br>
 
             <div style="margin-top:50px;" >
