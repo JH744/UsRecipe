@@ -37,8 +37,8 @@
                 var recipeIngredientQty = $(this).find(".ingredientQty").val()
                 var recipeIngredientUnit = $(this).find(".ingredientUnit").val()
                 var recipeIngredientId = $(this).find(".ingredientId").val()
-                if(recipeIngredientNeed==="" || recipeIngredientQty==="" ||
-                    recipeIngredientUnit===""){
+                if (recipeIngredientNeed === "" || recipeIngredientQty === "" ||
+                    recipeIngredientUnit === "") {
                     isnull = true;
                     return false;
                 }
@@ -50,9 +50,9 @@
                 }
                 ingredientDataList.push(ingredientDataListItem)
             })
-            if(isnull){
+            if (isnull) {
                 return null;
-            }else {
+            } else {
                 return ingredientDataList;
             }
         }
@@ -66,7 +66,7 @@
             $.each(recipeStepList, function () {
                 var recipeDetail = $(this).find(".step_text").val()
                 var recipePhoto = $(this).find(".step_photo_url").val()
-                if(recipeDetail==="" || recipePhoto===""){
+                if (recipeDetail === "" || recipePhoto === "") {
                     isnull = true;
                     return false;
                 }
@@ -76,9 +76,9 @@
                 }
                 stepDataList.push(stepDataListItem)
             })
-            if(isnull){
+            if (isnull) {
                 return null;
-            }else {
+            } else {
                 return stepDataList;
             }
         }
@@ -318,49 +318,63 @@
         }
 
         // 레시피 게시글 저장
-        function doSubmit(){
-            var ingredientDataList = ingeredientData();
-            var stepDataList = stepData();
-            var recipeTitle = $("#recipe_title").val()
-            var recipeCategory = $("#recipeCategory").val()
-            var recipeThumbnail = $("#recipe_thumbnail").val()
-            if(recipeTitle===""){
-                inputCheck("레시피 제목(을)")
-            }
-            if(recipeThumbnail===""){
-                inputCheck("요리 대표 사진(을)")
-            }
-            if(recipeCategory==="none"){
-                inputCheck("레시피 카테고리")
-            }
-            if(ingredientDataList===null){
-                inputCheck("재료 목록(을)")
-            }
-            if(stepDataList===null){
-                inputCheck("요리 순서")
-            }
-            var recipeData = {
-                ingredientDataList:ingredientDataList,
-                stepDataList:stepDataList,
-                recipeTitle:recipeTitle,
-                recipeCategory:recipeCategory,
-                recipeThumbnail:recipeThumbnail
-            }
-            var recipeDataList = {
-                "recipeDataList" : JSON.stringify(recipeData)
-            }
-            console.log(recipeDataList)
-            $.ajax({
-                url:'/insertRecipe',
-                data:recipeDataList,
-                type:"POST"
+        function doSubmit() {
+            Swal.fire({
+                title: "레시피 저장",
+                text: "레시피를 저장하시겠습니까?",
+                imageUrl: "../static/images/image_11.png",
+                imageAlt: "Custom image",
+                showCancelButton: true,
+                confirmButtonText: '저장',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var ingredientDataList = ingeredientData();
+                    var stepDataList = stepData();
+                    var recipeTitle = $("#recipe_title").val()
+                    var recipeCategory = $("#recipeCategory").val()
+                    var recipeThumbnail = $("#recipe_thumbnail").val()
+                    if (recipeTitle === "") {
+                        inputCheck("레시피 제목(을)")
+                    }
+                    if (recipeThumbnail === "") {
+                        inputCheck("요리 대표 사진(을)")
+                    }
+                    if (recipeCategory === "none") {
+                        inputCheck("레시피 카테고리")
+                    }
+                    if (ingredientDataList === null) {
+                        inputCheck("재료 목록(을)")
+                    }
+                    if (stepDataList === null) {
+                        inputCheck("요리 순서")
+                    }
+                    var recipeData = {
+                        ingredientDataList: ingredientDataList,
+                        stepDataList: stepDataList,
+                        recipeTitle: recipeTitle,
+                        recipeCategory: recipeCategory,
+                        recipeThumbnail: recipeThumbnail
+                    }
+                    var recipeDataList = {
+                        "recipeDataList": JSON.stringify(recipeData)
+                    }
+                    console.log(recipeDataList)
+                    $.ajax({
+                        url: '/insertRecipe',
+                        data: recipeDataList,
+                        type: "POST"
+
+                    })
+                } else {
+                }
             })
         }
 
-        function inputCheck(msg){
+        function inputCheck(msg) {
             Swal.fire({
-                title: msg+"를 <br>제대로 입력해주세요!!",
-                icon:"warning"
+                title: msg + "를 <br>제대로 입력해주세요!!",
+                icon: "warning"
             })
         }
 
@@ -459,7 +473,8 @@
                                         </button>
                                         <input name="ingredientCategory" class="ingredientCategory" readonly=''
                                                placeholder='-분류-' style='color:#898989'>
-                                        <input name="ingredientName" class="ingredientName" placeholder='-재료명-' readonly=''
+                                        <input name="ingredientName" class="ingredientName" placeholder='-재료명-'
+                                               readonly=''
                                                style='color:#898989'>
                                         <input type="text" name="ingredientQty" class="ingredientQty form-control"
                                                style="width:100px;"

@@ -107,8 +107,8 @@ public class RecipeController {
     }
 
     @PostMapping("/insertRecipe")
-    @ResponseBody
-    public void insertRecipe(@RequestParam Map<String, Object> recipeDataList,HttpSession session){
+        public String insertRecipe(@RequestParam Map<String, Object> recipeDataList,HttpSession session){
         rs.insertRecipe(recipeDataList,session.getAttribute("userid").toString());
+        return "redirect:/";
     }
 }

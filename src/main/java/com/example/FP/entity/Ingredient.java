@@ -31,40 +31,17 @@ public class Ingredient {
     private int ingredientQty;
 
 
-    @Builder.Default
-    @OneToMany(mappedBy = "recipeIngredientIngredient")
-    private List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
-
-
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "ingredient_category_id")
     private IngredientCategory ingredientIngredientCategory;
 
-    @Builder.Default
-    @OneToMany(mappedBy = "ordersIngredient")
-    private List<OrderDetails> ingredientOrderdetailList = new ArrayList<>();
-
-    @Builder.Default
-    @OneToMany(mappedBy = "cartIngredient")
-    private List<Cart> ingredientCartList = new ArrayList<>();
-
-
-    @Builder.Default
-    @OneToMany(mappedBy = "replyIngredient")
-    private List<Reply> ingredientReplyList = new ArrayList<>();
-
-    public Ingredient(String ingredientName, int ingredientPrice, String ingredientOrigin, int ingredientAmount, String ingredientUnit, int ingredientQty, List<RecipeIngredient> recipeIngredientList, IngredientCategory ingredientIngredientCategory, List<OrderDetails> ingredientOrderdetailList, List<Cart> ingredientCartList, List<Reply> ingredientReplyList) {
+    public Ingredient(String ingredientName, int ingredientPrice, String ingredientOrigin, int ingredientAmount, String ingredientUnit, int ingredientQty, IngredientCategory ingredientIngredientCategory) {
         this.ingredientName = ingredientName;
         this.ingredientPrice = ingredientPrice;
         this.ingredientOrigin = ingredientOrigin;
         this.ingredientAmount = ingredientAmount;
         this.ingredientUnit = ingredientUnit;
         this.ingredientQty = ingredientQty;
-        this.recipeIngredientList = recipeIngredientList;
         this.ingredientIngredientCategory = ingredientIngredientCategory;
-        this.ingredientOrderdetailList = ingredientOrderdetailList;
-        this.ingredientCartList = ingredientCartList;
-        this.ingredientReplyList = ingredientReplyList;
     }
 }
