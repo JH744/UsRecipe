@@ -40,7 +40,36 @@ public class RecipeController {
                              HttpSession session){
 
 
-        System.out.println("전달받은"+ keyword);
+        System.out.println("전달받은 검색어:"+ keyword);
+
+
+        // **정렬 및 카테고리 상태유지** //
+        //category에 null이 아닌 새값이 전달된 경우 세션에 새롭게 저장.
+        if(category != null) {
+            session.setAttribute("category", category);
+        }else {
+            //category가 null이라면 기존session에서 값을 가져옴
+            category= (Long) session.getAttribute("category");
+        }
+
+
+        //sort에 null이 아닌 새값이 전달된 경우 세션에 새롭게 저장.
+        if(sortBy != null) {
+            session.setAttribute("sort", sortBy);
+            System.out.println("sortBy저장됨");
+            System.out.println(session.getAttribute("sort"));
+            session.setAttribute("direction", direction);
+            System.out.println("direction저장됨");
+            System.out.println(session.getAttribute("direction"));
+        }else {
+            //sort가 null이면 기존session에서 값을 가져옴
+            sortBy = (String) session.getAttribute("sort");
+            direction = (String) session.getAttribute("direction");
+        }
+
+
+
+
 
 
         //***정렬조건 유무 >>  로직 설정***//
