@@ -20,6 +20,7 @@ public class RecipeIngredient {
 
     private int recipeIngredientQty;
     private String recipeIngredientNeed;
+    private String recipeIngredientUnit;
 
     @ManyToOne
     @JoinColumn(name = "recipe_id")
