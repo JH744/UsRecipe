@@ -1,5 +1,6 @@
 package com.example.FP.service;
 
+import com.example.FP.details.PrincipalDetails;
 import com.example.FP.dto.MemberDto;
 import com.example.FP.entity.Member;
 import com.example.FP.mapper.MemberMapper;
@@ -42,17 +43,13 @@ public class MemberService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("loadUserByUsername 실행");
         Member m = mr.findByUserid(username);
         if (m == null) {
             throw new UsernameNotFoundException(username);
         }
-        UserDetails user = null;
-        user = User.builder()
-                .username(username)
-                .password(m.getPassword())
-                .roles(String.valueOf(m.getRole()))
-                .build();
-        return user;
+
+        return new PrincipalDetails(m);
     }
 
     public Member findById(String userid){

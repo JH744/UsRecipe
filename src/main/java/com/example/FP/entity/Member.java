@@ -118,6 +118,19 @@ public class Member {
         return member;
     }
 
+    public static Member createMember(String email, String name, String nickname){
+        System.out.println("맴버 생성");
+        Member member = Member.builder()
+                .userid(email)
+                .name(name)
+                .nickname(nickname)
+                .email(email)
+                .point(0)
+                .role(MemberRole.MEMBER)
+                .build();
+        return member;
+    }
+
     public void newPwd(String password){
         this.password = password;
     }
