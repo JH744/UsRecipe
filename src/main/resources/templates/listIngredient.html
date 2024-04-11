@@ -9,7 +9,57 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/footer.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+
+
+        $('.cartBtn').click(function() {
+
+            var storeItemElement = $(this).closest('.storeItem');
+            var ingredientId = storeItemElement.find('.non-visible').text();
+            console.log("상품 ID: ", ingredientId);
+            //  상품 id를 전달 후 장바구니 추가 요청
+            $.ajax({
+                url: '/addCart', // 요청을 보낼 서버의 URL
+                type: 'POST', // HTTP 요청 방식
+                data: { Id: ingredientId }, // 서버로 보낼 데이터
+                success: function(response) {
+                    // 요청이 성공했을 때 실행될 함수
+                    console.log('서버 응답:', response);
+                    $('#modalbox1').css('display', 'block');
+                },
+                error: function(xhr, status, error) {
+                    // 요청이 실패했을 때 실행될 함수
+                    console.error('에러 발생:', error);
+                    $('#modalbox2').css('display', 'block');
+                }
+            });
+
+        });
+
+
+
+        $('#btnClose').click(()=>{
+            $('#modalbox1').css('display','none');
+        })
+        $('#btnClose2').click(()=>{
+            $('#modalbox2').css('display','none');
+        })
+
+
+        $('#btnToCart').click(()=>{
+            window.location.href = "/cart";
+        })
+
+
+    });
+
+
+
+
+</script>
 
 </head>
 <body >
@@ -50,10 +100,11 @@
 
                     <div class="storeItem" th:each=" i : ${list}">
                         <div class="storeItem_img"></div>
-                        <button id="cartBtn" class="cartBtn"><img src="../static/images/icon/카트.svg"/><span>담기</span></button>
-                        <div class="storeItem_info">sds
+                        <button class="cartBtn"><img src="../static/images/icon/카트.svg"/><span>담기</span></button>
+                        <div class="storeItem_info">
                             <p th:text="${i.ingredientName}">상품명</p>
                             <p th:text="${i.ingredientPrice}">상품가격</p>
+                            <P th:text="${i.id}" class="non-visible">재료id</P>
                         </div>
                     </div>
 
@@ -64,13 +115,20 @@
                         <a class="pageNum" th:href="@{|/listIngredient/${i}|}" th:text="${i}"></a> <!--URI방식임  -->
                      </th:block>
 
-
+                </div>
+            </div>
+            <div class="modelContainer">
+                <div class="modalbox1" id="modalbox1">
+                        <h3>장바구니에 상품을 담았습니다.</h3>  
+                        <button class="btnModal" id="btnToCart">장바구니로 이동</button>
+                        <button class="btnModal" id="btnClose">확인</button>
+                </div>
+                <div class="modalbox2" id="modalbox2" >
+                    <h3>장바구니에 상품을 추가하지 못했습니다.</h3>
+                    <button class="btnModal" id="btnClose2">확인</button>
                 </div>
 
-            </div>
-
-
-
+           </div>
 
         </div>
         <div class="footer" th:replace="footer :: footer"></div>

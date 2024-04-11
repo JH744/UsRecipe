@@ -16,7 +16,7 @@ public class SecurityConfig{
         http
                 .authorizeRequests()
                 .requestMatchers("/", "/findUserPwd", "/join","/joinOk","/static/**","/id_check","/sendEmail","/nickname_check","/mailCheck", "/emailAuthentication", "/newPwd", "/findPwdOk", "/findUserid" ,
-                        "/listIngredient/**"
+                        "/listIngredient/**","/addCart","/cart"
                 ,"listRecipe/**")
                 .permitAll()
                 .requestMatchers("/admin/**").hasRole("admin")

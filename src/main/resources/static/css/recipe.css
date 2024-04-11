@@ -155,7 +155,6 @@ a {
 }
 .recipeItem p {
   font-size: 30px;
-  margin: 5px 0 5px 0 ;
 }
 .recipeItem span {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -168,11 +167,12 @@ a {
 }/*# sourceMappingURL=recipe.css.map */
 
 
+
+
 .pageBox {
   width: 200px;
   height: 20px;
   margin: auto;
-  text-align: center;
 }
 
 .pageNum {
