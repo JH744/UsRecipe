@@ -181,11 +181,11 @@
             <ul class="news-ul">
                 <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
 
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/notionmain}" style="font-weight: bold;">주문내역<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/notionmain}" style="font-weight: bold;">적립내역<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/question}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/myqnamain}" style="font-weight: bold;">정보변경<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/myqnamain}" style="font-weight: bold;">찜목록<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/orderList}" style="font-weight: bold;">주문내역<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/pointList}" style="font-weight: bold;">적립내역<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/inquiryList}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/pwCheckDataChange}" style="font-weight: bold;">정보변경<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/wishList}" style="font-weight: bold;">찜목록<span>></span></a></li>
 
             </ul>
         </aside>
@@ -194,12 +194,12 @@
                 <tr style="border-top: none;">
                     <th style="color: black;" class="mypage_myinfo_th">이름</th>
                     <th style="color: black" class="mypage_myinfo_th">적립금</th>
-                    <th style="color: black" class="mypage_myinfo_th">주문건수</th>
+
                 </tr>
                 <tr style="border-bottom: none">
-                    <td class="mypage_myinfo_td">김김김</td>
-                    <td class="mypage_myinfo_td">1000원</td>
-                    <td class="mypage_myinfo_td">3건</td>
+                    <td class="mypage_myinfo_td" th:text="${info.name}">김김김</td>
+                    <td class="mypage_myinfo_td" th:text="${info.point}">1000원</td>
+
                 </tr>
             </table>
             <div id="notion_title_wrap" style="color: black">
@@ -221,7 +221,7 @@
                                 <tr>
                                     <th scope="col" class="orderList_th">번호</th>
                                     <th scope="col" class="orderList_th">제품명</th>
-                                    <th scope="col" class="orderList_th">가격</th>
+                                    <th scope="col" class="orderList_th">결제금액</th>
                                     <th scope="col" class="orderList_th">주문상태</th>
                                 </tr>
                                 </thead>
@@ -229,8 +229,8 @@
                                 <tr th:each="list:${list}">
                                     <td class="orderList_td" th:text="${list.getId()}">1</td>
                                     <td class="orderList_td" th:text="${list.getOrdersContent()}">Otto</td>
-                                    <td class="orderList_td" th:text="${list.getOrdersSalePrice()}">10000원</td>
-                                    <td class="orderList_td" th:text="${list.getOrdersOrderState()}"></td>
+                                    <td class="orderList_td"><a th:text="${list.getOrdersSalePrice()}" th:href="@{|/orderDetail/${list.getId()}|}">10000원</a></td>
+                                    <td class="orderList_td">asdf</td>
                                 </tr>
 
                                 </tbody>

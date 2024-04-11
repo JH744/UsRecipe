@@ -1,5 +1,6 @@
 package com.example.FP.controller;
 
+import com.example.FP.service.MemberService;
 import com.example.FP.service.OrdersService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class OrdersController {
     private final OrdersService os;
+    private final MemberService ms;
 
 
     @GetMapping("/order")
@@ -26,6 +28,7 @@ public class OrdersController {
     @GetMapping("/orderList")
     public String orderList(Model model, HttpSession session){
         model.addAttribute("list",os.findAllOrderListByUserid((String)session.getAttribute("userid")));
+        model.addAttribute("info",ms.listPointAndNameByUserid((String)session.getAttribute("userid")));
 
 
         return "/orderList";

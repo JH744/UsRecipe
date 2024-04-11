@@ -140,4 +140,8 @@ public class MemberService implements UserDetailsService {
         return false;
     }
 
+    public Member listPointAndNameByUserid(String userid){
+        return mr.findNamePointOrderCntByUserid(userid);
+    }
+
 }

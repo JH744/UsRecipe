@@ -162,11 +162,11 @@
             <ul class="news-ul">
                 <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
 
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/notionmain}" style="font-weight: bold;">주문내역<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/notionmain}" style="font-weight: bold;">적립내역<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/question}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/myqnamain}" style="font-weight: bold;">정보변경<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/myqnamain}" style="font-weight: bold;">찜목록<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/orderList}" style="font-weight: bold;">주문내역<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/pointList}" style="font-weight: bold;">적립내역<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/inquiryList}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/pwCheckDataChange}" style="font-weight: bold;">정보변경<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/wishList}" style="font-weight: bold;">찜목록<span>></span></a></li>
 
             </ul>
         </aside>
@@ -199,8 +199,8 @@
                                                             title="YouTube video player" frameborder="0"
                                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                                             allowfullscreen></iframe>
-                                                    <h3 th:text="${list.getWishlistRecipe().getRecipeTitle()}">Cool Fedora</h3>
-                                                    <span class="price"><span class="amount" th:text="${list.getWishlistRecipe().getRecipeWriter()}">$34.00</span></span>
+                                                    <h3 th:text="${list.getWishlistRecipe().getRecipeTitle()}" style="font-family: Cafe24Dangdanghae">상품명</h3>
+                                                    <span class="price"><span class="amount" th:text="${list.getWishlistRecipe().getRecipeWriter()}" style="font-family: Cafe24Dangdanghae">글쓴이</span></span>
                                                 </a><a th:href="@{|/deleteWishlist/${list.id}|}" class="button">삭제</a>
                                             </li>
 
