@@ -1,6 +1,7 @@
 package com.example.FP.controller;
 
 import com.example.FP.service.MemberService;
+import com.example.FP.service.RecipeService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class MainController {
     private final MemberService ms;
+    private final RecipeService rs;
 
     @GetMapping("/")
     public String index(HttpSession session, Model model){
@@ -28,6 +30,8 @@ public class MainController {
             System.out.println(username);
         }
 
+        model.addAttribute("recipe_list", rs.top5());
+        model.addAttribute("random_list", rs.randomList());
 
         return "index";
 
