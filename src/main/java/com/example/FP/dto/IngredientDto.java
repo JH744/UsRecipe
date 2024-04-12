@@ -19,6 +19,8 @@ public class IngredientDto {
     private int ingredient_amount;
     private String ingredient_unit;
     private int ingredient_qty;
+    private String ingredientImage;
+    private String ingredientDetail;
 
     private IngredientCategory ingredient_ingredient_category;
 
