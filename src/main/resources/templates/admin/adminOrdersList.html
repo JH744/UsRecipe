@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>유스레시피</title>
+    <title>Title</title>
     <link rel='stylesheet' href='../../static/css/woocommerce-layout.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='../../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
     <link rel='stylesheet' href='../../static/css/woocommerce.css' type='text/css' media='all'/>
@@ -172,7 +172,6 @@
 
 
     </style>
-
 </head>
 <body>
 <div class="templateBody">
@@ -187,7 +186,7 @@
         <section id="news_section">
 
             <div id="notion_title_wrap" style="color: black;">
-                <span id="notion_spanB">문의관리</span>
+                <span id="notion_spanB">주문관리</span>
             </div>
 
             <div id="notion_box">
@@ -200,63 +199,16 @@
                     <div id="page">
                         <div class="container">
 
-                            <!--답변완료 -->
-                            <h1 style="font-family: Cafe24Dangdanghae">답변완료</h1>
-
-                            <table class="table" style="margin-bottom: 0px">
-                                <thead>
-                                <tr>
-                                    <th scope="col" class="orderList_th" style="width: 10%" >문의번호</th>
-                                    <th scope="col" class="orderList_th" >회원명</th>
-                                    <th scope="col" class="orderList_th" >문의제목</th>
-                                    <th scope="col" class="orderList_th" >문의일자</th>
-                                    <th scope="col" class="orderList_th" >답변상태</th>
-                                    <th scope="col" class="orderList_th" >삭제</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="answered: ${answered}">
-                                    <th scope="col" class="orderList_th" style="width: 10%" th:text="${answered.id}">문의번호</th>
-                                    <th scope="col" class="orderList_th" th:text="${answered.getInquiryMember().getName()}">회원명</th>
-                                    <th scope="col" class="orderList_th"><a  th:text="${answered.getInquiryTitle()}" th:href="@{|/admin/inquiryDetail/${answered.getId()}|}">문의제목</a></th>
-                                    <th scope="col" class="orderList_th" th:text="${answered.getInquiryDate()}">문의일자</th>
-                                    <th scope="col" class="orderList_th" th:text="${answered.getInquiryState()}">답변상태</th>
-                                    <th scope="col" class="orderList_th"><a th:href="@{|/admin/deleteInquiry/${answered.getId()}|}">삭제</a></th>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                            <br><br><br><br><br><br>
-                            <!--답변대기 -->
-                            <h1 style="font-family: Cafe24Dangdanghae">답변대기</h1>
-
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col" class="orderList_th" style="width: 10%" >문의번호</th>
-                                    <th scope="col" class="orderList_th" >회원명</th>
-                                    <th scope="col" class="orderList_th" >문의제목</th>
-                                    <th scope="col" class="orderList_th" >문의일자</th>
-                                    <th scope="col" class="orderList_th" ><a>삭제</a></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="yet:${yet}">
-                                    <th scope="col" class="orderList_th" style="width: 10%" th:text="${yet.getId()}">문의번호</th>
-                                    <th scope="col" class="orderList_th" th:text="${yet.getInquiryMember().getName()}">회원명</th>
-                                    <th scope="col" class="orderList_th"><a th:text="${yet.getInquiryTitle()}" th:href="@{|/admin/inquiryDetail/${yet.getId()}|}">문의제목</a></th>
-                                    <th scope="col" class="orderList_th" th:text="${yet.getInquiryDate()}">문의일자</th>
-                                    <th scope="col" class="orderList_th"><a th:href="@{|/admin/deleteInquiry/${yet.getId()}|}">삭제</a></th>
-                                </tr>
-
-                                </tbody>
-                            </table>
                         </div>
                         <!-- .container -->
 
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
-
+                    <!-- #page -->
+                    <script src='/js/jquery.js'></script>
+                    <script src='/js/plugins.js'></script>
+                    <script src='/js/scripts.js'></script>
+                    <script src='/js/masonry.pkgd.min.js'></script>
 
                     </body>
 

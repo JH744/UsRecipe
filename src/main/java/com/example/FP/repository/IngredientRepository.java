@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface IngredientRepository extends JpaRepository<Ingredient,Long> {
+public interface IngredientRepository extends JpaRepository<Ingredient,Long>,IngredientRepositoryCustom {
 
     //재료목록 전체 불러오기
     Page<Ingredient> findAll(Pageable pageable);

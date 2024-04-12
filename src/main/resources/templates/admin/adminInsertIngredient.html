@@ -7,7 +7,7 @@
     <link rel='stylesheet' href='../../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
     <link rel='stylesheet' href='../../static/css/woocommerce.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='../../static/css/font-awesome.min.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../../static/css/style.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../../static/css/style.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
     <link rel='stylesheet' href='../../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
     <link rel="stylesheet" href="../../static/css/footer.css" />
@@ -45,13 +45,18 @@
         }
 
     </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+
+
+    </script>
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <style type="text/css">
         input[type]{
-            border: none;
-            background-color: rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
+
+
             margin-bottom: 30px;
         }
 
@@ -167,13 +172,15 @@
             text-align: center;
 
         }
+        .ingredient_table_td{
+            font-family: Cafe24Dangdanghae;
+        }
 
 
 
 
     </style>
 
-</head>
 <body>
 <div class="templateBody">
     <header>
@@ -187,7 +194,52 @@
         <section id="news_section">
 
             <div id="notion_title_wrap" style="color: black;">
-                <span id="notion_spanB">문의관리</span>
+                <span id="notion_spanB">재료추가</span>
+                <hr>
+                <form enctype="multipart/form-data" method="post" th:action>
+                <table style="margin-left: 0px; text-align: center;">
+                    <tr>
+                        <td class="ingredient_table_td">재료 카테고리 &nbsp;&nbsp;</td>
+                        <td><select name="ingredient_ingredient_category"><option class="category_td" th:each="list:${list}" th:text="${list.ingredientCategoryName}" th:value="${list.id}"></option></select></td>
+                    </tr>
+                    <tr>
+                        <td class="ingredient_table_td">재료명 &nbsp;&nbsp;</td>
+                        <td><input type="text" name="ingredient_name"  style="margin-top: 30px"></td>
+                    </tr>
+                    <tr>
+                        <td class="ingredient_table_td">가격 &nbsp;&nbsp;</td>
+                        <td><input type="text" name="ingredient_price"  style="margin-top: 30px"></td>
+                    </tr>
+                    <tr>
+                        <td class="ingredient_table_td">원산지 &nbsp;&nbsp;</td>
+                        <td><input type="text" name="ingredient_origin"  style="margin-top: 30px"></td>
+                    </tr>
+                    <tr>
+                        <td class="ingredient_table_td">수량/중량 &nbsp;&nbsp;</td>
+                        <td><input type="text" name="ingredient_amount" placeholder="200"  style="margin-top: 30px"></td>
+                    </tr>
+                    <tr>
+                        <td class="ingredient_table_td">단위 &nbsp;&nbsp;</td>
+                        <td><input type="text" name="ingredient_unit" placeholder="g,kg" style="margin-top: 30px"></td>
+                    </tr>
+                    <tr>
+                        <td class="ingredient_table_td">재고 &nbsp;&nbsp;</td>
+                        <td><input type="text" name="ingredient_qty"  style="margin-top: 30px"></td>
+                    </tr>
+                    <tr>
+                        <td class="ingredient_table_td">이미지 &nbsp;&nbsp;</td>
+                        <td><input type="file" name="uploadFile"  style="margin-top: 30px"></td>
+                    </tr>
+                    <tr>
+                        <td class="ingredient_table_td">재료설명 &nbsp;&nbsp;</td>
+                        <td><textarea rows="30" cols="30"></textarea></td>
+                    </tr>
+                </table>
+                    <br><br><br><br>
+                    <input type="submit" value="등록하기" style="width: 150px; height: 50px;background-color: #D65454;margin-left: 300px; border: none; color: white" >
+
+                </form>
+
             </div>
 
             <div id="notion_box">
@@ -200,62 +252,13 @@
                     <div id="page">
                         <div class="container">
 
-                            <!--답변완료 -->
-                            <h1 style="font-family: Cafe24Dangdanghae">답변완료</h1>
 
-                            <table class="table" style="margin-bottom: 0px">
-                                <thead>
-                                <tr>
-                                    <th scope="col" class="orderList_th" style="width: 10%" >문의번호</th>
-                                    <th scope="col" class="orderList_th" >회원명</th>
-                                    <th scope="col" class="orderList_th" >문의제목</th>
-                                    <th scope="col" class="orderList_th" >문의일자</th>
-                                    <th scope="col" class="orderList_th" >답변상태</th>
-                                    <th scope="col" class="orderList_th" >삭제</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="answered: ${answered}">
-                                    <th scope="col" class="orderList_th" style="width: 10%" th:text="${answered.id}">문의번호</th>
-                                    <th scope="col" class="orderList_th" th:text="${answered.getInquiryMember().getName()}">회원명</th>
-                                    <th scope="col" class="orderList_th"><a  th:text="${answered.getInquiryTitle()}" th:href="@{|/admin/inquiryDetail/${answered.getId()}|}">문의제목</a></th>
-                                    <th scope="col" class="orderList_th" th:text="${answered.getInquiryDate()}">문의일자</th>
-                                    <th scope="col" class="orderList_th" th:text="${answered.getInquiryState()}">답변상태</th>
-                                    <th scope="col" class="orderList_th"><a th:href="@{|/admin/deleteInquiry/${answered.getId()}|}">삭제</a></th>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                            <br><br><br><br><br><br>
-                            <!--답변대기 -->
-                            <h1 style="font-family: Cafe24Dangdanghae">답변대기</h1>
-
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col" class="orderList_th" style="width: 10%" >문의번호</th>
-                                    <th scope="col" class="orderList_th" >회원명</th>
-                                    <th scope="col" class="orderList_th" >문의제목</th>
-                                    <th scope="col" class="orderList_th" >문의일자</th>
-                                    <th scope="col" class="orderList_th" ><a>삭제</a></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="yet:${yet}">
-                                    <th scope="col" class="orderList_th" style="width: 10%" th:text="${yet.getId()}">문의번호</th>
-                                    <th scope="col" class="orderList_th" th:text="${yet.getInquiryMember().getName()}">회원명</th>
-                                    <th scope="col" class="orderList_th"><a th:text="${yet.getInquiryTitle()}" th:href="@{|/admin/inquiryDetail/${yet.getId()}|}">문의제목</a></th>
-                                    <th scope="col" class="orderList_th" th:text="${yet.getInquiryDate()}">문의일자</th>
-                                    <th scope="col" class="orderList_th"><a th:href="@{|/admin/deleteInquiry/${yet.getId()}|}">삭제</a></th>
-                                </tr>
-
-                                </tbody>
-                            </table>
                         </div>
                         <!-- .container -->
 
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
+                    <!-- #page -->
 
 
                     </body>

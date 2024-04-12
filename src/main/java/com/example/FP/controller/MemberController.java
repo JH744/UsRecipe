@@ -196,9 +196,10 @@ public class MemberController {
         return "redirect:/";
 
     }
-
-
-
-
+    @GetMapping("/deleteMember/{id}")
+    public String deleteMember(@PathVariable Long id){
+        memberService.deleteMember(id);
+        return "redirect:/admin/member";
+    }
 
 }

@@ -187,7 +187,7 @@
         <section id="news_section">
 
             <div id="notion_title_wrap" style="color: black;">
-                <span id="notion_spanB">문의관리</span>
+                <span id="notion_spanB">재료관리</span>
             </div>
 
             <div id="notion_box">
@@ -199,78 +199,44 @@
                     <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
                     <div id="page">
                         <div class="container">
-
-                            <!--답변완료 -->
-                            <h1 style="font-family: Cafe24Dangdanghae">답변완료</h1>
-
                             <table class="table" style="margin-bottom: 0px">
                                 <thead>
                                 <tr>
-                                    <th scope="col" class="orderList_th" style="width: 10%" >문의번호</th>
-                                    <th scope="col" class="orderList_th" >회원명</th>
-                                    <th scope="col" class="orderList_th" >문의제목</th>
-                                    <th scope="col" class="orderList_th" >문의일자</th>
-                                    <th scope="col" class="orderList_th" >답변상태</th>
+                                    <th scope="col" class="orderList_th" style="width: 10%" >재료번호</th>
+                                    <th scope="col" class="orderList_th" >이미지</th>
+                                    <th scope="col" class="orderList_th" >재료명</th>
+                                    <th scope="col" class="orderList_th" >가격</th>
+                                    <th scope="col" class="orderList_th" >원산지</th>
+                                    <th scope="col" class="orderList_th" >수량</th>
+                                    <th scope="col" class="orderList_th" >재고</th>
                                     <th scope="col" class="orderList_th" >삭제</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="answered: ${answered}">
-                                    <th scope="col" class="orderList_th" style="width: 10%" th:text="${answered.id}">문의번호</th>
-                                    <th scope="col" class="orderList_th" th:text="${answered.getInquiryMember().getName()}">회원명</th>
-                                    <th scope="col" class="orderList_th"><a  th:text="${answered.getInquiryTitle()}" th:href="@{|/admin/inquiryDetail/${answered.getId()}|}">문의제목</a></th>
-                                    <th scope="col" class="orderList_th" th:text="${answered.getInquiryDate()}">문의일자</th>
-                                    <th scope="col" class="orderList_th" th:text="${answered.getInquiryState()}">답변상태</th>
-                                    <th scope="col" class="orderList_th"><a th:href="@{|/admin/deleteInquiry/${answered.getId()}|}">삭제</a></th>
+                                <tr th:each="list: ${list}">
+                                    <th scope="col" class="orderList_th" style="width: 10%" th:text="${list.id}">재료번호</th>
+                                    <th scope="col" class="orderList_th" ><img th:src="@{|/static/images/${list.getIngredientImage()}|}" style="width: 50px;height: 50px"></th>
+                                    <th scope="col" class="orderList_th" th:text="${list.getIngredientName()}">재료명</th>
+                                    <th scope="col" class="orderList_th" th:text="${list.getIngredientPrice()}">가격</th>
+                                    <th scope="col" class="orderList_th" th:text="${list.getIngredientOrigin()}">원산지</th>
+                                    <th scope="col" class="orderList_th" th:text="${list.getIngredientAmount()}">중량</th>
+                                    <th scope="col" class="orderList_th" th:text="${list.getIngredientQty()}">재고</th>
+                                    <th scope="col" class="orderList_th"><a th:text="삭제" th:href="@{|/deleteIngredient/${list.id}|}">삭제</a></th>
                                 </tr>
 
                                 </tbody>
                             </table>
-                            <br><br><br><br><br><br>
-                            <!--답변대기 -->
-                            <h1 style="font-family: Cafe24Dangdanghae">답변대기</h1>
 
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col" class="orderList_th" style="width: 10%" >문의번호</th>
-                                    <th scope="col" class="orderList_th" >회원명</th>
-                                    <th scope="col" class="orderList_th" >문의제목</th>
-                                    <th scope="col" class="orderList_th" >문의일자</th>
-                                    <th scope="col" class="orderList_th" ><a>삭제</a></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="yet:${yet}">
-                                    <th scope="col" class="orderList_th" style="width: 10%" th:text="${yet.getId()}">문의번호</th>
-                                    <th scope="col" class="orderList_th" th:text="${yet.getInquiryMember().getName()}">회원명</th>
-                                    <th scope="col" class="orderList_th"><a th:text="${yet.getInquiryTitle()}" th:href="@{|/admin/inquiryDetail/${yet.getId()}|}">문의제목</a></th>
-                                    <th scope="col" class="orderList_th" th:text="${yet.getInquiryDate()}">문의일자</th>
-                                    <th scope="col" class="orderList_th"><a th:href="@{|/admin/deleteInquiry/${yet.getId()}|}">삭제</a></th>
-                                </tr>
-
-                                </tbody>
-                            </table>
                         </div>
-                        <!-- .container -->
-
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
-
-
                     </body>
 
                 </div>
             </div>
-
-
         </section>
-
-
         <footer>
         </footer>
-
-
     </div>
     <div class="footer" th:replace="footer :: footer"></div>
 </div>

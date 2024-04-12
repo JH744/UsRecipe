@@ -190,17 +190,26 @@
                                 <div id="primary" class="content-area column full">
                                     <main id="main" class="site-main" role="main">
 
-                                        <ul class="products" th:each="list:${list}">
+                                        <ul class="products">
 
-                                            <li class="first product">
-                                                <a href="shop-single.html">
+                                            <li class="product"  th:each="list:${list}">
+                                                <a th:href="@{|/detailRecipe?recipeNum=${list.id}|}">
 
+                                                    <th:block th:if="${list.getWishlistRecipe().getRecipeUrl() != null}">
                                                     <iframe id="youtube" th:src="${list.getWishlistRecipe().getRecipeUrl()}"
                                                             title="YouTube video player" frameborder="0"
                                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                            allowfullscreen></iframe>
-                                                    <h3 th:text="${list.getWishlistRecipe().getRecipeTitle()}" style="font-family: Cafe24Dangdanghae">상품명</h3>
-                                                    <span class="price"><span class="amount" th:text="${list.getWishlistRecipe().getRecipeWriter()}" style="font-family: Cafe24Dangdanghae">글쓴이</span></span>
+                                                            allowfullscreen style="width: 200px;height: 200px;"></iframe>
+                                                    </th:block>
+
+                                                    <th:block th:if="${list.getWishlistRecipe().getRecipeUrl()==null}">
+                                                        <img th:src="@{|/../static/images/${list.getWishlistRecipe().getRecipeThumbnail()}|}" style="padding-top: -50px; width: 200px;height: 200px;">
+                                                    </th:block>
+                                                    <h3 th:text="${list.getWishlistRecipe().getRecipeTitle()}" style="font-family: Cafe24Dangdanghae;margin-bottom: 20px">상품명</h3>
+                                                    <span class="price"><span class="amount" th:text="${list.getWishlistRecipe().getRecipeWriter()}" style="font-family: Cafe24Dangdanghae;">글쓴이</span></span><br>
+                                                    <img src="../static/images/icon/views.png" style="width: 10px;height: 10px; margin: 0px; display: inline"><span th:text="${list.getWishlistRecipe().getRecipeViews()}">조회수</span><br>
+
+
                                                 </a><a th:href="@{|/deleteWishlist/${list.id}|}" class="button">삭제</a>
                                             </li>
 

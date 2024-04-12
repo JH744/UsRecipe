@@ -1,7 +1,10 @@
 package com.example.FP.service;
 
+import com.example.FP.dto.IngredientDto;
 import com.example.FP.entity.Ingredient;
+import com.example.FP.entity.IngredientCategory;
 import com.example.FP.entity.Member;
+import com.example.FP.mapper.IngredientMapper;
 import com.example.FP.repository.IngredientRepository;
 import com.example.FP.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -70,4 +73,19 @@ public class IngredientService {
         return ir.findAllByIngredientNameContaining(keyword);
     }
 
+    public List<IngredientCategory> findAllIngredientCategory(){
+        return ir.findAllIngredientCategory();
+    }
+
+    public void save(IngredientDto ingredientDto){
+
+        Ingredient ingredient = IngredientMapper.toEntity(ingredientDto);
+        ir.save(ingredient);
+    }
+    public List<Ingredient> findAll(){
+        return ir.findAll();
+    }
+    public void deleteIngredient(Long id){
+        ir.deleteById(id);
+    }
 }
