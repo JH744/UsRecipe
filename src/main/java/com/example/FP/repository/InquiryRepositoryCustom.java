@@ -15,4 +15,5 @@ public interface InquiryRepositoryCustom {
 
     void updateInquiry(Long id);
 
+
 }

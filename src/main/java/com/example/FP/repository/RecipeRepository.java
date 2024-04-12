@@ -17,6 +17,8 @@ public interface RecipeRepository extends JpaRepository<Recipe,Long> {
     @Query(value = "select IFNULL(max(recipe_id),0)+1 from recipe", nativeQuery = true)
     Long nextRecipeId();
 
+//    Recipe findById();
+
     // 가장 조회수가 높은 회원 그룹
 //    List<Recipe> findByRecipeMemberIdGroupByRecipeMemberIdOrderByRecipeViewsDesc();
 }
