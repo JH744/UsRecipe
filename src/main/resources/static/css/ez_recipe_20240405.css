@@ -28338,3 +28338,8 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     display: flex;
     justify-content: flex-start
 }
+
+@charset "utf-8";
+.swal2-popup {
+    font-size: 16px;
+}

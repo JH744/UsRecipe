@@ -17,6 +17,69 @@
     <link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/font_20230910.css">
     <link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../static/css/ez_recipe_20240405.css">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        function insertReply(){
+            var gradeStar = $("input[name=gradeStar]:checked").val()
+            var replyContent = $(".replyContent").val()
+            var recipeId = $(".recipeId").val()
+            console.log(replyContent)
+            if (gradeStar===undefined){
+                checkReply("별점을 입력해주세요!");
+                return false;
+            }
+            if (replyContent===""){
+                checkReply("댓글 내용을 입력해주세요!");
+                return false;
+            }
+
+            $.ajax({
+                url:"/insertReply",
+                data:{
+                    gradeStar:gradeStar,
+                    replyContent:replyContent,
+                    recipeId:recipeId
+                },
+                type:"POST"
+            })
+        }
+
+        function checkReply(msg){
+            Swal.fire({
+                title: msg,
+                icon: "warning"
+            })
+        }
+
+        function deleteReply(num){
+            Swal.fire({
+                title: "댓글 삭제",
+                text: "해당 요리 순서를 정말 삭제하시겠습니까?",
+                imageUrl: "../static/images/image_11.png",
+                imageAlt: "Custom image",
+                showCancelButton: true,
+                confirmButtonText: '삭제',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url:"/deleteReply",
+                        type:"POST",
+                        data:{replyId:num},
+                        success:function (){
+                            var prevCount = $("#recipeCommentListCount").text()
+                            $("#replyDiv_"+num).remove();
+                            $("#recipeCommentListCount").text(prevCount-1)
+                        }
+                    })
+                } else {
+                }
+            });
+        }
+    </script>
+
 </head>
 
 <body>
@@ -124,6 +187,30 @@
             </div>
 
             <div class="view_reply">
+                <div class="reply_write" th:if="${session.userid != null}">
+                    <form id="insCmtFrm1" method="post">
+                        <input type="hidden" class="recipeId" name="recipeId" th:value="${recipe.id}">
+                        <div class="gradeBox">
+                            <input type="radio" class="gradeStar" name="gradeStar" value="1">
+                            <input type="radio" class="gradeStar" name="gradeStar" value="2">
+                            <input type="radio" class="gradeStar" name="gradeStar" value="3">
+                            <input type="radio" class="gradeStar" name="gradeStar" value="4">
+                            <input type="radio" class="gradeStar" name="gradeStar" value="5">
+                            <p class="gradeText">해당 레시피의 별점을 적용해 주세요!</p>
+                        </div>
+
+                        <div class="input-group" style="width:auto;">
+                        <textarea id="cmt_tx_content1" name="replyContent" class="replyContent form-control"
+                                  placeholder="무엇이 궁금하신가요? 댓글을 남겨주세요."
+                                  style="height:100px; width:100%; resize:none;"></textarea>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" onclick="insertReply()"
+                                        style="height:100px; width:100px;">등록</button>
+                            </span>
+                        </div>
+                    </form>
+
+                </div>
                 <div class="reply_tit">댓글 <span id="recipeCommentListCount"
                                                 th:text="${recipe.recipeReplyList.size}"></span></div>
                 <div id="recipeCommentList_1">
@@ -156,84 +243,6 @@
 
                 </div>
 
-                <div class="reply_write">
-                    <form id="insCmtFrm1" method="post" action="/insertReply">
-                        <input type="hidden" class="recipeId" name="recipeId" th:value="${recipe.id}">
-                        <div class="gradeBox">
-                            <input type="radio" class="gradeStar" name="gradeStar" value="1">
-                            <input type="radio" class="gradeStar" name="gradeStar" value="2">
-                            <input type="radio" class="gradeStar" name="gradeStar" value="3">
-                            <input type="radio" class="gradeStar" name="gradeStar" value="4">
-                            <input type="radio" class="gradeStar" name="gradeStar" value="5">
-                            <p class="gradeText">해당 레시피의 별점을 적용해 주세요!</p>
-                        </div>
-
-                        <div class="input-group" style="width:auto;">
-                        <textarea id="cmt_tx_content1" name="replyContent" class="replyContent form-control"
-                                  placeholder="무엇이 궁금하신가요? 댓글을 남겨주세요."
-                                  style="height:100px; width:100%; resize:none;"></textarea>
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" onclick="insertReply()"
-                                        style="height:100px; width:100px;">등록</button>
-                            </span>
-                        </div>
-                    </form>
-                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-                    <script>
-                        function insertReply(){
-                            var gradeStar = $("input[name=gradeStar]:checked").val()
-                            var replyContent = $(".replyContent").val()
-                            var recipeId = $(".recipeId").val()
-                            console.log(replyContent)
-                            if (gradeStar===undefined || replyContent===""){
-                                checkReply()
-                            }else {
-                                // $.ajax({
-                                //     url:"/insertReply",
-                                //     data:{
-                                //         gradeStar:gradeStar,
-                                //         replyContent:replyContent,
-                                //         recipeId:recipeId
-                                //     },
-                                //     type:"POST"
-                                // })
-                            }
-                        }
-
-                        function checkReply(msg){
-                            Swal.fire({
-                                title: msg + "를 <br>제대로 입력해주세요!!",
-                                icon: "warning"
-                            })
-                        }
-
-                        function deleteReply(num){
-                            Swal.fire({
-                                title: "댓글 삭제",
-                                text: "해당 요리 순서를 정말 삭제하시겠습니까?",
-                                imageUrl: "../static/images/image_11.png",
-                                imageAlt: "Custom image",
-                                showCancelButton: true,
-                                confirmButtonText: '삭제',
-                                cancelButtonText: '취소'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    $.ajax({
-                                        url:"/deleteReply",
-                                        type:"POST",
-                                        data:{replyId:num},
-                                        success:function (){
-                                            var prevCount = $("#recipeCommentListCount").text()
-                                            $("#replyDiv_"+num).remove();
-                                            $("#recipeCommentListCount").text(prevCount-1)
-                                        }
-                                    })
-                                } else {
-                                }
-                            });
-                        }
-                    </script>
-                </div>
             </div><!-- /view_reply -->
         </div>
     </div><!-- /contents_area -->

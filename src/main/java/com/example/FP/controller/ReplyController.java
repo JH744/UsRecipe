@@ -15,10 +15,12 @@ public class ReplyController {
     private final ReplyService rs;
 
     @PostMapping("/insertReply")
-    public String insertReply(@RequestParam(name = "gradeStar") int gradeStar, @RequestParam(name = "replyContent") String replyContent, @RequestParam(name = "recipeId") Long recipeId, HttpSession session) {
+    @ResponseBody
+    public void insertReply(@RequestParam(name = "gradeStar") int gradeStar,
+                            @RequestParam(name = "replyContent") String replyContent,
+                            @RequestParam(name = "recipeId") Long recipeId, HttpSession session) {
         String userid = (String) session.getAttribute("userid");
         rs.insertReply(gradeStar, replyContent, recipeId, userid);
-        return "redirect:/detailRecipe?recipeNum=" + recipeId;
     }
 
     @PostMapping("/deleteReply")

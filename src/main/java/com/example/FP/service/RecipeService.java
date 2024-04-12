@@ -9,6 +9,7 @@ import com.example.FP.mapper.RecipeOrderMapper;
 import com.example.FP.mapper.RepiceMapper;
 import com.example.FP.repository.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -122,7 +123,10 @@ public class RecipeService {
 //
 //        return recipeDetail;
 //    }
+
+    @Transactional
     public Recipe detailRecipe(Long id){
+        rr.UpdateRecipeViews(id);
         return rr.findById(id).get();
     }
 }
