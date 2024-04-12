@@ -28,6 +28,8 @@ public class CartController {
     public String cartList(Model model){
         //로그인한 회원의 id로 저장된 장바구니 목록을 가져옴
         long memberId = 52; //임시 id 부여
+        //long memberId = 102;  // 빈 장바구니 확인용
+
 
          var list = cs.listCart(memberId);
 
@@ -49,7 +51,6 @@ public class CartController {
     public String addCart(Model model, @RequestParam ("Id") Long Id ){
         System.out.println("전달받은거:"+Id);
         long memberId = 52; //임시 회원id
-
 
            List<Cart> result =  cs.findById(Id,memberId);
 

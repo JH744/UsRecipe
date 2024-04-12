@@ -28,6 +28,51 @@
             $('.orderPriceFt2').html(totalPrice + '원');
 
 
+
+
+
+
+            $("#deletebtn").click(()=>{
+
+
+                $('.deleteModal').css('display','block');
+
+
+            })
+
+
+
+            $('#btnCancel').click(()=>{
+                $('.deleteModal').css('display','none');
+            })
+
+
+
+            // 플러스 버튼 클릭시 수량이 1씩 증가.
+            $(document).on('click', '#btnPlus', function() {
+                var $input = $(this).closest('tr').find('.inputQty');
+                var currentQty = parseInt($input.val(), 10);  // 현재 입력 필드의 값을 정수로 파싱
+                $input.val(currentQty + 1);  // 입력 필드의 값을 1 증가
+            });
+            // 마이너스 버튼 클릭시 수량이 1씩 차감.
+            $(document).on('click', '#btnMinus', function() {
+                var $input = $(this).closest('tr').find('.inputQty');
+                var currentQty = parseInt($input.val(), 10);  // 현재 입력 필드의 값을 정수로 파싱
+                $input.val(currentQty + -1);  // 입력 필드의 값을 1 증가
+            });
+
+            //전체선택 /선택해제
+            $(document).ready(function(){
+                $("#checkAll").change(function(){
+                    // 'checkAll' 체크박스의 상태를 가져옴 (체크되어 있으면 true, 아니면 false)
+                    var isChecked = $(this).is(':checked');
+                    // 모든 'checkItem' 체크박스를 'checkAll' 체크박스와 동일한 상태로 설정
+                    $('.checkItem').prop('checked', isChecked);
+
+                });
+            });
+
+
         })
     </script>
 </head>
@@ -53,7 +98,7 @@
                     <thead class="cartTableCol">
                     <tr>
                         <th>전체</th>
-                        <th><input type="checkbox"></th>
+                        <th><input type="checkbox" id="checkAll"></th>
                         <th colspan="2">상품명</th>
                         <th>판매가</th>
                         <th>수량</th>
@@ -69,11 +114,11 @@
                     </th>
                     <tr th:each="c , status :${list}" th:unless="${#lists.isEmpty(list)}">
                         <td th:text="${status.count}"></td>
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" class="checkItem"></td>
                         <td th:text="${c.ingredientName}" colspan="2">상품명</td>
                         <td th:text="${c.ingredientPrice}">8,000</td>
 
-                        <td><button>[-]</button><input type="text" th:value="${c.quantity}" readonly ><button>[+]</button></td>
+                        <td><button id="btnMinus">-</button><input type="text" th:value="${c.quantity}" readonly class="inputQty"><button id="btnPlus">+</button></td>
                         <td>160</td>
                         <td>삭제</td>
                         <td th:text="${c.ingredientPrice * c.quantity}"  class="orderprice">주문금액</td>
@@ -96,7 +141,7 @@
 
                     </tbody>
                 </table>
-                <div class="deletebtnbox"> <button class="deletebtn" id="deletebtn">물품모두삭제</button></div>
+                <div class="deletebtnbox"> <button class="deletebtn" id="deletebtn">선택상품삭제</button></div>
                 <div class="orderPricebox">
                     <span class="orderPriceFt1">최종결제금액</span><span class="orderPriceFt2"></span>
                 </div>
@@ -104,7 +149,7 @@
                 <div class="deleteModalContainer">
                     <div class="deleteModal">
                         <h3>장바구니에서 삭제하시겠습니까?</h3>
-                        <button class="btnDelete">취소</button><button class="btnDelete">예</button>    
+                        <button class="btnDelete" id="btnCancel">취소</button><button class="btnDelete">예</button>
                     </div>
                 </div>    
 
