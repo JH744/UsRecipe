@@ -23,7 +23,7 @@ public class CartService {
 
     private final MemberRepository mr;
 
-
+    //재료목록창에서  담기 클릭  장바구니 추가
     public void addCart(Long id, long memberId) {
         // ingredient 객체와 member 객체를 cart에 저장
        Optional<Ingredient> ingredient =ir.findById(id);
@@ -33,13 +33,6 @@ public class CartService {
        Cart cart = new Cart(m,null,i);
        cp.save(cart);
     }
-
-
-//    public List<Cart> listCart(long id){
-//
-//
-//
-//   }
 
 
 

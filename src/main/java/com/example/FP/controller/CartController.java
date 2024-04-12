@@ -19,7 +19,6 @@ public class CartController {
 
     @GetMapping("/cart")
     public String cartList(Model model){
-
         //model.addAttribute("list",cs.listCart());
 
         return "cart";
