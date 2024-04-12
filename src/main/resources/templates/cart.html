@@ -72,7 +72,8 @@
                         <td><input type="checkbox"></td>
                         <td th:text="${c.ingredientName}" colspan="2">상품명</td>
                         <td th:text="${c.ingredientPrice}">8,000</td>
-                        <td th:text="${c.quantity}">수량</td>
+
+                        <td><button>[-]</button><input type="text" th:value="${c.quantity}" readonly ><button>[+]</button></td>
                         <td>160</td>
                         <td>삭제</td>
                         <td th:text="${c.ingredientPrice * c.quantity}"  class="orderprice">주문금액</td>
@@ -99,6 +100,15 @@
                 <div class="orderPricebox">
                     <span class="orderPriceFt1">최종결제금액</span><span class="orderPriceFt2"></span>
                 </div>
+
+                <div class="deleteModalContainer">
+                    <div class="deleteModal">
+                        <h3>장바구니에서 삭제하시겠습니까?</h3>
+                        <button class="btnDelete">취소</button><button class="btnDelete">예</button>    
+                    </div>
+                </div>    
+
+
 
                 <button class="orderbtn">주문하기</button>
 

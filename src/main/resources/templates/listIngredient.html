@@ -28,7 +28,13 @@
                 success: function(response) {
                     // 요청이 성공했을 때 실행될 함수
                     console.log('서버 응답:', response);
-                    $('#modalbox1').css('display', 'block');
+
+                    if(response ==='저장함'){
+                        $('#modalbox1').css('display', 'block');
+                    }else {
+                        $('#modalbox3').css('display', 'block');
+                    }
+
                 },
                 error: function(xhr, status, error) {
                     // 요청이 실패했을 때 실행될 함수
@@ -46,6 +52,9 @@
         })
         $('#btnClose2').click(()=>{
             $('#modalbox2').css('display','none');
+        })
+        $('#btnClose3').click(()=>{
+            $('#modalbox3').css('display','none');
         })
 
 
@@ -126,6 +135,10 @@
                 <div class="modalbox2" id="modalbox2" >
                     <h3>장바구니에 상품을 추가하지 못했습니다.</h3>
                     <button class="btnModal" id="btnClose2">확인</button>
+                </div>
+                <div class="modalbox3" id="modalbox3" >
+                    <h3>이미 장바구니에 담겨있는 상품입니다.</h3>
+                    <button class="btnModal" id="btnClose3">확인</button>
                 </div>
 
            </div>

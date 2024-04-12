@@ -38,6 +38,15 @@ public class CartService {
     }
 
 
+    public List<Cart> findById(Long id, long memberId){
+
+        List<Cart> list =  cr.findByCartMemberIdAndCartIngredientId(memberId,id);
+        System.out.println("찾아온 카트 : "+ list);
+
+       return list;
+    }
+
+
 
     @Transactional(readOnly = true)
     public List<CartIngredientDto> listCart(Long memberId) {

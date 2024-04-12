@@ -210,11 +210,31 @@ a{
 
 }
 
+
+.deleteModalContainer{
+  position: relative;
+  width: 500px;
+
+}
+.deleteModal{
+  width: 400px;
+  height: 300px;
+  position: fixed;
+  left: auto;
+  top: auto;
+  border: 2px solid gray;
+  border-radius: 3px;
+
+
+
+}
+
+
 .btnmModal{
   margin: 0px 10px;
   height: 23px;
   cursor: pointer;
-  background-color: black;
+  background-color: rgb(193, 23, 23);
   color: #fff;
   border-radius: 3px;
   border: none;

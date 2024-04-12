@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class CartController {
@@ -46,14 +48,20 @@ public class CartController {
     @ResponseBody
     public String addCart(Model model, @RequestParam ("Id") Long Id ){
         System.out.println("전달받은거:"+Id);
-
-        //로그인된 유저 id 정보를 memberId에 저장
-        long memberId = 52;
-
-     ;   cs.addCart(Id,memberId);
+        long memberId = 52; //임시 회원id
 
 
-        return "장바구니추가함";
+           List<Cart> result =  cs.findById(Id,memberId);
+
+            String coment= "";
+        if(result.isEmpty()){
+            cs.addCart(Id,memberId);
+            coment = "저장함";
+        }else{
+            coment ="저장안함";
+        }
+        System.out.println(coment);
+        return coment;
     }
 
 
