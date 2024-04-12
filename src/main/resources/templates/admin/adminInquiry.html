@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
-    <link rel='stylesheet' href='../static/css/woocommerce-layout.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-    <link rel='stylesheet' href='../static/css/woocommerce.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/font-awesome.min.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/style.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce-layout.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/font-awesome.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/style.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
-    <link rel="stylesheet" href="../static/css/footer.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
+    <link rel='stylesheet' href='../../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+    <link rel="stylesheet" href="../../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
     <style>
 
         *{
@@ -71,9 +71,6 @@
             margin: 0 auto;
             padding: 0;
         }
-        .point_list_a{
-            font-size: 20px;
-        }
         #news_main{
             height:700px;
             width:1200px;
@@ -131,9 +128,6 @@
             color: #D65454;
             font-weight: bold;
         }
-        .point_list_a:hover{
-            color:#D65454;
-        }
         #news_section{
             width: 79%;
             float: left;
@@ -187,22 +181,13 @@
     </header>
     <div class="mainBody">
 
-        <aside id="news_aside" style="margin-right: 10px;">
-            <ul class="news-ul">
-                <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
+        <aside id="news_aside" style="margin-right: 10px;" th:replace="/admin/adminSidebar :: adminSidebar">
 
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/orderList}" style="font-weight: bold;">주문내역<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/pointList}" style="font-weight: bold;">적립내역<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/inquiryList}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/pwCheckDataChange}" style="font-weight: bold;">정보변경<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/wishList}" style="font-weight: bold;">찜목록<span>></span></a></li>
-
-            </ul>
         </aside>
         <section id="news_section">
 
             <div id="notion_title_wrap" style="color: black;">
-                <span id="notion_spanB">적립내역</span><span id="notion_spanL">회원님의 적립내역을 확인할 수 있습니다.</span>
+                <span id="notion_spanB">문의관리</span>
             </div>
 
             <div id="notion_box">
@@ -214,22 +199,56 @@
                     <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
                     <div id="page">
                         <div class="container">
-                            <a class="point_list_a">전체</a>&nbsp;<a class="point_list_a">획득</a>&nbsp;<a class="point_list_a">사용</a>
 
+                            <!--답변완료 -->
+                            <h1 style="font-family: Cafe24Dangdanghae">답변완료</h1>
+
+                            <table class="table" style="margin-bottom: 0px">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="orderList_th" style="width: 10%" >문의번호</th>
+                                    <th scope="col" class="orderList_th" >회원명</th>
+                                    <th scope="col" class="orderList_th" >문의제목</th>
+                                    <th scope="col" class="orderList_th" >문의일자</th>
+                                    <th scope="col" class="orderList_th" >답변상태</th>
+                                    <th scope="col" class="orderList_th" >삭제</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="answered: ${answered}">
+                                    <th scope="col" class="orderList_th" style="width: 10%" th:text="${answered.id}">문의번호</th>
+                                    <th scope="col" class="orderList_th" th:text="${answered.getInquiryMember().getName()}">회원명</th>
+                                    <th scope="col" class="orderList_th"><a  th:text="${answered.getInquiryTitle()}" th:href="@{|/admin/inquiryDetail/${answered.getId()}|}">문의제목</a></th>
+                                    <th scope="col" class="orderList_th" th:text="${answered.getInquiryDate()}">문의일자</th>
+                                    <th scope="col" class="orderList_th" th:text="${answered.getInquiryState()}">답변상태</th>
+                                    <th scope="col" class="orderList_th"><a th:href="@{|/admin/deleteInquiry/${answered.getId()}|}">삭제</a></th>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <br><br><br><br><br><br>
+                            <!--답변대기 -->
+                            <h1 style="font-family: Cafe24Dangdanghae">답변대기</h1>
 
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th scope="col" class="orderList_th" style="width: 60%">적립내용</th>
-                                    <th scope="col" class="orderList_th">포인트</th>
-                                    <th scope="col" class="orderList_th">적립날짜</th>
+                                    <th scope="col" class="orderList_th" style="width: 10%" >문의번호</th>
+                                    <th scope="col" class="orderList_th" >회원명</th>
+                                    <th scope="col" class="orderList_th" >문의제목</th>
+                                    <th scope="col" class="orderList_th" >문의일자</th>
+                                    <th scope="col" class="orderList_th" >답변일자</th>
+                                    <th scope="col" class="orderList_th" ><a>삭제</a></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="list:${list}">
-                                    <td th:text="${list.getPoint_content()}"></td>
-                                    <td th:text="${list.getUse_point()}"></td>
-                                    <td th:text="${list.getPoint_orders().getOrders_date()}"></td>
+                                <tr th:each="yet:${yet}">
+                                    <th scope="col" class="orderList_th" style="width: 10%" th:text="${yet.getId()}">문의번호</th>
+                                    <th scope="col" class="orderList_th" th:text="${yet.getInquiryMember().getName()}">회원명</th>
+                                    <th scope="col" class="orderList_th"><a th:text="${yet.getInquiryTitle()}" th:href="@{|/admin/inquiryDetail/${yet.getId()}|}">문의제목</a></th>
+                                    <th scope="col" class="orderList_th" th:text="${yet.getInquiryDate()}">문의일자</th>
+                                    <th scope="col" class="orderList_th" th:text="${yet.getInquiryAnswerDate()}">답변일자</th>
+                                    <th scope="col" class="orderList_th"><a th:href="@{|/admin/deleteInquiry/${yet.getId()}|}">삭제</a></th>
                                 </tr>
 
                                 </tbody>
@@ -239,11 +258,7 @@
 
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
-                    <!-- #page -->
-                    <script src='/static/js/jquery.js'></script>
-                    <script src='/static/js/plugins.js'></script>
-                    <script src='/static/js/scripts.js'></script>
-                    <script src='/static/js/masonry.pkgd.min.js'></script>
+
 
                     </body>
 

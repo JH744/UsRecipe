@@ -43,4 +43,5 @@ public class Inquiry {
         this.inquiryState = inquiryState;
         this.inquiryMember = inquiryMember;
     }
+
 }

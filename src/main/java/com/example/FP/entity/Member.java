@@ -101,6 +101,11 @@ public class Member {
 
     }
 
+    public Member(String name, Integer point) {
+        this.name = name;
+        this.point = point;
+    }
+
     public static Member createMember(MemberDto memberDto, PasswordEncoder passwordEncoder){
         System.out.println("맴버 생성");
         Member member = Member.builder()
