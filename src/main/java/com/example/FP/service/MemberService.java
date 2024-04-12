@@ -151,4 +151,8 @@ public class MemberService implements UserDetailsService {
         return mr.findAll();
     }
 
+    public void deleteMember(Long id){
+        mr.deleteById(id);
+    }
+
 }

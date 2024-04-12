@@ -82,4 +82,10 @@ public class IngredientService {
         Ingredient ingredient = IngredientMapper.toEntity(ingredientDto);
         ir.save(ingredient);
     }
+    public List<Ingredient> findAll(){
+        return ir.findAll();
+    }
+    public void deleteIngredient(Long id){
+        ir.deleteById(id);
+    }
 }
