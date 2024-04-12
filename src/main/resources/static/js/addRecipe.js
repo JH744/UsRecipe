@@ -274,7 +274,6 @@ function searchIngredient() {
         type: 'POST',
         url: '/searchIngredient',
         success: function (list) {
-            console.log(list)
             $.each(list, function () {
                 var ingredientCategoryName = this.ingredientIngredientCategory.ingredientCategoryName
                 var ingredientName = this.ingredientName
@@ -333,12 +332,11 @@ function doSubmit() {
             var recipeDataList = {
                 "recipeDataList": JSON.stringify(recipeData)
             }
-            console.log(recipeDataList)
+            console.log("여기로 안오나?")
             $.ajax({
                 url: '/insertRecipe',
                 data: recipeDataList,
                 type: "POST"
-
             })
         } else {
         }
