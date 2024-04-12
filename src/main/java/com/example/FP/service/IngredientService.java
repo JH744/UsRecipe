@@ -67,7 +67,7 @@ public class IngredientService {
 
     public List<Ingredient> findAllByIngredientNameContaining(String keyword){
 
-        return ir.findas(keyword);
+        return ir.findAllByIngredientNameContaining(keyword);
     }
 
 }

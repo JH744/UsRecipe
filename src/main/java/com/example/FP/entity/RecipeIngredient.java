@@ -20,6 +20,7 @@ public class RecipeIngredient {
 
     private int recipeIngredientQty;
     private String recipeIngredientNeed;
+    private String recipeIngredientUnit;
 
     @ManyToOne
     @JoinColumn(name = "recipe_id")
@@ -29,10 +30,11 @@ public class RecipeIngredient {
     @JoinColumn(name = "ingredient_id")
     private Ingredient recipeIngredientIngredient;
 
-    public RecipeIngredient(int recipeIngredientQty, String recipeIngredientNeed, Recipe recipeIngredientRecipe, Ingredient recipeIngredientIngredient) {
+    public RecipeIngredient(int recipeIngredientQty, String recipeIngredientNeed, Recipe recipeIngredientRecipe, Ingredient recipeIngredientIngredient,String recipeIngredientUnit) {
         this.recipeIngredientQty = recipeIngredientQty;
         this.recipeIngredientNeed = recipeIngredientNeed;
         this.recipeIngredientRecipe = recipeIngredientRecipe;
         this.recipeIngredientIngredient = recipeIngredientIngredient;
+        this.recipeIngredientUnit=recipeIngredientUnit;
     }
 }
