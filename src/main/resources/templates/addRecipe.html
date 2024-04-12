@@ -3,6 +3,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <title>유스레시피</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <link rel="stylesheet" type="text/css" href="../static/css/templateBody.css"/>
     <link rel="stylesheet" href="../static/css/footer.css"/>
     <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
@@ -23,112 +24,291 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
-        var index = 1
+        var ingredientIndex = 1
 
+        // 재료 그룹들의 정보를 모아 list 형태로 반환
+        function ingeredientData(){
+            var ingredientGroupList = [];
+            ingredientGroupList = $("#ingredientInfo").find(".ingredientGroup");
+
+            var ingredientDataList = [];
+            $.each(ingredientGroupList,function(){
+                var recipeIngredientNeed = $(this).find(".ingredientName").val()
+                var recipeIngredientQty = $(this).find(".ingredientQty").val()
+                var recipeIngredientUnit = $(this).find(".ingredientUnit").val()
+                var recipeIngredientId = $(this).find(".ingredientId").val()
+
+                var ingredientDataListItem = {
+                    'recipeIngredientNeed':recipeIngredientNeed,
+                    'recipeIngredientQty':recipeIngredientQty,
+                    'recipeIngredientUnit':recipeIngredientUnit,
+                    'recipeIngredientId':recipeIngredientId
+                }
+                ingredientDataList.push(ingredientDataListItem)
+            })
+            return ingredientDataList;
+        }
+
+        // 요리순서 그룹들의 정보를 모아 list 형태로 반환
+        function stepData(){
+            var recipeStepList = [];
+            recipeStepList = $("#divStepArea").find(".step");
+            var stepDataList = [];
+            $.each(recipeStepList,function(){
+                var recipeDetail = $(this).find(".step_text").val()
+                var recipePhoto = $(this).find(".step_photo_url").val()
+
+                var stepDataListItem = {
+                    'recipeDetail':recipeDetail,
+                    'recipePhoto':recipePhoto
+                }
+                stepDataList.push(stepDataListItem)
+            })
+            return stepDataList;
+        }
+
+        // 재료 목록 추가
         function addIngredient() {
             var ingredientFrame =
-                "<li class='ingredientGroup' id='ingredientGroup_" + index + "'>" +
+                "<li class='ingredientGroup' id='ingredientGroup_" + ingredientIndex + "'>" +
                 "<button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' id='ingredientModalBtn'>" +
                 "재료 선택" +
                 "</button>" +
                 "<input name=\"ingredientCategory\" class=\"ingredientCategory\" readonly='' value='-분류-' style='color:#898989'>" +
                 "<input name=\"ingredientName\" class=\"ingredientName\" value='-재료명-' readonly='' style='color:#898989'>\n" +
-                "<input type=\"text\" class=\"form-control\" style=\"width:100px;\" placeholder=\"10(수량)\"/>\n" +
-                "<input type=\"text\" class=\"form-control\" style=\"width:140px;\" placeholder=\"예) g,ml(단위)\"/>\n" +
-                "<input type='hidden' name='ingredient_id' class='ingredient_id'>"+
-                "<a  href='javascript:delIngredient(" + index + ")' class=\"btn-del\" style=''></a></li>"
+                "<input type=\"text\" class=\"ingredientQty form-control\" style=\"width:100px;\" placeholder=\"10(수량)\"/>\n" +
+                "<input type=\"text\" class=\"ingredientUnit form-control\" style=\"width:140px;\" placeholder=\"예) g,ml(단위)\"/>\n" +
+                "<input type='hidden' name='ingredientId' class='ingredientId'>" +
+                "<a  href='javascript:delIngredient(" + ingredientIndex + ")' class=\"btn-del\" style=''></a></li>"
 
             $("#ingredientInfo").append(ingredientFrame)
-            index = index + 1
+            ingredientIndex = ingredientIndex + 1
         }
 
+        var stepIndex = 2
+
+        // 요리 순서 추가
+        function addStep() {
+            var stepFrame =
+                '<div id="divStepItem_' + stepIndex + '" class="step">' +
+                '    <p class="cont_tit2_1 ui-sortable-handle" style="cursor:pointer"' +
+                '        data-original-title="" title="">Step' + stepIndex + '</p>' +
+                '    <div style="display:inline-block">' +
+                '        <textarea name="step_text" class="step_text form-control step_cont"' +
+                '            placeholder="예) 소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요."' +
+                '            style="height:160px; width:430px; resize:none;"></textarea>' +
+                '    </div>' +
+                '    <div id="divStepUpload_' + stepIndex + '" class="divStepUpload" style="display:inline-block">' +
+                '        <input type="hidden" class="step_photo_url" name="step_photo_url_" id="step_photo_url_' + stepIndex + '" value="">' +
+                '        <div class="step_photo_file_div" style="position:absolute;left:-3000px">' +
+                '           <input type="file"' +
+                '            name="step_photo_file_' + stepIndex + '"' +
+                '            id="step_photo_file_' + stepIndex + '"' +
+                '            file_gubun="step"' +
+                '            accept="jpeg,png,gif"' +
+                '            style="display:none;width:0px;height:0px;font-size:0px;"' +
+                '           text="">' +
+                '       </div>' +
+                '        <div is_over="0" class="step_thumbnail_div">' +
+                '            <img id="stepPhotoHolder_' + stepIndex + '" class="stepPhotoHolder" onclick="browseStepFile('+stepIndex+')"' +
+                '                src="../static/images/pic_none2.gif" width="160"' +
+                '                height="160"' +
+                '            style="cursor:pointer">' +
+                '        </div>' +
+                '   </div>' +
+                '   <div id="divStepBtn_' + stepIndex + '" class="step_btn" style="display:">' +
+                '        <a href="javascript:delStep(' + stepIndex + ')"><span class="glyphicon glyphicon-remove"></span></a>' +
+                '   </div>' +
+                '</div>'
+
+            $("#divStepArea").append(stepFrame)
+            stepIndex = stepIndex + 1
+        }
+
+        function delStep(idx) {
+            Swal.fire({
+                title: "요리순서 삭제",
+                text: "해당 요리 순서를 정말 삭제하시겠습니까?",
+                imageUrl: "../static/images/image_11.png",
+                imageAlt: "Custom image",
+                showCancelButton: true,
+                confirmButtonText: '삭제',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var step_photo_url = "#step_photo_url_"+idx
+                    deletePhotoFiles($(step_photo_url).val())
+
+                    var divStep = $("#divStepItem_" + idx);
+                    var nextDivs = []
+                    nextDivs = divStep.nextAll()
+                    if (nextDivs.length === 0) {
+                        stepIndex = 2;
+                    }
+                    $.each(nextDivs, function (num) {
+                        var index = idx + num
+                        var divStepUpload = $(this).children(".divStepUpload")
+                        $(this).attr("id", "divStepItem_" + index)
+                        $(this).children("p").text("Step" + index)
+                        $(divStepUpload).attr("id","divStepUpload_"+index)
+                        $(divStepUpload).children(".step_photo_url").attr("id","step_photo_url_"+index)
+                        $(divStepUpload).children(".step_photo_file_div").children("input").attr("id","step_photo_file_"+index).attr("name","step_photo_file_"+index)
+                        $(divStepUpload).children(".step_thumbnail_div").children("img").attr("id","stepPhotoHolder_"+index).attr("onclick","browseStepFile('"+index+"')")
+                        $(this).children(".stepPhotoHolder").attr("id", "stepPhotoHolder_" + index)
+                        $(this).children(".step_btn").attr("id","divStepBtn_"+index)
+                        $(this).children(".step_btn").children("a").attr('href', "javascript:delStep('" + index + "')")
+                        stepIndex = index + 1;
+                    })
+                    divStep.remove()
+                } else {
+                }
+            });
+
+            // var re = confirm("해당 요리 순서를 정말 삭제하시겠습니까?")
+            // if(re==1) {
+            //     var divStep = $("#divStepItem_" + idx);
+            //     var nextDivs = []
+            //     nextDivs = divStep.nextAll()
+            //     if (nextDivs.length === 0) {
+            //         stepIndex = 2;
+            //     }
+            //     $.each(nextDivs, function (num) {
+            //         var index = idx + num
+            //         console.log(index)
+            //         $(this).attr("id", "divStepItem_" + index)
+            //         $(this).children("p").text("Step" + index)
+            //         $(this).children("#stepPhotoHolder_" + (index + 1)).attr("id", "stepPhotoHolder_" + index)
+            //         $(this).children(".step_btn").children("a").attr('href', "javascript:delStep(" + index + ")")
+            //         stepIndex = index + 1;
+            //     })
+            //     divStep.remove()
+            // }
+        }
+
+        // 재료 선택 버튼 누르면 해당 재료 목록 그룹의 div id를 가져와 ingredientGroup_id변수에 저장한다.
         var ingredientGroup_id
         $(document).on('click', "#ingredientModalBtn", function () {
             ingredientGroup_id = "#" + $(this).parent().attr('id')
         })
 
+        // 재료 선택 후 저장을 누르면 해당 재료 그룹에 선택한 재료 정보가 입력된다.
         $(document).on('click', "#ingredient_modal_save", function () {
             var ingredientName = $("input[name=ingredient_radio]:checked").prev().text()
             var ingredientCategory = $("input[name=ingredient_radio]:checked").prev().prev().text()
             var ingredient_id = $("input[name=ingredient_radio]:checked").next().val()
-            $(ingredientGroup_id).children(".ingredientCategory").val(ingredientCategory).css('color','').css('font-weight','bold')
-            $(ingredientGroup_id).children(".ingredientName").val(ingredientName).css('color','').css('font-weight','bold')
+            $(ingredientGroup_id).children(".ingredientCategory").val(ingredientCategory).css('color', '').css('font-weight', 'bold')
+            $(ingredientGroup_id).children(".ingredientName").val(ingredientName).css('color', '').css('font-weight', 'bold')
             $(ingredientGroup_id).children(".ingredient_id").val(ingredient_id)
         })
 
+        // 재료 목록 삭제
         function delIngredient(index) {
-            var ingredientGroup = "#ingredientGroup_" + index;
-            $("li").remove(ingredientGroup);
+            Swal.fire({
+                title: "재료 목록 삭제",
+                text: "해당 재료 목록을 정말 삭제하시겠습니까?",
+                imageUrl: "../static/images/image_11.png",
+                imageAlt: "Custom image",
+                showCancelButton: true,
+                confirmButtonText: '삭제',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var ingredientGroup = "#ingredientGroup_" + index;
+                    $("li").remove(ingredientGroup);
+                } else {
+                }
+            })
         }
 
-        $(document).on('click','.modal_IngredientSelect',function(){
+        // 재료 목록에서 radio 버튼이 아니라 해당 radio 버튼의 라인을 눌러도 radio가 체크됨
+        $(document).on('click', '.modal_IngredientSelect', function () {
             var checkbox = $(this).find('input');
-            $(this).find('input').prop('checked',true)
+            $(this).find('input').prop('checked', true)
         })
 
+        // divMainPhotoBox를 누르면 input태그가 눌린 효과를 넣음
         function browseMainFile() {
-
             $("#q_main_file").click();
+            $(document).off().on('change', "#q_main_file",{inputTagId:"#q_main_file",imgBoxTagId:'#mainPhotoHolder',imgUrlSaveTagId:"#recipe_thumbnail"}, handlePhotoFiles)
         }
 
-        $(document).on('change',"#q_main_file", handlePhotoFiles)
+        //stepPhotoHolder를 클릭하면 input태그가 눌린 효과를 넣음
+        function browseStepFile(idx){
+            var step_photo_file = "#step_photo_file_"+idx
+            $(step_photo_file).click();
+            console.log(step_photo_file+" step_photo_file")
+            var step_photo_url = "#step_photo_url_"+idx
+            var stepPhotoHolder = "#stepPhotoHolder_"+idx
+            $(document).off().on('change', step_photo_file,{inputTagId:step_photo_file,imgBoxTagId:stepPhotoHolder,imgUrlSaveTagId:step_photo_url}, handlePhotoFiles)
+        }
 
 
 
-        function handlePhotoFiles(){
-            var image = $("#q_main_file")[0].files
+        // 이미지 파일 삭제
+        function deletePhotoFiles(fileName){
+            $.ajax({
+                data: {fileName:fileName},
+                type: "POST",
+                url: "/deleteRecipePhoto"
+            })
+        }
+
+        function handlePhotoFiles(tag) {
+            var image = $(tag.data.inputTagId)[0].files
             data = new FormData();
             data.append("file", image[0]);
+            var fileName = $(tag.data.imgUrlSaveTagId).val();
+            console.log(fileName)
+            if(fileName!==null && fileName!==""){
+                deletePhotoFiles(fileName);
+            }
+
             $.ajax({
-                data : data,
-                type : "POST",
-                url : "/uploadRecipeMainPhoto",
-                contentType : false,
-                processData : false,
-                success : function(data) {
+                data: data,
+                type: "POST",
+                url: "/uploadRecipePhoto",
+                contentType: false,
+                processData: false,
+                success: function (data) {
                     var reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#mainPhotoHolder').attr('src', e.target.result); // 이미지 미리보기 설정
+                    reader.onload = function (e) {
+                        $(tag.data.imgBoxTagId).attr('src', e.target.result); // 이미지 미리보기 설정
                     };
                     reader.readAsDataURL(image[0]); // 파일을 읽어서 Data URL로 변환하여 이미지에 적용
-                    $("#recipe_thumbnail").val(data.url)
+                    $(tag.data.imgUrlSaveTagId).val(data.url)
                 }
             });
         }
 
         // 모달창에서 엔터 누르면 검색 되는 함수
-        $(document).on('keyup','#keyword',function enter_search(e){
-            console.log(e.code)
+        $(document).on('keyup', '#keyword', function enter_search(e) {
             const code = e.code;
-
-            if(code == 'Enter'){
+            if (code == 'Enter') {
                 searchIngredient();
             }
         })
 
-        $(document).on('click','#ingredientSearchBtn',searchIngredient)
+        $(document).on('click', '#ingredientSearchBtn', searchIngredient)
 
         //재료 검색 ajax 통신 함수
-        function searchIngredient(){
+        function searchIngredient() {
             $("#ingredientList").empty()
             var keyword = $("#keyword").val()
-            data = {keyword:keyword};
+            data = {keyword: keyword};
             $.ajax({
-                data : data,
-                type:'POST',
-                url:'/searchIngredient',
-                success:function (listarray){
-                    console.log(listarray)
-                    $.each(listarray,function(idx,val){
-                        console.log(idx+" "+val.ingredientName)
+                data: data,
+                type: 'POST',
+                url: '/searchIngredient',
+                success: function (list) {
+                    $.each(list, function () {
                         var ingredientCategoryName = this.ingredientIngredientCategory.ingredientCategoryName
                         var ingredientName = this.ingredientName
                         var ingredient_id = this.id
                         var li = '<li class="modal_IngredientSelect">' +
-                            '<div class="cell">'+ingredientCategoryName+'</div>' +
-                            '<div class="cell">'+ingredientName+'</div>' +
+                            '<div class="cell">' + ingredientCategoryName + '</div>' +
+                            '<div class="cell">' + ingredientName + '</div>' +
                             '<input type="radio" name="ingredient_radio" class="cell"/>' +
-                            '<input type="hidden" name="ingredient_id" value="'+ingredient_id+'"/>' +
+                            '<input type="hidden" name="ingredient_id" value="' + ingredient_id + '"/>' +
                             '</li>'
                         $("#ingredientList").append($(li));
                     });
@@ -150,7 +330,7 @@
                 <div class="regi_center">
                     <div class="regi_title">레시피 등록
                     </div>
-                    <div class="cont_box pad_l_60">
+                    <div class="ingredient_headerInfo cont_box pad_l_60">
                         <div id="divMainPhotoUpload" class="cont_pic2">
                             <input type="hidden" name="main_photo" id="main_photo" value="">
                             <input type="hidden" name="new_main_photo" id="new_main_photo" value="">
@@ -170,22 +350,15 @@
                         </div>
                         <div class="cont_line">
                             <p class="cont_tit4">레시피 제목</p>
-                            <input type="text" name="cok_title"
-                                   id="cok_title"
+                            <input type="text" name="recipe_title"
+                                   id="recipe_title"
                                    value="" class="form-control"
                                    placeholder="예) 소고기 미역국 끓이기"
                                    style="width:610px; ">
                         </div>
-                        <div class="cont_line pad_b_25">
-                            <p class="cont_tit4">요리소개</p>
-                            <textarea name="cok_intro"
-                                      id="cok_intro"
-                                      class="form-control step_cont"
-                                      placeholder="이 레시피의 탄생배경을 적어주세요. 예) 남편의 생일을 맞아 소고기 미역국을 끓여봤어요. 어머니로부터 배운 미역국 레시피를 남편의 입맛에 맞게 고안했습니다."
-                                      style="height:100px; width:610px; resize:none;"></textarea>
-                        </div>
 
-                        <div class="cont_line pad_b_25">
+
+                        <div class="cont_line pad_b_25" th:if="${role=='ADMIN'}">
                             <p class="cont_tit4">동영상</p>
                             <input type="hidden" name="video_photo" id="video_photo" value="">
                             <input type="hidden" name="new_video_photo" id="new_video_photo" value="">
@@ -204,25 +377,9 @@
                         </div>
 
                         <div class="cont_line"><p class="cont_tit4">카테고리</p>
-                            <select name="cok_sq_category_4" id="cok_sq_category_4" text="종류별">
-                                <option value="">종류별</option>
-                                <option value="63">밑반찬</option>
-                                <option value="56">메인반찬</option>
-                                <option value="54">국/탕</option>
-                                <option value="55">찌개</option>
-                                <option value="60">디저트</option>
-                                <option value="53">면/만두</option>
-                                <option value="52">밥/죽/떡</option>
-                                <option value="61">퓨전</option>
-                                <option value="57">김치/젓갈/장류</option>
-                                <option value="58">양념/소스/잼</option>
-                                <option value="65">양식</option>
-                                <option value="64">샐러드</option>
-                                <option value="68">스프</option>
-                                <option value="66">빵</option>
-                                <option value="69">과자</option>
-                                <option value="59">차/음료/술</option>
-                                <option value="62">기타</option>
+                            <select name="recipeCategory" id="cok_sq_category_4">
+                                <option>-종류별-</option>
+                                <option th:each="c : ${recipe_category}" th:value="${c.getId()}" th:text="${c.getRecipeCategoryName()}"></option>
                             </select>
 
 
@@ -252,12 +409,13 @@
                                         </button>
                                         <input name="ingredientCategory" class="ingredientCategory" readonly=''
                                                value='-분류-' style='color:#898989'>
-                                        <input name="ingredientName" class="ingredientName" value='-재료명-' readonly='' style='color:#898989'>
-                                        <input type="text" class="form-control" style="width:100px;"
+                                        <input name="ingredientName" class="ingredientName" value='-재료명-' readonly=''
+                                               style='color:#898989'>
+                                        <input type="text" name="ingredientQty" class="ingredientQty form-control" style="width:100px;"
                                                placeholder="10(수량)"/>
-                                        <input type="text" class="form-control" style="width:140px;"
+                                        <input type="text" name="ingredientUnit" class="ingredientUnit form-control" style="width:140px;"
                                                placeholder="예) g,ml(단위)"/>
-                                        <input type='hidden' name='ingredient_id' class='ingredient_id'>
+                                        <input type='hidden' name='ingredientId' class='ingredientId'>
                                 </ul>
                                 <div class="btn_add" style="padding:0 0 20px 350px; width:800px;">
                                     <button type="button" onclick="addIngredient()" class="btn btn-default"><span
@@ -279,45 +437,33 @@
 	  </span>
                             <div id="divStepArea" class="ui-sortable">
                                 <div id="divStepItem_1" class="step">
-                                    <p id="divStepNum_1" class="cont_tit2_1 ui-sortable-handle" style="cursor:pointer"
+                                    <p class="cont_tit2_1 ui-sortable-handle" style="cursor:pointer"
                                        data-original-title="" title="">Step1</p>
-                                    <div id="divStepText_1" style="display:inline-block">
-                            <textarea name="step_text[]" id="step_text_1" class="form-control step_cont"
-                                      placeholder="예) 소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요."
-                                      style="height:160px; width:430px; resize:none;"></textarea>
+                                    <div style="display:inline-block">
+                                    <textarea class="step_text form-control step_cont"
+                                              placeholder="예) 소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요."
+                                              style="height:160px; width:430px; resize:none;"></textarea>
                                     </div>
-                                    <div id="divStepUpload_1" style="display:inline-block">
-                                        <input type="hidden" name="step_no[]" id="step_no_1" value="">
-                                        <input type="hidden" name="step_photo[]" id="step_photo_1" value="">
-                                        <input type="hidden" name="new_step_photo[]" id="new_step_photo_1" value="">
-                                        <input type="hidden" name="del_step_photo[]" id="del_step_photo_1" value="">
-                                        <div style="position:absolute;left:-3000px"><input type="file"
-                                                                                           name="q_step_file_1"
-                                                                                           id="q_step_file_1"
-                                                                                           file_gubun="step"
-                                                                                           accept="jpeg,png,gif"
-                                                                                           style="display:;width:0px;height:0px;font-size:0px;"
-                                                                                           text=""></div>
-                                        <div id="divStepPhotoBox_1" is_over="0">
-                                            <img id="stepPhotoHolder_1" onclick="browseStepFile(1)"
+                                    <div id="divStepUpload_1" class="divStepUpload" style="display:inline-block">
+                                        <input type="hidden" class="step_photo_url" name="step_photo_url_1" id="step_photo_url_1" value="">
+                                        <div class="step_photo_file_div" style="position:absolute;left:-3000px">
+                                            <input type="file"
+                                                   name="step_photo_file_1"
+                                                   id="step_photo_file_1"
+                                                   file_gubun="step"
+                                                   accept="jpeg,png,gif"
+                                                   style="display:none;width:0px;height:0px;font-size:0px;"
+                                                   text="">
+                                        </div>
+                                        <div is_over="0" class="step_thumbnail_div">
+                                            <img id="stepPhotoHolder_1" class="stepPhotoHolder" onclick="browseStepFile(1)"
                                                  src="../static/images/pic_none2.gif" width="160"
                                                  height="160"
                                                  style="cursor:pointer">
                                         </div>
                                     </div>
-                                    <div id="divStepBtn_1" class="step_btn" style="display:none">
-                                        <a href="javascript:void(0)"><span
-                                                class="glyphicon glyphicon-chevron-up moveUp"></span></a>
-                                        <a href="javascript:void(0)"><span
-                                                class="glyphicon glyphicon-chevron-down moveDown"></span></a>
-                                        <a href="javascript:adjustStep(1)"><b>맞춤</b></a>
-                                        <a href="javascript:addStep(1)"><span
-                                                class="glyphicon glyphicon-plus"></span></a>
-                                        <a href="javascript:delStep(1)"><span class="glyphicon glyphicon-remove"></span></a>
-                                    </div>
-
-
                                 </div>
+
                             </div>
                             <!-- step template -->
 
@@ -328,31 +474,6 @@
                             </div>
 
 
-                            <p class="cont_tit4">요리완성사진
-                                <input type="file" name="file" id="multifile_2" file_gubun="work" style="display:none;"
-                                       multiple="">
-                                <br>
-                            </p>
-                            <div id="divWorkArea" style="display:inline-block" class="ui-sortable">
-                                <div id="divWorkUpload_1" class="complete_pic">
-                                    <input type="hidden" name="work_photo[]" id="work_photo_1" value="">
-                                    <input type="hidden" name="new_work_photo[]" id="new_work_photo_1" value="">
-                                    <input type="hidden" name="del_work_photo[]" id="del_work_photo_1" value="">
-                                    <div style="position:absolute;left:-3000px"><input type="file" name="q_work_file_1"
-                                                                                       id="q_work_file_1"
-                                                                                       file_gubun="work"
-                                                                                       accept="jpeg,png,gif"
-                                                                                       style="display:;width:0px;height:0px;font-size:0px;"
-                                                                                       text=""></div>
-                                    <div id="divWorkPhotoBox_1" is_over="0">
-                                        <a href="#" class="pic_del" style="display:none"></a>
-                                        <img id="workPhotoHolder_1" onclick="browseWorkFile(1)"
-                                             src="../static/images/pic_none3.gif" alt="No Image"
-                                             style="width: 140px; height: 140px; cursor:pointer">
-                                    </div>
-                                </div>
-
-                            </div>
                         </div><!--/cont_box-->
 
                     </div><!--/regi_center-->
@@ -442,9 +563,11 @@
                         <h5 class="modal-title" id="exampleModalLabel">재료 검색 하기</h5>
                     </div>
                     <div class="modal-body">
-                        <input type="text" placeholder="원하는 재료를 입력해주세요." name="keyword" id="keyword"
-                               style="width: 80%;height:34px">
-                        <button class="btn btn-primary" id="ingredientSearchBtn">검색</button>
+                        <div class="ingredientSearchBox">
+                            <input type="text" placeholder="원하는 재료를 입력해주세요." name="keyword" id="keyword"
+                                   class="ingredientSearchInput">
+                            <button class="btn btn-primary" id="ingredientSearchBtn">검색</button>
+                        </div>
                         <div style="width: auto; height:500px; border: 1px solid; overflow: auto">
                             <div class="modal_IngredientSelect_column">
                                 <div class="cell">카테고리</div>
