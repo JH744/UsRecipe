@@ -48,33 +48,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <tr th:each="c:${list}">
                         <td>1</td>
                         <td><input type="checkbox"></td>
                         <td>
-                            <span class="cartTableGoodsName">상품명</span>
+                            <span th:text="${c.ingredientName}" class="cartTableGoodsName">상품명</span>
                         </td>
-                        <td>8,000</td>
+                        <td th:text="${c.ingredientPrice}">8,000</td>
                         <td>0</td>
-                        <td>2</td>
-                        <td>160</td>
-                        <td>수량/삭제</td>
-                        <td>160</td>
-                        <td>
-                            <span>택배배송</span><br>
-                            <span>배송비무료</span><br>
-                            <span>0원이상무료</span><br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><input type="checkbox"></td>
-                        <td>
-                            <span class="cartTableGoodsName">상품명</span>
-                        </td>
-                        <td>8,000</td>
-                        <td>0</td>
-                        <td>2</td>
+                        <td th:text="${c.quantity}">수량</td>
                         <td>160</td>
                         <td>수량/삭제</td>
                         <td>160</td>

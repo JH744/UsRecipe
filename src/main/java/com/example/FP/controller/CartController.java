@@ -17,12 +17,30 @@ public class CartController {
 
     private final CartService cs;
 
+
+
+
+
+
     @GetMapping("/cart")
     public String cartList(Model model){
-        //model.addAttribute("list",cs.listCart());
+        //로그인한 회원의 id로 저장된 장바구니 목록을 가져옴
+        long memberId = 52; //임시 id 부여
+
+         var list = cs.listCart(memberId);
+
+
+
+        model.addAttribute("list",list);
 
         return "cart";
     }
+
+
+
+
+
+
 
     @PostMapping("/addCart")
     @ResponseBody

@@ -1,5 +1,6 @@
 package com.example.FP.service;
 
+import com.example.FP.dto.CartIngredientDto;
 import com.example.FP.entity.Cart;
 import com.example.FP.entity.Ingredient;
 import com.example.FP.entity.Member;
@@ -9,6 +10,7 @@ import com.example.FP.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,11 +19,12 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CartService {
 
-    private final CartRepository cp;
+    private final CartRepository cr;
 
     private final IngredientRepository ir;
 
     private final MemberRepository mr;
+
 
     //재료목록창에서  담기 클릭  장바구니 추가
     public void addCart(Long id, long memberId) {
@@ -31,10 +34,15 @@ public class CartService {
        Optional<Member> member=mr.findById(memberId);
        Member  m = member.get();
        Cart cart = new Cart(m,null,i);
-       cp.save(cart);
+       cr.save(cart);
     }
 
 
+
+    @Transactional(readOnly = true)
+    public List<CartIngredientDto> listCart(Long memberId) {
+        return cr.findCartIngredientsByMemberId(memberId);
+    }
 
 
 
