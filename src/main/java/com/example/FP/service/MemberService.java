@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 
 @Service
@@ -144,6 +145,10 @@ public class MemberService implements UserDetailsService {
 
     public Member listPointAndNameByUserid(String userid){
         return mr.findNamePointOrderCntByUserid(userid);
+    }
+
+    public List<Member> findAllMember(){
+        return mr.findAll();
     }
 
 }
