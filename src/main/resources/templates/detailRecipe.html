@@ -4,18 +4,15 @@
 
 
     <title>유스레시피</title>
+
     <link rel="stylesheet" href="../static/css/templateBody.css"/>
+    <link rel="stylesheet" href="../static/css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
+
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/footer.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("header").load("../static/header.html");
-            $(".footer").load("../static/footer.html");
-        });
-    </script>
+
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap_20211222.css">
     <link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/font_20230910.css">
     <link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/font-awesome.min.css">
@@ -29,177 +26,36 @@
     </header>
     <div class="mainBody">
         <div class="contentBody">
-            <style type="text/css">
-                #oldContArea img {
-                    max-width: 100%;
-                    height: auto;
-                }
-
-                .view_step_cont .none {
-                    display: none;
-                }
-
-                .view_step_cont .carousel.slide {
-                    border: none;
-                    box-shadow: none;
-                    margin: 0;
-                    padding: 0;
-                }
-
-                .view_step_cont .media-right .carousel.slide {
-                    width: 300px;
-                }
-
-                .view_step_cont .media-right {
-                    width: 300px;
-                }
-
-                .view_step_cont .carousel-control {
-                    padding: 0;
-                }
-
-                .view_step_cont .carousel-indicators {
-                    bottom: -36px;
-                }
-
-                .view_step_cont .carousel-indicators li {
-                    width: 10px;
-                    height: 10px;
-                }
-
-                .centeredcrop {
-                    position: relative;
-                    width: 100%;
-                    overflow: hidden;
-                    height: 400px;
-                }
-
-                .centeredcrop img {
-                    position: absolute;
-                    left: 50%;
-                    top: 50%;
-                    width: 100%;
-                    height: auto;
-                    -webkit-transform: translate(-50%, -50%);
-                    -ms-transform: translate(-50%, -50%);
-                    transform: translate(-50%, -50%);
-                }
-
-                .centeredcrop img.portrait {
-                    width: auto;
-                    height: 100%;
-                }
-
-                .modal-body .btn_list {
-                    text-align: center;
-                    padding: 12px 0 0 0;
-                }
-
-                .modal-body .btn_list a {
-                    text-align: center;
-                    font-size: 11px;
-                    color: #444;
-                    width: 23%;
-                    display: inline-block;
-                }
-
-                .modal-body .btn_list a img {
-                    border-radius: 50%;
-                    width: 69px;
-                    height: 69px;
-                }
-
-                .centeredcrop2 {
-                    display: flex;
-                    flex-direction: column;
-                    flex-wrap: wrap;
-                    align-items: flex-start;
-                    width: 100%;
-                    height: 400px;
-                }
-
-                .centeredcrop2 img {
-                    object-fit: cover;
-                    width: 600px;
-                    height: 400px;
-                }
-
-                .centeredcrop2 img.portrait {
-                    width: auto;
-                    height: 100%;
-                }
-
-                .swiper-slide {
-                    text-align: center;
-                    font-size: 18px;
-                    display: -webkit-box;
-                    display: -ms-flexbox;
-                    display: -webkit-flex;
-                    display: flex;
-                    -webkit-box-pack: center;
-                    -ms-flex-pack: center;
-                    -webkit-justify-content: center;
-                    justify-content: center;
-                    -webkit-box-align: center;
-                    -ms-flex-align: center;
-                    -webkit-align-items: center;
-                    align-items: center;
-                }
-
-                .view2_box .swiper-substance span {
-                    position: absolute;
-                    font-size: 12px;
-                    color: #fff;
-                    text-shadow: 0.1em 0.1em 0.15em #333;
-                    margin-left: 2px;
-                    z-index: 100;
-                }
-
-                .view2_box .swiper-substance img {
-                    max-width: 180px;
-                    border-radius: 6px;
-                }
-
-                .sp_pdt_wrap .swiper-substance span {
-                    text-shadow: none
-                }
-            </style> <!-- 상단 이미지 css -->
             <div class="container">
                 <div id="contents_area_full" style="clear:both;">
 
                     <div class="view2_pic">
                         <div class="view_cate st2" style="z-index:10;">
-                            <div class="view_cate_num"><span class="hit font_num">1,454,785</span></div>
+                            <div class="view_cate_num"><span class="hit font_num"
+                                                             th:text="${recipe.recipeViews}"></span></div>
                         </div>
 
                         <div class="centeredcrop">
                             <img id="main_thumbs"
-                                 src="https://recipe1.ezmember.co.kr/cache/recipe/2015/04/22/3f22ecbbd276c60af4f6a89223c3f5551.jpg"
+                                 th:src="@{'../static/images/'+${recipe.recipeThumbnail}}"
                                  alt="main thumb">
                         </div>
                         <div class="user_info2">
                             <a class="app_block_link_remove user_info2_pic"
                                href="/profile/index.html?uid=dollshouse"><img
-                                    src="https://recipe1.ezmember.co.kr/img/df/pf_100_100.png"></a>
-                            <span class="user_info2_name">돌하우스                                <button id="friendDiv"
-                                                                                                      type="button"
-                                                                                                      class="btn btn-xs btn-default"
-                                                                                                      onclick="doAddFriend()">소식받기</button>
+                                    src="../static/images/chef2.png" style="background: #FFFFFF"></a>
+                            <span class="user_info2_name" th:text="${recipe.recipeWriter}">
+                                <button id="friendDiv"
+                                        type="button"
+                                        class="btn btn-xs btn-default"
+                                        onclick="doAddFriend()">소식받기</button>
                                 </span>
                         </div>
                     </div>
 
                     <div class="view2_summary st3">
-                        <h3>꽃게탕/꽃게탕 끓이는법</h3>
-                        <div class="view2_summary_in" id="recipeIntro">
-                            화려하게 여러가지 재료를 넣은것은 아니지만,... 기본재료와 양념만으로 소박하게 끓인것치고는... 훌륭한 꽃게탕이였답니다...ㅎㅎ
-                        </div>
-
+                        <h3 th:text="${recipe.recipeTitle}"></h3>
                         <div class="btn_list st2">
-                            <!--a href="javascript:void(0)" onClick="doLike()"><img id="availLike" src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_like.png"><span>좋아요<b class="st1">128</b></span></a-->
-                            <a href="javascript:void(0)" onclick="selectScrapFolderOpen()"><img
-                                    src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_scrap.png"><span>스크랩<b
-                                    class="st2">32,341</b></span></a>
                             <a onclick="$('#snsLinkModal').modal('show')"><img
                                     src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_talk.png"><span>공유</span></a>
                             <a href="#commentLists"><img
@@ -219,178 +75,19 @@
                         <div class="ready_ingre3" id="divConfirmedMaterialArea">
                             <ul>
                                 <b class="ready_ingre3_tt">[재료]</b>
-                                <li>
+                                <li th:each="i : ${recipe.recipeIngredientList}">
                                     <div class="ingre_list_name">
-                                        <a href="javascript:viewMaterial('484');"
-                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '꽃게');">
-                                            꽃게 <span>작은 사이즈</span>
-                                        </a>
+                                        <p
+                                                th:text="${i.recipeIngredientNeed}">
+                                        </p>
                                     </div>
-
-
-                                    <span class="ingre_list_ea">6마리 </span>
-                                    <a href="javascript:buyCpMaterial('꽃게');" class="ingre_list_btn">구매</a>
+                                    <span class="ingre_list_ea"
+                                          th:text="${i.recipeIngredientQty+i.recipeIngredientUnit}"></span>
+                                    <a th:href="'/detaileIngredient?ingredientId'+${i.recipeIngredientIngredient}+''"
+                                       class="ingre_list_btn">구매</a>
 
                                 </li>
-                                <li>
 
-                                    <div class="ingre_list_name">
-                                        <a href="javascript:viewMaterial('2');"
-                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '양파(중)');">
-                                            양파(중) </a>
-                                    </div>
-
-
-                                    <span class="ingre_list_ea">1/2개 </span>
-                                    <a href="javascript:buyCpMaterial('양파(중)');" class="ingre_list_btn">구매</a>
-
-                                </li>
-                                <li>
-
-                                    <div class="ingre_list_name">
-                                        <a href="javascript:viewMaterial('329');"
-                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '호박');">
-                                            호박 </a>
-                                    </div>
-
-
-                                    <span class="ingre_list_ea">1/2개 </span>
-                                    <a href="javascript:buyCpMaterial('호박');" class="ingre_list_btn">구매</a>
-
-                                </li>
-                                <li>
-
-                                    <div class="ingre_list_name">
-                                        <a href="javascript:viewMaterial('26');"
-                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '대파');">
-                                            대파 </a>
-                                    </div>
-
-
-                                    <span class="ingre_list_ea">1/2개 </span>
-                                    <a href="javascript:buyCpMaterial('대파');" class="ingre_list_btn">구매</a>
-
-                                </li>
-                                <li>
-
-                                    <div class="ingre_list_name">
-                                        <a href="javascript:viewMaterial('296');"
-                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '청량고추');">
-                                            청량고추 </a>
-                                    </div>
-
-
-                                    <span class="ingre_list_ea">2개 </span>
-                                    <a href="javascript:buyCpMaterial('청량고추');" class="ingre_list_btn">구매</a>
-
-                                </li>
-                                <li>
-
-                                    <div class="ingre_list_name">
-                                        <a href="javascript:viewMaterial('1005');"
-                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '물');">
-                                            물 </a>
-                                    </div>
-
-
-                                    <span class="ingre_list_ea">1000ml </span>
-                                    <a href="javascript:buyCpMaterial('물');" class="ingre_list_btn">구매</a>
-
-                                </li>
-                                <li>
-
-                                    <div class="ingre_list_name">
-                                        <a href="javascript:viewMaterial('225');"
-                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '후춧가루');">
-                                            후춧가루 </a>
-                                    </div>
-
-
-                                    <span class="ingre_list_ea">약간 </span>
-                                    <a href="javascript:buyCpMaterial('후춧가루');" class="ingre_list_btn">구매</a>
-
-                                </li>
-                            </ul>
-                            <ul>
-                                <b class="ready_ingre3_tt">[양념]</b>
-                                <li>
-
-                                    <div class="ingre_list_name">
-                                        <a href="javascript:viewMaterial('477');"
-                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '고추장');">
-                                            고추장 </a>
-                                    </div>
-
-
-                                    <span class="ingre_list_ea">1스푼 </span>
-                                    <a href="javascript:buyCpMaterial('고추장');" class="ingre_list_btn">구매</a>
-
-                                </li>
-                                <li>
-
-                                    <div class="ingre_list_name">
-                                        <a href="javascript:viewMaterial('857');"
-                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '집된장');">
-                                            집된장 </a>
-                                    </div>
-
-
-                                    <span class="ingre_list_ea">1스푼 </span>
-                                    <a href="javascript:buyCpMaterial('집된장');" class="ingre_list_btn">구매</a>
-
-                                </li>
-                                <li>
-
-                                    <div class="ingre_list_name">
-                                        <a href="javascript:viewMaterial('224');"
-                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '고춧가루');">
-                                            고춧가루 </a>
-                                    </div>
-
-
-                                    <span class="ingre_list_ea">1+1/2스푼 </span>
-                                    <a href="javascript:buyCpMaterial('고춧가루');" class="ingre_list_btn">구매</a>
-
-                                </li>
-                                <li>
-
-                                    <div class="ingre_list_name">
-                                        <a href="javascript:viewMaterial('501');"
-                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '소금');">
-                                            소금 </a>
-                                    </div>
-
-
-                                    <span class="ingre_list_ea">1/3스푼 </span>
-                                    <a href="javascript:buyCpMaterial('소금');" class="ingre_list_btn">구매</a>
-
-                                </li>
-                                <li>
-
-                                    <div class="ingre_list_name">
-                                        <a href="javascript:viewMaterial('353');"
-                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '국간장');">
-                                            국간장 </a>
-                                    </div>
-
-
-                                    <span class="ingre_list_ea">1스푼 </span>
-                                    <a href="javascript:buyCpMaterial('국간장');" class="ingre_list_btn">구매</a>
-
-                                </li>
-                                <li>
-
-                                    <div class="ingre_list_name">
-                                        <a href="javascript:viewMaterial('233');"
-                                           onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '다진마늘');">
-                                            다진마늘 </a>
-                                    </div>
-
-
-                                    <span class="ingre_list_ea">1/2스푼 </span>
-                                    <a href="javascript:buyCpMaterial('다진마늘');" class="ingre_list_btn">구매</a>
-
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -400,22 +97,13 @@
                             <b>조리순서</b><span>Steps</span>
 
                         </div>
-                        <div id="stepDiv1" class="view_step_cont media step1">
-                            <div id="stepdescr1" class="media-body">저는 손질되어있는 냉동 꽃게를 사용했습니다.</div>
-                            <div id="stepimg1" class="media-right"><img
-                                    src="https://recipe1.ezmember.co.kr/cache/recipe/2015/04/22/d4890c8cad8da5e1673cd47e7cf044fe1.jpg">
-                            </div>
-                        </div>
-                        <div id="stepDiv2" class="view_step_cont media step2">
-                            <div id="stepdescr2" class="media-body">사진정도 크기의 12토막을 깨끗이 씻어 준비하고...</div>
-                            <div id="stepimg2" class="media-right"><img
-                                    src="https://recipe1.ezmember.co.kr/cache/recipe/2015/04/22/47b81ee523149db615628c4e0088003c1.jpg">
-                            </div>
-                        </div>
-                        <div id="stepDiv3" class="view_step_cont media step3">
-                            <div id="stepdescr3" class="media-body">분량의 양파, 호박, 대파, 청량고추를 사진처럼 썰어서 준비합니다.</div>
-                            <div id="stepimg3" class="media-right"><img
-                                    src="https://recipe1.ezmember.co.kr/cache/recipe/2015/04/22/e9e01a6a5225a1cb457dd614c7e7eefc1.jpg">
+                        <div th:id="'stepDiv'+${oState.index+1}"
+                             th:class="'view_step_cont media step'+${oState.index+1}"
+                             th:each="o,oState:${recipe.recipeRecipeOrderList}">
+                            <div th:id="'stepdescr'+${oState.index+1}" class="media-body"
+                                 th:text="${o.recipeDetail}"></div>
+                            <div th:id="'stepimg'+${oState.index+1}" class="media-right">
+                                <img th:src="@{'../static/images/'+${o.recipePhoto}}">
                             </div>
                         </div>
                     </div>
@@ -428,73 +116,74 @@
                          style="width:920px;margin:0 auto 60px;">
                         <div class="carousel-inner" role="listbox">
                             <div class="carouItem centercrop">
-                                <img src="https://recipe1.ezmember.co.kr/cache/recipe/2015/04/22/37aae2cdc89262512c93b29f6cc244821.jpg">
+                                <img th:src="@{'../static/images/'+${recipe.recipeThumbnail}}">
                             </div>
                         </div>
                     </div>
                 </div><!--/view_step -->
             </div>
+
             <div class="view_reply">
-                <div class="reply_tit">댓글 <span id="recipeCommentListCount">40</span></div>
+                <div class="reply_tit">댓글 <span id="recipeCommentListCount"
+                                                th:text="${recipe.recipeReplyList.size}"></span></div>
                 <div id="recipeCommentList_1">
-                    <div class="media reply_list">
-                        <div class="media-left"><a href="/profile/recipe_comment.html?uid=27856241"><img
-                                class="media-object"
-                                src="https://recipe1.ezmember.co.kr/cache/rpf/2018/06/19/cf2663d11ed3a5771405ed6ecfdac1f21.jpg"
-                                data-holder-rendered="true"></a></div>
-                        <div class="media-body"><h4 class="media-heading"><b class="info_name_f">쩡이예융</b>2023-08-19
-                            13:52<span>|</span><a href="javascript:void(0);"
-                                                  onclick="doCommentReply(39706325)">답글</a><span>|</span><a
-                                    href="javascript:problem_open('rc','39706325');">신고</a></h4>수저 기준이죠??
+                    <div class="media reply_list" th:each="r : ${recipe.recipeReplyList}">
+                        <div class="media-left"><a th:href="'/profile?id='+${r.replyMember.id}">
+                            <img
+                                    class="media-object"
+                                    src="../static/images/chef2.png"
+                                    data-holder-rendered="true"></a></div>
+                        <div class="media-body">
+                            <h4 class="media-heading" style="float:left;">
+                                <div style="display: block;width: 100%">
+                                    <b class="info_name_f" th:text="${r.replyMember.nickname}" style="float:left;"></b>
+                                <div class="replyStarBox">
+                                </div>
+                                    <img th:each="star : ${#numbers.sequence(1,r.replyGrade)}"
+                                         style="display: inline-block; width: 20px; height: 20px"
+                                         src="../static/images/star2.png"/>
+                                    <img th:if="${r.replyGrade != 5}"
+                                         th:each="star : ${#numbers.sequence((r.replyGrade)+1,5)}"
+                                         style="display: inline-block; width: 20px; height: 20px"
+                                         src="../static/images/noneStar2.png"/>
+                                </div>
+                                <p th:text="${r.replyDate}"></p>
+                            </h4>
+                            <p th:text="${r.replyContent}" style="float: left"></p>
+                            <div>삭제</div>
                         </div>
                         <div id="replyCommentDiv_39706325" style="padding-left:50px;"></div>
                     </div>
-                    <div class="media reply_list" style="padding-left:50px;">
-                        <div class="media-left"><a href="/profile/recipe_comment.html?uid=gdubu33"><img
-                                class="media-object"
-                                src="https://recipe1.ezmember.co.kr/cache/rpf/2016/01/29/900013400086b533aef0411aeb3ee7d71.png"
-                                data-holder-rendered="true"></a>
-                        </div>
-                        <div class="media-body"><h4 class="media-heading"><b class="info_name_f">만개의레시피</b>2023-08-21
-                            09:27<span>|</span><a href="javascript:void(0);"
-                                                  onclick="doCommentReply(39706346)">답글</a><span>|</span><a
-                                    href="javascript:problem_open('rc','39706346');">신고</a></h4><b>쩡이예융</b> 밥숟가락을
-                            사용하셨네요.~^^
-                        </div>
-                        <div id="replyCommentDiv_39706346"></div>
-                    </div>
-                    <div class="media reply_list">
-                        <div class="media-left"><a href="/profile/recipe_comment.html?uid=85912745"><img
-                                class="media-object"
-                                src="https://recipe1.ezmember.co.kr/cache/rpf/2023/06/10/63627a2d0674705fc057e2c9b9376dae1.f85686f7a352b5c6cd7afe25f825378a"
-                                data-holder-rendered="true"></a></div>
-                        <div class="media-body"><h4 class="media-heading"><b class="info_name_f">SU정</b>2023-07-07
-                            15:20<span>|</span><a href="javascript:void(0);"
-                                                  onclick="doCommentReply(39705280)">답글</a><span>|</span><a
-                                    href="javascript:problem_open('rc','39705280');">신고</a></h4>꽃게탕 정말 먹음직 스러워 보이네요
-                        </div>
-                        <div id="replyCommentDiv_39705280" style="padding-left:50px;"></div>
-                    </div>
+
                 </div>
 
                 <div class="reply_write">
-                    <form id="insCmtFrm1" method="post">
+                    <form id="insCmtFrm1" method="post" action="/insertReply">
+                        <input type="hidden" name="recipeId" th:value="${recipe.id}">
+                        <div class="gradeBox">
+                            <input type="radio" class="gradeStar" name="gradeStar" value="1">
+                            <input type="radio" class="gradeStar" name="gradeStar" value="2">
+                            <input type="radio" class="gradeStar" name="gradeStar" value="3">
+                            <input type="radio" class="gradeStar" name="gradeStar" value="4">
+                            <input type="radio" class="gradeStar" name="gradeStar" value="5">
+                            <p class="gradeText">해당 레시피의 별점을 적용해 주세요!</p>
+                        </div>
+
                         <div class="input-group" style="width:auto;">
-                        <textarea id="cmt_tx_content1" onclick="" name="frm[cmt_tx_content]" class="form-control"
+                        <textarea id="cmt_tx_content1" name="replyContent" class="form-control"
                                   placeholder="무엇이 궁금하신가요? 댓글을 남겨주세요."
                                   style="height:100px; width:100%; resize:none;"></textarea>
-                            <span class="input-group-btn"><button class="btn btn-default" type="button"
-                                                                  onclick="doCommentSubmit(1)"
-                                                                  style="height:100px; width:100px;">등록</button></span>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" onclick="replyInsert()"
+                                        style="height:100px; width:100px;">등록</button>
+                            </span>
                         </div>
                     </form>
                 </div>
-
             </div><!-- /view_reply -->
         </div>
     </div><!-- /contents_area -->
-</div>
-<div class="footer" th:replace="footer :: footer"></div>
+    <div class="footer" th:replace="footer :: footer"></div>
 </div>
 </body>
 </html>

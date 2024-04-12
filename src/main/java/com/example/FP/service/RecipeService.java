@@ -15,10 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -112,5 +109,20 @@ public class RecipeService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+//
+//    public Map<String,Object> detailRecipe(Long id){
+//        Map<String,Object> recipeDetail = new HashMap<String,Object>();
+//        List<RecipeIngredient> recipeIngredient = rir.findAllByRecipeIngredientRecipe();
+//
+//        recipeDetail.put("recipe",rr.findById(id).get());
+//        recipeDetail.put("recipeIngredient",recipeIngredient);
+//        recipeDetail.put("recipe",rr.findById(id).get());
+//        recipeDetail.put("recipe",rr.findById(id).get());
+//
+//        return recipeDetail;
+//    }
+    public Recipe detailRecipe(Long id){
+        return rr.findById(id).get();
     }
 }
