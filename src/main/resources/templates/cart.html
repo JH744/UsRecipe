@@ -11,7 +11,24 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
+        $(function (){
+            // 'orderprice' 클래스를 가진 모든 요소의 텍스트를 배열로 수집
+            var orderPrices = $('.orderprice').map(function() {
+                return parseFloat($(this).text());  // 현재 요소의 텍스트를 숫자로 변환하여 반환
+            }).get();  // 수집된 요소를 실제 배열로 변환
+            console.log(orderPrices);
+            // 배열의 요소들을 합산
+            var totalPrice = orderPrices.reduce(function(sum, price) {
+                return sum + price;  // 각 요소를 합산
+            }, 0);  // 초기값을 0으로 설정
 
+            // 합산 결과를 콘솔에 출력
+            console.log("Total Price: " + totalPrice);
+
+            $('.orderPriceFt2').html(totalPrice + '원');
+
+
+        })
     </script>
 </head>
 <body >
@@ -39,27 +56,27 @@
                         <th><input type="checkbox"></th>
                         <th>상품명</th>
                         <th>판매가</th>
-                        <th>회원할인</th>
-                        <th>수량</th>
-                        <th>(적립예정)</th>
+                        <th>회원할인                        <th>수량</th>
+                        <th>적립예정</th>
                         <th>주문관리</th>
                         <th>주문금액</th>
                         <th>배송비/배송형태 </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="c:${list}">
-                        <td>1</td>
+
+                    <!-- 리스트에 항목이 있는 경우 각 항목 표시 -->
+                    </th>
+                    <tr th:each="c , status :${list}" th:unless="${#lists.isEmpty(list)}">
+                        <td th:text="${status.count}"></td>
                         <td><input type="checkbox"></td>
-                        <td>
-                            <span th:text="${c.ingredientName}" class="cartTableGoodsName">상품명</span>
-                        </td>
+                        <td th:text="${c.ingredientName}">상품명</td>
                         <td th:text="${c.ingredientPrice}">8,000</td>
                         <td>0</td>
                         <td th:text="${c.quantity}">수량</td>
                         <td>160</td>
-                        <td>수량/삭제</td>
-                        <td>160</td>
+                        <td>삭제</td>
+                        <td th:text="${c.ingredientPrice * c.quantity}"  class="orderprice">주문금액</td>
                         <td>
                             <span>택배배송</span><br>
                             <span>배송비무료</span><br>
@@ -67,24 +84,26 @@
                         </td>
                     </tr>
 
+
+
+                    <!-- 리스트가 비어 있을 경우 메시지 표시 -->
+                    <tr th:if="${#lists.isEmpty(list)}">
+                        <td colspan="10">장바구니가 비어 있습니다.</td>
+                    </tr>
+
+
+
+
                     </tbody>
                 </table>
                 <div class="deletebtnbox"> <button class="deletebtn" id="deletebtn">물품모두삭제</button></div>
                 <div class="orderPricebox">
-                    <span class="orderPriceFt1">최종결제금액</span><span class="orderPriceFt2">16,000원</span>
+                    <span class="orderPriceFt1">최종결제금액</span><span class="orderPriceFt2"></span>
                 </div>
 
                 <button class="orderbtn">주문하기</button>
 
             </div>  <!-- cartbox 끝 -->
-
-
-
-
-
-
-
-
 
 
         </div>
