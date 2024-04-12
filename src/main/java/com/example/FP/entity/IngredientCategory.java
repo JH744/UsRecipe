@@ -25,16 +25,11 @@ public class IngredientCategory {
 
     private String ingredientCategoryName;
 
-    @JsonBackReference
-    @Builder.Default
-    @OneToMany(mappedBy = "ingredientIngredientCategory")
-    private List<Ingredient> ingredientList = new ArrayList<>();
 
     public IngredientCategory() {
     }
 
-    public IngredientCategory(String ingredientCategoryName, List<Ingredient> ingredientList) {
+    public IngredientCategory(String ingredientCategoryName) {
         this.ingredientCategoryName = ingredientCategoryName;
-        this.ingredientList = ingredientList;
     }
 }

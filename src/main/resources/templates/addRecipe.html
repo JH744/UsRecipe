@@ -27,44 +27,60 @@
         var ingredientIndex = 1
 
         // 재료 그룹들의 정보를 모아 list 형태로 반환
-        function ingeredientData(){
+        function ingeredientData() {
             var ingredientGroupList = [];
             ingredientGroupList = $("#ingredientInfo").find(".ingredientGroup");
-
+            var isnull = false;
             var ingredientDataList = [];
-            $.each(ingredientGroupList,function(){
+            $.each(ingredientGroupList, function () {
                 var recipeIngredientNeed = $(this).find(".ingredientName").val()
                 var recipeIngredientQty = $(this).find(".ingredientQty").val()
                 var recipeIngredientUnit = $(this).find(".ingredientUnit").val()
                 var recipeIngredientId = $(this).find(".ingredientId").val()
-
+                if (recipeIngredientNeed === "" || recipeIngredientQty === "" ||
+                    recipeIngredientUnit === "") {
+                    isnull = true;
+                    return false;
+                }
                 var ingredientDataListItem = {
-                    'recipeIngredientNeed':recipeIngredientNeed,
-                    'recipeIngredientQty':recipeIngredientQty,
-                    'recipeIngredientUnit':recipeIngredientUnit,
-                    'recipeIngredientId':recipeIngredientId
+                    'recipeIngredientNeed': recipeIngredientNeed,
+                    'recipeIngredientQty': recipeIngredientQty,
+                    'recipeIngredientUnit': recipeIngredientUnit,
+                    'recipeIngredientId': recipeIngredientId
                 }
                 ingredientDataList.push(ingredientDataListItem)
             })
-            return ingredientDataList;
+            if (isnull) {
+                return null;
+            } else {
+                return ingredientDataList;
+            }
         }
 
         // 요리순서 그룹들의 정보를 모아 list 형태로 반환
-        function stepData(){
+        function stepData() {
             var recipeStepList = [];
+            var isnull = false;
             recipeStepList = $("#divStepArea").find(".step");
             var stepDataList = [];
-            $.each(recipeStepList,function(){
+            $.each(recipeStepList, function () {
                 var recipeDetail = $(this).find(".step_text").val()
                 var recipePhoto = $(this).find(".step_photo_url").val()
-
+                if (recipeDetail === "" || recipePhoto === "") {
+                    isnull = true;
+                    return false;
+                }
                 var stepDataListItem = {
-                    'recipeDetail':recipeDetail,
-                    'recipePhoto':recipePhoto
+                    'recipeDetail': recipeDetail,
+                    'recipePhoto': recipePhoto
                 }
                 stepDataList.push(stepDataListItem)
             })
-            return stepDataList;
+            if (isnull) {
+                return null;
+            } else {
+                return stepDataList;
+            }
         }
 
         // 재료 목록 추가
@@ -110,7 +126,7 @@
                 '           text="">' +
                 '       </div>' +
                 '        <div is_over="0" class="step_thumbnail_div">' +
-                '            <img id="stepPhotoHolder_' + stepIndex + '" class="stepPhotoHolder" onclick="browseStepFile('+stepIndex+')"' +
+                '            <img id="stepPhotoHolder_' + stepIndex + '" class="stepPhotoHolder" onclick="browseStepFile(' + stepIndex + ')"' +
                 '                src="../static/images/pic_none2.gif" width="160"' +
                 '                height="160"' +
                 '            style="cursor:pointer">' +
@@ -136,7 +152,7 @@
                 cancelButtonText: '취소'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    var step_photo_url = "#step_photo_url_"+idx
+                    var step_photo_url = "#step_photo_url_" + idx
                     deletePhotoFiles($(step_photo_url).val())
 
                     var divStep = $("#divStepItem_" + idx);
@@ -150,12 +166,12 @@
                         var divStepUpload = $(this).children(".divStepUpload")
                         $(this).attr("id", "divStepItem_" + index)
                         $(this).children("p").text("Step" + index)
-                        $(divStepUpload).attr("id","divStepUpload_"+index)
-                        $(divStepUpload).children(".step_photo_url").attr("id","step_photo_url_"+index)
-                        $(divStepUpload).children(".step_photo_file_div").children("input").attr("id","step_photo_file_"+index).attr("name","step_photo_file_"+index)
-                        $(divStepUpload).children(".step_thumbnail_div").children("img").attr("id","stepPhotoHolder_"+index).attr("onclick","browseStepFile('"+index+"')")
+                        $(divStepUpload).attr("id", "divStepUpload_" + index)
+                        $(divStepUpload).children(".step_photo_url").attr("id", "step_photo_url_" + index)
+                        $(divStepUpload).children(".step_photo_file_div").children("input").attr("id", "step_photo_file_" + index).attr("name", "step_photo_file_" + index)
+                        $(divStepUpload).children(".step_thumbnail_div").children("img").attr("id", "stepPhotoHolder_" + index).attr("onclick", "browseStepFile('" + index + "')")
                         $(this).children(".stepPhotoHolder").attr("id", "stepPhotoHolder_" + index)
-                        $(this).children(".step_btn").attr("id","divStepBtn_"+index)
+                        $(this).children(".step_btn").attr("id", "divStepBtn_" + index)
                         $(this).children(".step_btn").children("a").attr('href', "javascript:delStep('" + index + "')")
                         stepIndex = index + 1;
                     })
@@ -163,26 +179,6 @@
                 } else {
                 }
             });
-
-            // var re = confirm("해당 요리 순서를 정말 삭제하시겠습니까?")
-            // if(re==1) {
-            //     var divStep = $("#divStepItem_" + idx);
-            //     var nextDivs = []
-            //     nextDivs = divStep.nextAll()
-            //     if (nextDivs.length === 0) {
-            //         stepIndex = 2;
-            //     }
-            //     $.each(nextDivs, function (num) {
-            //         var index = idx + num
-            //         console.log(index)
-            //         $(this).attr("id", "divStepItem_" + index)
-            //         $(this).children("p").text("Step" + index)
-            //         $(this).children("#stepPhotoHolder_" + (index + 1)).attr("id", "stepPhotoHolder_" + index)
-            //         $(this).children(".step_btn").children("a").attr('href', "javascript:delStep(" + index + ")")
-            //         stepIndex = index + 1;
-            //     })
-            //     divStep.remove()
-            // }
         }
 
         // 재료 선택 버튼 누르면 해당 재료 목록 그룹의 div id를 가져와 ingredientGroup_id변수에 저장한다.
@@ -198,7 +194,7 @@
             var ingredient_id = $("input[name=ingredient_radio]:checked").next().val()
             $(ingredientGroup_id).children(".ingredientCategory").val(ingredientCategory).css('color', '').css('font-weight', 'bold')
             $(ingredientGroup_id).children(".ingredientName").val(ingredientName).css('color', '').css('font-weight', 'bold')
-            $(ingredientGroup_id).children(".ingredient_id").val(ingredient_id)
+            $(ingredientGroup_id).children(".ingredientId").val(ingredient_id)
         })
 
         // 재료 목록 삭제
@@ -229,25 +225,31 @@
         // divMainPhotoBox를 누르면 input태그가 눌린 효과를 넣음
         function browseMainFile() {
             $("#q_main_file").click();
-            $(document).off().on('change', "#q_main_file",{inputTagId:"#q_main_file",imgBoxTagId:'#mainPhotoHolder',imgUrlSaveTagId:"#recipe_thumbnail"}, handlePhotoFiles)
+            $("#divMainPhotoUpload").off().on('change', "#q_main_file", {
+                inputTagId: "#q_main_file",
+                imgBoxTagId: '#mainPhotoHolder',
+                imgUrlSaveTagId: "#recipe_thumbnail"
+            }, handlePhotoFiles)
         }
 
         //stepPhotoHolder를 클릭하면 input태그가 눌린 효과를 넣음
-        function browseStepFile(idx){
-            var step_photo_file = "#step_photo_file_"+idx
+        function browseStepFile(idx) {
+            var step_photo_file = "#step_photo_file_" + idx
             $(step_photo_file).click();
-            console.log(step_photo_file+" step_photo_file")
-            var step_photo_url = "#step_photo_url_"+idx
-            var stepPhotoHolder = "#stepPhotoHolder_"+idx
-            $(document).off().on('change', step_photo_file,{inputTagId:step_photo_file,imgBoxTagId:stepPhotoHolder,imgUrlSaveTagId:step_photo_url}, handlePhotoFiles)
+            var step_photo_url = "#step_photo_url_" + idx
+            var stepPhotoHolder = "#stepPhotoHolder_" + idx
+            $(".step").off().on('change', step_photo_file, {
+                inputTagId: step_photo_file,
+                imgBoxTagId: stepPhotoHolder,
+                imgUrlSaveTagId: step_photo_url
+            }, handlePhotoFiles)
         }
 
 
-
         // 이미지 파일 삭제
-        function deletePhotoFiles(fileName){
+        function deletePhotoFiles(fileName) {
             $.ajax({
-                data: {fileName:fileName},
+                data: {fileName: fileName},
                 type: "POST",
                 url: "/deleteRecipePhoto"
             })
@@ -258,8 +260,7 @@
             data = new FormData();
             data.append("file", image[0]);
             var fileName = $(tag.data.imgUrlSaveTagId).val();
-            console.log(fileName)
-            if(fileName!==null && fileName!==""){
+            if (fileName !== null && fileName !== "") {
                 deletePhotoFiles(fileName);
             }
 
@@ -283,7 +284,7 @@
         // 모달창에서 엔터 누르면 검색 되는 함수
         $(document).on('keyup', '#keyword', function enter_search(e) {
             const code = e.code;
-            if (code == 'Enter') {
+            if (code === 'Enter') {
                 searchIngredient();
             }
         })
@@ -300,6 +301,7 @@
                 type: 'POST',
                 url: '/searchIngredient',
                 success: function (list) {
+                    console.log(list)
                     $.each(list, function () {
                         var ingredientCategoryName = this.ingredientIngredientCategory.ingredientCategoryName
                         var ingredientName = this.ingredientName
@@ -315,6 +317,68 @@
                 }
             })
         }
+
+        // 레시피 게시글 저장
+        function doSubmit() {
+            Swal.fire({
+                title: "레시피 저장",
+                text: "레시피를 저장하시겠습니까?",
+                imageUrl: "../static/images/image_11.png",
+                imageAlt: "Custom image",
+                showCancelButton: true,
+                confirmButtonText: '저장',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var ingredientDataList = ingeredientData();
+                    var stepDataList = stepData();
+                    var recipeTitle = $("#recipe_title").val()
+                    var recipeCategory = $("#recipeCategory").val()
+                    var recipeThumbnail = $("#recipe_thumbnail").val()
+                    if (recipeTitle === "") {
+                        inputCheck("레시피 제목(을)")
+                    }
+                    if (recipeThumbnail === "") {
+                        inputCheck("요리 대표 사진(을)")
+                    }
+                    if (recipeCategory === "none") {
+                        inputCheck("레시피 카테고리")
+                    }
+                    if (ingredientDataList === null) {
+                        inputCheck("재료 목록(을)")
+                    }
+                    if (stepDataList === null) {
+                        inputCheck("요리 순서")
+                    }
+                    var recipeData = {
+                        ingredientDataList: ingredientDataList,
+                        stepDataList: stepDataList,
+                        recipeTitle: recipeTitle,
+                        recipeCategory: recipeCategory,
+                        recipeThumbnail: recipeThumbnail
+                    }
+                    var recipeDataList = {
+                        "recipeDataList": JSON.stringify(recipeData)
+                    }
+                    console.log(recipeDataList)
+                    $.ajax({
+                        url: '/insertRecipe',
+                        data: recipeDataList,
+                        type: "POST"
+
+                    })
+                } else {
+                }
+            })
+        }
+
+        function inputCheck(msg) {
+            Swal.fire({
+                title: msg + "를 <br>제대로 입력해주세요!!",
+                icon: "warning"
+            })
+        }
+
     </script>
 
 </head>
@@ -377,9 +441,10 @@
                         </div>
 
                         <div class="cont_line"><p class="cont_tit4">카테고리</p>
-                            <select name="recipeCategory" id="cok_sq_category_4">
-                                <option>-종류별-</option>
-                                <option th:each="c : ${recipe_category}" th:value="${c.getId()}" th:text="${c.getRecipeCategoryName()}"></option>
+                            <select name="recipeCategory" id="recipeCategory">
+                                <option value="none">-종류별-</option>
+                                <option th:each="c : ${recipe_category}" th:value="${c.getId()}"
+                                        th:text="${c.getRecipeCategoryName()}"></option>
                             </select>
 
 
@@ -408,12 +473,15 @@
                                             재료 선택
                                         </button>
                                         <input name="ingredientCategory" class="ingredientCategory" readonly=''
-                                               value='-분류-' style='color:#898989'>
-                                        <input name="ingredientName" class="ingredientName" value='-재료명-' readonly=''
+                                               placeholder='-분류-' style='color:#898989'>
+                                        <input name="ingredientName" class="ingredientName" placeholder='-재료명-'
+                                               readonly=''
                                                style='color:#898989'>
-                                        <input type="text" name="ingredientQty" class="ingredientQty form-control" style="width:100px;"
+                                        <input type="text" name="ingredientQty" class="ingredientQty form-control"
+                                               style="width:100px;"
                                                placeholder="10(수량)"/>
-                                        <input type="text" name="ingredientUnit" class="ingredientUnit form-control" style="width:140px;"
+                                        <input type="text" name="ingredientUnit" class="ingredientUnit form-control"
+                                               style="width:140px;"
                                                placeholder="예) g,ml(단위)"/>
                                         <input type='hidden' name='ingredientId' class='ingredientId'>
                                 </ul>
@@ -431,10 +499,10 @@
                             <p class="cont_tit3">요리순서
                             </p>
                             <span class="guide mag_b_15"><b>요리의 맛이 좌우될 수 있는 중요한 부분은 빠짐없이 적어주세요.</b><br>
-		예) 10분간 익혀주세요 ▷ 10분간 약한불로 익혀주세요.<br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;마늘편은 익혀주세요 ▷ 마늘편을 충분히 익혀주셔야 매운 맛이 사라집니다.<br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;꿀을 조금 넣어주세요 ▷ 꿀이 없는 경우, 설탕 1스푼으로 대체 가능합니다.
-	  </span>
+		                        예) 10분간 익혀주세요 ▷ 10분간 약한불로 익혀주세요.<br>
+		                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;마늘편은 익혀주세요 ▷ 마늘편을 충분히 익혀주셔야 매운 맛이 사라집니다.<br>
+		                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;꿀을 조금 넣어주세요 ▷ 꿀이 없는 경우, 설탕 1스푼으로 대체 가능합니다.
+	                        </span>
                             <div id="divStepArea" class="ui-sortable">
                                 <div id="divStepItem_1" class="step">
                                     <p class="cont_tit2_1 ui-sortable-handle" style="cursor:pointer"
@@ -445,7 +513,8 @@
                                               style="height:160px; width:430px; resize:none;"></textarea>
                                     </div>
                                     <div id="divStepUpload_1" class="divStepUpload" style="display:inline-block">
-                                        <input type="hidden" class="step_photo_url" name="step_photo_url_1" id="step_photo_url_1" value="">
+                                        <input type="hidden" class="step_photo_url" name="step_photo_url_1"
+                                               id="step_photo_url_1" value="">
                                         <div class="step_photo_file_div" style="position:absolute;left:-3000px">
                                             <input type="file"
                                                    name="step_photo_file_1"
@@ -456,7 +525,8 @@
                                                    text="">
                                         </div>
                                         <div is_over="0" class="step_thumbnail_div">
-                                            <img id="stepPhotoHolder_1" class="stepPhotoHolder" onclick="browseStepFile(1)"
+                                            <img id="stepPhotoHolder_1" class="stepPhotoHolder"
+                                                 onclick="browseStepFile(1)"
                                                  src="../static/images/pic_none2.gif" width="160"
                                                  height="160"
                                                  style="cursor:pointer">
@@ -478,7 +548,7 @@
 
                     </div><!--/regi_center-->
                     <div class="regi_btm">
-                        <button type="button" onclick="doSubmit('save')" class="btn-lg btn-primary">저장</button>
+                        <button type="button" onclick="doSubmit()" class="btn-lg btn-primary">저장</button>
                         <button type="button" onclick="history.back();" class="btn-lg btn-default">취소</button>
                     </div>
                 </div><!-- /container -->

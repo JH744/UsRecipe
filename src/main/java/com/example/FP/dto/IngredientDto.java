@@ -20,17 +20,6 @@ public class IngredientDto {
     private String ingredient_unit;
     private int ingredient_qty;
 
-
-    private List<RecipeIngredient> recipe_ingredient_list = new ArrayList<>();
-
-
     private IngredientCategory ingredient_ingredient_category;
 
-
-    private List<OrderDetails> ingredient_orderdetail_list = new ArrayList<>();
-
-
-    private List<Cart> ingredient_cart_list = new ArrayList<>();
-
-    private List<Reply> ingredient_reply_list = new ArrayList<>();
 }

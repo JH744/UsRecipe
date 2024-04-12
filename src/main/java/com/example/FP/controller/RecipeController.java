@@ -3,24 +3,28 @@ package com.example.FP.controller;
 import com.example.FP.entity.RecipeCategory;
 import com.example.FP.service.MemberService;
 import com.example.FP.service.RecipeCategoryService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import jakarta.servlet.http.HttpSession;
 import org.apache.commons.io.FileUtils;
 import com.example.FP.service.RecipeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 
@@ -100,5 +104,11 @@ public class RecipeController {
         } catch (Exception e) {
             System.out.println("예외발생 : "+e.getMessage());
         }
+    }
+
+    @PostMapping("/insertRecipe")
+        public String insertRecipe(@RequestParam Map<String, Object> recipeDataList,HttpSession session){
+        rs.insertRecipe(recipeDataList,session.getAttribute("userid").toString());
+        return "redirect:/";
     }
 }
