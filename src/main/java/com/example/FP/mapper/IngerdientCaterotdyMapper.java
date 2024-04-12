@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class IngerdientCaterotdyMapper {
 
     public static IngredientCategory toEntity(IngredientCategoryDto ingredientCategoryDto){
-        IngredientCategory ingredientCategory = new IngredientCategory(ingredientCategoryDto.getIngredient_category_name(), ingredientCategoryDto.getIngredient_list());
+        IngredientCategory ingredientCategory = new IngredientCategory(ingredientCategoryDto.getIngredient_category_name());
         return ingredientCategory;
     }
 }

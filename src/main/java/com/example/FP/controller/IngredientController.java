@@ -107,9 +107,6 @@ public class IngredientController {
     @ResponseBody
     public List<Ingredient> searchIngredient(@RequestParam("keyword") String keyword){
         List<Ingredient> list = is.findAllByIngredientNameContaining(keyword);
-        for (Ingredient i : list){
-            System.out.println("재료명 : "+i.getIngredientName());
-        }
         return list;
     }
 

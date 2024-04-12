@@ -15,4 +15,5 @@ public class WishListService {
     public List<WishList> findAllWishList(String userid){
         return wr.findByUserid(userid);
     }
+    public void deleteWishlist(Long id){wr.deleteById(id);}
 }

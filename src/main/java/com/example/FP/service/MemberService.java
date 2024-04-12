@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 
 @Service
@@ -29,6 +30,8 @@ public class MemberService implements UserDetailsService {
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
     }
+
+
 
     public Long join(Member member){
         validateDuplicateMember(member);
@@ -138,6 +141,14 @@ public class MemberService implements UserDetailsService {
             }
         }
         return false;
+    }
+
+    public Member listPointAndNameByUserid(String userid){
+        return mr.findNamePointOrderCntByUserid(userid);
+    }
+
+    public List<Member> findAllMember(){
+        return mr.findAll();
     }
 
 }

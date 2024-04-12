@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,42 +30,26 @@ public class Ingredient {
     private int ingredientAmount;
     private String ingredientUnit;
     private int ingredientQty;
+    private String ingredientImage;
+    private String ingredientDetail;
+
+    @Transient
+    private MultipartFile uploadFile;
 
 
-    @Builder.Default
-    @OneToMany(mappedBy = "recipeIngredientIngredient")
-    private List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
-
-
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "ingredient_category_id")
     private IngredientCategory ingredientIngredientCategory;
 
-    @Builder.Default
-    @OneToMany(mappedBy = "ordersIngredient")
-    private List<OrderDetails> ingredientOrderdetailList = new ArrayList<>();
-
-    @Builder.Default
-    @OneToMany(mappedBy = "cartIngredient")
-    private List<Cart> ingredientCartList = new ArrayList<>();
-
-
-    @Builder.Default
-    @OneToMany(mappedBy = "replyIngredient")
-    private List<Reply> ingredientReplyList = new ArrayList<>();
-
-    public Ingredient(String ingredientName, int ingredientPrice, String ingredientOrigin, int ingredientAmount, String ingredientUnit, int ingredientQty, List<RecipeIngredient> recipeIngredientList, IngredientCategory ingredientIngredientCategory, List<OrderDetails> ingredientOrderdetailList, List<Cart> ingredientCartList, List<Reply> ingredientReplyList) {
+    public Ingredient(String ingredientName, int ingredientPrice, String ingredientOrigin, int ingredientAmount, String ingredientUnit, int ingredientQty, String ingredientImage, String ingredientDetail, IngredientCategory ingredientIngredientCategory) {
         this.ingredientName = ingredientName;
         this.ingredientPrice = ingredientPrice;
         this.ingredientOrigin = ingredientOrigin;
         this.ingredientAmount = ingredientAmount;
         this.ingredientUnit = ingredientUnit;
         this.ingredientQty = ingredientQty;
-        this.recipeIngredientList = recipeIngredientList;
+        this.ingredientImage = ingredientImage;
+        this.ingredientDetail = ingredientDetail;
         this.ingredientIngredientCategory = ingredientIngredientCategory;
-        this.ingredientOrderdetailList = ingredientOrderdetailList;
-        this.ingredientCartList = ingredientCartList;
-        this.ingredientReplyList = ingredientReplyList;
     }
 }
