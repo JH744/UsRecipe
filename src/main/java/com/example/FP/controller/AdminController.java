@@ -76,6 +76,12 @@ public class AdminController {
         model.addAttribute("list",igs.findAllIngredientCategory());
         return "/admin/adminInsertIngredient";
     }
+    @GetMapping("/ingredient")
+    public String ingredientList(Model model){
+        model.addAttribute("list",igs.findAll());
+        return "/admin/adminIngredientList";
+    }
+
 
     @PostMapping("/addIngredient")
     public String addIngredientForm(IngredientDto ingredientDto, HttpServletRequest request){
@@ -116,8 +122,22 @@ public class AdminController {
 //        igs.save(new Ingredient(ingredientDto.getIngredient_name(),ingredientDto.getIngredient_price(),ingredientDto.getIngredient_origin(),ingredientDto.getIngredient_amount(),ingredientDto.getIngredient_unit(),ingredientDto.getIngredient_qty(),ingredientDto.getIngredient_image(),ingredientDto.getIngredient_detail(),ingredientDto.getIngredient_ingredient_category()));
 
         igs.save(ingredientDto);
-        return "redirect:/admin/adminMember";
+        return "redirect:/admin/ingredient";
 
+    }
+
+    @GetMapping("/orders")
+    public String ordersList(Model model){
+
+
+        return "/admin/adminOrdersList";
+    }
+
+    @GetMapping("/recipe")
+    public String recipeList(Model model){
+
+
+        return "/admin/adminRecipeList";
     }
 
 
