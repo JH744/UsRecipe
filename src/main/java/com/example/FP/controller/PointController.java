@@ -13,7 +13,7 @@ public class PointController {
 
     private final PointService ps;
 
-    @GetMapping("/listPoint")
+    @GetMapping("/pointList")
     public String listPoint(Model model, HttpSession session){
         String userid = (String)session.getAttribute("userid");
 

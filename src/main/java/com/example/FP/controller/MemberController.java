@@ -19,7 +19,7 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final OrdersService os;
+
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
     private final MailService mailService;
@@ -177,30 +177,28 @@ public class MemberController {
     @GetMapping("/dataChange")
     public String dataChangeForm(Model model,MemberDto memberDto){
         model.addAttribute("memberDto",memberDto);
+
+
         return "/dataChange";
     }
     @PostMapping("/dataChange")
-    public String dataChangeSubmit(MemberDto memberDto){
+    public String dataChangeSubmit(MemberDto memberDto,String addr1, String addr2){
 
         Member member = Member.createMember(memberDto,passwordEncoder);
         memberService.dataChange(member);
 
-//        String addr = addr1 + " " + addr2;
-//        String birth = year + month + day;
-//        memberFormDto.setAddr(addr);
-//        memberFormDto.setBirth(birth);
-//        Member member = Member.createMember(memberFormDto, passwordEncoder);
-//        memberService.join(member);
+        String addr = addr1 + " " + addr2;
+
+        memberDto.setAddr(addr);
+
+        memberService.dataChange(member);
 
         return "redirect:/";
 
     }
-    @GetMapping("/orderList")
-    public String orderList(Model model,HttpSession session){
 
-        return "/orderList";
 
-    }
+
 
 
 }
