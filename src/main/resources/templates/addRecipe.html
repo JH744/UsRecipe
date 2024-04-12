@@ -284,12 +284,14 @@
         // 모달창에서 엔터 누르면 검색 되는 함수
         $(document).on('keyup', '#keyword', function enter_search(e) {
             const code = e.code;
+
             if (code === 'Enter') {
-                searchIngredient();
+                $("#ingredientSearchBtn").click();
+                return false;
+            }else{
+                return false;
             }
         })
-
-        $(document).on('click', '#ingredientSearchBtn', searchIngredient)
 
         //재료 검색 ajax 통신 함수
         function searchIngredient() {
@@ -636,7 +638,7 @@
                         <div class="ingredientSearchBox">
                             <input type="text" placeholder="원하는 재료를 입력해주세요." name="keyword" id="keyword"
                                    class="ingredientSearchInput">
-                            <button class="btn btn-primary" id="ingredientSearchBtn">검색</button>
+                            <button class="btn btn-primary" id="ingredientSearchBtn" onclick="searchIngredient()">검색</button>
                         </div>
                         <div style="width: auto; height:500px; border: 1px solid; overflow: auto">
                             <div class="modal_IngredientSelect_column">
