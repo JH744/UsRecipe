@@ -301,6 +301,7 @@
                 type: 'POST',
                 url: '/searchIngredient',
                 success: function (list) {
+                    console.log(list)
                     $.each(list, function () {
                         var ingredientCategoryName = this.ingredientIngredientCategory.ingredientCategoryName
                         var ingredientName = this.ingredientName
