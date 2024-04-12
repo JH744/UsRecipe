@@ -94,17 +94,17 @@ public class AdminController {
         System.out.println("파일명 : " + fname);
         Long categoryId = ingredientDto.getIngredient_ingredient_category().getId();
 
-        // ID를 사용하여 영속성 컨텍스트에 해당하는 IngredientCategory 엔티티를 로드합니다.
+        // ID를 사용하여 영속성 컨텍스트에 해당하는 IngredientCategory 엔티티를 로드
         IngredientCategory category = ir.findById(categoryId).orElse(null);
 
         if (category != null) {
-            // 올바른 IngredientCategory를 설정합니다.
+            // 올바른 IngredientCategory를 설정
             ingredientDto.setIngredient_ingredient_category(category);
 
             // Ingredient 엔티티를 저장합니다.
             igs.save(ingredientDto);
         } else {
-            // 오류 처리
+
         }
         if(uploadFile!=null && !uploadFile.isEmpty()){
             try{
@@ -119,7 +119,6 @@ public class AdminController {
             }
         }
 
-//        igs.save(new Ingredient(ingredientDto.getIngredient_name(),ingredientDto.getIngredient_price(),ingredientDto.getIngredient_origin(),ingredientDto.getIngredient_amount(),ingredientDto.getIngredient_unit(),ingredientDto.getIngredient_qty(),ingredientDto.getIngredient_image(),ingredientDto.getIngredient_detail(),ingredientDto.getIngredient_ingredient_category()));
 
         igs.save(ingredientDto);
         return "redirect:/admin/ingredient";

@@ -193,7 +193,7 @@
                                         <ul class="products">
 
                                             <li class="product"  th:each="list:${list}">
-                                                <a href="shop-single.html">
+                                                <a th:href="@{|/detailRecipe?recipeNum=${list.id}|}">
 
                                                     <th:block th:if="${list.getWishlistRecipe().getRecipeUrl() != null}">
                                                     <iframe id="youtube" th:src="${list.getWishlistRecipe().getRecipeUrl()}"
