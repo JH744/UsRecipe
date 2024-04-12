@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class IngredientMapper {
     public static Ingredient toEntity(IngredientDto ingredientDto){
-        Ingredient ingredient = new Ingredient(ingredientDto.getIngredient_name(), ingredientDto.getIngredient_price(), ingredientDto.getIngredient_origin(), ingredientDto.getIngredient_amount(), ingredientDto.getIngredient_unit(), ingredientDto.getIngredient_qty(),ingredientDto.getIngredientImage(), ingredientDto.getIngredientDetail(), ingredientDto.getIngredient_ingredient_category());
+        Ingredient ingredient = new Ingredient(ingredientDto.getIngredient_name(), ingredientDto.getIngredient_price(), ingredientDto.getIngredient_origin(), ingredientDto.getIngredient_amount(), ingredientDto.getIngredient_unit(), ingredientDto.getIngredient_qty(),ingredientDto.getIngredient_image(), ingredientDto.getIngredient_detail(), ingredientDto.getIngredient_ingredient_category());
         return ingredient;
 
     }
