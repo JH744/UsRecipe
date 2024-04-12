@@ -65,11 +65,6 @@ public class RecipeController {
         return "/addRecipe";
     }
 
-    @GetMapping("/detailRecipe")
-    public String detailRecipe(){
-        return "/detailRecipe";
-    }
-
     @PostMapping(value="/uploadRecipePhoto", produces = "application/json")
     @ResponseBody
     public String uploadRecipeMainPhoto(@RequestParam("file") MultipartFile multipartFile){
@@ -110,5 +105,12 @@ public class RecipeController {
         public String insertRecipe(@RequestParam Map<String, Object> recipeDataList,HttpSession session){
         rs.insertRecipe(recipeDataList,session.getAttribute("userid").toString());
         return "redirect:/";
+    }
+
+    @GetMapping("/detailRecipe")
+    public String detailRecipe(@RequestParam String recipeNum,Model model){
+        Long id = Long.parseLong(recipeNum);
+        model.addAttribute("recipe",rs.detailRecipe(id));
+        return "detailRecipe";
     }
 }
