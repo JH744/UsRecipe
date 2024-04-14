@@ -340,7 +340,16 @@ function doSubmit() {
             $.ajax({
                 url: '/insertRecipe',
                 data: recipeDataList,
-                type: "POST"
+                type: "POST",
+                success:function(){
+                    Swal.fire({
+                        title:"저장되었습니다.",
+                        imageUrl: "../static/images/image_11.png",
+                        imageAlt: "Custom image",
+                    }).then((result)=>{
+                        location.href="/"
+                    })
+                }
             })
         } else {
         }

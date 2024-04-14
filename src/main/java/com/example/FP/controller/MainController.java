@@ -37,4 +37,8 @@ public class MainController {
 
     }
 
+    @GetMapping("/template")
+    public void template(){
+
+    }
 }

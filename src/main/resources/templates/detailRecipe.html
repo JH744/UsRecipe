@@ -9,17 +9,17 @@
     <link rel="stylesheet" href="../static/css/footer.css"/>
     <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap_20211222.css">
-    <link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/font_20230910.css">
-    <link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../static/css/ez_recipe_20240405.css">
 
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <script>
         function insertReply(){
             var gradeStar = $("input[name=gradeStar]:checked").val()
@@ -42,7 +42,10 @@
                     replyContent:replyContent,
                     recipeId:recipeId
                 },
-                type:"POST"
+                type:"POST",
+                success:function(){
+                    location.replace("/detailRecipe?recipeNum="+recipeId)
+                }
             })
         }
 
@@ -101,7 +104,8 @@
                         <div class="centeredcrop">
                             <img id="main_thumbs"
                                  th:src="@{'../static/images/'+${recipe.recipeThumbnail}}"
-                                 alt="main thumb">
+                                 alt="main thumb" >
+<!--                            style="filter: blur(2px) contrast(75%);" 이미지 약간 블러 처리하는법-->
                         </div>
                         <div class="user_info2">
                             <a class="app_block_link_remove user_info2_pic"
@@ -121,9 +125,9 @@
                         <div class="btn_list st2">
                             <a onclick="$('#snsLinkModal').modal('show')"><img
                                     src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_talk.png"><span>공유</span></a>
-                            <a href="#commentLists"><img
+                            <a href="#reply_tit"><img
                                     src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_re.png"><span>댓글<b
-                                    class="st3">40</b></span></a>
+                                    class="st3" th:text="${recipe.recipeReplyList.size}"></b></span></a>
                         </div>
                     </div>
 
@@ -179,7 +183,7 @@
                          style="width:920px;margin:0 auto 60px;">
                         <div class="carousel-inner" role="listbox">
                             <div class="carouItem centercrop">
-                                <img th:src="@{'../static/images/'+${recipe.recipeThumbnail}}">
+                                <img th:src="@{'../static/images/'+${recipe.recipeThumbnail}}" style="width:100%;">
                             </div>
                         </div>
                     </div>
@@ -211,7 +215,7 @@
                     </form>
 
                 </div>
-                <div class="reply_tit">댓글 <span id="recipeCommentListCount"
+                <div class="reply_tit" id="reply_tit">댓글 <span id="recipeCommentListCount"
                                                 th:text="${recipe.recipeReplyList.size}"></span></div>
                 <div id="recipeCommentList_1">
                     <div class="media reply_list" th:id="'replyDiv_'+${r.Id}" th:each="r : ${recipe.recipeReplyList}">
@@ -232,7 +236,7 @@
                                      th:each="star : ${#numbers.sequence((r.replyGrade)+1,5)}"
                                      style="display: inline-block; width: 20px; height: 20px"
                                      src="../static/images/noneStar2.png"/>
-                                <p th:text="${r.replyDate}" style="margin-left: 5px"></p><span th:if="${r.replyMember.Userid == session.userid}">|</span>
+                                <p th:text="${#temporals.format(r.replyDate, 'yyyy-MM-dd HH:mm')}" style="margin-left: 5px"></p><span th:if="${r.replyMember.Userid == session.userid}">|</span>
                                 <a th:href="'javascript:deleteReply('+${r.Id}+')'" th:if="${r.replyMember.Userid == session.userid}">삭제</a>
                             </h4>
 
