@@ -138,8 +138,7 @@
                         <th colspan="2">상품명</th>
                         <th>판매가</th>
                         <th>수량</th>
-                        <th>(적립예정)</th>
-                        <th>주문관리</th>
+<!--                        <th>주문관리</th>-->
                         <th>주문금액</th>
                         <th>배송비/배송형태 </th>
                     </tr>
@@ -154,8 +153,7 @@
                         <td th:text="${c.ingredientName}" colspan="2" class="ingName">상품명</td>
                         <td th:text="${c.ingredientPrice}">상품가격</td>
                         <td><button id="btnMinus">-</button><input type="text" th:value="${c.quantity}" readonly class="inputQty"><button id="btnPlus">+</button></td>
-                        <td th:text="${c.ingredientPrice / 100}">적립금</td>
-                        <td>삭제</td>
+<!--                        <td>삭제</td>-->
                         <td th:text="${c.ingredientPrice * c.quantity}"  class="orderprice">주문금액</td>
                         <td>
                             <span>택배배송</span><br>
