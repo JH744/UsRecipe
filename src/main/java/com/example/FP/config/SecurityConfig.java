@@ -17,7 +17,8 @@ public class SecurityConfig{
                 .authorizeRequests()
                 .requestMatchers("/", "/findUserPwd", "/join","/joinOk","/static/**","/id_check","/sendEmail","/nickname_check","/mailCheck", "/emailAuthentication", "/newPwd", "/findPwdOk", "/findUserid" ,
                         "/listIngredient/**","/addCart","/cart/**","/checkCart","/addWish","/checkWish"
-                ,"listRecipe/**")
+                        ,"/deleteCartItems"
+                        ,"listRecipe/**")
                 .permitAll()
                 .requestMatchers("/admin/**").hasRole("admin")
                 .anyRequest().authenticated()

@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
-        $(function (){
+        $(document).ready(function(){
             // 'orderprice' 클래스를 가진 모든 요소의 텍스트를 배열로 수집
             var orderPrices = $('.orderprice').map(function() {
                 return parseFloat($(this).text());  // 현재 요소의 텍스트를 숫자로 변환하여 반환
@@ -31,20 +31,40 @@
 
 
 
-
-            $("#deletebtn").click(()=>{
-
-
+            // 선택물품삭제 클릭시 삭제하겠냐는 문구 표시
+            $("#btnAllDelete").click(()=>{
                 $('.deleteModal').css('display','block');
-
-
             })
+                // 1. 취소 선택시 창을 닫음.
+                $('#btnCancel').click(()=>{
+                    $('.deleteModal').css('display','none');
+                })
+                // 2. 예 선택시 선택물품 삭제
+                $('#btnDeleteOK').click(()=>{
+                    // 체크된 항목들의 ingredientName 수집
+                    var selectedItems = $('.checkItem:checked').closest('tr').find('.ingName').map(function() {
+                        return $(this).text();
+                    }).get();
+                    // ajax로 상품명을 전송. 상품명과 로그인id가 일치하는 항목을 삭제함
+                    console.log("삭제버튼 실행 상품명들모아옴"+selectedItems);
+                    $.ajax({
+                        url: '/deleteCartItems',
+                        type: 'POST', // HTTP 메소드
+                        contentType: 'application/json', // 데이터 타입
+                        data: JSON.stringify({ ingredientNames: selectedItems }), // 전송할 데이터
+                        success: function(response) {
+                            console.log('서버 응답:', response);
+                            // 페이지를 새로고침하거나 UI를 업데이트하여 삭제된 항목들을 반영
+                            location.reload();
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('에러 발생:', error);
+                        }
+                    });
 
 
 
-            $('#btnCancel').click(()=>{
-                $('.deleteModal').css('display','none');
-            })
+                })
 
 
 
@@ -58,11 +78,12 @@
             $(document).on('click', '#btnMinus', function() {
                 var $input = $(this).closest('tr').find('.inputQty');
                 var currentQty = parseInt($input.val(), 10);  // 현재 입력 필드의 값을 정수로 파싱
-                $input.val(currentQty + -1);  // 입력 필드의 값을 1 증가
+                if(currentQty > 1) {
+                    $input.val(currentQty + -1);  // 입력 필드의 값을 1 증가
+                }
             });
 
             //전체선택 /선택해제
-            $(document).ready(function(){
                 $("#checkAll").change(function(){
                     // 'checkAll' 체크박스의 상태를 가져옴 (체크되어 있으면 true, 아니면 false)
                     var isChecked = $(this).is(':checked');
@@ -70,7 +91,22 @@
                     $('.checkItem').prop('checked', isChecked);
 
                 });
-            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         })
@@ -102,7 +138,7 @@
                         <th colspan="2">상품명</th>
                         <th>판매가</th>
                         <th>수량</th>
-                        <th>적립예정</th>
+                        <th>(적립예정)</th>
                         <th>주문관리</th>
                         <th>주문금액</th>
                         <th>배송비/배송형태 </th>
@@ -115,11 +151,10 @@
                     <tr th:each="c , status :${list}" th:unless="${#lists.isEmpty(list)}">
                         <td th:text="${status.count}"></td>
                         <td><input type="checkbox" class="checkItem"></td>
-                        <td th:text="${c.ingredientName}" colspan="2">상품명</td>
-                        <td th:text="${c.ingredientPrice}">8,000</td>
-
+                        <td th:text="${c.ingredientName}" colspan="2" class="ingName">상품명</td>
+                        <td th:text="${c.ingredientPrice}">상품가격</td>
                         <td><button id="btnMinus">-</button><input type="text" th:value="${c.quantity}" readonly class="inputQty"><button id="btnPlus">+</button></td>
-                        <td>160</td>
+                        <td th:text="${c.ingredientPrice / 100}">적립금</td>
                         <td>삭제</td>
                         <td th:text="${c.ingredientPrice * c.quantity}"  class="orderprice">주문금액</td>
                         <td>
@@ -141,7 +176,7 @@
 
                     </tbody>
                 </table>
-                <div class="deletebtnbox"> <button class="deletebtn" id="deletebtn">선택상품삭제</button></div>
+                <div class="deletebtnbox"> <button class="btnAllDelete" id="btnAllDelete">선택물품삭제</button></div>
                 <div class="orderPricebox">
                     <span class="orderPriceFt1">최종결제금액</span><span class="orderPriceFt2"></span>
                 </div>
@@ -149,7 +184,7 @@
                 <div class="deleteModalContainer">
                     <div class="deleteModal">
                         <h3>장바구니에서 삭제하시겠습니까?</h3>
-                        <button class="btnDelete" id="btnCancel">취소</button><button class="btnDelete">예</button>
+                        <button class="btnDelete" id="btnCancel">취소</button><button class="btnDelete" id="btnDeleteOK">예</button>
                     </div>
                 </div>    
 

@@ -6,11 +6,13 @@ import com.example.FP.service.CartService;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -80,7 +82,16 @@ public class CartController {
     }
 
 
+    @PostMapping("/deleteCartItems")
+    @ResponseBody
+    public String deleteCartItems(@RequestBody Map<String, List<String>> data) {
+        List<String> ingredientNames = data.get("ingredientNames");
+        System.out.println("전달받은 상품명들 : "+ingredientNames);
+        long memberId = 52; //임시 회원id
 
+      //  cs.deleteCart(ingredientNames);
+    return "기달";
+    }
 
 
 

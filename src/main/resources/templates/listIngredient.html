@@ -47,6 +47,43 @@
 
         // 담기 클릭시 장바구니 추가하기
         $('.cartBtn').click(function() {
+            var $this = $(this);
+            var storeItemElement = $(this).closest('.storeItem');
+            var ingredientId = storeItemElement.find('.ingreId').text();
+            console.log("상품 ID: ", ingredientId);
+            //  상품 id를 전달 후 장바구니 추가 요청
+            $.ajax({
+                url: '/addCart', // 요청을 보낼 서버의 URL
+                type: 'POST', // HTTP 요청 방식
+                data: { Id: ingredientId }, // 서버로 보낼 데이터
+                success: function(response) {
+                    // 요청이 성공했을 때 실행될 함수
+                    console.log('서버 응답:', response);
+
+                    if(response ==='저장함'){
+                        //담기버튼 색상 변경
+                        $this.css('backgroundColor','#D65454');
+                        //"장바구니에 상품을 담았습니다" 출력
+                        $('#modalbox1').css('display', 'block');
+
+                    }else {
+                        //"이미 장바구니에 담겨있는 상품입니다" 출력
+                        $('#modalbox3').css('display', 'block');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // 요청이 실패했을 때 실행될 함수
+                    console.error('에러 발생:', error);
+                    $('#modalbox2').css('display', 'block');
+                }
+            });
+
+        });
+
+
+
+        // 담기 클릭시 장바구니 추가하기
+        $('').click(function() {
             var storeItemElement = $(this).closest('.storeItem');
             var ingredientId = storeItemElement.find('.ingreId').text();
             console.log("상품 ID: ", ingredientId);
@@ -73,6 +110,18 @@
             });
 
         });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         // 담기 버튼 클릭시 나타나는 모달창 닫기
@@ -133,7 +182,6 @@
 
             <div class="storeContainer2">
                 <div class="storeContainer2GirdBox">
-
 
                     <div class="storeItem" th:each=" i : ${list}">
                         <div class="storeItem_img"></div>

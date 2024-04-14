@@ -148,7 +148,8 @@ a{
 }
 
 .deletebtnbox{float: left;}
-.deletebtn{
+
+.btnAllDelete{
   background-color: #fff;
   border: 1px solid $애플배경색;
   color: $애플배경색;
@@ -156,6 +157,12 @@ a{
   padding: 7px;
   cursor: pointer;
 }
+
+.btnAllDelete:hover{
+    color: #fff;
+    background-color: #000000;
+}
+
 
 
 .orderPricebox{
