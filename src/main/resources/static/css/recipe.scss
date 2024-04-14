@@ -227,6 +227,30 @@ body{
     height: 250px;
     background-image: url(../images/된장국.png);
   }
+
+
+  //페이지네이션
+  .pageBox{
+    width: 200px;
+    height: 20px;
+    margin: auto;
+    
+  }
+  
+  
+  .pageNum{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid gray;
+    text-align: center;
+  
+  }
+  
+  .pageNum:hover{
+    background-color: #D65454;
+    color: #fff;
+  }
   
   
   

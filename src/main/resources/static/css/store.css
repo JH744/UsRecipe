@@ -133,7 +133,7 @@ a {
 .modelContainer {
   position: relative;
 }
-.modelContainer .modalbox1, .modelContainer .modalbox2 {
+.modelContainer .modalbox1, .modelContainer .modalbox2, .modelContainer .modalbox3 {
   width: 300px;
   height: 150px;
   background-color: #fff;
@@ -145,7 +145,7 @@ a {
   text-align: center;
   display: none;
 }
-.modelContainer .modalbox1 h3, .modelContainer .modalbox2 h3 {
+.modelContainer .modalbox1 h3, .modelContainer .modalbox2 h3, .modelContainer .modalbox3 h3 {
   margin-top: 40px;
   margin-bottom: 30px;
 }
@@ -165,12 +165,16 @@ a {
   border-radius: 3px;
 }
 
-.btnmModal {
+.btnModal {
   margin: 0px 10px;
   height: 23px;
   cursor: pointer;
-  background-color: rgb(193, 23, 23);
+  background-color: rgb(13, 13, 13);
   color: #fff;
   border-radius: 3px;
   border: none;
+}
+
+.ingreId {
+  display: none;
 }/*# sourceMappingURL=store.css.map */

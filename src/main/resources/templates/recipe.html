@@ -90,7 +90,8 @@
                     <div class="recipeItem_info">
                         <p th:text="${r.recipeTitle}">레시피명</p>
                         <span th:text="${r.recipeWriter}">닉네임</span><br>
-                        <span th:text="${r.recipeViews}">조회수</span>
+                        <span th:text="'조회수   '+${r.recipeViews}">조회수</span>
+                        <span class=""><img src="../static/images/icon/heart1.png" height="20px" /></span>
                     </div>
                 </div>
 

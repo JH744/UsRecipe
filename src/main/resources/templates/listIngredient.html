@@ -15,10 +15,47 @@
     $(document).ready(function() {
 
 
+
+         $('.ingreId').each(function() {
+             var $this = $(this); // 현재 요소를 $this에 저장
+             var id= parseFloat($(this).text());  // 현재 요소의 텍스트를 숫자로 변환하여 반환\
+
+              console.log(id);
+             $.ajax({
+                 url: '/checkCart',
+                 type: 'POST',
+                 data: { Id: id },
+                 success: function(response) {
+                     // 요청이 성공했을 때 실행될 함수
+                     console.log('서버 응답:', response);
+                     if(response ==='저장됨') {
+                         //장바구니에 담겨있다면 나타낼 UI
+                         var $btn = $this.closest('.storeItem').find('.cartBtn');
+                                    $btn.css('backgroundColor','#D65454')
+                         console.log("저장확인되어 버튼색상변경")
+                     } else {
+                         console.log("카트저장안됨")
+                     }
+
+                 },
+                 error: function (xhr, status, error) {
+                     // 요청이 실패했을 때 실행될 함수
+                     console.error('에러 발생:', error);
+                 }
+             });
+
+
+
+
+         })
+
+
+
+
         $('.cartBtn').click(function() {
 
             var storeItemElement = $(this).closest('.storeItem');
-            var ingredientId = storeItemElement.find('.non-visible').text();
+            var ingredientId = storeItemElement.find('.ingreId').text();
             console.log("상품 ID: ", ingredientId);
             //  상품 id를 전달 후 장바구니 추가 요청
             $.ajax({
@@ -113,7 +150,7 @@
                         <div class="storeItem_info">
                             <p th:text="${i.ingredientName}">상품명</p>
                             <p th:text="${i.ingredientPrice}">상품가격</p>
-                            <P th:text="${i.id}" class="non-visible">재료id</P>
+                            <P th:text="${i.id}" class="ingreId">재료id</P>
                         </div>
                     </div>
 
