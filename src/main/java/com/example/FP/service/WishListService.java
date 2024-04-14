@@ -42,7 +42,6 @@ public class WishListService {
     return wr.findByWishlistMemberIdAndWishlistRecipeId(memberId, id);
     }
 
-
-
-
+    // 로그인회원id와 레시피id가 일치하는 위시리스트삭제.
+    public void deleteWish(long memberId,Long id) {wr.deleteByMemberIdAndRecipeId(memberId,id);}
 }

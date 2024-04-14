@@ -39,11 +39,13 @@ public class WishListController {
         List<WishList> result =  ws.findById(Id,memberId);
 
         String coment= "";
+        // result가 비어있다면 위시리스트에 새로 저장함.
         if(result.isEmpty()){
             ws.addWish(Id,memberId);
             coment = "저장함";
         }else{
-            coment ="저장안함";
+            ws.deleteWish(memberId,Id);
+            coment ="삭제함";
         }
         System.out.println(coment);
         return coment;
@@ -66,7 +68,6 @@ public class WishListController {
         }
         System.out.println(coment);
         return coment;
-
     }
 
 

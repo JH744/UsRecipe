@@ -44,9 +44,11 @@
                     if(response ==='저장함'){
                         $this.find('.heartIcon').attr('src', '/static/images/icon/heart3.png'); // 절대 경로 사용
                         console.log('저장하고 하트변경')
-                    }else {
+                    }else if(response ==='삭제함'){
                         //삭제
-                        console.log('삭제예정')
+                        $this.find('.heartIcon').attr('src', '/static/images/icon/heart1.png'); // 절대 경로 사용
+                        console.log('삭제함');
+
                     }
                 },
                 error: function(xhr, status, error) {
