@@ -15,11 +15,10 @@
     $(document).ready(function() {
 
 
-
+        //이미 장바구니 저장된 식품들은 담기버튼에 색상표현.
          $('.ingreId').each(function() {
              var $this = $(this); // 현재 요소를 $this에 저장
              var id= parseFloat($(this).text());  // 현재 요소의 텍스트를 숫자로 변환하여 반환\
-
               console.log(id);
              $.ajax({
                  url: '/checkCart',
@@ -34,26 +33,20 @@
                                     $btn.css('backgroundColor','#D65454')
                          console.log("저장확인되어 버튼색상변경")
                      } else {
-                         console.log("카트저장안됨")
+                         console.log("저장되지 않은 아이템")
                      }
-
                  },
                  error: function (xhr, status, error) {
                      // 요청이 실패했을 때 실행될 함수
                      console.error('에러 발생:', error);
                  }
              });
-
-
-
-
          })
 
 
 
-
+        // 담기 클릭시 장바구니 추가하기
         $('.cartBtn').click(function() {
-
             var storeItemElement = $(this).closest('.storeItem');
             var ingredientId = storeItemElement.find('.ingreId').text();
             console.log("상품 ID: ", ingredientId);
@@ -71,7 +64,6 @@
                     }else {
                         $('#modalbox3').css('display', 'block');
                     }
-
                 },
                 error: function(xhr, status, error) {
                     // 요청이 실패했을 때 실행될 함수
@@ -83,7 +75,7 @@
         });
 
 
-
+        // 담기 버튼 클릭시 나타나는 모달창 닫기
         $('#btnClose').click(()=>{
             $('#modalbox1').css('display','none');
         })
@@ -93,7 +85,6 @@
         $('#btnClose3').click(()=>{
             $('#modalbox3').css('display','none');
         })
-
 
         $('#btnToCart').click(()=>{
             window.location.href = "/cart";

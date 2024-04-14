@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface WishListRepository extends JpaRepository<WishList,Long>, WishListRepositoryCustom {
 
+    List<WishList> findByWishlistMemberIdAndWishlistRecipeId(long memberId, Long recipeId);
 }
