@@ -57,6 +57,47 @@
         });
 
 
+        // 찜한 상품들은 붉은 하트를 보여줌
+        $('.recId').each(function() {
+            var $this = $(this); // 현재 요소를 $this에 저장
+            var id= parseFloat($(this).text());  // 현재 요소의 텍스트를 숫자로 변환하여 반환\
+            console.log(id);
+            $.ajax({
+                url: '/checkWish',
+                type: 'POST',
+                data: { Id: id },
+                success: function(response) {
+                    // 요청이 성공했을 때 실행될 함수
+                    console.log('서버 응답:', response);
+                    if(response ==='저장됨') {
+                        //찜목록에 담겨있다면 나타낼 UI
+                        var $heart = $this.closest('.recipeItem_info').find('.heartIcon');
+                        $heart.attr('src', '/static/images/icon/heart3.png');
+                        console.log("저장확인되어 하트색상변경")
+                    } else {
+                        console.log("찜목록에 없는 아이템")
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // 요청이 실패했을 때 실행될 함수
+                    console.error('에러 발생:', error);
+                }
+            });
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

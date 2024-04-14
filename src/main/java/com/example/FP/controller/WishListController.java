@@ -51,5 +51,23 @@ public class WishListController {
 
 
 
+    @PostMapping("/checkWish")
+    @ResponseBody
+    public String checkWish(@RequestParam("Id") long Id){
+        System.out.println("확인할 id :"+Id);
+        long memberId = 52; //임시 회원id
+
+        List<WishList> result =  ws.findById(Id,memberId);
+        String coment= "";
+        if(result.isEmpty()){
+            coment = "저장안됨";
+        }else{
+            coment ="저장됨";
+        }
+        System.out.println(coment);
+        return coment;
+
+    }
+
 
 }
