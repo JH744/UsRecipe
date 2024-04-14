@@ -8,7 +8,6 @@ import com.example.FP.repository.CartRepository;
 import com.example.FP.repository.IngredientRepository;
 import com.example.FP.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,24 +36,26 @@ public class CartService {
        cr.save(cart);
     }
 
-
+    //장바구니에 들어있는지 여부 확인
     public List<Cart> findById(Long id, long memberId){
-
         List<Cart> list =  cr.findByCartMemberIdAndCartIngredientId(memberId,id);
         System.out.println("찾아온 카트 : "+ list);
-
        return list;
     }
 
 
-
+    // 장바구니 리스트
     @Transactional(readOnly = true)
     public List<CartIngredientDto> listCart(Long memberId) {
         return cr.findCartIngredientsByMemberId(memberId);
     }
 
-
-
+    //상품명과 로그인된id를 조회해 일치하는 장바구니 항목을 삭제함
+    public void deleteCart(List<String> ingredientNames, long memberId) {
+            for( String ingredientName : ingredientNames){
+                cr.deleteByMemberIdAndIngredientName(memberId,ingredientName);
+            }
+    }
 
 
 
