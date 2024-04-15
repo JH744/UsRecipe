@@ -27,6 +27,7 @@ public class MemberService implements UserDetailsService {
     private final MemberRepository mr;
     private final RecipeRepository rr;
 
+    // 존재하는 회원인지 확인
     public void validateDuplicateMember(Member member) {
         Member findMember = mr.findByUserid(member.getUserid());
         if (findMember != null) {
@@ -34,6 +35,7 @@ public class MemberService implements UserDetailsService {
         }
     }
 
+    // 회원가입
     public Long join(Member member){
         validateDuplicateMember(member);
         System.out.println("맴버 서비스");
@@ -51,7 +53,6 @@ public class MemberService implements UserDetailsService {
         if (m == null) {
             throw new UsernameNotFoundException(username);
         }
-
         return new PrincipalDetails(m);
     }
 

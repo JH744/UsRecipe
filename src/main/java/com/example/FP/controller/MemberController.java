@@ -52,8 +52,8 @@ public class MemberController {
         System.out.println(memberFormDto.getUserid());
 
 
-        String addr = addr1 + " " + addr2;
-        String birth = year + month + day;
+        String addr = addr1 + " " + addr2; // 주소와 상세 주소 합치기
+        String birth = year + month + day; // 생년월일
         memberFormDto.setAddr(addr);
         memberFormDto.setBirth(birth);
         Member member = Member.createMember(memberFormDto, passwordEncoder);
@@ -61,7 +61,8 @@ public class MemberController {
 
         return "redirect:/joinOk";
     }
-
+    
+    // 회원가입시 아이디 중복 체크
     @PostMapping("/id_check")
     @ResponseBody
     public String checkId(@RequestBody String userid){
@@ -75,6 +76,7 @@ public class MemberController {
         return "success";
     }
 
+    // 회원가입시 닉네임 중복 체크
     @PostMapping("/nickname_check")
     @ResponseBody
     public String checkNickname(@RequestBody String nickname){
@@ -90,22 +92,24 @@ public class MemberController {
     }
 
 
+    // 회원가입 완료 후
     @GetMapping("/joinOk")
     public String joinOk(){
         return "/joinOk";
     }
 
+    // 아이디 찾기
     @GetMapping("/findUserid")
     public String findIdForm(){ return "/findUserid"; }
-
+    
+    // 아이디 찾기
     @PostMapping("/findUserid")
     public String findIdSubmit(@RequestParam String name, @RequestParam String email, Model model){
-        String toEmail = email.replace("%40", "@").trim();
+        String toEmail = email.replace("%40", "@").trim(); // 이메일 가져오기
         HashMap<String, String > map = memberService.findByNameAndEmail(name, toEmail);
         if (map.get("success").equals("false")) {
             return "redirect:/findUserid";
         }
-
 
         model.addAttribute("name", name);
         model.addAttribute("userid", map.get("userid"));
@@ -113,9 +117,11 @@ public class MemberController {
         return "/findUseridOk";
     }
 
+    // 비밀번호 찾기
     @GetMapping("/findUserPwd")
     public String findPwdForm(){ return "/findPwd"; }
 
+    // 비밀번호 찾기
     @PostMapping("/findUserPwd")
     public String findPwdSubmit(@RequestParam String userid, @RequestParam String email, Model model){
         System.out.println("비밀번호 찾기 클릭");
@@ -136,18 +142,20 @@ public class MemberController {
         return "/emailAuthentication";
     }
 
+    // 비밀번호 찾기시 이메일 인증
     @PostMapping("/emailAuthentication")
     public String emailAuthentication(@RequestParam String userid, Model model){
         model.addAttribute("userid", userid);
         return "/newPwd";
     }
 
-
+    // 새 비밀번호 설정
     @GetMapping("/newPwd")
     public String pwChangeForm(){
         return "/newPwd";
     }
 
+    // 새 비밀번호 설정
     @PostMapping("/newPwd")
     public String pwChangeSubmit(@RequestParam String userid, @RequestParam String password){
         Member m = memberService.findById(userid);

@@ -30,6 +30,7 @@ public class CustomOAuth2Service extends DefaultOAuth2UserService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
+    // OAuth2를 이용한 소셜로그인
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         // OAuth 서비스(kakao, google, naver)에서 가져온 유저 정보를 담고있음
@@ -54,9 +55,10 @@ public class CustomOAuth2Service extends DefaultOAuth2UserService {
 //        System.out.println("이메일 " + email);
 //        System.out.println("닉네임 " + nickname);
 
-        String registrationId = userRequest.getClientRegistration().getRegistrationId();
+        String registrationId = userRequest.getClientRegistration().getRegistrationId(); // 소셜로그인 provide를 가져옴
         System.out.println("registrationId = " + registrationId);
         System.out.println(oauth2user.getAttributes());
+        // if문을 통해 소셜로그인 구분
         if (registrationId.equals("kakao")) {
             oAuth2MemberInfo = new KakaoMemberInfo(oauth2user.getAttributes());
         } else if (registrationId.equals("naver")) {
