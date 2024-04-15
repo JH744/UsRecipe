@@ -4,6 +4,7 @@ import com.example.FP.details.PrincipalDetails;
 import com.example.FP.dto.MemberDto;
 import com.example.FP.entity.Member;
 import com.example.FP.entity.MemberRole;
+import com.example.FP.oauth2.GoogleMemberInfo;
 import com.example.FP.oauth2.KakaoMemberInfo;
 import com.example.FP.oauth2.NaverMemberInfo;
 import com.example.FP.oauth2.OAuth2MemberInfo;
@@ -55,11 +56,13 @@ public class CustomOAuth2Service extends DefaultOAuth2UserService {
 
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
         System.out.println("registrationId = " + registrationId);
-
+        System.out.println(oauth2user.getAttributes());
         if (registrationId.equals("kakao")) {
             oAuth2MemberInfo = new KakaoMemberInfo(oauth2user.getAttributes());
         } else if (registrationId.equals("naver")) {
             oAuth2MemberInfo = new NaverMemberInfo(oauth2user.getAttributes());
+        } else if (registrationId.equals("google")) {
+            oAuth2MemberInfo = new GoogleMemberInfo(oauth2user.getAttributes());
         }
 
         String email = oAuth2MemberInfo.getEmail();

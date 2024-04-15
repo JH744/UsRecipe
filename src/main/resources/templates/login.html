@@ -11,96 +11,6 @@
 
 </head>
 <body>
-<!--<script>-->
-
-<!--    $(function () {-->
-
-<!--        $('#id_user').focus();-->
-<!--        Kakao.init('f5e1efb59f821ea6ee4743d9eb859dee');-->
-
-<!--        $('body').css({'background': '#ffffff'});-->
-
-<!--        &lt;!&ndash; 로컬스토리지에 넣은 마지막본 상품번호를 쿠키에 담았다 회원가입 후 마지막 상품으로 보냄 &ndash;&gt;-->
-<!--        const LVGoods = localStorage.getItem("stLastViewGoods");-->
-<!--        setCookie("LVGoodsNo", LVGoods, 1);-->
-<!--    });-->
-
-<!--    function setCookie(name, value, expiredays) {-->
-<!--        var todayDate = new Date();-->
-<!--        todayDate.setDate(todayDate.getDate() + expiredays);-->
-<!--        document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";-->
-<!--    }-->
-
-<!--    function doSubmit() {-->
-<!--        if (!$('#id_user').val()) {-->
-<!--            $('#idMsg').show();-->
-<!--            $('#id_user').focus();-->
-<!--            return false;-->
-<!--        }-->
-<!--        if (!$('#tx_passwd').val()) {-->
-<!--            $('#pwMsg').show();-->
-<!--            $('#tx_passwd').focus();-->
-<!--            return false;-->
-<!--        }-->
-<!--        return true;-->
-<!--    }-->
-
-
-<!--    function loginWithKakao() {-->
-
-<!--        Kakao.Auth.login({-->
-<!--            persistAccessToken: false,-->
-<!--            success: function (authObj) {-->
-<!--                location.href = "https://www.10000recipe.com/user/login_confirm.html?q_mode=kakao&kakao_token=" + authObj.access_token + "&q_path=" + encodeURIComponent('https://www.10000recipe.com/');-->
-<!--            },-->
-<!--            fail: function (err) {-->
-<!--                console.log(JSON.parse(err));-->
-<!--            }-->
-<!--        });-->
-
-<!--    }-->
-
-<!--    function loginWithFacebook() {-->
-
-<!--        FB.login(function (response) {-->
-<!--            if (response.status === 'connected') {-->
-<!--                location.href = "https://www.10000recipe.com/user/login_confirm.html?q_mode=facebook&facebook_token=" + response.authResponse.accessToken + "&q_path=" + encodeURIComponent('https://www.10000recipe.com/');-->
-<!--            } else if (response.status === 'not_authorized') {-->
-<!--            } else {-->
-<!--            }-->
-<!--        }, {scope: 'public_profile,email'});-->
-<!--    }-->
-
-<!--    (function (d, s, id) {-->
-<!--        var js, fjs = d.getElementsByTagName(s)[0];-->
-<!--        if (d.getElementById(id)) return;-->
-<!--        js = d.createElement(s);-->
-<!--        js.id = id;-->
-<!--        js.src = "//connect.facebook.net/ko_KR/sdk.js";-->
-<!--        fjs.parentNode.insertBefore(js, fjs);-->
-<!--    }(document, 'script', 'facebook-jssdk'));-->
-
-<!--    function loginWithNaver() {-->
-<!--        location.href = 'https://nid.naver.com/oauth2.0/authorize?client_id=cWzmDRNgfouLxtetDws2&response_type=code&redirect_uri=' + encodeURIComponent("https://www.10000recipe.com/user/login_confirm.html?q_mode=naver&q_path=https://www.10000recipe.com/") + '&state=' + encodeURIComponent('27639c26650069c16ac656a62ed8c8ba');-->
-<!--    }-->
-
-<!--    function startGoogle() {-->
-<!--        gapi.load('auth2', function () {-->
-<!--            auth2 = gapi.auth2.init({-->
-<!--                client_id: '823192025738-1dji6o7dj8v1555dj2dl2ka64oihfp5i.apps.googleusercontent.com',-->
-<!--                fetch_basic_profile: true,-->
-<!--                scope: 'profile email'-->
-<!--            });-->
-<!--        });-->
-<!--    }-->
-
-<!--    function loginWithGoogle() {-->
-
-<!--        auth2.grantOfflineAccess().then(signInCallback);-->
-<!--    }-->
-
-
-<!--</script>-->
 
 <div class="templateBody" style="align-content: flex-start; min-height: 700px">
     <header>
@@ -133,24 +43,26 @@
                 </div>
             </div>
             <a class="join_btn2_k" href="/oauth2/authorization/kakao">
-                <button type="submit" onclick="loginWithKakao()" class="btn" id="kakao" style="background-color: #FFE701">
+                <button type="submit" class="btn" id="kakao" style="background-color: #FFE701">
                     <img src="/static/images/image_31.png" alt="카카오" style="width: 10%; padding-bottom: 5px">
                     <span>카카오로 간편 시작</span>
                 </button>
             </a>
             <a href="/oauth2/authorization/naver">
             <div class="join_btn2_k">
-                <button type="submit" onclick="loginWithNaver()" class="btn" style="background-color: #01C73C">
+                <button type="submit" class="btn" style="background-color: #01C73C">
                     <img src="/static/images/image_29.png" alt="네이버" style="width: 10%; padding-bottom: 5px">
                     <span style="color: #ffffff">네이버로 간편 시작</span></button>
             </div>
             </a>
-            <div class="join_btn2_k">
-                <button type="submit" onclick="loginWithGoogle()" class="btn">
-                    <img src="/static/images/logo_google_1.png" alt="구글" style="width: 10%; ">
-                    <span>구글로 간편 시작</span>
-                </button>
-            </div>
+            <a href="/oauth2/authorization/google">
+                <div class="join_btn2_k">
+                    <button type="submit" class="btn">
+                        <img src="/static/images/logo_google_1.png" alt="구글" style="width: 10%; ">
+                        <span>구글로 간편 시작</span>
+                    </button>
+                </div>
+            </a>
         </div>
     </div>
 </div>

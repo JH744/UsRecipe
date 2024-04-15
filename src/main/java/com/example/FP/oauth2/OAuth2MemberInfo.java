@@ -6,9 +6,9 @@ public interface OAuth2MemberInfo {
     String getName(); //사용자 이름 ex) 홍길동
     String getEmail(); //사용자 이메일 ex) gildong@gmail.com
 
-    String getPhone();
+    String getPhone(); // 사용자 핸드폰 번호
 
-    String getNickname();
+    String getNickname(); // 사용자 닉네임
 
-    String getBirth();
+    String getBirth(); // 사용자 생년월일
 }
