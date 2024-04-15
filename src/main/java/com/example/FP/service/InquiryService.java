@@ -44,8 +44,4 @@ public class InquiryService {
         return ir.findAll();
     }
 
-    public void delete(Long inquiry_id){
-        ir.deleteById(inquiry_id);
-    }
-
 }
