@@ -62,7 +62,7 @@ public class RecipeService {
         return  randomRecipes;
     }
 
-    public void insertRecipe(Map<String, Object> recipeDataList,String userid){
+    public void saveRecipe(Map<String, Object> recipeDataList,String userid){
         RecipeDto recipeDto = null;
         Long recipeId = rr.nextRecipeId();
         Member member = ms.findById(userid);
@@ -79,6 +79,12 @@ public class RecipeService {
             String recipeThumbnail = jsonMap.get("recipeThumbnail").toString();
             String recipeTitle = jsonMap.get("recipeTitle").toString();
             Long recipeCategoryId = Long.parseLong(jsonMap.get("recipeCategory").toString());
+            if(jsonMap.get("recipeCategory").toString()!=null){
+                recipeId = Long.parseLong(jsonMap.get("recipeCategory").toString());
+
+            }
+
+
             RecipeCategory recipeCategory = rcr.findById(recipeCategoryId).get();
 
             recipeDto = new RecipeDto(recipeId,recipeTitle,member.getUserid(),null,recipeThumbnail,0,recipeCategory,member);

@@ -1,5 +1,6 @@
 package com.example.FP.controller;
 
+import com.example.FP.entity.Recipe;
 import com.example.FP.entity.RecipeCategory;
 import com.example.FP.service.MemberService;
 import com.example.FP.service.RecipeCategoryService;
@@ -101,9 +102,9 @@ public class RecipeController {
         }
     }
 
-    @PostMapping("/insertRecipe")
+    @PostMapping("/saveRecipe")
         public String insertRecipe(@RequestParam Map<String, Object> recipeDataList,HttpSession session){
-        rs.insertRecipe(recipeDataList,session.getAttribute("userid").toString());
+        rs.saveRecipe(recipeDataList,session.getAttribute("userid").toString());
         return "redirect:/";
     }
 
@@ -112,5 +113,17 @@ public class RecipeController {
         Long id = Long.parseLong(recipeNum);
         model.addAttribute("recipe",rs.detailRecipe(id));
         return "detailRecipe";
+    }
+
+    @GetMapping("/updateRecipe")
+    public String updateRecipe(@RequestParam Long recipeId,Model model,HttpSession session){
+        Recipe recipe = rs.detailRecipe(recipeId);
+        String view = "error/4xx";
+        if(recipe.getRecipeMember().getUserid().equals((String)session.getAttribute("userid"))){
+            model.addAttribute("recipe",rs.detailRecipe(recipeId));
+            model.addAttribute("recipe_category",rc.findAllRecipeCategory());
+            view = "updateRecipe";
+        }
+        return view;
     }
 }

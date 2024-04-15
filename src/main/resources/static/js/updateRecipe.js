@@ -1,4 +1,9 @@
-var ingredientIndex = 1
+$(function () {
+    ingredientIndex = $(".ingredientGroup").length;
+    stepIndex = $(".step").length;
+})
+
+
 
 // 재료 그룹들의 정보를 모아 list 형태로 반환
 function ingeredientData() {
@@ -58,7 +63,8 @@ function stepData() {
 }
 
 // 재료 목록 추가
-function addIngredient() {
+function addIngredient(index) {
+
     var ingredientFrame =
         "<li class='ingredientGroup' id='ingredientGroup_" + ingredientIndex + "'>" +
         "<button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' id='ingredientModalBtn'>" +
@@ -70,12 +76,11 @@ function addIngredient() {
         "<input type=\"text\" class=\"ingredientUnit form-control\" style=\"width:140px;\" placeholder=\"예) g,ml(단위)\"/>\n" +
         "<input type='hidden' name='ingredientId' class='ingredientId'>" +
         "<a  href='javascript:delIngredient(" + ingredientIndex + ")' class=\"btn-del\" style=''></a></li>"
-
+    ingredientIndex = ingredientIndex + 1;
     $("#ingredientInfo").append(ingredientFrame)
-    ingredientIndex = ingredientIndex + 1
+
 }
 
-var stepIndex = 2
 
 // 요리 순서 추가
 function addStep() {
@@ -307,6 +312,7 @@ function doSubmit() {
             var recipeTitle = $("#recipe_title").val()
             var recipeCategory = $("#recipeCategory").val()
             var recipeThumbnail = $("#recipe_thumbnail").val()
+            var recipeId = $("#recipeId").val()
             if (recipeTitle === "") {
                 inputCheck("레시피 제목(을)")
                 return false;
@@ -332,7 +338,8 @@ function doSubmit() {
                 stepDataList: stepDataList,
                 recipeTitle: recipeTitle,
                 recipeCategory: recipeCategory,
-                recipeThumbnail: recipeThumbnail
+                recipeThumbnail: recipeThumbnail,
+                recipeId:recipeId
             }
             var recipeDataList = {
                 "recipeDataList": JSON.stringify(recipeData)
@@ -341,13 +348,13 @@ function doSubmit() {
                 url: '/saveRecipe',
                 data: recipeDataList,
                 type: "POST",
-                success:function(){
+                success: function () {
                     Swal.fire({
-                        title:"저장되었습니다.",
+                        title: "저장되었습니다.",
                         imageUrl: "../static/images/image_11.png",
                         imageAlt: "Custom image",
-                    }).then((result)=>{
-                        location.href="/"
+                    }).then((result) => {
+                        location.href = "/"
                     })
                 }
             })
