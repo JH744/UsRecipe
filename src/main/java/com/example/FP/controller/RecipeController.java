@@ -121,7 +121,7 @@ public class RecipeController {
     public String adminRecipeList(Model model){
         model.addAttribute("list", rs.findAll());
 
-        return "/admin/adminRecipe";
+        return "/admin/adminRecipeList";
     }
 
     @PostMapping("/deleteRecipe/{id}")

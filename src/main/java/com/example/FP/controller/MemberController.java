@@ -212,7 +212,7 @@ public class MemberController {
 
     @GetMapping("/adminMember")
     public String memberList(Model model){
-        model.addAttribute(memberService.findAllMember());
+        model.addAttribute("list",memberService.findAllMember());
         return "/admin/adminMember";
     }
 

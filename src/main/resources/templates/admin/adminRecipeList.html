@@ -209,9 +209,9 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="list:${list}">
-                                    <td class="orderList_td" th:text="${list.id}"><a>1</a></td>
-                                    <td class="orderList_td" th:text="${list.recipeTitle}">kim</td>
-                                    <td class="orderList_td" th:text="${list.recipeMember.nickname}">seoul</td>
+                                    <td class="orderList_td" th:text="${list.id}"><a></a></td>
+                                    <td class="orderList_td" th:text="${list.recipeTitle}"></td>
+                                    <td class="orderList_td" th:text="${list.recipeMember.nickname}"></td>
                                     <td class="orderList_td"><a th:href="@{|/admin/deleteRecipe/${list.id}|}" th:text="삭제">삭제</a></td>
                                 </tr>
 
