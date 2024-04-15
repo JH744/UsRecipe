@@ -127,30 +127,29 @@
                 <div class="reply_tit">댓글 <span id="recipeCommentListCount"
                                                 th:text="${recipe.recipeReplyList.size}"></span></div>
                 <div id="recipeCommentList_1">
-                    <div class="media reply_list" th:each="r : ${recipe.recipeReplyList}">
+                    <div class="media reply_list" th:id="'replyDiv_'+${r.Id}" th:each="r : ${recipe.recipeReplyList}">
                         <div class="media-left"><a th:href="'/profile?id='+${r.replyMember.id}">
                             <img
                                     class="media-object"
                                     src="../static/images/chef2.png"
                                     data-holder-rendered="true"></a></div>
                         <div class="media-body">
-                            <h4 class="media-heading" style="float:left;">
-                                <div style="display: block;width: 100%">
-                                    <b class="info_name_f" th:text="${r.replyMember.nickname}" style="float:left;"></b>
+                            <h4 class="media-heading">
+                                <b class="info_name_f" th:text="${r.replyMember.nickname}" style="float:left;"></b>
                                 <div class="replyStarBox">
                                 </div>
-                                    <img th:each="star : ${#numbers.sequence(1,r.replyGrade)}"
-                                         style="display: inline-block; width: 20px; height: 20px"
-                                         src="../static/images/star2.png"/>
-                                    <img th:if="${r.replyGrade != 5}"
-                                         th:each="star : ${#numbers.sequence((r.replyGrade)+1,5)}"
-                                         style="display: inline-block; width: 20px; height: 20px"
-                                         src="../static/images/noneStar2.png"/>
-                                </div>
-                                <p th:text="${r.replyDate}"></p>
+                                <img th:each="star : ${#numbers.sequence(1,r.replyGrade)}"
+                                     style="display: inline-block; width: 20px; height: 20px"
+                                     src="../static/images/star2.png"/>
+                                <img th:if="${r.replyGrade != 5}"
+                                     th:each="star : ${#numbers.sequence((r.replyGrade)+1,5)}"
+                                     style="display: inline-block; width: 20px; height: 20px"
+                                     src="../static/images/noneStar2.png"/>
+                                <p th:text="${r.replyDate}" style="margin-left: 5px"></p><span th:if="${r.replyMember.Userid == session.userid}">|</span>
+                                <a th:href="'javascript:deleteReply('+${r.Id}+')'" th:if="${r.replyMember.Userid == session.userid}">삭제</a>
                             </h4>
-                            <p th:text="${r.replyContent}" style="float: left"></p>
-                            <div>삭제</div>
+
+                            <p th:text="${r.replyContent}" style="float:left;width: 60%"></p>
                         </div>
                         <div id="replyCommentDiv_39706325" style="padding-left:50px;"></div>
                     </div>
@@ -159,7 +158,7 @@
 
                 <div class="reply_write">
                     <form id="insCmtFrm1" method="post" action="/insertReply">
-                        <input type="hidden" name="recipeId" th:value="${recipe.id}">
+                        <input type="hidden" class="recipeId" name="recipeId" th:value="${recipe.id}">
                         <div class="gradeBox">
                             <input type="radio" class="gradeStar" name="gradeStar" value="1">
                             <input type="radio" class="gradeStar" name="gradeStar" value="2">
@@ -170,15 +169,70 @@
                         </div>
 
                         <div class="input-group" style="width:auto;">
-                        <textarea id="cmt_tx_content1" name="replyContent" class="form-control"
+                        <textarea id="cmt_tx_content1" name="replyContent" class="replyContent form-control"
                                   placeholder="무엇이 궁금하신가요? 댓글을 남겨주세요."
                                   style="height:100px; width:100%; resize:none;"></textarea>
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" onclick="replyInsert()"
+                                <button class="btn btn-default" type="button" onclick="insertReply()"
                                         style="height:100px; width:100px;">등록</button>
                             </span>
                         </div>
                     </form>
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+                    <script>
+                        function insertReply(){
+                            var gradeStar = $("input[name=gradeStar]:checked").val()
+                            var replyContent = $(".replyContent").val()
+                            var recipeId = $(".recipeId").val()
+                            console.log(replyContent)
+                            if (gradeStar===undefined || replyContent===""){
+                                checkReply()
+                            }else {
+                                // $.ajax({
+                                //     url:"/insertReply",
+                                //     data:{
+                                //         gradeStar:gradeStar,
+                                //         replyContent:replyContent,
+                                //         recipeId:recipeId
+                                //     },
+                                //     type:"POST"
+                                // })
+                            }
+                        }
+
+                        function checkReply(msg){
+                            Swal.fire({
+                                title: msg + "를 <br>제대로 입력해주세요!!",
+                                icon: "warning"
+                            })
+                        }
+
+                        function deleteReply(num){
+                            Swal.fire({
+                                title: "댓글 삭제",
+                                text: "해당 요리 순서를 정말 삭제하시겠습니까?",
+                                imageUrl: "../static/images/image_11.png",
+                                imageAlt: "Custom image",
+                                showCancelButton: true,
+                                confirmButtonText: '삭제',
+                                cancelButtonText: '취소'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $.ajax({
+                                        url:"/deleteReply",
+                                        type:"POST",
+                                        data:{replyId:num},
+                                        success:function (){
+                                            var prevCount = $("#recipeCommentListCount").text()
+                                            $("#replyDiv_"+num).remove();
+                                            $("#recipeCommentListCount").text(prevCount-1)
+                                        }
+                                    })
+                                } else {
+                                }
+                            });
+                        }
+                    </script>
                 </div>
             </div><!-- /view_reply -->
         </div>
