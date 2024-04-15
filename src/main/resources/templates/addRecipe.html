@@ -19,11 +19,10 @@
 
     <link rel="stylesheet" type="text/css" href="../static/css/font_20230910.css">
     <link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="../static/js/addRecipe.js"></script>
+
 
 </head>
 <body>
@@ -192,7 +191,9 @@
 
                     </div><!--/regi_center-->
                     <div class="regi_btm">
-                        <button type="button" onclick="doSubmit()" class="btn-lg btn-primary">저장</button>
+<!--                        <form action="/insertRecipe" method="POST">-->
+                            <button type="button" onclick="doSubmit()" class="btn-lg btn-primary">저장</button>
+<!--                        </form>-->
                         <button type="button" onclick="history.back();" class="btn-lg btn-default">취소</button>
                     </div>
                 </div><!-- /container -->
