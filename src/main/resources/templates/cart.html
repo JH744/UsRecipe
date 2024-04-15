@@ -12,7 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(function(){
-            
+            getTotalPrice.call(this);
             
             // 총 결제금액을 구해주는 매소드
             function getTotalPrice() {
@@ -106,8 +106,8 @@
                 var currentQty = parseInt($input.val(), 10);  // 현재 입력 필드의 값을 정수로 파싱
                 if(currentQty > 1) {
                     $input.val(currentQty - 1);  // 입력 필드의 값을 1씩 차감
-                    CalcPriceAndQty.call(this);  // 수정된 함수 호출
-                    getTotalPrice.call(this);
+                    CalcPriceAndQty.call(this); // 수량에 맞는 주문금액 구하기
+                    getTotalPrice.call(this);   // 주문금액의 총합 구하기
 
                 }
             });
@@ -191,7 +191,7 @@
                 <div class="deletebtnbox"> <button class="btnAllDelete" id="btnAllDelete">선택물품삭제</button></div>
                 <div class="orderPricebox">
                     <span class="point1">적립예정금액</span>  <span class="point2"></span><br>
-                    <span class="orderPriceFt1">최종결제금액</span> <span class="orderPriceFt2"></span>
+                    <span class="orderPriceFt1">총결제금액</span> <span class="orderPriceFt2"></span>
                 </div>
 
                 <div class="deleteModalContainer">

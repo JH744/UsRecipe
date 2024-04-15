@@ -169,11 +169,12 @@ a{
   clear: both;
 }
 .orderPriceFt1{
-  color: #a8a4a4;
+  color: #8d8a8a;
   font-weight: bold;
+  font-size: 17px;
 }
 .orderPriceFt2{
-  font-size: 16px;
+  font-size: 19px;
   font-weight: bolder;
   margin: 10px;
 }
@@ -187,7 +188,7 @@ a{
   color: #fff;
   font-size: 24px;
   font-weight: 600;
-  margin: 38px 0 0 0px;
+  margin: 30px 0 0 0px;
   border: none;
   border-radius: 2%;
   cursor: pointer;
@@ -251,3 +252,15 @@ a{
   }
 
 }
+
+
+
+.point1 , .point2{
+  color: #a8a4a4;
+
+}
+
+.point2{
+  margin: 0 10px;
+}
+
