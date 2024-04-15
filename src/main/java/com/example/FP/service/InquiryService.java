@@ -1,6 +1,5 @@
 package com.example.FP.service;
 
-import com.example.FP.dto.InquiryDto;
 import com.example.FP.entity.Inquiry;
 import com.example.FP.repository.InquiryRepository;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
@@ -40,7 +40,12 @@ public class InquiryService {
 
     }
 
+    public List<Inquiry> findAll(){
+        return ir.findAll();
+    }
 
-
+    public void delete(Long inquiry_id){
+        ir.deleteById(inquiry_id);
+    }
 
 }

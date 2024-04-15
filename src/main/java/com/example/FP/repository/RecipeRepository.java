@@ -1,6 +1,7 @@
 package com.example.FP.repository;
 
 import com.example.FP.entity.Ingredient;
+import com.example.FP.entity.Member;
 import com.example.FP.entity.Recipe;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,5 +27,6 @@ public interface RecipeRepository extends JpaRepository<Recipe,Long> {
 //    Recipe findById();
 
     // 가장 조회수가 높은 회원 그룹
-//    List<Recipe> findByRecipeMemberIdGroupByRecipeMemberIdOrderByRecipeViewsDesc();
+    @Query("SELECT r.recipeMember FROM Recipe r GROUP BY r.recipeMember ORDER BY SUM(r.recipeViews) DESC")
+    List<Member> findMember();
 }
