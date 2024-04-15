@@ -26,11 +26,11 @@ public class MemberController {
     private int number; // 이메일 인증 숫자를 저장하는 변수
 
 
-
+    // 로그인 폼
     @GetMapping("/login")
     public void loginForm(){}
 
-
+    // 회원가입 폼
     @GetMapping("/join")
     public String joinForm(Model model){
         System.out.println("회원가입 하기");
@@ -39,6 +39,7 @@ public class MemberController {
         return "/join";
     }
 
+    // 회원가입
     @PostMapping("/join")
     public String joinSubmit(@ModelAttribute(name = "memberFormDto") MemberDto memberFormDto,
                              String addr1,

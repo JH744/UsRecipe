@@ -34,6 +34,7 @@ public class MainController {
         }
 
         model.addAttribute("recipe_list", rs.top5());
+        model.addAttribute("member_list", ms.findTop5());
         model.addAttribute("random_list", rs.randomList());
 
         return "index";

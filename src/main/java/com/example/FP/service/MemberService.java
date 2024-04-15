@@ -5,6 +5,7 @@ import com.example.FP.dto.MemberDto;
 import com.example.FP.entity.Member;
 import com.example.FP.mapper.MemberMapper;
 import com.example.FP.repository.MemberRepository;
+import com.example.FP.repository.RecipeRepository;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 
 @Service
@@ -23,6 +25,7 @@ import java.util.HashMap;
 @Transactional
 public class MemberService implements UserDetailsService {
     private final MemberRepository mr;
+    private final RecipeRepository rr;
 
     public void validateDuplicateMember(Member member) {
         Member findMember = mr.findByUserid(member.getUserid());
@@ -135,6 +138,15 @@ public class MemberService implements UserDetailsService {
             }
         }
         return false;
+    }
+
+    // 조회수 높은 상위 5명
+    public List<Member> findTop5(){
+        List<Member> list;
+        List<Long> ids = rr.findMember();
+        list = mr.findByIdIn(ids);
+
+        return list;
     }
 
 }

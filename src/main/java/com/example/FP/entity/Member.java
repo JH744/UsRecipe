@@ -36,6 +36,7 @@ public class Member {
     private String phone;
     private Integer point;
     private String birth;
+    private String image;
 
     @Enumerated(EnumType.STRING)
     private MemberRole role;
