@@ -113,7 +113,7 @@ a {
 }
 
 .hotrecipe1 {
-  height: 260px;
+  height: 245px;
   width: 160px;
   border-radius: 10px;
   background-image: url(../images/김치볶음밥.png);
@@ -121,12 +121,13 @@ a {
 .hotrecipe1 span {
   color: #fff;
   position: relative;
-  top: 220px;
-  left: 14px;
+  top: 200px;
+  left: 43px;
+  font-size: large;
 }
 
 .hotRecipeImg {
-  height: 260px;
+  height: 245px;
   width: 160px;
   border-radius: 10px;
 }
@@ -139,20 +140,22 @@ a {
 }
 
 .recipeItem {
-  width: 200px;
-  height: 400px;
+  width: 220px;
+  height: 350px;
   margin-bottom: 20px;
 }
 .recipeItem p {
-  font-size: 30px;
+  font-size: 22px;
+  margin: 10px 0 0 0;
 }
 .recipeItem span {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #8b8b8b;
 }
 
 .recipeItem_img {
   width: 220px;
-  height: 250px;
+  height: 220px;
   background-image: url(../images/된장국.png);
 }
 
@@ -160,6 +163,7 @@ a {
   width: 200px;
   height: 20px;
   margin: auto;
+  text-align: center;
 }
 
 .pageNum {
@@ -168,6 +172,8 @@ a {
   height: 20px;
   border: 1px solid gray;
   text-align: center;
+  padding-bottom: 3px;
+  border-radius: 3px;
 }
 
 .pageNum:hover {
