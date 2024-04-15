@@ -22,9 +22,8 @@ public class SecurityConfig{
                 .csrf().disable()
                 .authorizeRequests()
                 .requestMatchers("/","/all/**", "/join","/joinOk","/static/**","/id_check","/sendEmail","/nickname_check","/mailCheck")
-
                 .permitAll()
-                .requestMatchers("/admin/**").hasRole("admin")
+                .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()

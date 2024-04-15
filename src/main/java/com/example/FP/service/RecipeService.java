@@ -31,10 +31,10 @@ public class RecipeService {
     private final IngredientRepository ir;
 
 // 레시피 목록 불러오기
-//    public List<Recipe> list(){
-//
-//        return rr.findAll();
-//    }
+    public List<Recipe> findAll(){
+
+        return rr.findAll();
+    }
 
     //레시피 목록 페이지네이션//
     public Page<Recipe> list(){
@@ -128,5 +128,10 @@ public class RecipeService {
     public Recipe detailRecipe(Long id){
         rr.UpdateRecipeViews(id);
         return rr.findById(id).get();
+    }
+
+
+    public void deleteRecipe(Long id) {
+        rr.deleteById(id);
     }
 }

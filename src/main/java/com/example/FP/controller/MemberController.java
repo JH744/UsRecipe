@@ -210,4 +210,10 @@ public class MemberController {
         return "redirect:/admin/member";
     }
 
+    @GetMapping("/adminMember")
+    public String memberList(Model model){
+        model.addAttribute(memberService.findAllMember());
+        return "/admin/adminMember";
+    }
+
 }

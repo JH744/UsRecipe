@@ -113,4 +113,21 @@ public class RecipeController {
         model.addAttribute("recipe",rs.detailRecipe(id));
         return "detailRecipe";
     }
+
+
+
+    // admin
+    @GetMapping("/adminRecipe")
+    public String adminRecipeList(Model model){
+        model.addAttribute("list", rs.findAll());
+
+        return "/admin/adminRecipe";
+    }
+
+    @PostMapping("/deleteRecipe/{id}")
+    public String adminDeleteRecipe(@RequestParam Long id) {
+        rs.deleteRecipe(id);
+
+        return "redirect:/admin/adminReipeList";
+    }
 }
