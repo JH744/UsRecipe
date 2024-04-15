@@ -14,6 +14,7 @@ public class MailService {
 
     private final JavaMailSender javaMailSender;
     private static int number;
+
     private static String senderEmail = System.getenv("email");
 
     //임의의 6자리 양수를 반환합니다.

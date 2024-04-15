@@ -189,6 +189,7 @@ public class MemberController {
 
         String addr = addr1 + " " + addr2;
 
+
         memberDto.setAddr(addr);
 
         memberService.dataChange(member);
