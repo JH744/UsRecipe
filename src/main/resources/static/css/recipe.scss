@@ -159,7 +159,7 @@ body{
     height: 260px;
     width: 160px;
     border-radius: 10px;
-  
+    //나중에 이미지 경로 지워야함 
     background-image: url(../images/김치볶음밥.png);
   
     span{
@@ -174,21 +174,13 @@ body{
   
   .hotrecipe1{
     @extend %hotrecipe;
-    background-image: url(../images/김치볶음밥.png);
   }
-  .hotrecipe2{
-    @extend %hotrecipe;
-    background-image: url(../images/떡볶이.png);
+
+  .hotRecipeImg{
+    height: 260px;
+    width: 160px;
+    border-radius: 10px;
   }
-  .hotrecipe3{
-    @extend %hotrecipe;
-    background-image: url(../images/프레첼.png);
-  }
-  .hotrecipe4{
-    @extend %hotrecipe;
-    background-image: url(../images/만두.png);
-  }
-  
   
   
   
@@ -254,7 +246,9 @@ body{
   
   
   
-  
+  .recId{
+    display: none;
+  }
   
   
   

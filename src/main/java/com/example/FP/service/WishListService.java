@@ -5,6 +5,7 @@ import com.example.FP.repository.MemberRepository;
 import com.example.FP.repository.RecipeRepository;
 import com.example.FP.repository.WishListRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,4 +45,17 @@ public class WishListService {
 
     // 로그인회원id와 레시피id가 일치하는 위시리스트삭제.
     public void deleteWish(long memberId,Long id) {wr.deleteByMemberIdAndRecipeId(memberId,id);}
+
+
+
+
+    //찜목록 top4  레시피가져옴
+    public List<Object[]> getTopPopularRecipes() {
+        return wr.findTopPopularRecipes(PageRequest.of(0, 4));
+    }
+
+
+
+
+
 }

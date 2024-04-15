@@ -112,33 +112,23 @@ a {
   justify-content: space-evenly;
 }
 
-.hotrecipe4, .hotrecipe3, .hotrecipe2, .hotrecipe1 {
+.hotrecipe1 {
   height: 260px;
   width: 160px;
   border-radius: 10px;
   background-image: url(../images/김치볶음밥.png);
 }
-.hotrecipe4 span, .hotrecipe3 span, .hotrecipe2 span, .hotrecipe1 span {
+.hotrecipe1 span {
   color: #fff;
   position: relative;
   top: 220px;
   left: 14px;
 }
 
-.hotrecipe1 {
-  background-image: url(../images/김치볶음밥.png);
-}
-
-.hotrecipe2 {
-  background-image: url(../images/떡볶이.png);
-}
-
-.hotrecipe3 {
-  background-image: url(../images/프레첼.png);
-}
-
-.hotrecipe4 {
-  background-image: url(../images/만두.png);
+.hotRecipeImg {
+  height: 260px;
+  width: 160px;
+  border-radius: 10px;
 }
 
 .recipeContainer {
@@ -183,4 +173,8 @@ a {
 .pageNum:hover {
   background-color: #D65454;
   color: #fff;
+}
+
+.recId {
+  display: none;
 }/*# sourceMappingURL=recipe.css.map */

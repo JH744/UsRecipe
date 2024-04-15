@@ -156,11 +156,11 @@
             <div class="hotrecipecontainer">
 
                 <h3>주간 인기 레시피</h3>
-                <div class="hotrecipebox">
-                    <div class="hotrecipe1"><span>초간단 김치볶음밥</span></div>
-                    <div class="hotrecipe2"><span>초간단 김치볶음밥</span></div>
-                    <div class="hotrecipe3"><span>초간단 김치볶음밥</span></div>
-                    <div class="hotrecipe4"><span>초간단 김치볶음밥</span></div>
+                <div class="hotrecipebox" >
+                    <div class="hotrecipe1" th:each=" Top4 :${listTop4}"  >
+<!--                  <img th:attr="src=@{'../static/images/' + ${Top4.recipeThumbnail}}"  class="hotRecipeImg">-->
+                        <span th:text="${Top4.recipeTitle}">인기레시피 타이틀</span>
+                    </div>
                 </div>
             </div>
             

@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -39,9 +40,7 @@ public class RecipeController {
                              @RequestParam(required = false ) String keyword,
                              HttpSession session){
 
-
         System.out.println("전달받은 검색어:"+ keyword);
-
 
         // **정렬 및 카테고리 상태유지** //
         //category에 null이 아닌 새값이 전달된 경우 세션에 새롭게 저장.
@@ -51,7 +50,6 @@ public class RecipeController {
             //category가 null이라면 기존session에서 값을 가져옴
             category= (Long) session.getAttribute("category");
         }
-
 
         //sort에 null이 아닌 새값이 전달된 경우 세션에 새롭게 저장.
         if(sortBy != null) {
@@ -68,10 +66,6 @@ public class RecipeController {
         }
 
 
-
-
-
-
         //***정렬조건 유무 >>  로직 설정***//
         Pageable pageable;
         if (sortBy != null && !sortBy.isEmpty()) {  //정렬조건이 넘어 올 경우
@@ -83,8 +77,6 @@ public class RecipeController {
         } else {  // 정렬 방향이 지정되지 않았을 경우 기본값 사용
             pageable = PageRequest.of(page-1, 8);
         }
-
-
 
 
         Page<Recipe>  list =null;
@@ -105,15 +97,6 @@ public class RecipeController {
 
 
 
-
-
-
-
-
-
-
-
-
         //이 레시피는 어때요?
         long HowAboutToday ;
         //위 번호는 난수로 설정 (범위는 총 레시피수)
@@ -121,7 +104,10 @@ public class RecipeController {
 
 
         //주간인기레시피
-        // 찜목록 중에서 레시피id를 count했을 시 가장 많은 top4를 불러옴
+        //찜목록 top4를 불러옴
+        List<Recipe> listTop4 =rs.listTop4();
+        model.addAttribute("listTop4", listTop4);
+
 
         return "recipe";
     }

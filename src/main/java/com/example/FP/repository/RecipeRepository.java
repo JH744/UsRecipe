@@ -29,10 +29,13 @@ public interface RecipeRepository extends JpaRepository<Recipe,Long> {
             Pageable pageable);
 
     //레시피목록 : 전체 불러오기 + 키워드 검색 + 페이징
-
     @Query("SELECT r FROM Recipe r WHERE " +
             "(:keyword IS NULL OR r.recipeTitle LIKE %:keyword%)")
     Page<Recipe> findByTitleContaining(@Param("keyword") String keyword, Pageable pageable);
+
+
+    //찜목록 top4의 id를 전달해 일치하는 리스트를 가져옴
+    List<Recipe> findByIdIn(List<Long> ids);
 
 
 }
