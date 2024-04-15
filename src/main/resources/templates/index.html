@@ -43,7 +43,7 @@
 
             <div class=e56_9 style="margin-left: 150px">
                 <th:block th:each="r:${recipe_list}">
-                    <a th:href="@{'detailRecipe?recipeNum=' + ${r.id}}">
+                    <a th:href="@{'/detailRecipe?recipeNum=' + ${r.id}}">
                         <div class=e56_52>
                             <div class="e56_53" th:style="'background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url(\'../static/images/' + ${r.recipeThumbnail} + '\')'">
                                 <div style="display: flex; flex-direction: column; justify-content: flex-end;">
@@ -78,7 +78,7 @@
             </div>
             <div class=e56_9 style="margin-left: 150px">
                 <th:block th:each="rd:${random_list}">
-                    <a th:href="@{'detailRecipe?recipeNum=' + ${rm.id}}">
+                    <a th:href="@{'/detailRecipe?recipeNum=' + ${rd.id}}">
                         <div class=e56_52>
                             <div class="e56_53" th:style="'background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url(\'../static/images/' + ${rd.recipeThumbnail} + '\')'">
                                 <div style="display: flex; flex-direction: column; justify-content: flex-end;">

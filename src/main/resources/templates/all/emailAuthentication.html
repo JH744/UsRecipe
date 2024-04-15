@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
-    <link rel="stylesheet" href="../static/css/templateBody.css"/>
+    <link rel="stylesheet" href="../../static/css/templateBody.css"/>
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/footer.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
+    <link rel="stylesheet" href="../../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="../static/css/emailAuthentication.css"/>
+    <link rel="stylesheet" href="../../static/css/emailAuthentication.css"/>
 
 
     <script>
@@ -44,7 +44,7 @@
                 <span class="e65_469">입력하신 이메일로 인증코드를 발송하였습니다.<br>
                  인증코드를 입력해주세요 </span>
             </div>
-            <form action="/emailAuthentication" method="post">
+            <form action="/all/emailAuthentication" method="post">
                 <div style="width: 390px">
                     <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
                     <input type="hidden" th:value="${num}" name="num" id="num">

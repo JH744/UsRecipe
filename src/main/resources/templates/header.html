@@ -22,7 +22,7 @@
             </ul>
         </nav>
     </div>
-    <nav>
+    <div>
         <th:block th:if="${session.userid == null}">
             <ul class="headerRight">
                 <li class="loginTag"><a href="/login">로그인</a></li>
@@ -31,11 +31,12 @@
         </th:block>
         <th:block th:if="${session.userid != null}">
             <ul class="headerRight" id="loginHeaderRight"  >
-                <li class="loginTag"><img src="../static/images/member.png" class="memberImg"> <a class="memberInfo" href="/orderList" th:text="${session.userid}+'님'"></a></li>
+                <li class="imageTag"><img src="../static/images/member.png" class="memberImg"></li>
+                <li class="nickname"> <a class="memberInfo" href="/orderList" th:text="${session.userid}+'님'"></a></li>
                 <!-- 여기에서 회원가입 대신 로그아웃으로 표시하려면 주의합니다. -->
                 <li class="joinTag" id="loginJoinTag"><a href="/logout">로그아웃</a></li>
             </ul>
         </th:block>
-    </nav>
+    </div>
 </div>
 </html>

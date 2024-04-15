@@ -3,6 +3,7 @@ package com.example.FP.service;
 import com.example.FP.details.PrincipalDetails;
 import com.example.FP.dto.MemberDto;
 import com.example.FP.entity.Member;
+import com.example.FP.entity.Recipe;
 import com.example.FP.mapper.MemberMapper;
 import com.example.FP.repository.MemberRepository;
 import com.example.FP.repository.RecipeRepository;
@@ -16,6 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -144,8 +146,13 @@ public class MemberService implements UserDetailsService {
     // 조회수 높은 상위 5명
     public List<Member> findTop5(){
         List<Member> list;
-        List<Long> ids = rr.findMember();
-        list = mr.findByIdIn(ids);
+        List<Member> ids = rr.findMember();
+        ArrayList<Long> arr_id = new ArrayList<>();
+        for (int i = 0; ids.size() > i; i++) {
+            arr_id.add(ids.get(i).getId());
+        }
+        System.out.println(arr_id);
+        list = mr.findByIdIn(arr_id);
 
         return list;
     }

@@ -21,7 +21,7 @@ public class SecurityConfig{
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .requestMatchers("/", "/findUserPwd", "/join","/joinOk","/static/**","/id_check","/sendEmail","/nickname_check","/mailCheck", "/emailAuthentication", "/newPwd", "/findPwdOk", "/findUserid", "/kakaoLogin")
+                .requestMatchers("/","/all/**", "/join","/joinOk","/static/**","/id_check","/sendEmail","/nickname_check","/mailCheck")
                 .permitAll()
                 .requestMatchers("/admin/**").hasRole("admin")
                 .anyRequest().authenticated()
