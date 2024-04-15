@@ -12,23 +12,30 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(function(){
-            // 'orderprice' 클래스를 가진 모든 요소의 텍스트를 배열로 수집
-            var orderPrices = $('.orderprice').map(function() {
-                return parseFloat($(this).text());  // 현재 요소의 텍스트를 숫자로 변환하여 반환
-            }).get();  // 수집된 요소를 실제 배열로 변환
-            console.log(orderPrices);
-            // 배열의 요소들을 합산
-            var totalPrice = orderPrices.reduce(function(sum, price) {
-                return sum + price;  // 각 요소를 합산
-            }, 0);  // 초기값을 0으로 설정
+            
+            
+            // 총 결제금액을 구해주는 매소드
+            function getTotalPrice() {
+                var tr =$('.checkItem:checked').closest('tr');
+                var orderPrices = tr.find('.orderprice').map(function() {
+                    return parseFloat($(this).text());  // 현재 요소의 텍스트를 숫자로 변환하여 반환
+                }).get();  // 수집된 요소를 실제 배열로 변환
+                console.log(orderPrices);
+                // 배열의 요소들을 합산
+                var totalPrice = orderPrices.reduce(function(sum, price) {
+                    return sum + price;  // 각 요소를 합산
+                }, 0);  // 초기값을 0으로 설정
 
-            // 합산 결과를 콘솔에 출력
-            console.log("Total Price: " + totalPrice);
+                // 합산 결과를 콘솔에 출력
+                console.log("Total Price: " + totalPrice);
+                $('.orderPriceFt2').html(totalPrice + '원');
 
-            $('.orderPriceFt2').html(totalPrice + '원');
+            }
 
-
-
+            //체크박스 체크 또는 언체크시 총결제금액을 구함
+            $('.checkItem').change(function (){
+                getTotalPrice();
+            });
 
 
             // 선택물품삭제 클릭시 삭제하겠냐는 문구 표시
@@ -62,24 +69,46 @@
                         }
                     });
 
-
-
                 })
 
+                
+            
+            function CalcPriceAndQty() {
+                let price =parseFloat($(this).closest('tr').find('.ingPrice').text());
+                let qty = parseInt($(this).closest('tr').find('.inputQty').val(), 10);
+                console.log('qty:'+qty );
+                console.log('price:'+price );
 
+               var orderPrice = price * qty;
+                console.log(orderPrice);
+                $(this).closest('tr').find('.orderprice').text(orderPrice);
+
+
+            }
+            
+            
+            
+            
+            
 
             // 플러스 버튼 클릭시 수량이 1씩 증가.
             $(document).on('click', '#btnPlus', function() {
                 var $input = $(this).closest('tr').find('.inputQty');
                 var currentQty = parseInt($input.val(), 10);  // 현재 입력 필드의 값을 정수로 파싱
                 $input.val(currentQty + 1);  // 입력 필드의 값을 1 증가
+
+                CalcPriceAndQty.call(this);  // 수정된 함수 호출;
+                getTotalPrice.call(this);
             });
             // 마이너스 버튼 클릭시 수량이 1씩 차감.
             $(document).on('click', '#btnMinus', function() {
                 var $input = $(this).closest('tr').find('.inputQty');
                 var currentQty = parseInt($input.val(), 10);  // 현재 입력 필드의 값을 정수로 파싱
                 if(currentQty > 1) {
-                    $input.val(currentQty + -1);  // 입력 필드의 값을 1 증가
+                    $input.val(currentQty - 1);  // 입력 필드의 값을 1씩 차감
+                    CalcPriceAndQty.call(this);  // 수정된 함수 호출
+                    getTotalPrice.call(this);
+
                 }
             });
 
@@ -89,25 +118,10 @@
                     var isChecked = $(this).is(':checked');
                     // 모든 'checkItem' 체크박스를 'checkAll' 체크박스와 동일한 상태로 설정
                     $('.checkItem').prop('checked', isChecked);
+                    //전체 선택이 되엇을 때 총 결제금액을 구함.
+                    getTotalPrice();
 
                 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         })
     </script>
@@ -151,7 +165,7 @@
                         <td th:text="${status.count}"></td>
                         <td><input type="checkbox" class="checkItem"></td>
                         <td th:text="${c.ingredientName}" colspan="2" class="ingName">상품명</td>
-                        <td th:text="${c.ingredientPrice}">상품가격</td>
+                        <td th:text="${c.ingredientPrice}" class="ingPrice">상품가격</td>
                         <td><button id="btnMinus">-</button><input type="text" th:value="${c.quantity}" readonly class="inputQty"><button id="btnPlus">+</button></td>
 <!--                        <td>삭제</td>-->
                         <td th:text="${c.ingredientPrice * c.quantity}"  class="orderprice">주문금액</td>
