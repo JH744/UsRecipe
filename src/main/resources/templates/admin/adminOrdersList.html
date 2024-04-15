@@ -198,7 +198,27 @@
                     <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
                     <div id="page">
                         <div class="container">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="orderList_th" style="width: 10%">주문번호</th>
+                                    <th scope="col" class="orderList_th">상품명</th>
+                                    <th scope="col" class="orderList_th">주문일자</th>
+                                    <th scope="col" class="orderList_th">가격</th>
+                                    <th scope="col" class="orderList_th">삭제</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="list:${list}">
+                                    <td class="orderList_td" th:text="${list.getId()}"><a>1</a></td>
+                                    <td class="orderList_td" th:text="${list.getName()}">kim</td>
+                                    <td class="orderList_td" th:text="${list.ordersDate}">seoul</td>
+                                    <td class="orderList_td" th:text="${list.ordersTotalPrice}">seoul</td>
+                                    <td class="orderList_td"><a th:href="@{|/deleteMember/${list.getId()}|}" th:text="삭제">삭제</a></td>
+                                </tr>
 
+                                </tbody>
+                            </table>
                         </div>
                         <!-- .container -->
 
