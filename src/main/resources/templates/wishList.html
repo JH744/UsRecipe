@@ -162,17 +162,17 @@
             <ul class="news-ul">
                 <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
 
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/notionmain}" style="font-weight: bold;">주문내역<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/notionmain}" style="font-weight: bold;">적립내역<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/question}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/myqnamain}" style="font-weight: bold;">정보변경<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/myqnamain}" style="font-weight: bold;">찜목록<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/orderList}" style="font-weight: bold;">주문내역<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/pointList}" style="font-weight: bold;">적립내역<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/inquiryList}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/pwCheckDataChange}" style="font-weight: bold;">정보변경<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/wishList}" style="font-weight: bold;">찜목록<span>></span></a></li>
 
             </ul>
         </aside>
         <section id="news_section">
             <div id="notion_title_wrap">
-                <span id="notion_spanB">찜목록</span><span id="notion_spanL">회원님의 찜 목록을 보여줍니다</span>
+                <span id="notion_spanB">찜목록</span><span id="notion_spanL">회원님의 레시피 찜 목록을 보여줍니다</span>
             </div>
             <hr>
             <div id="notion_box">
@@ -190,15 +190,27 @@
                                 <div id="primary" class="content-area column full">
                                     <main id="main" class="site-main" role="main">
 
-                                        <ul class="products" th:each="list:${list}">
+                                        <ul class="products">
 
-                                            <li class="first product">
-                                                <a href="shop-single.html">
+                                            <li class="product"  th:each="list:${list}">
+                                                <a th:href="@{|/detailRecipe?recipeNum=${list.id}|}">
 
-                                                    <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j4-520x520.jpg" alt="">
-                                                    <h3 th:text="${list.wishlist_member.getName()}">Cool Fedora</h3>
-                                                    <span class="price"><span class="amount" th:text="${list.wishlist_member.getEmail()}">$34.00</span></span>
-                                                </a><a href="#" class="button">Add to cart</a>
+                                                    <th:block th:if="${list.getWishlistRecipe().getRecipeUrl() != null}">
+                                                    <iframe id="youtube" th:src="${list.getWishlistRecipe().getRecipeUrl()}"
+                                                            title="YouTube video player" frameborder="0"
+                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                            allowfullscreen style="width: 200px;height: 200px;"></iframe>
+                                                    </th:block>
+
+                                                    <th:block th:if="${list.getWishlistRecipe().getRecipeUrl()==null}">
+                                                        <img th:src="@{|/../static/images/${list.getWishlistRecipe().getRecipeThumbnail()}|}" style="padding-top: -50px; width: 200px;height: 200px;">
+                                                    </th:block>
+                                                    <h3 th:text="${list.getWishlistRecipe().getRecipeTitle()}" style="font-family: Cafe24Dangdanghae;margin-bottom: 20px">상품명</h3>
+                                                    <span class="price"><span class="amount" th:text="${list.getWishlistRecipe().getRecipeWriter()}" style="font-family: Cafe24Dangdanghae;">글쓴이</span></span><br>
+                                                    <img src="../static/images/icon/views.png" style="width: 10px;height: 10px; margin: 0px; display: inline"><span th:text="${list.getWishlistRecipe().getRecipeViews()}">조회수</span><br>
+
+
+                                                </a><a th:href="@{|/deleteWishlist/${list.id}|}" class="button">삭제</a>
                                             </li>
 
 

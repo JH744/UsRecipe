@@ -18,8 +18,9 @@ public class OrdersRepositoryImpl implements OrdersRepositoryCustom {
         this.queryFactory = new JPAQueryFactory(em);
     }
 
-    public List<Orders> listOrders(String userid){
-        return queryFactory.select(orders).from(orderDetails).join(orderDetails.ordersDetail, orders).where(orders.id.eq(orderDetails.ordersDetail.id).and(orders.ordersMember.userid.eq(userid))).fetch();
+    @Override
+    public List<Orders> findOrdersListByUserid(String userid) {
+        return queryFactory.select(orders).from(orders).where(orders.ordersMember.userid.eq(userid)).fetch();
     }
 
 

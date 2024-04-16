@@ -7,6 +7,9 @@ import java.util.List;
 
 @Repository
 public interface OrdersRepositoryCustom {
+    List<Orders> findOrdersListByUserid(String userid);
+
+
 
 
 }

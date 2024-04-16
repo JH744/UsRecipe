@@ -36,6 +36,7 @@ public class Member {
     private String phone;
     private Integer point;
     private String birth;
+    private String image;
 
     @Enumerated(EnumType.STRING)
     private MemberRole role;
@@ -101,6 +102,11 @@ public class Member {
 
     }
 
+    public Member(String name, Integer point) {
+        this.name = name;
+        this.point = point;
+    }
+
     public static Member createMember(MemberDto memberDto, PasswordEncoder passwordEncoder){
         System.out.println("맴버 생성");
         Member member = Member.builder()
@@ -117,6 +123,22 @@ public class Member {
                 .build();
         return member;
     }
+
+    public static Member createMember(MemberDto memberDto){
+        System.out.println("맴버 생성");
+        Member member = Member.builder()
+                .userid(memberDto.getEmail())
+                .name(memberDto.getName())
+                .nickname(memberDto.getNickname())
+                .email(memberDto.getEmail())
+                .birth(memberDto.getBirth())
+                .phone(memberDto.getPhone())
+                .point(0)
+                .role(MemberRole.MEMBER)
+                .build();
+        return member;
+    }
+
 
     public void newPwd(String password){
         this.password = password;

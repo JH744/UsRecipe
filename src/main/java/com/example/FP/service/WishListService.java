@@ -3,6 +3,8 @@ package com.example.FP.service;
 import com.example.FP.entity.*;
 import com.example.FP.repository.MemberRepository;
 import com.example.FP.repository.RecipeRepository;
+import com.example.FP.repository.MemberRepository;
+import com.example.FP.repository.RecipeRepository;
 import com.example.FP.repository.WishListRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -23,8 +25,7 @@ public class WishListService {
         return wr.findByUserid(userid);
     }
 
-
-
+    public void deleteWishlist(Long id){wr.deleteById(id);}
 
 
     //레시피목록 찜버튼 클릭   위시리스트추가
@@ -40,7 +41,7 @@ public class WishListService {
 
 
     public List<WishList> findById(Long id, long memberId) {
-    return wr.findByWishlistMemberIdAndWishlistRecipeId(memberId, id);
+        return wr.findByWishlistMemberIdAndWishlistRecipeId(memberId, id);
     }
 
     // 로그인회원id와 레시피id가 일치하는 위시리스트삭제.

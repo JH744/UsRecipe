@@ -17,5 +17,4 @@ public class IngredientCategoryDto {
 
     private String ingredient_category_name;
 
-    private List<Ingredient> ingredient_list;
 }

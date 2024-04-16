@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,6 +28,11 @@ public class WishListController {
         model.addAttribute("list",ws.findAllWishList(userid));
 
         return "/wishList";
+    }
+    @GetMapping("/deleteWishlist/{id}")
+    public String deleteWishlist(@PathVariable Long id){
+        ws.deleteWishlist(id);
+        return "redirect:/wishList";
     }
 
 

@@ -24,6 +24,8 @@ public class IngredientController {
     private final IngredientService is;
 
 
+
+
     // 재료 목록 불러오기 -페이지는 경로변수로 받고, 나머지는 쿼리스트링으로 받음
     @GetMapping("/listIngredient/{page}")
     public String listAll(@PathVariable("page") int page, Model model,
@@ -107,11 +109,15 @@ public class IngredientController {
     @ResponseBody
     public List<Ingredient> searchIngredient(@RequestParam("keyword") String keyword){
         List<Ingredient> list = is.findAllByIngredientNameContaining(keyword);
-        for (Ingredient i : list){
-            System.out.println("재료명 : "+i.getIngredientName());
-        }
         return list;
     }
+    @GetMapping("/deleteIngredient/{id}")
+    public String deleteIngredient(@PathVariable Long id){
+        is.deleteIngredient(id);
+        return "redirect:/admin/ingredient";
+    }
+
+
 
 
 }
