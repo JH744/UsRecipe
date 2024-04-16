@@ -58,11 +58,20 @@ public class RecipeService {
         return  rr.findByTitleContaining(keyword, pageable);
     }
 
-
-    public Optional<Recipe> HowAbout(Long id){
-
-        return rr.findById(id);
+    // 이 레시피 어때요?
+    public Recipe HowAbout(){
+        //총 레시피의 수를 구함
+        long totalRecipe =  rr.count();
+        Random r = new Random();
+        //랜덤으로 레시피를 하나 가져옴
+        Long randomId = r.nextLong(totalRecipe +1 );
+        System.out.println("난수:"+randomId);
+              Optional<Recipe> optional = rr.findById(randomId);
+        Recipe recipe =optional.get();
+            return recipe;
     }
+
+
     // 위시리스트에서 가장 많은 찜을 받은 레시피를 가져옴
     public List<Recipe> listTop4() {
         List<Object[]> top4Data = wr.findTopPopularRecipes(PageRequest.of(0, 4));

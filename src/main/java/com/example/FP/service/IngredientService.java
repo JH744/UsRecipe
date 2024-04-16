@@ -1,5 +1,6 @@
 package com.example.FP.service;
 
+import com.example.FP.dto.IngredientDto;
 import com.example.FP.entity.Ingredient;
 import com.example.FP.entity.IngredientCategory;
 import com.example.FP.entity.Member;

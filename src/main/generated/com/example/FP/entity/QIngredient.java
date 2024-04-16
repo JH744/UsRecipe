@@ -26,13 +26,13 @@ public class QIngredient extends EntityPathBase<Ingredient> {
 
     public final NumberPath<Integer> ingredientAmount = createNumber("ingredientAmount", Integer.class);
 
-    public final ListPath<Cart, QCart> ingredientCartList = this.<Cart, QCart>createList("ingredientCartList", Cart.class, QCart.class, PathInits.DIRECT2);
+    public final StringPath ingredientDetail = createString("ingredientDetail");
+
+    public final StringPath ingredientImage = createString("ingredientImage");
 
     public final QIngredientCategory ingredientIngredientCategory;
 
     public final StringPath ingredientName = createString("ingredientName");
-
-    public final ListPath<OrderDetails, QOrderDetails> ingredientOrderdetailList = this.<OrderDetails, QOrderDetails>createList("ingredientOrderdetailList", OrderDetails.class, QOrderDetails.class, PathInits.DIRECT2);
 
     public final StringPath ingredientOrigin = createString("ingredientOrigin");
 
@@ -40,11 +40,7 @@ public class QIngredient extends EntityPathBase<Ingredient> {
 
     public final NumberPath<Integer> ingredientQty = createNumber("ingredientQty", Integer.class);
 
-    public final ListPath<Reply, QReply> ingredientReplyList = this.<Reply, QReply>createList("ingredientReplyList", Reply.class, QReply.class, PathInits.DIRECT2);
-
     public final StringPath ingredientUnit = createString("ingredientUnit");
-
-    public final ListPath<RecipeIngredient, QRecipeIngredient> recipeIngredientList = this.<RecipeIngredient, QRecipeIngredient>createList("recipeIngredientList", RecipeIngredient.class, QRecipeIngredient.class, PathInits.DIRECT2);
 
     public QIngredient(String variable) {
         this(Ingredient.class, forVariable(variable), INITS);

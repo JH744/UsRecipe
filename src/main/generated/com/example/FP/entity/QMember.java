@@ -28,6 +28,8 @@ public class QMember extends EntityPathBase<Member> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final StringPath image = createString("image");
+
     public final ListPath<Inquiry, QInquiry> inquiryList = this.<Inquiry, QInquiry>createList("inquiryList", Inquiry.class, QInquiry.class, PathInits.DIRECT2);
 
     public final ListPath<Alarm, QAlarm> memberAlarmList = this.<Alarm, QAlarm>createList("memberAlarmList", Alarm.class, QAlarm.class, PathInits.DIRECT2);

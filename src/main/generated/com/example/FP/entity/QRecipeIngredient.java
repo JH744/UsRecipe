@@ -32,6 +32,8 @@ public class QRecipeIngredient extends EntityPathBase<RecipeIngredient> {
 
     public final QRecipe recipeIngredientRecipe;
 
+    public final StringPath recipeIngredientUnit = createString("recipeIngredientUnit");
+
     public QRecipeIngredient(String variable) {
         this(RecipeIngredient.class, forVariable(variable), INITS);
     }

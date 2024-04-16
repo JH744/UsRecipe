@@ -28,6 +28,8 @@ public class QOrders extends EntityPathBase<Orders> {
 
     public final ListPath<Point, QPoint> orderPointList = this.<Point, QPoint>createList("orderPointList", Point.class, QPoint.class, PathInits.DIRECT2);
 
+    public final StringPath ordersContent = createString("ordersContent");
+
     public final DateTimePath<java.time.LocalDateTime> ordersDate = createDateTime("ordersDate", java.time.LocalDateTime.class);
 
     public final QMember ordersMember;

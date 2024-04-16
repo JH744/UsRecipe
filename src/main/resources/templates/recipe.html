@@ -120,16 +120,14 @@
                 <h3>이 레시피는 어때요?</h3>
                 <div class="serchbox">
                     <input type="text" class="searchbar" id="searchbar">
-                    <button class="btnsearch" id="btnsearch">
-                    검색
-                    </button>
+                    <button class="btnsearch" id="btnsearch">검색</button>
                  </div>
-                 <div class="Thisrecipe">
-                    <h3>골-든 오믈렛</h3>
+                 <div class="Thisrecipe"> <!--여기에 레시피 사진추가-->
+                    <h3 th:text="${HowAbout.recipeTitle}">이레시피어때요 : 레시피명</h3>
                  </div>
                  <div class="ThisrecipeInfo">
                     <div class="infobox">
-                        <h4>아침을 깨우는 예술, 부드러운 향연</h4>
+                        <h4>아침을 깨우는 예술, 부드러운 향연</h4>  <!--레시피 설명-->
                         <p>황금빛 겉면 아래 숨겨진 부드러움과 고소한 치즈의 조화, 
                             오믈렛은 당신의 아침 식탁을 예술작품으로 변모시킵니다. 
                             신선한 허브와 다채로운 재료가 더해져 매 순간을 

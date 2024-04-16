@@ -29,12 +29,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.*;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
 
 
 @Controller
@@ -112,16 +108,13 @@ public class RecipeController {
 
         //이 레시피는 어때요?
         long HowAboutToday ;
-        //위 번호는 난수로 설정 (범위는 총 레시피수)
-        //model.addAttribute("HowAbout",rs.HowAbout(sd));
+        model.addAttribute("HowAbout",rs.HowAbout());
 
 
         //주간인기레시피
         //찜목록 top4를 불러옴
         List<Recipe> listTop4 =rs.listTop4();
         model.addAttribute("listTop4", listTop4);
-
-
         return "recipe";
     }
 
