@@ -309,18 +309,23 @@ function doSubmit() {
             var recipeThumbnail = $("#recipe_thumbnail").val()
             if (recipeTitle === "") {
                 inputCheck("레시피 제목(을)")
+                return false;
             }
             if (recipeThumbnail === "") {
                 inputCheck("요리 대표 사진(을)")
+                return false;
             }
             if (recipeCategory === "none") {
                 inputCheck("레시피 카테고리")
+                return false;
             }
             if (ingredientDataList === null) {
                 inputCheck("재료 목록(을)")
+                return false;
             }
             if (stepDataList === null) {
                 inputCheck("요리 순서")
+                return false;
             }
             var recipeData = {
                 ingredientDataList: ingredientDataList,
@@ -332,11 +337,19 @@ function doSubmit() {
             var recipeDataList = {
                 "recipeDataList": JSON.stringify(recipeData)
             }
-            console.log("여기로 안오나?")
             $.ajax({
                 url: '/insertRecipe',
                 data: recipeDataList,
-                type: "POST"
+                type: "POST",
+                success:function(){
+                    Swal.fire({
+                        title:"저장되었습니다.",
+                        imageUrl: "../static/images/image_11.png",
+                        imageAlt: "Custom image",
+                    }).then((result)=>{
+                        location.href="/"
+                    })
+                }
             })
         } else {
         }

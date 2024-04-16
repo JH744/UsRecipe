@@ -94,5 +94,14 @@ public class MemberDto {
         this.role = m.getRole();
     }
 
+    public MemberDto(String name, String email, String nickname, String birth, String phone){
+        this.userid = email;
+        this.name = name;
+        this.nickname = nickname;
+        this.email = email;
+        this.phone = phone;
+        this.birth = birth;
+    }
+
     public MemberDto() {}
 }

@@ -9,13 +9,16 @@ import com.example.FP.mapper.RecipeOrderMapper;
 import com.example.FP.mapper.RepiceMapper;
 import com.example.FP.repository.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -23,29 +26,53 @@ public class RecipeService {
 
 
     private final RecipeRepository rr;
+    private final WishListRepository wr;
     private final RecipeIngredientRepository rir;
     private final RecipeOrderRepository ror;
     private final MemberService ms;
     private final RecipeCategoryRepository rcr;
     private final IngredientRepository ir;
 
-// 레시피 목록 불러오기
-//    public List<Recipe> list(){
-//
-//        return rr.findAll();
-//    }
+    // 레시피 목록 불러오기
+    public List<Recipe> findAll(){
 
-    //레시피 목록 페이지네이션//
-    public Page<Recipe> list(){
-        Page<Recipe> recipesList = rr.findPageBy(PageRequest.of(0,8));
+        return rr.findAll();
+    }
+
+    //레시피 목록 카테고리+검색+ 페이지네이션//
+    public Page<Recipe> listRecipes(String keyword, Long categoryId, Pageable pageable) {
+        Page<Recipe> recipesList =
+                rr.findByTitleContainingAndCategory(keyword, categoryId, pageable);
 
         return recipesList;
     }
+    //레시피 전체 목록 + 페이지네이션 + 검색
+    public Page<Recipe> listAll(Pageable pageable, String keyword) {
+        return  rr.findByTitleContaining(keyword, pageable);
+    }
+
+    // 이 레시피 어때요?
+    public Recipe HowAbout(){
+        //총 레시피의 수를 구함
+        long totalRecipe =  rr.count();
+        Random r = new Random();
+        //랜덤으로 레시피를 하나 가져옴. (1부터 총갯수만큼)
+//        Long randomId = r.nextLong(totalRecipe +1 );
+        Long randomId = 1L;
+        System.out.println("난수:"+randomId);
+        Optional<Recipe> optional = rr.findById(randomId);
+        Recipe recipe =optional.get();
+        return recipe;
+    }
 
 
-    public Optional<Recipe> HowAbout(Long id){
-
-        return rr.findById(id);
+    // 위시리스트에서 가장 많은 찜을 받은 레시피를 가져옴
+    public List<Recipe> listTop4() {
+        List<Object[]> top4Data = wr.findTopPopularRecipes(PageRequest.of(0, 4));
+        List<Long> recipeIds = top4Data.stream()
+                .map(entry -> (Long) entry[0]) // Object[]의 첫 번째 요소를 Long으로 캐스팅
+                .collect(Collectors.toList());
+        return rr.findByIdIn(recipeIds);
     }
 
     // 메인페이지 5개 보여줄 레시피
@@ -122,7 +149,15 @@ public class RecipeService {
 //
 //        return recipeDetail;
 //    }
+
+    @Transactional
     public Recipe detailRecipe(Long id){
+        rr.UpdateRecipeViews(id);
         return rr.findById(id).get();
+    }
+
+
+    public void deleteRecipe(Long id) {
+        rr.deleteById(id);
     }
 }

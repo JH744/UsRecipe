@@ -7,7 +7,6 @@ import com.example.FP.service.MemberService;
 import com.example.FP.service.OrdersService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.eclipse.jdt.internal.compiler.ast.Block;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,11 +25,11 @@ public class MemberController {
     private int number; // 이메일 인증 숫자를 저장하는 변수
 
 
-
+    // 로그인 폼
     @GetMapping("/login")
     public void loginForm(){}
 
-
+    // 회원가입 폼
     @GetMapping("/join")
     public String joinForm(Model model){
         System.out.println("회원가입 하기");
@@ -39,6 +38,7 @@ public class MemberController {
         return "/join";
     }
 
+    // 회원가입
     @PostMapping("/join")
     public String joinSubmit(@ModelAttribute(name = "memberFormDto") MemberDto memberFormDto,
                              String addr1,
@@ -51,8 +51,8 @@ public class MemberController {
         System.out.println(memberFormDto.getUserid());
 
 
-        String addr = addr1 + " " + addr2;
-        String birth = year + month + day;
+        String addr = addr1 + " " + addr2; // 주소와 상세 주소 합치기
+        String birth = year + month + day; // 생년월일
         memberFormDto.setAddr(addr);
         memberFormDto.setBirth(birth);
         Member member = Member.createMember(memberFormDto, passwordEncoder);
@@ -60,7 +60,8 @@ public class MemberController {
 
         return "redirect:/joinOk";
     }
-
+    
+    // 회원가입시 아이디 중복 체크
     @PostMapping("/id_check")
     @ResponseBody
     public String checkId(@RequestBody String userid){
@@ -74,6 +75,7 @@ public class MemberController {
         return "success";
     }
 
+    // 회원가입시 닉네임 중복 체크
     @PostMapping("/nickname_check")
     @ResponseBody
     public String checkNickname(@RequestBody String nickname){
@@ -89,22 +91,24 @@ public class MemberController {
     }
 
 
+    // 회원가입 완료 후
     @GetMapping("/joinOk")
     public String joinOk(){
         return "/joinOk";
     }
 
-    @GetMapping("/findUserid")
-    public String findIdForm(){ return "/findUserid"; }
-
-    @PostMapping("/findUserid")
+    // 아이디 찾기
+    @GetMapping("/all/findUserid")
+    public String findIdForm(){ return "/all/findUserid"; }
+    
+    // 아이디 찾기
+    @PostMapping("/all/findUserid")
     public String findIdSubmit(@RequestParam String name, @RequestParam String email, Model model){
-        String toEmail = email.replace("%40", "@").trim();
+        String toEmail = email.replace("%40", "@").trim(); // 이메일 가져오기
         HashMap<String, String > map = memberService.findByNameAndEmail(name, toEmail);
         if (map.get("success").equals("false")) {
-            return "redirect:/findUserid";
+            return "redirect:/all/findUserid";
         }
-
 
         model.addAttribute("name", name);
         model.addAttribute("userid", map.get("userid"));
@@ -112,16 +116,18 @@ public class MemberController {
         return "/findUseridOk";
     }
 
-    @GetMapping("/findUserPwd")
-    public String findPwdForm(){ return "/findPwd"; }
+    // 비밀번호 찾기
+    @GetMapping("/all/findUserPwd")
+    public String findPwdForm(){ return "/all/findPwd"; }
 
-    @PostMapping("/findUserPwd")
+    // 비밀번호 찾기
+    @PostMapping("/all/findUserPwd")
     public String findPwdSubmit(@RequestParam String userid, @RequestParam String email, Model model){
         System.out.println("비밀번호 찾기 클릭");
         String toEmail = email.replace("%40", "@").trim();
         Boolean res = memberService.findByUseridAndEmail(userid, toEmail);
         if (!res) {
-            return "redirect:/findUserPwd";
+            return "redirect:/all/findUserPwd";
         }
 
         try {
@@ -132,28 +138,30 @@ public class MemberController {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return "/emailAuthentication";
+        return "/all/emailAuthentication";
     }
 
-    @PostMapping("/emailAuthentication")
+    // 비밀번호 찾기시 이메일 인증
+    @PostMapping("/all/emailAuthentication")
     public String emailAuthentication(@RequestParam String userid, Model model){
         model.addAttribute("userid", userid);
         return "/newPwd";
     }
 
-
-    @GetMapping("/newPwd")
+    // 새 비밀번호 설정
+    @GetMapping("/all/newPwd")
     public String pwChangeForm(){
-        return "/newPwd";
+        return "/all/newPwd";
     }
 
-    @PostMapping("/newPwd")
+    // 새 비밀번호 설정
+    @PostMapping("/all/newPwd")
     public String pwChangeSubmit(@RequestParam String userid, @RequestParam String password){
         Member m = memberService.findById(userid);
         if (m != null) {
             m.newPwd(passwordEncoder.encode(password));
             memberService.save(m);
-            return "/findPwdOk";
+            return "/all/findPwdOk";
         }
 
         return "/index";
@@ -201,6 +209,12 @@ public class MemberController {
     public String deleteMember(@PathVariable Long id){
         memberService.deleteMember(id);
         return "redirect:/admin/member";
+    }
+
+    @GetMapping("/adminMember")
+    public String memberList(Model model){
+        model.addAttribute("list",memberService.findAllMember());
+        return "/admin/adminMember";
     }
 
 }

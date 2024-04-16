@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface MemberRepository extends JpaRepository<Member,Long>,MemberRepositoryCustom{
 
@@ -18,5 +20,7 @@ public interface MemberRepository extends JpaRepository<Member,Long>,MemberRepos
     Member findByNameAndEmail(String name, String email);
 
     Member findByUseridAndEmail(String userid, String email);
+
+    List<Member> findByIdIn(List<Long> ids);
 
 }

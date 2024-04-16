@@ -1,4 +1,8 @@
 @charset "utf-8";
+.swal2-popup {
+    font-size: 16px;
+}
+
 
 body {
     min-width: 1240px;
@@ -10127,6 +10131,7 @@ body {
 .view_step_cont {
     padding: 6px 10px 60px 136px;
     /*width: 1160px;*/
+    width: 95%;
     font-size: 22px;
 }
 
@@ -28338,3 +28343,4 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     display: flex;
     justify-content: flex-start
 }
+

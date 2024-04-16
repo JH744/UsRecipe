@@ -117,7 +117,17 @@ public class IngredientController {
         return "redirect:/admin/ingredient";
     }
 
+    @GetMapping("/admin/updateIngredient/{id}")
+    public String updateIngredientForm(@RequestParam("id") Long id, Model model) {
+        model.addAttribute("list", is.findAllIngredientCategory());
+        model.addAttribute("i", is.findById(id).get());
+        return "/admin/updateIngredient";
+    }
 
+    @PostMapping("/")
+    public String updateIngredientSubmit(){
 
+        return "";
+    }
 
 }

@@ -1,9 +1,12 @@
 package com.example.FP.service;
 
+import com.example.FP.details.PrincipalDetails;
 import com.example.FP.dto.MemberDto;
 import com.example.FP.entity.Member;
+import com.example.FP.entity.Recipe;
 import com.example.FP.mapper.MemberMapper;
 import com.example.FP.repository.MemberRepository;
+import com.example.FP.repository.RecipeRepository;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,15 +27,15 @@ import java.util.List;
 @Transactional
 public class MemberService implements UserDetailsService {
     private final MemberRepository mr;
+    private final RecipeRepository rr;
 
+    // 존재하는 회원인지 확인
     public void validateDuplicateMember(Member member) {
         Member findMember = mr.findByUserid(member.getUserid());
         if (findMember != null) {
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
     }
-
-
 
     public Long join(Member member){
         validateDuplicateMember(member);
@@ -45,17 +49,12 @@ public class MemberService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("loadUserByUsername 실행");
         Member m = mr.findByUserid(username);
         if (m == null) {
             throw new UsernameNotFoundException(username);
         }
-        UserDetails user = null;
-        user = User.builder()
-                .username(username)
-                .password(m.getPassword())
-                .roles(String.valueOf(m.getRole()))
-                .build();
-        return user;
+        return new PrincipalDetails(m);
     }
 
     public Member findById(String userid){
@@ -151,8 +150,21 @@ public class MemberService implements UserDetailsService {
         return mr.findAll();
     }
 
-    public void deleteMember(Long id){
+    public void deleteMember(Long id) {
         mr.deleteById(id);
+    }
+    // 조회수 높은 상위 5명
+    public List<Member> findTop5(){
+        List<Member> list;
+        List<Member> ids = rr.findMember();
+        ArrayList<Long> arr_id = new ArrayList<>();
+        for (int i = 0; ids.size() > i; i++) {
+            arr_id.add(ids.get(i).getId());
+        }
+        System.out.println(arr_id);
+        list = mr.findByIdIn(arr_id);
+
+        return list;
     }
 
 }

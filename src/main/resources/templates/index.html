@@ -11,6 +11,18 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+    <script>
+        $(function (){
+            //검색 기능
+            $('#btnsearch').click(function() {
+                console.log("검색버튼 클릭됨")
+                var keyword = $('#searchbar').val(); // input 태그에서 값 가져오기
+                var pageNum = 1; // pageNum 값 설정
+                // '/listRecipe'로 GET 요청 수행, 'pageNum' 경로 변수  + 'keyword' 쿼리 파라미터 포함
+                location.href = `/listRecipe/${pageNum}?keyword=${encodeURIComponent(keyword)}`;
+            });
+        })
+    </script>
 </head>
 <body>
 <div class="templateBody">
@@ -29,8 +41,8 @@
                                 <span class="e56_65" style="display: block">레시피를 찾아볼까요?</span>
                             </div>
                             <div style="display: flex; border: black 1px solid; height: 65px; background-color: #FFFFFF;border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
-                                <input class="e56_62" type="text" placeholder="레시피를 검색해 보아요" style="background-color: transparent">
-                                <button style="background-color: transparent; border: none" ><img src='../static/images/image_12.png' style="padding-right: 5px"></button>
+                                <input id="searchbar" class="e56_62" type="text" placeholder="레시피를 검색해 보아요" style="background-color: transparent">
+                                <button id="btnsearch" style="background-color: transparent; border: none" ><img src='../static/images/image_12.png' style="padding-right: 5px"></button>
                             </div>
                         </div>
                     </div>
@@ -40,113 +52,54 @@
             <div>
                 <span class="e56_55">주간 인기 레시피</span>
             </div>
-            <div class=e56_9 style="margin-left: 150px">
-                <div class=e56_52>
-                    <div class="e56_53" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_16.png')">
-                        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-                            <span class="e56_39">초간단 김치볶음밥</span>
-                        </div>
-                    </div>
-                </div>
-                <div class=e56_52>
-                    <div class="e56_53" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_16.png')">
-                        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-                            <span class="e56_39">초간단 김치볶음밥</span>
-                        </div>
-                    </div>
-                </div>
-                <div class=e56_52>
-                    <div class="e56_53" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_16.png')">
-                        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-                            <span class="e56_39">초간단 김치볶음밥</span>
-                        </div>
-                    </div>
-                </div>
-                <div class=e56_52>
-                    <div class="e56_53" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_16.png')">
-                        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-                            <span class="e56_39">초간단 김치볶음밥</span>
-                        </div>
-                    </div>
-                </div>
 
+            <div class=e56_9 style="margin-left: 150px">
+                <th:block th:each="r:${recipe_list}">
+                    <a th:href="@{'/detailRecipe?recipeNum=' + ${r.id}}">
+                        <div class=e56_52>
+                            <div class="e56_53" th:style="'background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url(\'../static/images/' + ${r.recipeThumbnail} + '\')'">
+                                <div style="display: flex; flex-direction: column; justify-content: flex-end;">
+                                    <span class="e56_39" th:text="${r.recipeTitle}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </th:block>
             </div>
 
             <div>
                 <span class="e56_40">많이 찾은 사람들</span>
             </div>
+
             <div class=e56_9>
-                <div class=e56_52>
-                    <div class="e56_99" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_21.png')">
-                        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-                            <span class="e56_39">김희원 쉐프</span>
+                <th:block th:each="m:${member_list}">
+                    <a th:href="@{|/listRecipe/1?member_id=${m.getId()}|}">
+                        <div class=e56_52>
+                            <div class="e56_99" th:style="'background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url(\'../static/images/' + ${m.image} + '\')'">
+                                <div style="display: flex; flex-direction: column; justify-content: flex-end;">
+                                    <span class="e56_39" th:text="${m.nickname}"></span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class=e56_52>
-                    <div class="e56_99" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_21.png')">
-                        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-                            <span class="e56_39">김희원 쉐프</span>
-                        </div>
-                    </div>
-                </div>
-                <div class=e56_52>
-                    <div class="e56_99" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_21.png')">
-                        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-                            <span class="e56_39">김희원 쉐프</span>
-                        </div>
-                    </div>
-                </div>
-                <div class=e56_52>
-                    <div class="e56_99" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_21.png')">
-                        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-                            <span class="e56_39">김희원 쉐프</span>
-                        </div>
-                    </div>
-                </div>
-                <div class=e56_52>
-                    <div class="e56_99" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_21.png')">
-                        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-                            <span class="e56_39">김희원 쉐프</span>
-                        </div>
-                    </div>
-                </div>
+                    </a>
+                </th:block>
             </div>
 
             <div>
                 <span class="e56_23">회원님께 추천하는 레시피</span>
             </div>
             <div class=e56_9 style="margin-left: 150px">
-
-                <div class=e56_52>
-                    <div class="e56_53" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_25.png')">
-                        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-                            <span class="e56_39">초간단 김치볶음밥</span>
+                <th:block th:each="rd:${random_list}">
+                    <a th:href="@{'/detailRecipe?recipeNum=' + ${rd.id}}">
+                        <div class=e56_52>
+                            <div class="e56_53" th:style="'background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url(\'../static/images/' + ${rd.recipeThumbnail} + '\')'">
+                                <div style="display: flex; flex-direction: column; justify-content: flex-end;">
+                                    <span class="e56_39" th:text="${rd.recipeTitle}"></span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class=e56_52>
-                    <div class="e56_53" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_25.png')">
-                        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-                            <span class="e56_39">초간단 김치볶음밥</span>
-                        </div>
-                    </div>
-                </div>
-                <div class=e56_52>
-                    <div class="e56_53" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_25.png')">
-                        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-                            <span class="e56_39">초간단 김치볶음밥</span>
-                        </div>
-                    </div>
-                </div>
-                <div class=e56_52>
-                    <div class="e56_53" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('../static/images/image_25.png')">
-                        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
-                            <span class="e56_39">초간단 김치볶음밥</span>
-                        </div>
-                    </div>
-                </div>
-
+                    </a>
+                </th:block>
             </div>
         </div>
     </div>
