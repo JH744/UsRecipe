@@ -73,7 +73,7 @@
 
             <div class=e56_9>
                 <th:block th:each="m:${member_list}">
-                    <a href="">
+                    <a th:href="@{|/listRecipe/1?member_id=${m.getId()}|}">
                         <div class=e56_52>
                             <div class="e56_99" th:style="'background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url(\'../static/images/' + ${m.image} + '\')'">
                                 <div style="display: flex; flex-direction: column; justify-content: flex-end;">
