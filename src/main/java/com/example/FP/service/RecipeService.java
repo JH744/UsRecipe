@@ -63,7 +63,7 @@ public class RecipeService {
         //총 레시피의 수를 구함
         long totalRecipe =  rr.count();
         Random r = new Random();
-        //랜덤으로 레시피를 하나 가져옴
+        //랜덤으로 레시피를 하나 가져옴. (1부터 총갯수만큼)
         Long randomId = r.nextLong(totalRecipe +1 );
         System.out.println("난수:"+randomId);
               Optional<Recipe> optional = rr.findById(randomId);

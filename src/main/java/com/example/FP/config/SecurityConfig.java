@@ -22,7 +22,7 @@ public class SecurityConfig{
                 .csrf().disable()
                 .authorizeRequests()
                 .requestMatchers("/", "/findUserPwd", "/join","/joinOk","/static/**","/id_check","/sendEmail","/nickname_check","/mailCheck", "/emailAuthentication", "/newPwd", "/findPwdOk", "/findUserid" ,
-                        "/listIngredient/**","/addCart","/cart/**","/checkCart","/addWish","/checkWish"
+                        "/listIngredient/**","/addCart","/cart/**","/checkCart","/addWish","/checkWish","/order/**","/orderOK"
                         ,"/deleteCartItems"
                         ,"listRecipe/**")
                 .permitAll()

@@ -215,4 +215,10 @@ a {
 
 .point2 {
   margin: 0 10px;
+}
+
+.inputBox {
+  width: 800px;
+  height: 36px;
+  border: none;
 }/*# sourceMappingURL=orderPage.css.map */

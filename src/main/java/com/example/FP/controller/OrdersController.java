@@ -1,5 +1,6 @@
 package com.example.FP.controller;
 
+import com.example.FP.entity.Member;
 import com.example.FP.service.MemberService;
 import com.example.FP.service.OrdersService;
 import jakarta.servlet.http.HttpSession;
@@ -17,15 +18,31 @@ public class OrdersController {
 
 
     @GetMapping("/order")
-    public String orderPage(){
+    public String orderPage(Model model){
+
+
+
+        String id = "asd123"; // 임시 id
+       Member m =  ms.findById(id);
+        System.out.println("가져온 회원객체 :"+m);
+        model.addAttribute("m", ms.findById(id));
+        //로그인한 회원정보가져옴
+        //Member m  =  ms.findByUseridInfo(id);
 
         return "orderPage";
     }
+
+
+
     @GetMapping("/orderOK")
     public String orderOK(){
-
         return "orderOK";
     }
+
+
+
+
+
     @GetMapping("/orderList")
     public String orderList(Model model, HttpSession session){
         model.addAttribute("list",os.findAllOrderListByUserid((String)session.getAttribute("userid")));

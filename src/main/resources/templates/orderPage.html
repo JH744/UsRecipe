@@ -32,17 +32,17 @@
             <div class="orderCustomerInfo">
                 <h4 class="fontStyle1">구매자정보</h4>
                 <table class="t1">
-                    <tr>
+                    <tr >
                         <th class="bgapple">이름</th>
-                        <td></td>
+                        <td th:text="${m.name}"></td>
                     </tr>
                     <tr>
                         <th class="bgapple">이메일</th>
-                        <td></td>
+                        <td th:text="${m.email}"></td>
                     </tr>
                     <tr>
                         <th class="bgapple">휴대폰 정보</th>
-                        <td></td>
+                        <td th:text="${m.phone}"></td>
                     </tr>
                 </table>
             </div>
@@ -52,19 +52,19 @@
                 <table class="t2">
                     <tr>
                         <th class="bgapple">이름</th>
-                        <td></td>
+                        <td><input type="text"  class="inputBox" id="Name" th:value="${m.name}"></td>
                     </tr>
                     <tr>
                         <th class="bgapple">이메일</th>
-                        <td></td>
+                        <td><input type="text"  class="inputBox" id="Email" th:value="${m.email}"></td>
                     </tr>
                     <tr>
                         <th class="bgapple">휴대폰 정보</th>
-                        <td></td>
+                        <td><input type="text"  class="inputBox" id="Phone" th:value="${m.phone}"></td>
                     </tr>
                     <tr>
                         <th class="bgapple">주소</th>
-                        <td></td>
+                        <td><input type="text"  class="inputBox" id="Addr" th:value="${m.addr}"></td>
                     </tr>
                 </table>
             </div>
