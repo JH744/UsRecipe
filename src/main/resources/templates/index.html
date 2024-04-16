@@ -11,6 +11,18 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+    <script>
+        $(function (){
+            //검색 기능
+            $('#btnsearch').click(function() {
+                console.log("검색버튼 클릭됨")
+                var keyword = $('#searchbar').val(); // input 태그에서 값 가져오기
+                var pageNum = 1; // pageNum 값 설정
+                // '/listRecipe'로 GET 요청 수행, 'pageNum' 경로 변수  + 'keyword' 쿼리 파라미터 포함
+                location.href = `/listRecipe/${pageNum}?keyword=${encodeURIComponent(keyword)}`;
+            });
+        })
+    </script>
 </head>
 <body>
 <div class="templateBody">
@@ -29,8 +41,8 @@
                                 <span class="e56_65" style="display: block">레시피를 찾아볼까요?</span>
                             </div>
                             <div style="display: flex; border: black 1px solid; height: 65px; background-color: #FFFFFF;border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
-                                <input class="e56_62" type="text" placeholder="레시피를 검색해 보아요" style="background-color: transparent">
-                                <button style="background-color: transparent; border: none" ><img src='../static/images/image_12.png' style="padding-right: 5px"></button>
+                                <input id="searchbar" class="e56_62" type="text" placeholder="레시피를 검색해 보아요" style="background-color: transparent">
+                                <button id="btnsearch" style="background-color: transparent; border: none" ><img src='../static/images/image_12.png' style="padding-right: 5px"></button>
                             </div>
                         </div>
                     </div>
@@ -61,7 +73,7 @@
 
             <div class=e56_9>
                 <th:block th:each="m:${member_list}">
-                    <a href="">
+                    <a th:href="@{|/listRecipe/1?member_id=${m.getId()}|}">
                         <div class=e56_52>
                             <div class="e56_99" th:style="'background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url(\'../static/images/' + ${m.image} + '\')'">
                                 <div style="display: flex; flex-direction: column; justify-content: flex-end;">

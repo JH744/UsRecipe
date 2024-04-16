@@ -21,10 +21,11 @@ public class SecurityConfig{
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .requestMatchers("/","/all/**", "/join","/joinOk","/static/**","/id_check","/sendEmail","/nickname_check","/mailCheck")
+                .requestMatchers("/","/all/**", "/join","/joinOk","/static/**","/id_check","/sendEmail","/nickname_check","/mailCheck", "/error")
                 .permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
+
                 .and()
                 .formLogin().loginPage("/login").permitAll()
                 .defaultSuccessUrl("/")
