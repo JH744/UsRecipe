@@ -198,7 +198,25 @@
                     <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
                     <div id="page">
                         <div class="container">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="orderList_th" style="width: 10%">레시피 번호</th>
+                                    <th scope="col" class="orderList_th">제목</th>
+                                    <th scope="col" class="orderList_th">작성자</th>
+                                    <th scope="col" class="orderList_th">삭제</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="list:${list}">
+                                    <td class="orderList_td"><a th:text="${list.id}" th:href="@{/recipe/${list.id}}"></a></td>
+                                    <td class="orderList_td" th:text="${list.recipeTitle}"></td>
+                                    <td class="orderList_td" th:text="${list.recipeMember.nickname}"></td>
+                                    <td class="orderList_td"><a th:href="@{|/admin/deleteRecipe/${list.id}|}" th:text="삭제"></a></td>
+                                </tr>
 
+                                </tbody>
+                            </table>
 
                         </div>
                         <!-- .container -->

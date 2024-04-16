@@ -80,6 +80,33 @@
                 }
             });
         }
+        function deleteRecipe(num) {
+            Swal.fire({
+                title: "레시피 게시글 삭제",
+                text: "해당 레시피를 정말 삭제하시겠습니까?",
+                icon:"warning",
+                showCancelButton: true,
+                confirmButtonText: '삭제',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "/deleteRecipe?recipeId="+num,
+                        type: "get",
+                        success: function () {
+                            Swal.fire({
+                                title:"삭제되었습니다.",
+                                imageUrl: "../static/images/image_11.png",
+                                imageAlt: "Custom image",
+                            }).then((result)=>{
+                                location.replace("/listRecipe/1")
+                            })
+                        }
+                    })
+                } else {
+                }
+            });
+        }
     </script>
 
 </head>
@@ -189,7 +216,9 @@
 
 
                 </div><!--/view_step -->
-                <div style="display: flex;justify-content: flex-end; margin-top: 15px">
+                <div class="recipeControlBox">
+                    <button style="font-weight:bold;" class="btn-lg btn-delete " th:if="${session.userid==recipe.recipeMember.userid}"  th:onclick="|javascript:deleteRecipe(${recipe.id})|">삭제</button>
+<!--                    <div style="width: 100%;display: inline-block"></div>-->
                     <button class="btn-lg btn-primary" th:if="${session.userid==recipe.recipeMember.userid}"  th:onclick="|location.href='@{'/updateRecipe?recipeId='+${recipe.id}}'|">수정</button>
                     <button class="btn-lg btn-default" onclick="history.back()">목록</button>
                 </div>

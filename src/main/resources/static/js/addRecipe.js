@@ -136,7 +136,7 @@ function delStep(idx) {
                 stepIndex = 2;
             }
             $.each(nextDivs, function (num) {
-                var index = idx + num
+                var index = parseInt(idx) + parseInt(num)
                 var divStepUpload = $(this).children(".divStepUpload")
                 $(this).attr("id", "divStepItem_" + index)
                 $(this).children("p").text("Step" + index)

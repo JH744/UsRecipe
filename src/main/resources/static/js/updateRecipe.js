@@ -1,6 +1,7 @@
 $(function () {
     ingredientIndex = $(".ingredientGroup").length;
-    stepIndex = $(".step").length;
+    stepIndex = ($(".step").length)+1;
+    console.log(stepIndex+"          stepIndex")
 })
 
 
@@ -141,7 +142,7 @@ function delStep(idx) {
                 stepIndex = 2;
             }
             $.each(nextDivs, function (num) {
-                var index = idx + num
+                var index = parseInt(idx) + parseInt(num)
                 var divStepUpload = $(this).children(".divStepUpload")
                 $(this).attr("id", "divStepItem_" + index)
                 $(this).children("p").text("Step" + index)
@@ -298,12 +299,12 @@ function searchIngredient() {
 // 레시피 게시글 저장
 function doSubmit() {
     Swal.fire({
-        title: "레시피 저장",
-        text: "레시피를 저장하시겠습니까?",
+        title: "레시피 수정",
+        text: "수정을 완료하시겠습니까?",
         imageUrl: "../static/images/image_11.png",
         imageAlt: "Custom image",
         showCancelButton: true,
-        confirmButtonText: '저장',
+        confirmButtonText: '수정',
         cancelButtonText: '취소'
     }).then((result) => {
         if (result.isConfirmed) {
@@ -354,7 +355,7 @@ function doSubmit() {
                         imageUrl: "../static/images/image_11.png",
                         imageAlt: "Custom image",
                     }).then((result) => {
-                        location.href = "/"
+                        location.replace("/detailRecipe?recipeNum="+recipeId);
                     })
                 }
             })
