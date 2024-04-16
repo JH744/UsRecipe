@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -88,4 +89,6 @@ public class IngredientService {
     public void deleteIngredient(Long id){
         ir.deleteById(id);
     }
+
+    public Optional<Ingredient> findById(Long id) { return ir.findById(id); }
 }

@@ -22,5 +22,5 @@ public class OrdersService {
         return odr.findByOrderId(id);
     }
 
-
+    public List<Orders> findAll(){ return or.findAll(); }
 }

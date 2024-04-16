@@ -48,7 +48,11 @@ public class OrdersController {
 
 
 
-
+    @GetMapping("/adminOrderList")
+    public String adminOrderList(Model model){
+        model.addAttribute("list", os.findAll());
+        return "/admin/adminOrdersList";
+    }
 
 
 }

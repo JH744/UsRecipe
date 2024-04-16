@@ -31,11 +31,14 @@ public class MailController {
                 String num = String.valueOf(number);
                 map.put("success", "success");
                 map.put("number", num);
+            } else {
+                map.put("success", "fail");
             }
         } catch (Exception e) {
             map.put("success", "fail");
             map.put("error", e.getMessage());
         }
+
         return map;
     }
 
