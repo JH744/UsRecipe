@@ -2,38 +2,42 @@ package com.example.FP.service;
 
 import com.example.FP.entity.OftenQuestion;
 import com.example.FP.repository.OftenQuestionRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class OftenQuestionService {
 
     private final OftenQuestionRepository oftenQuestionRepository;
+
+    @Autowired
+    public OftenQuestionService(OftenQuestionRepository oftenQuestionRepository) {
+        this.oftenQuestionRepository = oftenQuestionRepository;
+    }
+
+    // 모든 자주 묻는 질문을 반환
     public List<OftenQuestion> getAllQuestions() {
         return oftenQuestionRepository.findAll();
     }
 
+    // ID로 자주 묻는 질문을 조회
     public OftenQuestion getQuestionById(Long id) {
-        // 여기서 Optional을 사용해 결과가 없을 경우 null을 반환합니다.
-        return oftenQuestionRepository.findById(id).orElse(null);
+        Optional<OftenQuestion> question = oftenQuestionRepository.findById(id);
+        return question.orElse(null);
     }
 
+    // 새로운 자주 묻는 질문 생성
     public OftenQuestion createQuestion(OftenQuestion question) {
-        // 여기에 입력 데이터 검증 로직을 추가할 수 있습니다.
         return oftenQuestionRepository.save(question);
     }
 
-    public OftenQuestion updateQuestion(Long id, OftenQuestion questionDetails) {
-        OftenQuestion question = getQuestionById(id);
-        // question 객체를 questionDetails로 업데이트합니다.
-        return oftenQuestionRepository.save(question);
-    }
 
+
+    // 자주 묻는 질문 삭제
     public void deleteQuestion(Long id) {
-        OftenQuestion question = getQuestionById(id);
-        oftenQuestionRepository.delete(question);
+        oftenQuestionRepository.deleteById(id);
     }
 }

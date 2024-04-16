@@ -209,7 +209,7 @@
                     <div id="page">
                         <div class="container">
 
-                            <table class="table">
+                            <table class="table" id="inquiryTable">
                                 <thead>
                                 <tr>
                                     <th scope="col" class="orderList_th" style="width: 60%">제목</th>
@@ -219,11 +219,12 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
                                 <tr th:each="list:${list}">
-                                    <td class="orderList_td" th:text="${list.getInquiryTitle()}"><a>1</a></td>
-                                    <td class="orderList_td" th:text="${list.getInquiryDate()}">2024-04-03</td>
-                                    <td class="orderList_td" th:text="${list.getInquiryCategory()}">계정</td>
-                                    <td class="orderList_td" th:text="${list.getInquiryState()}">답변완료</td>
+                                    <td class="orderList_td" th:text="${list.inquiryTitle}"></td>
+                                    <td class="orderList_td" th:text="${list.inquiryDate}"></td>
+                                    <td class="orderList_td" th:text="${list.inquiryCategory}"></td>
+                                    <td class="orderList_td" th:text="${list.inquiryState}"></td>
                                 </tr>
 
                                 </tbody>
@@ -253,6 +254,33 @@
 
 
     </div>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "/inquiryList", // 컨트롤러의 매핑 URL
+                method: "GET", // HTTP 메소드
+                success: function(data) { // 요청 성공 시 실행할 함수
+                    var htmlContent = "";
+                    // 가져온 데이터로 HTML 테이블의 내용을 생성합니다.
+                    $.each(data, function(index, list) {
+                        htmlContent += "<tr>" +
+
+                            "<td>" + list.inquiryTitle+ "</td>" +
+                            "<td>" + list.inquiryDate + "</td>" +
+                            "<td>" + list.inquiryCategory + "</td>" +
+                            "<td>" + list.inquiryState + "</td>" +
+                            // 필드 이름 수정
+                            "</tr>";
+                    });
+                    // 생성된 내용을 테이블에 추가합니다.
+                    $("#inquiryTable tbody").html(htmlContent);
+                },
+                error: function(error) { // 요청 실패 시 실행할 함수
+                    console.error("문의사항 데이터를 불러오는데 실패했습니다.", error);
+                }
+            });
+        });
+    </script>
     <div class="footer" th:replace="footer :: footer"></div>
 </div>
 </body>

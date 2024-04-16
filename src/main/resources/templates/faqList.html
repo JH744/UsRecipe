@@ -12,6 +12,8 @@
     <link rel='stylesheet' href='../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <style>
 
@@ -208,9 +210,9 @@
                     <div id="page">
                         <div class="container">
 
-                            <table class="table">
+                            <table class="table" id="faqTable">
                                 <thead>
-                                <tr>
+                                <tr >
                                     <th scope="col" class="orderList_th" style="width: 20%">번호</th>
                                     <th scope="col" class="orderList_th" >제목</th>
 
@@ -218,87 +220,12 @@
                                 </thead>
                                 <tbody>
 
-                                <tr>
-                                    <td class="orderList_td"><a>15</a></td>
-                                    <td class="orderList_td">교환/반품 진행 시, 배송비가 부과 되나요?</td>
-
-                                </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>14</a></td>
-                                    <td class="orderList_td">선물하기 주문을 취소하고 싶어요</td>
-
-                                </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>13</a></td>
-                                    <td class="orderList_td">포장재를 회수하기도 하나요?</td>
-
-                                </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>12</a></td>
-                                    <td class="orderList_td">아이디, 비밀번호를 잊어버렸습니다. </td>
-
-                                </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>11</a></td>
-                                    <td class="orderList_td">적립금은 언제 지급 되나요?</td>
-
-                                </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>10</a></td>
-                                    <td class="orderList_td">컬리앱이 켜지지 않아요 </td>
-
-                                </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>9</a></td>
-                                    <td class="orderList_td">이벤트 문자는 오는데, 배송완료문자만 오지 않습니다.</td>
-
-                                </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>8</a></td>
-                                    <td class="orderList_td">상품불량인 경우, 교환/반품 기준이 궁금합니다.</td>
-
-                                </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>7</a></td>
-                                    <td class="orderList_td">(샛별배송) 집 앞이 아니라 공동현관/경비실 앞에 배송되었어요.</td>
+                                <tr th:each="q:${questions}">
+                                    <td class="orderList_td" th:text="${q.id}"></td>
+                                    <td class="orderList_td" th:text="${q.oftenQuestionTitle}"></td>
 
                                 </tr>
 
-                                <tr>
-                                    <td class="orderList_td"><a>6</a></td>
-                                    <td class="orderList_td">IOS 환경에서 컬리APP의 주문내역이 확인되지 않습니다 </td>
-
-                                </tr>
-
-                                <tr>
-                                    <td class="orderList_td"><a>5</a></td>
-                                    <td class="orderList_td">카카오톡으로 기존 아이디 연동했는데, 회원정보를 바꾸고 싶어요</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td class="orderList_td"><a>4</a></td>
-                                    <td class="orderList_td">셀프픽업 상품 구매 후 교환권은 어떤 방식으로 받나요?</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td class="orderList_td"><a>3</a></td>
-                                    <td class="orderList_td">(주류) 성인인증이 자꾸 실패합니다.</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td class="orderList_td"><a>2</a></td>
-                                    <td class="orderList_td">구매한 주문건의 영수증은 어떻게 발급 받나요?</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td class="orderList_td"><a>1</a></td>
-                                    <td class="orderList_td">최종 결제처리 후, [결제완료] 창으로 넘어가지 않습니다. </td>
-
-                                </tr>
 
 
 
@@ -324,9 +251,6 @@
         </section>
 
 
-        <footer>
-        </footer>
-
 
     </div>
 
@@ -334,19 +258,21 @@
 <script>
     $(document).ready(function() {
         $.ajax({
-            url: "/oftenQuestions",
-            method: "GET",
-            success: function(data) {
+            url: "/oftenQuestions", // 컨트롤러의 매핑 URL
+            method: "GET", // HTTP 메소드
+            success: function(data) { // 요청 성공 시 실행할 함수
                 var htmlContent = "";
+                // 가져온 데이터로 HTML 테이블의 내용을 생성합니다.
                 $.each(data, function(index, question) {
                     htmlContent += "<tr>" +
                         "<td>" + (index + 1) + "</td>" +
-                        "<td>" + question.often_question_title + "</td>" +
+                        "<td>" + question.oftenQuestionTitle + "</td>" + // 필드 이름 수정
                         "</tr>";
                 });
+                // 생성된 내용을 테이블에 추가합니다.
                 $("#faqTable tbody").html(htmlContent);
             },
-            error: function(error) {
+            error: function(error) { // 요청 실패 시 실행할 함수
                 console.error("FAQ 데이터를 불러오는데 실패했습니다.", error);
             }
         });

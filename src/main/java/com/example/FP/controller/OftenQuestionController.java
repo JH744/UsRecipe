@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.View;
 import java.util.List;
 
 @Controller
-@RequestMapping("/oftenQuestions")
 public class OftenQuestionController {
 
     private final OftenQuestionService oftenQuestionService;
@@ -20,12 +21,13 @@ public class OftenQuestionController {
     public OftenQuestionController(OftenQuestionService oftenQuestionService) {
         this.oftenQuestionService = oftenQuestionService;
     }
-
-    @GetMapping
-    @ResponseBody
-    public ResponseEntity<List<OftenQuestion>> getAllQuestions() {
+//자주묻는 질문 목록
+    @GetMapping("/oftenQuestions")
+    public String getAllQuestions(Model model) {
+        String View ="faqList";
         List<OftenQuestion> questions = oftenQuestionService.getAllQuestions();
-        return ResponseEntity.ok(questions);
+        model.addAttribute("questions" ,questions);
+        return View;
     }
 
     @GetMapping("/{id}")
@@ -42,12 +44,7 @@ public class OftenQuestionController {
         return new ResponseEntity<>(createdQuestion, HttpStatus.CREATED);
     }
 
-    // 자주 묻는 질문을 업데이트하는 메서드
-    @PutMapping("/{id}")
-    public ResponseEntity<OftenQuestion> updateQuestion(@PathVariable Long id, @RequestBody OftenQuestion questionDetails) {
-        OftenQuestion updatedQuestion = oftenQuestionService.updateQuestion(id, questionDetails);
-        return ResponseEntity.ok(updatedQuestion);
-    }
+
 
     // 자주 묻는 질문을 삭제하는 메서드
     @DeleteMapping("/{id}")
