@@ -22,6 +22,7 @@ public class MainController {
 
     @GetMapping("/")
     public String index(HttpSession session, Model model, @AuthenticationPrincipal OAuth2User oauth){
+        System.out.println("홈");
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();
 
@@ -38,11 +39,6 @@ public class MainController {
         model.addAttribute("random_list", rs.randomList());
 
         return "index";
-
-    }
-
-    @GetMapping("/template")
-    public void template(){
 
     }
 }
