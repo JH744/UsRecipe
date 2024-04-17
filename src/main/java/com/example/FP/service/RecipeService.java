@@ -91,7 +91,7 @@ public class RecipeService {
     }
 
     @Transactional
-    public void saveRecipe(Map<String, Object> recipeDataList, String userid) {
+    public Long saveRecipe(Map<String, Object> recipeDataList, String userid) {
         RecipeDto recipeDto = null;
         Long recipeId = null;
         Member member = ms.findById(userid);
@@ -118,7 +118,6 @@ public class RecipeService {
             RecipeCategory recipeCategory = rcr.findById(recipeCategoryId).get();
 
             recipeDto = new RecipeDto(recipeId, recipeTitle, member.getUserid(), null, recipeThumbnail, 0, recipeCategory, member);
-            System.out.println("레시피 아이디 입니다요 :       " + recipeDto.getId());
             Recipe recipe = RepiceMapper.toEntity(recipeDto);
             rr.save(recipe);
 
@@ -144,9 +143,11 @@ public class RecipeService {
                 RecipeOrder recipeOrder = RecipeOrderMapper.toEntity(recipeOrderDto);
                 ror.save(recipeOrder);
             }
+            return recipe.getId();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 //
 //    public Map<String,Object> detailRecipe(Long id){

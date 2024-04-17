@@ -141,12 +141,13 @@ public class RecipeController {
     @ResponseBody
     public String uploadRecipeMainPhoto(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request){
         JsonObject jsonObject = new JsonObject();
-        String fileRoot = "src/main/resources/static/images/";	//저장될 외부 파일 경로
+//        String fileRoot = "src/main/resources/static/images/";	//저장될 외부 파일 경로
+        String fileRoot = request.getServletContext().getRealPath("/images");	//저장될 외부 파일 경로
         String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
         String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 
         String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-        File targetFile = new File(fileRoot + savedFileName);
+        File targetFile = new File(fileRoot+"/"+ savedFileName);
 
         try {
             InputStream fileStream = multipartFile.getInputStream();
@@ -162,13 +163,18 @@ public class RecipeController {
     }
 
     //레시피 사진 변경이 삭제용
-    @PostMapping(value="/deleteRecipePhoto", produces = "application/json")
+    @PostMapping(value="/deleteRecipePhoto", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public void deleteRecipePhoto(@RequestParam("fileName") String fileName){
-        String fileRoot = "src/main/resources/static/images/";	//저장될 외부 파일 경로
+    public void deleteRecipePhoto(@RequestBody Map<String,Object> deleteFileNameList, HttpServletRequest request){
+        System.out.println("동작하는거 맞냐고 싯팔꺼          "+deleteFileNameList.get("deleteFileNameList"));
+        String fileRoot = request.getServletContext().getRealPath("/images");	//저장될 외부 파일 경로
+        List<String> FileNameList = (List<String>) deleteFileNameList.get("deleteFileNameList");
         try {
-            File file = new File(fileRoot+fileName);
-            file.delete();
+            for(String photoName : FileNameList){
+                File file = new File(fileRoot+"/"+photoName);
+                System.out.println(photoName);
+                file.delete();
+            }
         } catch (Exception e) {
             System.out.println("예외발생 : "+e.getMessage());
         }
@@ -176,9 +182,10 @@ public class RecipeController {
 
     //레시피 등록
     @PostMapping("/saveRecipe")
+    @ResponseBody
         public String insertRecipe(@RequestParam Map<String, Object> recipeDataList,HttpSession session){
-        rs.saveRecipe(recipeDataList,session.getAttribute("userid").toString());
-        return "redirect:/listRecipe/1";
+        Long recipeId = rs.saveRecipe(recipeDataList,session.getAttribute("userid").toString());
+        return "detailRecipe?recipeNum="+recipeId;
     }
 
     //레시피 삭제 detailRecipe?recipeNum=값
