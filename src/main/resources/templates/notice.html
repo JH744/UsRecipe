@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
@@ -179,15 +179,15 @@
 </head>
 <body>
 <div class="templateBody">
-    <header></header>
+    <header><div th:replace="~{header :: header}"></div></header>
     <div class="mainBody">
 
         <aside id="news_aside" style="margin-right: 10px;">
             <ul class="news-ul">
                 <li class="news_title_wrap"><h4 class="news-title">고객센터</h4></li>
 
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/notionmain}" style="font-weight: bold;">공지사항<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/question}" style="font-weight: bold; ">자주묻는질문<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/notice}" style="font-weight: bold;">공지사항<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/oftenQuestions}" style="font-weight: bold; ">자주묻는질문<span>></span></a></li>
 
 
             </ul>
@@ -208,7 +208,7 @@
                     <div id="page">
                         <div class="container">
 
-                            <table class="table">
+                            <table class="table" id="noticeTable">
                                 <thead>
                                 <tr>
                                     <th scope="col" class="orderList_th" style="width: 20%">번호</th>
@@ -224,60 +224,7 @@
                                     <td class="orderList_td">관리자</td>
                                     <td class="orderList_td">2024.03.28</td>
                                 </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>9</a></td>
-                                    <td class="orderList_td">[안내] 4월 배송 휴무 일정 안내 (2024.04.01~04.03) </td>
-                                    <td class="orderList_td">관리자</td>
-                                    <td class="orderList_td">2024.03.26</td>
-                                </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>8</a></td>
-                                    <td class="orderList_td">[안내] 3월 배송 휴무 일정 안내 (2024.03.20~03.23) </td>
-                                    <td class="orderList_td">관리자</td>
-                                    <td class="orderList_td">2024.03.19</td>
-                                </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>7</a></td>
-                                    <td class="orderList_td">[이벤트] 3/14(목) 글로벌 나이프 라이브 방송 당첨자 안내(구매인증 50명) </td>
-                                    <td class="orderList_td">관리자</td>
-                                    <td class="orderList_td">2024.03.10</td>
-                                </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>6</a></td>
-                                    <td class="orderList_td">[안내] 유스 소비자 분쟁해결 기준 안내 </td>
-                                    <td class="orderList_td">관리자</td>
-                                    <td class="orderList_td">2024.03.08</td>
-                                </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>5</a></td>
-                                    <td class="orderList_td">[안내] 배송 및 박스 서비스 지역 확대 안내(2024.03.01~) </td>
-                                    <td class="orderList_td">관리자</td>
-                                    <td class="orderList_td">2024.03.08</td>
-                                </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>4</a></td>
-                                    <td class="orderList_td">[안내] 유스캐시 결제 적립금 지급 종료 사전 안내 </td>
-                                    <td class="orderList_td">관리자</td>
-                                    <td class="orderList_td">2024.03.08</td>
-                                </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>3</a></td>
-                                    <td class="orderList_td">[이벤트] 2/27 소울 라이브 이벤트 당첨자 안내 </td>
-                                    <td class="orderList_td">관리자</td>
-                                    <td class="orderList_td">2024.02.29</td>
-                                </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>2</a></td>
-                                    <td class="orderList_td">[이벤트] 2/22 달바 라이브 이벤트 당첨자 안내</td>
-                                    <td class="orderList_td">관리자</td>
-                                    <td class="orderList_td">2024.02.28</td>
-                                </tr>
-                                <tr>
-                                    <td class="orderList_td"><a>1</a></td>
-                                    <td class="orderList_td">[안내] 3월 배송 휴무 일정 안내 (2024.03.01~03.03) </td>
-                                    <td class="orderList_td">관리자</td>
-                                    <td class="orderList_td">2024.02.26</td>
-                                </tr>
+
 
 
                                 </tbody>
@@ -302,12 +249,37 @@
         </section>
 
 
-        <footer>
-        </footer>
+
 
 
     </div>
-    <div class="footer"></div>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "/notice", // 컨트롤러의 매핑 URL
+                method: "GET", // HTTP 메소드
+                success: function(data) { // 요청 성공 시 실행할 함수
+                    var htmlContent = "";
+                    // 가져온 데이터로 HTML 테이블의 내용을 생성합니다.
+                    $.each(data, function(index, list) {
+                        htmlContent += "<tr>" +
+
+                            "<td>" + list.id+ "</td>" +
+                            "<td>" + list.noticeTitle + "</td>" +
+                            "<td>" + list.noticeSubmitDate + "</td>" +
+                            // 필드 이름 수정
+                            "</tr>";
+                    });
+                    // 생성된 내용을 테이블에 추가합니다.
+                    $("#noticeTable tbody").html(htmlContent);
+                },
+                error: function(error) { // 요청 실패 시 실행할 함수
+                    console.error("공지사항 데이터를 불러오는데 실패했습니다.", error);
+                }
+            });
+        });
+    </script>
+    <div th:replace="~{footer :: footer}"></div>
 </div>
 </body>
 </html>
