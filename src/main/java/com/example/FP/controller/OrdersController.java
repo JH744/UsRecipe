@@ -18,7 +18,7 @@ public class OrdersController {
 
 
     @GetMapping("/order")
-    public String orderPage(Model model){
+    public String orderPage(Model model,HttpSession session){
 
 
 
@@ -28,6 +28,7 @@ public class OrdersController {
         model.addAttribute("m", ms.findById(id));
         //로그인한 회원정보가져옴
         //Member m  =  ms.findByUseridInfo(id);
+
 
         return "orderPage";
     }

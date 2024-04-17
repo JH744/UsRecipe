@@ -14,6 +14,47 @@
 <!--    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">-->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+    <script>
+        $(document).ready(function(){
+
+            let orderData;
+            try {
+                orderData = JSON.parse(sessionStorage.getItem('orderData'));
+            } catch (e) {
+                console.error('주문 데이터 파싱 오류:', e);
+                return;
+            }
+            if (!orderData) {
+                console.error('주문 데이터가 존재하지 않습니다.');
+                return;
+            }
+
+            console.log('가져온 주문데이터:'+orderData);
+            console.log('가져온 총주문금액:'+orderData.totalPrice);
+            console.log('가져온 적립예정포인트:'+orderData.points);
+            console.log('가져온 상품명:'+orderData.items[0].name);
+
+            $('#totalItemPrice').html(orderData.totalPrice);
+            $('#totalOrderPrice').html(orderData.totalPrice);
+
+            var items =orderData.items;
+            items.forEach((item,index)=>{
+                var td = $("<td></td>").html(item.name);
+                var td2 = $("<td></td>").html(item.price);
+                var td3 = $("<td></td>").html(item.quantity);
+                var td4 = $("<td></td>").html(item.totalPrice);
+                var tr =  $("<tr></tr>");
+                tr.append(td,td2,td3,td4);
+                $(".t3").append(tr);
+
+            })
+
+        });
+
+
+
+
+    </script>
 </head>
 <body >
     <div class="templateBody">
@@ -73,19 +114,10 @@
                 <h4 class="fontStyle1">배송 물품</h4>
                 <table class="t3">
                     <tr>
-                        <th class="bgapple">상품명</th>
+                        <th class="bgapple w-200" >상품명</th>
+                        <th class="bgapple">상품가격</th>
                         <th class="bgapple">수량</th>
                         <th class="bgapple">가격</th>
-                    </tr>
-                    <tr>
-                        <td>피죤 파워 드릴펑 배수구세정제, 1L</td>
-                        <td>3</td>
-                        <td>60,000원</td>
-                    </tr>
-                    <tr>
-                        <td>피죤 파워 드릴펑 배수구세정제, 1L</td>
-                        <td>3</td>
-                        <td>60,000원</td>
                     </tr>
                 </table>
             </div>
@@ -95,19 +127,23 @@
                 <table class="t4">
                     <tr>
                         <th class="bgapple">총상품가격</th>
-                        <td></td>
+                        <td><span id="totalItemPrice"></span></td>
+                    </tr>
+                    <tr>
+                        <th class="bgapple">적립금</th>
+                        <td><span></span></td>
                     </tr>
                     <tr>
                         <th class="bgapple">배송비</th>
-                        <td></td>
+                        <td><span>0원(배송비 무료이벤트)</span></td>
                     </tr>
                     <tr>
                         <th class="bgapple">총결제금액</th>
-                        <td></td>
+                        <td><span id="totalOrderPrice"></span></td>
                     </tr>
                     <tr>
-                        <th class="bgapple">카드</th>
-                        <td></td>
+                        <th class="bgapple">결제수단</th>
+                        <td>신용카드</td>
                     </tr>
                 </table>
             </div>

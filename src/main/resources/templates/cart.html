@@ -123,6 +123,55 @@
 
                 });
 
+
+
+
+            // 주문하기 버튼 클릭 시
+            $(document).on('click', '.orderbtn', function() {
+                var orderData = gatherOrderData(); // 주문 데이터 수집 함수
+
+                // 선택된 상품이 없다면 경고창 띄우고 리턴함
+                if($('.orderPriceFt2').text() == "0원" ){
+                    alert("선택된 물품이 없습니다.")
+                    return;
+                }
+
+                console.log('수집된 주문데이터:'+orderData);
+                console.log('수집된 총주문금액:'+orderData.totalPrice);
+                console.log('수집된 적립예정포인트:'+orderData.points);
+                console.log('수집된 상품명:'+orderData.items[0].name);
+
+                sessionStorage.setItem('orderData', JSON.stringify(orderData));
+                window.location.href = "/order";
+
+            });
+             // 주문 데이터를 객체로 수집
+            function gatherOrderData() {
+                return {
+                    totalPrice: $('.orderPriceFt2').text(),
+                    points: $('.point2').text(),
+                    items: collectItems()
+                };
+            }
+
+            // 체크된 상품들의 데이터 수집
+            function collectItems() {
+                var items = [];
+                $('.checkItem:checked').each(function() {
+                    var row = $(this).closest('tr');
+                    items.push({
+                        name: row.find('.ingName').text(),
+                        price: row.find('.ingPrice').text(),
+                        quantity: row.find('.inputQty').val(),
+                        totalPrice: row.find('.orderprice').text()
+                    });
+                });
+                return items;
+            }
+
+
+
+
         })
     </script>
 </head>
@@ -149,7 +198,7 @@
                     <tr>
                         <th>전체</th>
                         <th><input type="checkbox" id="checkAll"></th>
-                        <th colspan="2">상품명</th>
+                        <th colspan="2" width="200px">상품명</th>
                         <th>판매가</th>
                         <th>수량</th>
 <!--                        <th>주문관리</th>-->
