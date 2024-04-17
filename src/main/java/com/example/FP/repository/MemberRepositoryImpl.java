@@ -22,6 +22,11 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom{
     }
 
     @Override
+    public Member findByUserid(String userid) {
+        return queryFactory.selectFrom(member).where(member.userid.eq(userid)).fetchOne();
+    }
+
+    @Override
     public String findPasswordById(String userid) {
         String findPassword = queryFactory.select(member.password).from(member).where(member.userid.eq(userid)).fetchOne();
         return findPassword;

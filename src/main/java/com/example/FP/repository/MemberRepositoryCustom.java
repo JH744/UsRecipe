@@ -9,4 +9,5 @@ public interface MemberRepositoryCustom {
     String findPasswordById(String userid);
 
     Member findNamePointOrderCntByUserid(String userid);
+    Member findByUserid(String userid);
 }
