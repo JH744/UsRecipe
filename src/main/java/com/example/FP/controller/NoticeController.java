@@ -51,9 +51,15 @@ public class NoticeController {
         return "redirect:/notice";
     }
 
-    @GetMapping("/noticeDelete/{id}")
+    @GetMapping("/admin/noticeDelete/{id}")
     public String noticeDelete(@PathVariable Long id) {
         ns.deleteNotice(id);
-        return "redirect:/notice";
+        return "/admin/adminNoticeList";
+    }
+
+    @GetMapping("/admin/notice")
+    public String adminNoticeList(Model model){
+        model.addAttribute("list", ns.findAll());
+        return "/admin/adminNoticeList";
     }
 }

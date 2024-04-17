@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
-    <link rel='stylesheet' href='../static/css/woocommerce-layout.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-    <link rel='stylesheet' href='../static/css/woocommerce.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/font-awesome.min.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/style.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce-layout.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/font-awesome.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/style.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
-    <link rel="stylesheet" href="../static/css/footer.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
+    <link rel='stylesheet' href='../../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+    <link rel="stylesheet" href="../../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
     <style>
 
         *{
@@ -50,8 +50,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <style type="text/css">
         input[type]{
-            border: none;
-            background-color: rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
+
+
             margin-bottom: 30px;
         }
 
@@ -173,7 +173,6 @@
 
     </style>
 
-</head>
 <body>
 <div class="templateBody">
     <header>
@@ -196,7 +195,45 @@
         <section id="news_section">
 
             <div id="notion_title_wrap" style="color: black;">
-                <span id="notion_spanB">1대1 문의</span><span id="notion_spanL">회원님의 문의목록을 확인할 수 있습니다.</span>
+                <span id="notion_spanB">1대1 문의 등록</span><span id="notion_spanL">문의를 등록할 수 있습니다.</span>
+                <hr>
+                <h3 style="font-family: Cafe24Dangdanghae">문의하기</h3><br>
+                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae">질문유형</b>
+                <select name="inquiry_category">
+                    <option value="계정">계정</option>
+                    <option value="레시피">레시피</option>
+                    <option value="재료">재료</option>
+                    <option value="결제">결제</option>
+                </select><br>
+                <hr>
+                <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b><input type="text" style="width: 500px">
+                <hr>
+                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">문의내용</b><input type="text" style="width: 550px; height: 600px;">
+                <br><br><br><br>
+
+
+                <b>개인정보 제3자 제공에 관한 동의</b>
+                <hr>
+
+                <div>
+                    개인정보의 제공 대상: 제공되는 개인정보를 받을 제3자 또는 제공 대상이 명시됩니다.
+
+                    제공되는 개인정보 항목: 어떤 종류의 개인정보가 제공되는지 명시됩니다. 예를 들어, 이름, 주소, 이메일 주소, 연락처 등이 포함될 수 있습니다.
+
+                    개인정보의 이용 목적: 제3자가 개인정보를 어떤 목적으로 이용할 것인지 설명됩니다. 예를 들어, 마케팅 활동, 서비스 제공, 연구 등이 있을 수 있습니다.
+
+                    개인정보의 보유 및 이용 기간: 제공된 개인정보를 제3자가 보유하고 이용하는 기간이 명시됩니다.
+
+                    동의 철회 방법: 사용자가 동의를 철회하고 개인정보 제공을 중단할 수 있는 방법이 설명됩니다.
+                    <hr>
+                    <input type="checkbox"> <b>개인정보 제3자 제공에 동의합니다</b>
+                </div>
+
+
+                <input type="submit" value="등록하기" style="margin-left: 380px; background-color: #D65454">
+
+
+
             </div>
 
             <div id="notion_box">
@@ -209,35 +246,17 @@
                     <div id="page">
                         <div class="container">
 
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col" class="orderList_th" style="width: 60%">제목</th>
-                                    <th scope="col" class="orderList_th">등록일자</th>
-                                    <th scope="col" class="orderList_th">질문유형</th>
-                                    <th scope="col" class="orderList_th">답변상태</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="list:${list}">
-                                    <td class="orderList_td" th:text="${list.getInquiryTitle()}"><a>1</a></td>
-                                    <td class="orderList_td" th:text="${list.getInquiryDate()}">2024-04-03</td>
-                                    <td class="orderList_td" th:text="${list.getInquiryCategory()}">계정</td>
-                                    <td class="orderList_td" th:text="${list.getInquiryState()}">답변완료</td>
-                                </tr>
 
-                                </tbody>
-                            </table>
                         </div>
                         <!-- .container -->
 
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
                     <!-- #page -->
-                    <script src='/static/js/jquery.js'></script>
-                    <script src='/static/js/plugins.js'></script>
-                    <script src='/static/js/scripts.js'></script>
-                    <script src='/static/js/masonry.pkgd.min.js'></script>
+                    <script src='/js/jquery.js'></script>
+                    <script src='/js/plugins.js'></script>
+                    <script src='/js/scripts.js'></script>
+                    <script src='/js/masonry.pkgd.min.js'></script>
 
                     </body>
 

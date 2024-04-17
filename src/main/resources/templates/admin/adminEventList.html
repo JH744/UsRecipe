@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>유스레시피</title>
-    <link rel='stylesheet' href='../static/css/woocommerce-layout.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-    <link rel='stylesheet' href='../static/css/woocommerce.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/font-awesome.min.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/style.css' type='text/css' media='all'/>
+    <title>Title</title>
+    <link rel='stylesheet' href='../../static/css/woocommerce-layout.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/font-awesome.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/style.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
-    <link rel="stylesheet" href="../static/css/footer.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
+    <link rel='stylesheet' href='../../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+    <link rel="stylesheet" href="../../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
     <style>
 
         *{
@@ -167,8 +167,11 @@
             text-align: center;
 
         }
-    </style>
 
+
+
+
+    </style>
 </head>
 <body>
 <div class="templateBody">
@@ -177,79 +180,62 @@
     </header>
     <div class="mainBody">
 
-        <aside id="news_aside" style="margin-right: 10px; margin-top: 300px">
-            <ul class="news-ul">
-                <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
+        <aside id="news_aside" style="margin-right: 10px;" th:replace="/admin/adminSidebar :: adminSidebar">
 
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/orderList}" style="font-weight: bold;">주문내역<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/pointList}" style="font-weight: bold;">적립내역<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/inquiryList}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/pwCheckDataChange}" style="font-weight: bold;">정보변경<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/wishList}" style="font-weight: bold;">찜목록<span>></span></a></li>
-
-            </ul>
         </aside>
         <section id="news_section">
-            <table style="border: none; width: 60%; margin-left: 150px; margin-bottom: 100px;">
-                <tr style="border-top: none;">
-                    <th style="color: black;" class="mypage_myinfo_th">이름</th>
-                    <th style="color: black" class="mypage_myinfo_th">적립금</th>
 
-                </tr>
-                <tr style="border-bottom: none">
-                    <td class="mypage_myinfo_td" th:text="${info.name}">김김김</td>
-                    <td class="mypage_myinfo_td" th:text="${info.point}">1000원</td>
-
-                </tr>
-            </table>
-            <div id="notion_title_wrap" style="color: black">
-                <span id="notion_spanB">주문목록</span><span id="notion_spanL">회원님의 주문목록을 확인할 수 있습니다.</span>
+            <div id="notion_title_wrap" style="color: black;">
+                <span id="notion_spanB">이벤트 관리</span>
             </div>
-            <hr>
+
             <div id="notion_box">
 
             </div>
 
             <div style="margin-top:50px;" >
-                <div style="text-align:left;">
+                <div style=" text-align:left;">
                     <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
                     <div id="page">
                         <div class="container">
-
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th scope="col" class="orderList_th">번호</th>
-                                    <th scope="col" class="orderList_th">제품명</th>
-                                    <th scope="col" class="orderList_th">결제금액</th>
-                                    <th scope="col" class="orderList_th">주문상태</th>
+                                    <th scope="col" class="orderList_th" style="width: 10%">이벤트 번호</th>
+                                    <th scope="col" class="orderList_th">제목</th>
+                                    <th scope="col" class="orderList_th">시작일자</th>
+                                    <th scope="col" class="orderList_th">종료일자</th>
+                                    <th scope="col" class="orderList_th">삭제</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="list:${list}">
-                                    <td class="orderList_td" th:text="${list.getId()}">1</td>
-                                    <td class="orderList_td" th:text="${list.getOrdersContent()}">Otto</td>
-                                    <td class="orderList_td"><a th:text="${list.getOrdersSalePrice()}" th:href="@{|/orderDetail/${list.getId()}|}">10000원</a></td>
-                                    <td class="orderList_td" th:text="${list.getOrdersOrderState().getState()}">asdf</td>
+                                    <td class="orderList_td"><a th:text="${list.id}" th:href="@{/recipe/${list.id}}"></a></td>
+                                    <td class="orderList_td" th:text="${list.eventTitle}"></td>
+                                    <td class="orderList_td" th:text="${list.eventStartDate}"></td>
+                                    <td class="orderList_td" th:text="${list.eventEndDate}"></td>
+                                    <td class="orderList_td"><a th:href="@{|/admin/eventDelete/${list.id}|}" th:text="삭제"></a></td>
                                 </tr>
 
                                 </tbody>
                             </table>
+
                         </div>
                         <!-- .container -->
 
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
                     <!-- #page -->
-                    <script src='/static/js/jquery.js'></script>
-                    <script src='/static/js/plugins.js'></script>
-                    <script src='/static/js/scripts.js'></script>
-                    <script src='/static/js/masonry.pkgd.min.js'></script>
+                    <script src='/js/jquery.js'></script>
+                    <script src='/js/plugins.js'></script>
+                    <script src='/js/scripts.js'></script>
+                    <script src='/js/masonry.pkgd.min.js'></script>
 
                     </body>
 
                 </div>
             </div>
+
 
         </section>
 

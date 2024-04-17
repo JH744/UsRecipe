@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>유스레시피</title>
     <link rel='stylesheet' href='../../static/css/woocommerce-layout.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='../../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
     <link rel='stylesheet' href='../../static/css/woocommerce.css' type='text/css' media='all'/>
@@ -86,10 +86,6 @@
             background: #D65454;
             list-style-type: none;
         }
-        .orderList_th{
-            text-align: center;
-
-        }
         .news-title{
             font-family: 'Cafe24Simplehae';
             font-size: 25px;
@@ -106,11 +102,6 @@
             border: 1px solid #dddddd;
             list-style-type: none;
         }
-        .orderList_td{
-            text-align: center;
-            display:table-cell;
-            vertical-align:middle;
-        }
         .news_list_wrap{
             border: 1px solid #dddddd;
             padding: 15px 0 15px 10px;
@@ -122,7 +113,7 @@
         }
         /*.news-ul a:link, .news-ul a:visited, .news-ul a:active{*/
         /*    text-decoration: none;*/
-        /*    color: #ffa550;*/
+        /*    color: #;*/
         /*}*/
         .news-ul a:hover{
             color: #D65454;
@@ -139,7 +130,7 @@
             font-family: 'Cafe24Dangdanghae';
             font-size: 35px;
             padding-right:20px ;
-
+            color: black;
         }
         #notion_spanL{
             font-family: 'Cafe24Simplehae';
@@ -154,19 +145,6 @@
             text-decoration: underline;
             font-weight: bold;
         }
-        th{
-            font-family: Cafe24Dangdanghae;
-        }
-        .mypage_myinfo_td{
-            text-align: center;
-            color: black;
-            font-family: Cafe24Dangdanghae;
-            font-size: 24px;
-        }
-        .mypage_myinfo_th{
-            text-align: center;
-
-        }
 
 
 
@@ -180,47 +158,70 @@
     </header>
     <div class="mainBody">
 
-        <aside id="news_aside" style="margin-right: 10px;" th:replace="/admin/adminSidebar :: adminSidebar">
+        <aside id="news_aside" style="margin-right: 10px;">
+            <ul class="news-ul">
+                <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
 
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/orderList}" style="font-weight: bold;">주문내역<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/pointList}" style="font-weight: bold;">적립내역<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/inquiryList}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/pwCheckDataChange}" style="font-weight: bold;">정보변경<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/wishList}" style="font-weight: bold;">찜목록<span>></span></a></li>
+
+            </ul>
         </aside>
         <section id="news_section">
-
-            <div id="notion_title_wrap" style="color: black;">
-                <span id="notion_spanB">주문관리</span>
+            <div id="notion_title_wrap">
+                <span id="notion_spanB">찜목록</span><span id="notion_spanL">회원님의 레시피 찜 목록을 보여줍니다</span>
             </div>
-
+            <hr>
             <div id="notion_box">
 
             </div>
 
             <div style="margin-top:50px;" >
-                <div style=" text-align:left;">
+                <div style="margin-left: 100px; text-align:left;">
                     <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
                     <div id="page">
                         <div class="container">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col" class="orderList_th" style="width: 10%">주문번호</th>
-                                    <th scope="col" class="orderList_th">상품명</th>
-                                    <th scope="col" class="orderList_th">주문일자</th>
-                                    <th scope="col" class="orderList_th">가격</th>
-                                    <th scope="col" class="orderList_th">구매자</th>
-                                    <th scope="col" class="orderList_th">삭제</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="list:${list}">
-                                    <td class="orderList_td" ><a th:text="${list.getId()}" th:href="@{/orderDetail/${list.getId()}}"></a></td>
-                                    <td class="orderList_td" th:text="${list.ordersContent}">kim</td>
-                                    <td class="orderList_td" th:text="${list.ordersDate}">seoul</td>
-                                    <td class="orderList_td" th:text="${list.ordersTotalPrice}">seoul</td>
-                                    <td class="orderList_td" th:text="${list.ordersMember.name}">seoul</td>
-                                    <td class="orderList_td"><a th:href="@{|/deleteMember/${list.getId()}|}" th:text="삭제">삭제</a></td>
-                                </tr>
 
-                                </tbody>
-                            </table>
+                            <!-- #masthead -->
+                            <div id="content" class="site-content">
+                                <div id="primary" class="content-area column full">
+                                    <main id="main" class="site-main" role="main">
+
+                                        <ul class="products">
+
+                                            <li class="product"  th:each="list:${list}">
+                                                <a th:href="@{|/detailRecipe?recipeNum=${list.id}|}">
+
+                                                    <th:block th:if="${list.getWishlistRecipe().getRecipeUrl() != null}">
+                                                    <iframe id="youtube" th:src="${list.getWishlistRecipe().getRecipeUrl()}"
+                                                            title="YouTube video player" frameborder="0"
+                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                            allowfullscreen style="width: 200px;height: 200px;"></iframe>
+                                                    </th:block>
+
+                                                    <th:block th:if="${list.getWishlistRecipe().getRecipeUrl()==null}">
+                                                        <img th:src="@{|/../static/images/${list.getWishlistRecipe().getRecipeThumbnail()}|}" style="padding-top: -50px; width: 200px;height: 200px;">
+                                                    </th:block>
+                                                    <h3 th:text="${list.getWishlistRecipe().getRecipeTitle()}" style="font-family: Cafe24Dangdanghae;margin-bottom: 20px">상품명</h3>
+                                                    <span class="price"><span class="amount" th:text="${list.getWishlistRecipe().getRecipeWriter()}" style="font-family: Cafe24Dangdanghae;">글쓴이</span></span><br>
+                                                    <img src="../../static/images/icon/views.png" style="width: 10px;height: 10px; margin: 0px; display: inline"><span th:text="${list.getWishlistRecipe().getRecipeViews()}">조회수</span><br>
+
+
+                                                </a><a th:href="@{|/deleteWishlist/${list.id}|}" class="button">삭제</a>
+                                            </li>
+
+
+                                        </ul>
+
+                                    </main>
+                                    <!-- #main -->
+                                </div>
+                                <!-- #primary -->
+                            </div>
+                            <!-- #content -->
                         </div>
                         <!-- .container -->
 
@@ -234,7 +235,7 @@
 
                     </body>
 
-                </div>
+            </div>
             </div>
 
 
