@@ -11,6 +11,7 @@ $녹색: #74B243;
 
 body{
   overflow-y: auto;
+  font-family:'Poppins', 'Noto Sans KR', sans-serif;
 }
 
 a{
@@ -91,10 +92,10 @@ a{
   list-style: none;
   display: flex;
   justify-content: space-between;
-  width: 250px;
+  width: 300px;
   height: 20px;
   margin: auto;
-  padding: 20px 0 20px 50px ;
+  padding: 20px 0 20px 10px ;
 }
 
 .storeContainer2{
@@ -160,27 +161,32 @@ a{
 
 
 
-.pageBox{
-  width: 200px;
-  height: 20px;
-  margin: auto;
+  //페이지네이션
+  .pageBox{
+    width: 200px;
+    height: 20px;
+    margin: auto;
+    text-align: center;
+  }
   
-}
+  
+  .pageNum{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid gray;
+    text-align: center;
+    padding-bottom: 3px;
+    border-radius: 3px;
+  
+  }
+  
+  .pageNum:hover{
+    background-color: #D65454;
+    color: #fff;
+  }
 
 
-.pageNum{
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 1px solid gray;
-  text-align: center;
-
-}
-
-.pageNum:hover{
-  background-color: #D65454;
-  color: #fff;
-}
 
 .modelContainer{
     position: relative;

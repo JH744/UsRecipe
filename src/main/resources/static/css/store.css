@@ -1,6 +1,7 @@
 @charset "UTF-8";
 body {
   overflow-y: auto;
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
 }
 
 a {
@@ -55,10 +56,10 @@ a {
   list-style: none;
   display: flex;
   justify-content: space-between;
-  width: 250px;
+  width: 300px;
   height: 20px;
   margin: auto;
-  padding: 20px 0 20px 50px;
+  padding: 20px 0 20px 10px;
 }
 
 .storeContainer2 {
@@ -115,6 +116,7 @@ a {
   width: 200px;
   height: 20px;
   margin: auto;
+  text-align: center;
 }
 
 .pageNum {
@@ -123,6 +125,8 @@ a {
   height: 20px;
   border: 1px solid gray;
   text-align: center;
+  padding-bottom: 3px;
+  border-radius: 3px;
 }
 
 .pageNum:hover {
