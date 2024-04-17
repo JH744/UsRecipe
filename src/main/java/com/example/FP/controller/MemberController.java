@@ -4,7 +4,6 @@ import com.example.FP.dto.MemberDto;
 import com.example.FP.entity.Member;
 import com.example.FP.service.MailService;
 import com.example.FP.service.MemberService;
-import com.example.FP.service.OrdersService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -183,23 +182,25 @@ public class MemberController {
 
     }
     @GetMapping("/dataChange")
-    public String dataChangeForm(Model model,MemberDto memberDto){
+    public String dataChangeForm(Model model,MemberDto memberDto,HttpSession session){
         model.addAttribute("memberDto",memberDto);
+        model.addAttribute("login", memberService.findById((String)session.getAttribute("userid")));
 
 
         return "/dataChange";
     }
     @PostMapping("/dataChange")
     public String dataChangeSubmit(MemberDto memberDto,String addr1, String addr2){
-
-        Member member = Member.createMember(memberDto,passwordEncoder);
-        memberService.dataChange(member);
+        System.out.println("정보변경");
 
         String addr = addr1 + " " + addr2;
-
         memberDto.setAddr(addr);
 
-        memberService.dataChange(member);
+        System.out.println("id값 : " + memberDto.getId());
+
+        memberService.updateMember(memberDto.getId(),memberDto);
+
+        System.out.println("정보변경 완료");
 
         return "redirect:/";
 

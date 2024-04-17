@@ -3,28 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
-    <link rel='stylesheet' href='../static/css/woocommerce-layout.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-    <link rel='stylesheet' href='../static/css/woocommerce.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/font-awesome.min.css' type='text/css' media='all'/>
+
+    <link rel='stylesheet' href='../../static/css/font-awesome.min.css' type='text/css' media='all'/>
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href='../static/css/style.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/style.css' type='text/css' media='all'/>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="/static/css/join.css">
+    <link rel="stylesheet" href="/css/join.css">
 
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
-    <link rel="stylesheet" href="../static/css/footer.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
+    <link rel='stylesheet' href='../../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+    <link rel="stylesheet" href="../../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
+
         $(function () {
-            var check_id = false;
-            var email_check = false;
+
+
+
             var nickname_check = false;
-            var authcode_check = false;
+
+
+
 
             function pw_check() {
                 var pw = $(".field_pw input").val();                   // 변수 pw에 pw값 대입
@@ -55,15 +57,15 @@
                 var pwd1 = $(".field_pw input").val();
                 var pwd2 = $(".field_repw input").val();
 
-                if (pwd1 != '' && pwd2 == '') {          //둘다 빈칸일 경우 아무것도 하지 않음
+                if (pwd1 != '' && pwd2 == '') {
                     null;
-                } else if (pwd1 != "" || pwd2 != "") {     // 빈칸이 아닐 경우
-                    if (pwd1 == pwd2) {                    // 비교해서 같으면
+                } else if (pwd1 != "" || pwd2 != "") {
+                    if (pwd1 == pwd2) {
                         $(".field_repw .txt_guide .txt_case1").css('color', '#0f851a');
                         $(".field_repw .txt_guide .txt_case1").text("비밀번호가 동일합니다.");
 
 
-                    } else {        // 비교해서 같지 않으면
+                    } else {
                         $(".field_repw .txt_guide .txt_case1").css('color', '#b3130b');
                         $(".field_repw .txt_guide .txt_case1").text("비밀번호가 일치하지 않습니다.");
                     }
@@ -132,10 +134,7 @@
 
             //닉네임 중복 체크
             $('.field_nickname .btn').click(function () {
-                if ($('.field_nickname input').val() == '') {    //만약에 아무것도 입력 되지 않은 상태면
-                    alert('닉네임을 입력해주세요');
-                    return;
-                }
+
                 nickname_overlap_input = document.querySelector('input[name="nickname"]');
                 var nickname = $('.field_nickname input').val();
                 console.log(nickname);
@@ -215,18 +214,30 @@
             })
             $("#singup").click(function (event){
                 var check = false;                   //check변수에 false를 넣어주고 다른 함수들이 false를 반환하면 다음페이지로 못넘어가게 설정
-                if(on_pw_check() == check){
-                    event.preventDefault()
-                    return false;
-                }else if(on_pw2_check() == check) {
-                    event.preventDefault()
-                    return false;
+
+                $(".input_nickname").on("input",function (){
+                    alert("입력")
+                    if (nickname_check == check) {
+                        event.preventDefault();
+                        alert("닉네임 중복확인 하시오");
+                        return false;
+                    }
+                })
+
+                if( $(".field_pw input")!=null){
+                    if (on_pw_check() == check) {
+                        event.preventDefault()
+                        return false;
+                    }
+                    else if(on_pw2_check() == check) {
+                        event.preventDefault()
+                        return false;
+                    }
+
                 }
-                 else if(nickname_check == check) {
-                    event.preventDefault()
-                    alert("닉네임 중복확인 하시오")
-                    return false;
-                } else if(on_addr1_check() == check) {
+
+
+                if(on_addr1_check() == check) {
                     event.preventDefault()
                     return false;
                 }
@@ -425,15 +436,16 @@
                                     <main id="main" class="site-main" role="main">
 
                                         <div class="type_form member_join">
-                                            <form id="form" method="post"  action="/dataChange" th:object="${memberDto}">
+                                            <form id="form" method="post"  action="/dataChange">
                                                 <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+                                                <input type="hidden" name="id" th:value="${login.id}">
                                                 <table class="tbl_comm">
                                                     <tbody>
                                                     <tr class="fst field_id">
                                                         <th>아이디
                                                         </th>
                                                         <td>
-                                                            <input type="text" th:name="userid" th:field="*{userid}" maxlength="16" option="regId" onkeyup="id_check()"  th:placeholder="${session.userid}" readonly>
+                                                            <input type="text" maxlength="16" option="regId" onkeyup="id_check()"  th:placeholder="${session.userid}" readonly>
                                                             <p class="txt_guide square">
                                                 <span class="txt txt_case1">
                                                     6자 이상의 영문 혹은 영문과 숫자를 조합
@@ -449,7 +461,7 @@
                                                         </th>
                                                         <td>
                                                             <input type="password"
-                                                                   th:field="*{password}" option="regPass" onkeyup="pw_check()" maxlength="16" class="reg_pw bad" placeholder="비밀번호를 입력해주세요">
+                                                                   name="password" option="regPass" onkeyup="pw_check()" maxlength="16" class="reg_pw bad" placeholder="비밀번호를 입력해주세요">
                                                             <p class="txt_guide square">
                                                 <span class="txt txt_case1">
                                                     10자 이상 입력
@@ -482,7 +494,7 @@
 
                                                         </th>
                                                         <td>
-                                                            <input type="text" th:name="nickname" th:field="*{nickname}"  label="닉네임" placeholder="닉네임을 입력해주세요">
+                                                            <input type="text" class="input_nickname" name="nickname" th:value="${login.getNickname()}"  label="닉네임" placeholder="닉네임을 입력해주세요">
                                                             <a href="#" class="btn default">중복확인</a>
                                                         </td>
                                                     </tr>
@@ -495,7 +507,7 @@
 
                                                         <td>
                                                             <div class="phone_num">
-                                                                <input type="text" pattern="[0-9]*" th:field="*{phone}" placeholder="숫자만 입력해주세요" class="inp">
+                                                                <input type="text" pattern="[0-9]*" name="phone" th:value="${login.getPhone()}" placeholder="숫자만 입력해주세요" class="inp">
 
                                                             </div>
                                                         </td>
@@ -510,7 +522,7 @@
                                                             <a href="#" id="addressSearch" class="search">
                                                                 <span id="addressNo" class="address_no">주소검색</span>
                                                             </a>
-                                                            <input type="text" id="user_address" name="addr1" placeholder="주소">
+                                                            <input type="text" id="user_address" th:value="${login.getAddr()}" name="addr1" placeholder="주소">
                                                             <input type="text" id="user_detail_address" name="addr2"  placeholder="상세주소">
                                                         </td>
                                                     </tr>
@@ -536,10 +548,10 @@
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
                     <!-- #page -->
-                    <script src='/static/js/jquery.js'></script>
-                    <script src='/static/js/plugins.js'></script>
-                    <script src='/static/js/scripts.js'></script>
-                    <script src='/static/js/masonry.pkgd.min.js'></script>
+                    <script src='/js/jquery.js'></script>
+                    <script src='/js/plugins.js'></script>
+                    <script src='/js/scripts.js'></script>
+                    <script src='/js/masonry.pkgd.min.js'></script>
 
                     </body>
                 </div>
