@@ -4,7 +4,6 @@ import com.example.FP.dto.MemberDto;
 import com.example.FP.entity.Member;
 import com.example.FP.service.MailService;
 import com.example.FP.service.MemberService;
-import com.example.FP.service.OrdersService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,7 +26,9 @@ public class MemberController {
 
     // 로그인 폼
     @GetMapping("/login")
-    public void loginForm(){}
+    public String loginForm(){
+        return "/all/login";
+    }
 
     // 회원가입 폼
     @GetMapping("/join")
@@ -35,7 +36,7 @@ public class MemberController {
         System.out.println("회원가입 하기");
         model.addAttribute("memberFormDto", new MemberDto());
 
-        return "/join";
+        return "/all/join";
     }
 
     // 회원가입
@@ -58,7 +59,7 @@ public class MemberController {
         Member member = Member.createMember(memberFormDto, passwordEncoder);
         memberService.join(member);
 
-        return "redirect:/joinOk";
+        return "redirect:/all/joinOk";
     }
     
     // 회원가입시 아이디 중복 체크
@@ -94,7 +95,7 @@ public class MemberController {
     // 회원가입 완료 후
     @GetMapping("/joinOk")
     public String joinOk(){
-        return "/joinOk";
+        return "/all/joinOk";
     }
 
     // 아이디 찾기
@@ -113,7 +114,7 @@ public class MemberController {
         model.addAttribute("name", name);
         model.addAttribute("userid", map.get("userid"));
 
-        return "/findUseridOk";
+        return "/all/findUseridOk";
     }
 
     // 비밀번호 찾기
@@ -145,7 +146,7 @@ public class MemberController {
     @PostMapping("/all/emailAuthentication")
     public String emailAuthentication(@RequestParam String userid, Model model){
         model.addAttribute("userid", userid);
-        return "/newPwd";
+        return "/all/newPwd";
     }
 
     // 새 비밀번호 설정
@@ -169,7 +170,7 @@ public class MemberController {
 
     @GetMapping("/pwCheckDataChange")
     public String pwCheckDataChangeForm(){
-        return "/pwCheckDataChange";
+        return "/user/pwCheckDataChange";
     }
     @PostMapping("/pwCheckDataChange")
     @ResponseBody
@@ -187,7 +188,7 @@ public class MemberController {
         model.addAttribute("memberDto",memberDto);
 
 
-        return "/dataChange";
+        return "/user/dataChange";
     }
     @PostMapping("/dataChange")
     public String dataChangeSubmit(MemberDto memberDto,String addr1, String addr2){

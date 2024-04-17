@@ -1,8 +1,6 @@
 package com.example.FP.controller;
 
 import com.example.FP.dto.InquiryDto;
-import com.example.FP.entity.Inquiry;
-import com.example.FP.entity.InquiryState;
 import com.example.FP.mapper.InquiryMapper;
 import com.example.FP.service.InquiryService;
 import jakarta.servlet.http.HttpSession;
@@ -21,13 +19,13 @@ public class InquiryController {
 
     @GetMapping("/insertInquiry")
     public String inquiryForm(){
-        return "/inquiryForm";
+        return "/user/inquiryForm";
 
     }
     @PostMapping("/insetInquiry")
     public String inquirySubmit(InquiryDto inquiryDto){
         is.save(InquiryMapper.toEntity(inquiryDto));
-        return "redirect:/inquiryList";
+        return "redirect:/user/inquiryList";
 
 
     }
@@ -38,14 +36,14 @@ public class InquiryController {
     public String inquiryList(Model model, HttpSession session){
         model.addAttribute("list",is.findByUserid((String)session.getAttribute("userid")));
 
-        return "/inquiryList";
+        return "/user/inquiryList";
 
     }
     @PostMapping("/deleteInquiry/{id}")
     public String deleteInquiry(@PathVariable Long id){
         is.deleteInquiry(id);
 
-        return "redirect:/inquiryList";
+        return "redirect:/user/inquiryList";
     }
 
 }

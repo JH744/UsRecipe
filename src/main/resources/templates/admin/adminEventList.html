@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>유스레시피</title>
-    <link rel='stylesheet' href='../static/css/woocommerce-layout.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-    <link rel='stylesheet' href='../static/css/woocommerce.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/font-awesome.min.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/style.css' type='text/css' media='all'/>
+    <title>Title</title>
+    <link rel='stylesheet' href='../../static/css/woocommerce-layout.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/font-awesome.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/style.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
-    <link rel="stylesheet" href="../static/css/footer.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
+    <link rel='stylesheet' href='../../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+    <link rel="stylesheet" href="../../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
     <style>
 
         *{
@@ -86,6 +86,10 @@
             background: #D65454;
             list-style-type: none;
         }
+        .orderList_th{
+            text-align: center;
+
+        }
         .news-title{
             font-family: 'Cafe24Simplehae';
             font-size: 25px;
@@ -101,6 +105,11 @@
             padding: 30px 0 30px 0;
             border: 1px solid #dddddd;
             list-style-type: none;
+        }
+        .orderList_td{
+            text-align: center;
+            display:table-cell;
+            vertical-align:middle;
         }
         .news_list_wrap{
             border: 1px solid #dddddd;
@@ -130,7 +139,6 @@
             font-family: 'Cafe24Dangdanghae';
             font-size: 35px;
             padding-right:20px ;
-            color: black;
 
         }
         #notion_spanL{
@@ -146,40 +154,24 @@
             text-decoration: underline;
             font-weight: bold;
         }
-        #pwdCheck{
-            width: 150px;
-            height: 50px;
-            background-color: #D65454;
-            color: white;
-            margin-left: 300px;
+        th{
+            font-family: Cafe24Dangdanghae;
+        }
+        .mypage_myinfo_td{
+            text-align: center;
+            color: black;
+            font-family: Cafe24Dangdanghae;
+            font-size: 24px;
+        }
+        .mypage_myinfo_th{
+            text-align: center;
 
         }
+
+
+
+
     </style>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script>
-
-        $(function(){
-            let pwd;
-            $("#pwdCheck").click(function(e){
-                pwd = $("#enterPassword").val()
-                e.preventDefault()
-                $.ajax({
-                    type:'post',
-                    data:{password:pwd},
-                    url:"/pwCheckDataChange",
-                    success : function(data){
-                        if(data==true){
-                            location.href="/dataChange"
-                        }else{
-                            $(".pwdResult").html("패스워드가 틀립니다!").css("color","red").css("font-family","Cafe24Dangdanghae").css("font-size","24px").css("margin-left","200px")
-                        }
-                    }
-                })
-            })
-
-        })
-
-    </script>
 </head>
 <body>
 <div class="templateBody">
@@ -188,67 +180,61 @@
     </header>
     <div class="mainBody">
 
-        <aside id="news_aside" style="margin-right: 10px;">
-            <ul class="news-ul">
-                <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
+        <aside id="news_aside" style="margin-right: 10px;" th:replace="/admin/adminSidebar :: adminSidebar">
 
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/orderList}" style="font-weight: bold;">주문내역<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/pointList}" style="font-weight: bold;">적립내역<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/inquiryList}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/pwCheckDataChange}" style="font-weight: bold;">정보변경<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/wishList}" style="font-weight: bold;">찜목록<span>></span></a></li>
-
-            </ul>
         </aside>
         <section id="news_section">
-            <div id="notion_title_wrap">
-                <span id="notion_spanB">비밀번호 확인</span><span id="notion_spanL">회원님의 정보변경 전 사용중인 비밀번호를 입력해주세요</span>
+
+            <div id="notion_title_wrap" style="color: black;">
+                <span id="notion_spanB">이벤트 관리</span>
             </div>
-            <hr>
+
             <div id="notion_box">
 
             </div>
 
             <div style="margin-top:50px;" >
-                <div style="margin-left: 100px; text-align:left;">
+                <div style=" text-align:left;">
                     <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
                     <div id="page">
                         <div class="container">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="orderList_th" style="width: 10%">이벤트 번호</th>
+                                    <th scope="col" class="orderList_th">제목</th>
+                                    <th scope="col" class="orderList_th">시작일자</th>
+                                    <th scope="col" class="orderList_th">종료일자</th>
+                                    <th scope="col" class="orderList_th">삭제</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="list:${list}">
+                                    <td class="orderList_td"><a th:text="${list.id}" th:href="@{/recipe/${list.id}}"></a></td>
+                                    <td class="orderList_td" th:text="${list.eventTitle}"></td>
+                                    <td class="orderList_td" th:text="${list.eventStartDate}"></td>
+                                    <td class="orderList_td" th:text="${list.eventEndDate}"></td>
+                                    <td class="orderList_td"><a th:href="@{|/admin/eventDelete/${list.id}|}" th:text="삭제"></a></td>
+                                </tr>
 
-                            <!-- #masthead -->
-                            <div id="content" class="site-content">
-                                <div id="primary" class="content-area column full" style="margin-top: -30px;">
-                                    <main id="main" class="site-main" role="main">
+                                </tbody>
+                            </table>
 
-
-                                            <span style="margin-left: 320px;margin-bottom: 50px">비밀번호 확인</span><br>
-                                            <input type="password" style="width: 350px; height: 55px;margin-left: 200px; border: none " name="enterPassword" id="enterPassword"><br>
-                                            <p class="pwdResult"></p>
-                                            <button id="pwdCheck" >확인</button>
-
-
-
-                                    </main>
-                                    <!-- #main -->
-                                </div>
-                                <!-- #primary -->
-                            </div>
-                            <!-- #content -->
                         </div>
                         <!-- .container -->
 
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
                     <!-- #page -->
-                    <script src='/static/js/jquery.js'></script>
-                    <script src='/static/js/plugins.js'></script>
-                    <script src='/static/js/scripts.js'></script>
-                    <script src='/static/js/masonry.pkgd.min.js'></script>
+                    <script src='/js/jquery.js'></script>
+                    <script src='/js/plugins.js'></script>
+                    <script src='/js/scripts.js'></script>
+                    <script src='/js/masonry.pkgd.min.js'></script>
 
                     </body>
+
                 </div>
             </div>
-
 
 
         </section>
