@@ -59,7 +59,7 @@ public class MemberController {
         Member member = Member.createMember(memberFormDto, passwordEncoder);
         memberService.join(member);
 
-        return "redirect:/all/joinOk";
+        return "redirect:/joinOk";
     }
     
     // 회원가입시 아이디 중복 체크
