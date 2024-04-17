@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
-    <link rel='stylesheet' href='../static/css/woocommerce-layout.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-    <link rel='stylesheet' href='../static/css/woocommerce.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/font-awesome.min.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/style.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce-layout.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/font-awesome.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/style.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
-    <link rel="stylesheet" href="../static/css/footer.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
+    <link rel='stylesheet' href='../../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+    <link rel="stylesheet" href="../../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
     <style>
 
         *{
@@ -71,9 +71,6 @@
             margin: 0 auto;
             padding: 0;
         }
-        .point_list_a{
-            font-size: 20px;
-        }
         #news_main{
             height:700px;
             width:1200px;
@@ -131,9 +128,6 @@
             color: #D65454;
             font-weight: bold;
         }
-        .point_list_a:hover{
-            color:#D65454;
-        }
         #news_section{
             width: 79%;
             float: left;
@@ -173,10 +167,6 @@
             text-align: center;
 
         }
-
-
-
-
     </style>
 
 </head>
@@ -187,7 +177,7 @@
     </header>
     <div class="mainBody">
 
-        <aside id="news_aside" style="margin-right: 10px;">
+        <aside id="news_aside" style="margin-right: 10px; margin-top: 300px">
             <ul class="news-ul">
                 <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
 
@@ -200,36 +190,47 @@
             </ul>
         </aside>
         <section id="news_section">
+            <table style="border: none; width: 60%; margin-left: 150px; margin-bottom: 100px;">
+                <tr style="border-top: none;">
+                    <th style="color: black;" class="mypage_myinfo_th">이름</th>
+                    <th style="color: black" class="mypage_myinfo_th">적립금</th>
 
-            <div id="notion_title_wrap" style="color: black;">
-                <span id="notion_spanB">적립내역</span><span id="notion_spanL">회원님의 적립내역을 확인할 수 있습니다.</span>
+                </tr>
+                <tr style="border-bottom: none">
+                    <td class="mypage_myinfo_td" th:text="${info.name}">김김김</td>
+                    <td class="mypage_myinfo_td" th:text="${info.point}">1000원</td>
+
+                </tr>
+            </table>
+            <div id="notion_title_wrap" style="color: black">
+                <span id="notion_spanB">주문목록</span><span id="notion_spanL">회원님의 주문목록을 확인할 수 있습니다.</span>
             </div>
-
+            <hr>
             <div id="notion_box">
 
             </div>
 
             <div style="margin-top:50px;" >
-                <div style=" text-align:left;">
+                <div style="text-align:left;">
                     <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
                     <div id="page">
                         <div class="container">
-                            <a class="point_list_a">전체</a>&nbsp;<a class="point_list_a">획득</a>&nbsp;<a class="point_list_a">사용</a>
-
 
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th scope="col" class="orderList_th" style="width: 60%">적립내용</th>
-                                    <th scope="col" class="orderList_th">포인트</th>
-                                    <th scope="col" class="orderList_th">적립날짜</th>
+                                    <th scope="col" class="orderList_th">번호</th>
+                                    <th scope="col" class="orderList_th">제품명</th>
+                                    <th scope="col" class="orderList_th">결제금액</th>
+                                    <th scope="col" class="orderList_th">주문상태</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="list:${list}">
-                                    <td th:text="${list.getPoint_content()}"></td>
-                                    <td th:text="${list.getUse_point()}"></td>
-                                    <td th:text="${list.getPoint_orders().getOrders_date()}"></td>
+                                    <td class="orderList_td" th:text="${list.getId()}">1</td>
+                                    <td class="orderList_td" th:text="${list.getOrdersContent()}">Otto</td>
+                                    <td class="orderList_td"><a th:text="${list.getOrdersSalePrice()}" th:href="@{|/orderDetail/${list.getId()}|}">10000원</a></td>
+                                    <td class="orderList_td" th:text="${list.getOrdersOrderState().getState()}">asdf</td>
                                 </tr>
 
                                 </tbody>
@@ -240,16 +241,15 @@
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
                     <!-- #page -->
-                    <script src='/static/js/jquery.js'></script>
-                    <script src='/static/js/plugins.js'></script>
-                    <script src='/static/js/scripts.js'></script>
-                    <script src='/static/js/masonry.pkgd.min.js'></script>
+                    <script src='/js/jquery.js'></script>
+                    <script src='/js/plugins.js'></script>
+                    <script src='/js/scripts.js'></script>
+                    <script src='/js/masonry.pkgd.min.js'></script>
 
                     </body>
 
                 </div>
             </div>
-
 
         </section>
 

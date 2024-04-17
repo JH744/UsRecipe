@@ -19,12 +19,12 @@ public class OrdersController {
     @GetMapping("/order")
     public String orderPage(){
 
-        return "orderPage";
+        return "/user/orderPage";
     }
     @GetMapping("/orderOK")
     public String orderOK(){
 
-        return "orderOK";
+        return "/user/orderOK";
     }
     @GetMapping("/orderList")
     public String orderList(Model model, HttpSession session){
@@ -32,7 +32,7 @@ public class OrdersController {
         model.addAttribute("info",ms.listPointAndNameByUserid((String)session.getAttribute("userid")));
 
 
-        return "/orderList";
+        return "/user/orderList";
 
     }
 
@@ -42,7 +42,7 @@ public class OrdersController {
         model.addAttribute("list",os.findByOrderId(id));
 
 
-        return "/orderListDetail";
+        return "/user/orderListDetail";
 
     }
 
