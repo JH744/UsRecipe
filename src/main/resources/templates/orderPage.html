@@ -49,6 +49,42 @@
 
             })
 
+            // 총결제금액  구하기  =    총상품가격 - 적립금
+            function getTotalOrderPrice(){
+                var updatedTotal = 0;
+                if( $('#usePoint').val() != '' ){
+                    updatedTotal =  parseInt(orderData.totalPrice) - parseInt($('#usePoint').val());
+                }else {
+                    updatedTotal =  parseInt(orderData.totalPrice) - 0;
+                }
+                $('#totalOrderPrice').html(updatedTotal + '원');
+            }
+
+
+            // '최대 사용' 체크박스 이벤트 처리
+            $('#useAllPoint').change(function() {
+                if($(this).is(':checked')) {
+                    // 사용자의 전체 포인트를 입력 필드에 설정
+                    var hasPoint= $('#hasPoint').text();
+                    console.log(hasPoint)
+                    $('#usePoint').val(hasPoint);
+                    // 총 주문 금액에서 사용 포인트를 차감
+                    getTotalOrderPrice();
+                } else {
+                    // 체크박스가 해제되면 원래 금액을 다시 표시
+                    $('#usePoint').val('');
+                    $('#totalOrderPrice').html(orderData.totalPrice);
+                }
+            });
+
+            //최대 사용 체크 시
+            $('#usePoint').change(()=>{
+                getTotalOrderPrice();
+            })
+
+
+
+
         });
 
 
@@ -114,7 +150,7 @@
                 <h4 class="fontStyle1">배송 물품</h4>
                 <table class="t3">
                     <tr>
-                        <th class="bgapple w-200" >상품명</th>
+                        <th class="bgapple">상품명</th>
                         <th class="bgapple">상품가격</th>
                         <th class="bgapple">수량</th>
                         <th class="bgapple">가격</th>
@@ -130,8 +166,10 @@
                         <td><span id="totalItemPrice"></span></td>
                     </tr>
                     <tr>
-                        <th class="bgapple">적립금</th>
-                        <td><span></span></td>
+                        <th class="bgapple">적립금사용</th>
+                        <td> <input type="number" id="usePoint" >
+                            <input type="checkbox" id="useAllPoint">최대 사용
+                            보유포인트:<span id="hasPoint" th:text="${m.point}">p </span></td>
                     </tr>
                     <tr>
                         <th class="bgapple">배송비</th>
