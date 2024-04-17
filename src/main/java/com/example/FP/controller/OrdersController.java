@@ -20,8 +20,6 @@ public class OrdersController {
     @GetMapping("/order")
     public String orderPage(Model model,HttpSession session){
 
-
-
         String id = "asd123"; // 임시 id
        Member m =  ms.findById(id);
         System.out.println("가져온 회원객체 :"+m);
@@ -29,10 +27,8 @@ public class OrdersController {
         //로그인한 회원정보가져옴
         //Member m  =  ms.findByUseridInfo(id);
 
-
         return "orderPage";
     }
-
 
 
     @GetMapping("/orderOK")
@@ -58,7 +54,6 @@ public class OrdersController {
     public String orderDetail(Model model, @PathVariable Long id){
 
         model.addAttribute("list",os.findByOrderId(id));
-
 
         return "/orderListDetail";
 
