@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>유스레시피</title>
     <link rel='stylesheet' href='../../static/css/woocommerce-layout.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='../../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
     <link rel='stylesheet' href='../../static/css/woocommerce.css' type='text/css' media='all'/>
@@ -86,10 +86,6 @@
             background: #D65454;
             list-style-type: none;
         }
-        .orderList_th{
-            text-align: center;
-
-        }
         .news-title{
             font-family: 'Cafe24Simplehae';
             font-size: 25px;
@@ -105,11 +101,6 @@
             padding: 30px 0 30px 0;
             border: 1px solid #dddddd;
             list-style-type: none;
-        }
-        .orderList_td{
-            text-align: center;
-            display:table-cell;
-            vertical-align:middle;
         }
         .news_list_wrap{
             border: 1px solid #dddddd;
@@ -139,7 +130,7 @@
             font-family: 'Cafe24Dangdanghae';
             font-size: 35px;
             padding-right:20px ;
-
+            color: black;
         }
         #notion_spanL{
             font-family: 'Cafe24Simplehae';
@@ -154,24 +145,29 @@
             text-decoration: underline;
             font-weight: bold;
         }
-        th{
-            font-family: Cafe24Dangdanghae;
+        table th{
+            background-color: lightgrey;
         }
-        .mypage_myinfo_td{
+        .orderListDetailTable_td1{
+            background-color: lightgrey;
             text-align: center;
             color: black;
-            font-family: Cafe24Dangdanghae;
-            font-size: 24px;
         }
-        .mypage_myinfo_th{
+        .orderListDetailTable_th1{
+            background-color: lightgrey;
             text-align: center;
-
+            color: black;
         }
+        .orderListDetailTable_td2{
+            padding-left: 20px;
+        }
+
 
 
 
 
     </style>
+
 </head>
 <body>
 <div class="templateBody">
@@ -184,58 +180,105 @@
 
         </aside>
         <section id="news_section">
-
-            <div id="notion_title_wrap" style="color: black;">
-                <span id="notion_spanB">주문관리</span>
+            <div id="notion_title_wrap">
+                <span id="notion_spanB">주문/결제</span>
+                <small>주문상세</small>
             </div>
-
+            <hr>
             <div id="notion_box">
-
+                <h3>구매자 &nbsp; 정보</h3>
+                <table  th:each="list:${list}">
+                    <tr>
+                        <td style="width: 20%" class="orderListDetailTable_td1">이름</td>
+                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetailsMember().name}">김김김</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%" class="orderListDetailTable_td1">이메일</td>
+                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetailsMember().email}">example@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%" class="orderListDetailTable_td1">연락처</td>
+                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetailsMember().phone}">010-0000-0000</td>
+                    </tr>
+                </table>
+                <br><br>
+                <h3>받는사람 &nbsp;정보</h3>
+                <table  th:each="list:${list}">
+                    <tr>
+                        <td style="width: 20%" class="orderListDetailTable_td1">이름</td>
+                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersReceiver()}">김김김</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%" class="orderListDetailTable_td1">주소</td>
+                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersReceiverAddr()}">서울시 마포구 어쩌구 저쩌구</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%" class="orderListDetailTable_td1">연락처</td>
+                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersReceiverPhone()}">010-0000-0000</td>
+                    </tr>
+                </table>
             </div>
+            <br><br>
+            <h3>배송물품 정보</h3>
+            <table  th:each="list:${list}">
+                <tr >
+                    <th style="width: 60% ;text-align: center" class="orderListDetailTable_th1">상품명</th>
+                    <th style="width: 15%;margin-right: 20px;"class="orderListDetailTable_th1">수량</th>
+                    <th style="width: 20%"class="orderListDetailTable_th1">가격</th>
+                </tr>
+                <tr>
+                    <td th:text="${list.getOrdersIngredient().getIngredientName()}">충북 음성 사과</td>
+                    <td>1</td>
+                    <td th:text="${list.getOrdersIngredient().getIngredientPrice()}">10000</td>
+                </tr>
+            </table>
+            <br><br>
+            <h3>결제정보</h3>
+            <table >
+                <tr th:each="list:${list}">
+                    <td style="width: 20%" class="orderListDetailTable_td1">총 상품가격</td>
+                    <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersTotalPrice()}">10000원</td>
+                </tr>
+                <tr>
+                    <td style="width: 20%" class="orderListDetailTable_td1">배송비</td>
+                    <td class="orderListDetailTable_td2">0원</td>
+                </tr>
+                <tr th:each="list:${list}">
+                    <td style="width: 20%" class="orderListDetailTable_td1">총결제금액</td>
+                    <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersSalePrice()}">10000원</td>
+                </tr>
+                <td style="width: 20%" class="orderListDetailTable_td1">결제방법</td>
+                <td class="orderListDetailTable_td2">카드</td>
+                </tr>
+            </table>
+            <br><br>
+            <button style="border: none; color: white; background-color:#D65454;width: 150px;height: 50px; margin-left: 350px;" th:onclick="|window.location.href='@{/orderList}'|"> 목록으로 </button>
+            <br><br>
 
             <div style="margin-top:50px;" >
-                <div style=" text-align:left;">
+                <div style="margin-left: 100px; text-align:left;">
                     <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
                     <div id="page">
                         <div class="container">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col" class="orderList_th" style="width: 10%">주문번호</th>
-                                    <th scope="col" class="orderList_th">상품명</th>
-                                    <th scope="col" class="orderList_th">주문일자</th>
-                                    <th scope="col" class="orderList_th">가격</th>
-                                    <th scope="col" class="orderList_th">구매자</th>
-                                    <th scope="col" class="orderList_th">삭제</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="list:${list}">
-                                    <td class="orderList_td" ><a th:text="${list.getId()}" th:href="@{//orderDetail/${list.getId()}}"></a></td>
-                                    <td class="orderList_td" th:text="${list.ordersContent}">kim</td>
-                                    <td class="orderList_td" th:text="${list.ordersDate}">seoul</td>
-                                    <td class="orderList_td" th:text="${list.ordersTotalPrice}">seoul</td>
-                                    <td class="orderList_td" th:text="${list.ordersMember.name}">seoul</td>
-                                    <td class="orderList_td"><a th:href="@{|/deleteMember/${list.getId()}|}" th:text="삭제">삭제</a></td>
-                                </tr>
 
-                                </tbody>
-                            </table>
+                            <!-- #masthead -->
+
+                            <!-- #content -->
                         </div>
                         <!-- .container -->
 
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
                     <!-- #page -->
-                    <script src='/js/jquery.js'></script>
-                    <script src='/js/plugins.js'></script>
-                    <script src='/js/scripts.js'></script>
-                    <script src='/js/masonry.pkgd.min.js'></script>
+                    <script src='/static/js/jquery.js'></script>
+                    <script src='/static/js/plugins.js'></script>
+                    <script src='/static/js/scripts.js'></script>
+                    <script src='/static/js/masonry.pkgd.min.js'></script>
 
                     </body>
-
                 </div>
             </div>
+
 
 
         </section>

@@ -21,13 +21,16 @@ public class SecurityConfig{
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .requestMatchers("/", "/findUserPwd", "/join","/joinOk","/static/**","/id_check","/sendEmail","/nickname_check","/mailCheck", "/emailAuthentication", "/newPwd", "/findPwdOk", "/findUserid" ,
-                        "/listIngredient/**","/addCart","/cart/**","/checkCart","/addWish","/checkWish","/order/**","/orderOK"
-                        ,"/deleteCartItems"
-                        ,"listRecipe/**")
+//                .requestMatchers("/", "/findUserPwd", "/join","/joinOk","/static/**","/id_check","/sendEmail","/nickname_check"
+//                        ,"/mailCheck", "/emailAuthentication", "/newPwd", "/findPwdOk", "/findUserid" ,
+//                        "/listIngredient/**","/addCart","/cart/**","/checkCart","/addWish","/checkWish","/order/**","/orderOK"
+//                        ,"/deleteCartItems"
+//                        ,"listRecipe/**")
+               .requestMatchers("/","/all/**", "/join","/joinOk","/static/**","/id_check","/sendEmail","/nickname_check","/mailCheck", "/error")
                 .permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
+
                 .and()
                 .formLogin().loginPage("/login").permitAll()
                 .defaultSuccessUrl("/")

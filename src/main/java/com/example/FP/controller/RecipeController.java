@@ -1,6 +1,6 @@
 package com.example.FP.controller;
 
-import com.example.FP.entity.Ingredient;
+
 import com.example.FP.entity.Recipe;
 import com.example.FP.entity.RecipeCategory;
 import com.example.FP.service.MemberService;
@@ -47,6 +47,7 @@ public class RecipeController {
                              @RequestParam(required = false ) String sortBy,
                              @RequestParam(required = false ) String direction,
                              @RequestParam(required = false ) String keyword,
+                             @RequestParam(required = false ) Long member_id,
                              HttpSession session){
 
         System.out.println("전달받은 검색어:"+ keyword);
@@ -88,6 +89,7 @@ public class RecipeController {
         }
 
 
+
         Page<Recipe>  list =null;
         int totalPage = 0;
         //카테고리가 전체보기(000)이라면 모든 목록 불러오기
@@ -97,7 +99,12 @@ public class RecipeController {
         }
         //카테고리가 전체보기(000)이 아니라면 카테고리 목록 불러오기
         else if(category != 000) {
-             list = rs.listRecipes(keyword, category, pageable);
+            list = rs.listRecipes(keyword, category, pageable);
+            totalPage = list.getTotalPages();
+        }
+
+        if (member_id != null) {
+            list = rs.listRecipes(keyword, category, pageable);
             totalPage = list.getTotalPages();
         }
         model.addAttribute("list", list);
@@ -108,7 +115,8 @@ public class RecipeController {
 
         //이 레시피는 어때요?
         long HowAboutToday ;
-        model.addAttribute("HowAbout",rs.HowAbout());
+        model.addAttribute("HowAbout",rs.randomList().get(0));
+
 
 
         //주간인기레시피

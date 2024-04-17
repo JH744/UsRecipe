@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -40,13 +41,14 @@ public class RecipeService {
     private final RecipeCategoryRepository rcr;
     private final IngredientRepository ir;
 
-// 레시피 목록 불러오기
+    // 레시피 목록 불러오기
     public List<Recipe> findAll(){
 
         return rr.findAll();
     }
 
     //레시피 목록 카테고리+검색+ 페이지네이션//
+
     public Page<Recipe> listRecipes(String keyword,Long categoryId,Pageable pageable) {
         Page<Recipe> recipesList =
         rr.findByTitleContainingAndCategory(keyword, categoryId, pageable);
@@ -56,6 +58,18 @@ public class RecipeService {
     //레시피 전체 목록 + 페이지네이션 + 검색
     public Page<Recipe> listAll(Pageable pageable, String keyword) {
         return  rr.findByTitleContaining(keyword, pageable);
+    }
+
+
+
+
+    // 위시리스트에서 가장 많은 찜을 받은 레시피를 가져옴
+    public List<Recipe> listTop4() {
+        List<Object[]> top4Data = wr.findTopPopularRecipes(PageRequest.of(0, 4));
+        List<Long> recipeIds = top4Data.stream()
+                .map(entry -> (Long) entry[0]) // Object[]의 첫 번째 요소를 Long으로 캐스팅
+                .collect(Collectors.toList());
+        return rr.findByIdIn(recipeIds);
     }
 
     // 이 레시피 어때요?
@@ -72,14 +86,6 @@ public class RecipeService {
     }
 
 
-    // 위시리스트에서 가장 많은 찜을 받은 레시피를 가져옴
-    public List<Recipe> listTop4() {
-        List<Object[]> top4Data = wr.findTopPopularRecipes(PageRequest.of(0, 4));
-        List<Long> recipeIds = top4Data.stream()
-                .map(entry -> (Long) entry[0]) // Object[]의 첫 번째 요소를 Long으로 캐스팅
-                .collect(Collectors.toList());
-        return rr.findByIdIn(recipeIds);
-    }
 
 
 

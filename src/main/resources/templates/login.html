@@ -22,7 +22,7 @@
 
             <div class="panel-body">
                 <form name="form_login" id="formLogin" method="post" action="/login">
-                    <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+                    <input type="hidden" name="{_csrf.parameterName }" value="{_csrf.token }">
                     <div class="form_login_in" style="padding-right:22px;">
                         <input type="text" name="username" class="" id="id_user" placeholder="아이디">
                         <span id="idMsg" style="display:none; color:#FF0000;">아이디를 입력해주세요.</span>

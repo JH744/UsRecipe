@@ -33,9 +33,8 @@ public interface RecipeRepository extends JpaRepository<Recipe,Long> {
     List<Member> findMember();
 
 
-
-
   // 레시피목록 : 키워드 검색 + 카테고리 + 페이징
+
     @Query("SELECT r FROM Recipe r WHERE " +
             "(:keyword IS NULL OR r.recipeTitle LIKE %:keyword%) AND " +
             "(:categoryId IS NULL OR r.recipeCategory.id = :categoryId)")
@@ -52,6 +51,5 @@ public interface RecipeRepository extends JpaRepository<Recipe,Long> {
 
     //찜목록 top4의 id를 전달해 일치하는 리스트를 가져옴
     List<Recipe> findByIdIn(List<Long> ids);
-
 
 }
