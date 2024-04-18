@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
-    <link rel="stylesheet" href="../static/css/templateBody.css"/>
+    <link rel="stylesheet" href="../../static/css/templateBody.css"/>
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/footer.css"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
+    <link rel="stylesheet" href="../../static/css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../static/css/store_20230103.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap_20211222.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/ez_recipe_20240405.css">
-    <script src="../static/js/ingredientDetail.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/css/store_20230103.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/bootstrap_20211222.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/ez_recipe_20240405.css">
+    <script src="../../static/js/ingredientDetail.js"></script>
 </head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -49,7 +49,7 @@
                                                 <div class="s_view_pic">
                                                     <!--                                                <img th:src="@{'../static/images/'+${ingredient.ingredientImage}}"-->
                                                     <!--                                                     class="middle">-->
-                                                    <img src="../static/images/된장국.png"
+                                                    <img src="../../static/images/된장국.png"
                                                          class="middle">
                                                     <div class="s_view_pic_zoom"><a href="#lyZoom" id="mainImage">
 
@@ -268,7 +268,7 @@
                           th:text="${reply.size}"></span>
                 </div>
                 <div class="goods_box_none" th:if="${reply.size()==0}">
-                    <img src="../static/images/icon_none.png">
+                    <img src="../../static/images/icon_none.png">
                     <p>등록된 후기가 없습니다.</p>
                 </div>
                 <div id="recipeCommentList_1">
@@ -276,7 +276,7 @@
                         <div class="media-left"><a th:href="'/profile?id='+${r.replyMember.id}">
                             <img
                                     class="media-object"
-                                    src="../static/images/chef2.png"
+                                    src="../../static/images/chef2.png"
                                     data-holder-rendered="true"></a></div>
                         <div class="media-body">
                             <h4 class="media-heading">
@@ -285,11 +285,11 @@
                                 </div>
                                 <img th:each="star : ${#numbers.sequence(1,r.replyGrade)}"
                                      style="display: inline-block; width: 20px; height: 20px"
-                                     src="../static/images/star2.png"/>
+                                     src="../../static/images/star2.png"/>
                                 <img th:if="${r.replyGrade != 5}"
                                      th:each="star : ${#numbers.sequence((r.replyGrade)+1,5)}"
                                      style="display: inline-block; width: 20px; height: 20px"
-                                     src="../static/images/noneStar2.png"/>
+                                     src="../../static/images/noneStar2.png"/>
                                 <p th:text="${#temporals.format(r.replyDate, 'yyyy-MM-dd HH:mm')}"
                                    style="margin-left: 5px"></p><span th:if="${r.replyMember.Userid == session.userid}">|</span>
                                 <a th:href="'javascript:deleteReply('+${r.Id}+')'"

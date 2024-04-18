@@ -1,13 +1,9 @@
 package com.example.FP.controller;
 
 import com.example.FP.entity.Cart;
-import com.example.FP.entity.Ingredient;
 import com.example.FP.service.CartService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 

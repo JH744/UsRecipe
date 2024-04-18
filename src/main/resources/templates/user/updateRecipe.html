@@ -4,24 +4,24 @@
 
     <title>유스레시피</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <link rel="stylesheet" type="text/css" href="../static/css/templateBody.css"/>
-    <link rel="stylesheet" href="../static/css/footer.css"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
+    <link rel="stylesheet" type="text/css" href="../../static/css/templateBody.css"/>
+    <link rel="stylesheet" href="../../static/css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
 
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap_20211222.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/ez_recipe.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/bootstrap_20211222.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/ez_recipe.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="../static/css/font_20230910.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/font_20230910.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/font-awesome.min.css">
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="../static/js/addRecipe.js"></script>
+    <script type="text/javascript" th:src="@{../../static/js/updateRecipe.js}"></script>
 
 
 </head>
@@ -50,20 +50,20 @@
                             </div>
                             <div id="divMainPhotoBox" is_over="0">
                                 <img id="mainPhotoHolder" onclick="browseMainFile()"
-                                     src="../static/images/pic_none4.gif"
+                                     th:src="@{|../static/recipeImages/${recipe.recipeThumbnail}|}"
                                      style="width: 250px; height: 250px; cursor:pointer">
-                                <input type="hidden" id="recipe_thumbnail" name="recipe_thumbnail">
+                                <input type="hidden" id="recipe_thumbnail" name="recipe_thumbnail" th:value="${recipe.recipeThumbnail}">
                             </div>
                         </div>
                         <div class="cont_line">
                             <p class="cont_tit4">레시피 제목</p>
                             <input type="text" name="recipe_title"
                                    id="recipe_title"
-                                   value="" class="form-control"
+                                   th:value="${recipe.recipeTitle}" class="form-control"
                                    placeholder="예) 소고기 미역국 끓이기"
                                    style="width:610px; ">
                         </div>
-
+                        <input type="hidden" th:value="${recipe.id}" id="recipeId">
 
                         <div class="cont_line pad_b_25" th:if="${role=='ADMIN'}">
                             <p class="cont_tit4">동영상</p>
@@ -84,12 +84,17 @@
                         </div>
 
                         <div class="cont_line"><p class="cont_tit4">카테고리</p>
+
                             <select name="recipeCategory" id="recipeCategory">
                                 <option value="none">-종류별-</option>
-                                <option th:each="c : ${recipe_category}" th:value="${c.getId()}"
-                                        th:text="${c.getRecipeCategoryName()}"></option>
+                                <option th:value="${recipe.recipeCategory.id}" th:text="${recipe.recipeCategory.recipeCategoryName}" selected></option>
+                                <option th:each="c : ${recipe_category}" th:value="${c.id}"
+                                        th:text="${c.recipeCategoryName}" th:if="${c.id != recipe.recipeCategory.id}"></option>
                             </select>
-
+                            <script th:inline="javascript">
+                                console.log([[${recipe.recipeCategory.id}]])
+                                $(".recipeCategoty").val([[${recipe.recipeCategory.id}]]).prop("selected", true)
+                            </script>
 
                             <span class="guide"
                                   style="margin:-22px 0 0 146px;">분류를 바르게 설정해주시면, 이용자들이 쉽게 레시피를 검색할 수 있어요.</span>
@@ -110,23 +115,24 @@
                                             disabled="">
                                 </p>
                                 <ul class="ui-sortable" id="ingredientInfo">
-                                    <li class='ingredientGroup' id='ingredientGroup_0'>
+                                    <li class='ingredientGroup' th:id="'ingredientGroup_'+${rState.index}" th:each="r, rState : ${recipe.recipeIngredientList}">
                                         <button type='button' class='btn btn-primary' data-bs-toggle='modal'
                                                 data-bs-target='#exampleModal' id='ingredientModalBtn'>
                                             재료 선택
                                         </button>
                                         <input name="ingredientCategory" class="ingredientCategory" readonly=''
-                                               placeholder='-분류-' style='color:#898989'>
+                                               placeholder='-분류-' style='font-weight: bold' th:value="${r.recipeIngredientIngredient.ingredientIngredientCategory.ingredientCategoryName}">
                                         <input name="ingredientName" class="ingredientName" placeholder='-재료명-'
                                                readonly=''
-                                               style='color:#898989'>
+                                               style='font-weight: bold' th:value="${r.recipeIngredientNeed}">
                                         <input type="number" name="ingredientQty" class="ingredientQty form-control"
                                                style="width:100px;"
-                                               placeholder="10(수량)"/>
+                                               placeholder="10(수량)" th:value="${r.recipeIngredientQty}"/>
                                         <input type="text" name="ingredientUnit" class="ingredientUnit form-control"
                                                style="width:140px;"
-                                               placeholder="예) g,ml(단위)"/>
+                                               placeholder="예) g,ml(단위)" th:value="${r.recipeIngredientUnit}"/>
                                         <input type='hidden' name='ingredientId' class='ingredientId'>
+                                        <a th:href='|javascript:delIngredient(${rState.index})|' class="btn-del" style='' th:if="${rState.index>0}"></a>
                                 </ul>
                                 <div class="btn_add" style="padding:0 0 20px 350px; width:800px;">
                                     <button type="button" onclick="addIngredient()" class="btn btn-default"><span
@@ -147,33 +153,36 @@
 		                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;꿀을 조금 넣어주세요 ▷ 꿀이 없는 경우, 설탕 1스푼으로 대체 가능합니다.
 	                        </span>
                             <div id="divStepArea" class="ui-sortable">
-                                <div id="divStepItem_1" class="step">
+                                <div th:id="|divStepItem_${orderState.index+1}|" class="step" th:each="recipeOrder,orderState : ${recipe.recipeRecipeOrderList}">
                                     <p class="cont_tit2_1 ui-sortable-handle" style="cursor:pointer"
-                                       data-original-title="" title="">Step1</p>
+                                       data-original-title="" title="" th:text="|Step${orderState.index+1}|">Step1</p>
                                     <div style="display:inline-block">
                                     <textarea class="step_text form-control step_cont"
                                               placeholder="예) 소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요."
-                                              style="height:160px; width:430px; resize:none;"></textarea>
+                                              style="height:160px; width:430px; resize:none;" th:text="${recipeOrder.recipeDetail}"></textarea>
                                     </div>
-                                    <div id="divStepUpload_1" class="divStepUpload" style="display:inline-block">
-                                        <input type="hidden" class="step_photo_url" name="step_photo_url_1"
-                                               id="step_photo_url_1" value="">
+                                    <div th:id="|divStepUpload_${orderState.index+1}|" class="divStepUpload" style="display:inline-block">
+                                        <input type="hidden" class="step_photo_url" th:name="|step_photo_url_${orderState.index+1}|"
+                                               th:id="|step_photo_url_${orderState.index+1}|" th:value="${recipeOrder.recipePhoto}">
                                         <div class="step_photo_file_div" style="position:absolute;left:-3000px">
                                             <input type="file"
-                                                   name="step_photo_file_1"
-                                                   id="step_photo_file_1"
+                                                   th:name="|step_photo_file_${orderState.index+1}|"
+                                                   th:id="|step_photo_file_${orderState.index+1}|"
                                                    file_gubun="step"
                                                    accept="jpeg,png,gif"
                                                    style="display:none;width:0px;height:0px;font-size:0px;"
                                                    text="">
                                         </div>
                                         <div is_over="0" class="step_thumbnail_div">
-                                            <img id="stepPhotoHolder_1" class="stepPhotoHolder"
-                                                 onclick="browseStepFile(1)"
-                                                 src="../static/images/pic_none2.gif" width="160"
+                                            <img th:id="|stepPhotoHolder_${orderState.index+1}|" class="stepPhotoHolder"
+                                                 th:onclick="|browseStepFile(${orderState.index+1})|"
+                                                 th:src="@{|../static/recipeImages/${recipeOrder.recipePhoto}|}" width="160"
                                                  height="160"
                                                  style="cursor:pointer">
                                         </div>
+                                    </div>
+                                    <div th:id="|divStepBtn_${orderState.index+1}|" class="step_btn" th:if="${orderState.index+1 != 1}">
+                                        <a th:href="|javascript:delStep(${orderState.index+1})|"><span class="glyphicon glyphicon-remove"></span></a>
                                     </div>
                                 </div>
 
@@ -192,7 +201,7 @@
                     </div><!--/regi_center-->
                     <div class="regi_btm">
 <!--                        <form action="/insertRecipe" method="POST">-->
-                            <button type="button" onclick="doSubmit()" class="btn-lg btn-primary">저장</button>
+                            <button type="button" onclick="doSubmit()" class="btn-lg btn-primary">수정</button>
 <!--                        </form>-->
                         <button type="button" onclick="history.back();" class="btn-lg btn-default">취소</button>
                     </div>
@@ -200,28 +209,6 @@
             </div>
         </form>
 
-<!--        <div id="recentRecipeDiv" class="container">-->
-<!--            <div class="rcp_lately_list">-->
-<!--                <h3>최근 본 레시피</h3>-->
-<!--                <div id="recentRecipeContDiv">-->
-<!--                    <div id="rRecipContDivPage_1" class="row" style="display: block;">-->
-<!--                        <div class="col-xs-2"><a class="thumbnail"-->
-<!--                                                 href="https://www.10000recipe.com/recipe/6971271"><img-->
-<!--                                src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/20/3a285793c9ebffbb37d27596aef660f51_m.jpg"-->
-<!--                                style="width:180px; height:180px;">-->
-<!--                            <div class="caption elipsis_rrtitle">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음 ...</div>-->
-<!--                        </a></div>-->
-<!--                        <div class="col-xs-2"><a class="thumbnail"-->
-<!--                                                 href="https://www.10000recipe.com/recipe/6850116"><img-->
-<!--                                src="https://recipe1.ezmember.co.kr/cache/recipe/2016/05/29/2a170363760225a934d26ff7e94cede31_m.jpg"-->
-<!--                                style="width:180px; height:180px;">-->
-<!--                            <div class="caption elipsis_rrtitle">백종원 돼지고기 김치찌개 만들기 ...</div>-->
-<!--                        </a></div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-        <!-- 최근 본 상품 div -->
 
         <!-- Modal -->
         <div class="modal fade in" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"

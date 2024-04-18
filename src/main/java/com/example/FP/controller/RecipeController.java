@@ -2,33 +2,25 @@ package com.example.FP.controller;
 
 
 import com.example.FP.entity.Recipe;
-import com.example.FP.entity.RecipeCategory;
 import com.example.FP.service.MemberService;
 import com.example.FP.service.RecipeCategoryService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import jakarta.servlet.http.HttpSession;
-import com.google.gson.JsonParser;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import org.apache.commons.io.FileUtils;
 import com.example.FP.service.RecipeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 import java.util.List;
