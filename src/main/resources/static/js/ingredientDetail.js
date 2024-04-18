@@ -1,7 +1,7 @@
 function insertReply() {
     var gradeStar = $("input[name=gradeStar]:checked").val()
     var replyContent = $(".replyContent").val()
-    var recipeId = $(".recipeId").val()
+    var ingredientId = $(".ingredientId").val()
     console.log(replyContent)
     if (gradeStar === undefined) {
         checkReply("별점을 입력해주세요!");
@@ -17,27 +17,20 @@ function insertReply() {
         data: {
             gradeStar: gradeStar,
             replyContent: replyContent,
-            recipeId: recipeId,
-            ingredientId:0
+            recipeId: 0,
+            ingredientId: ingredientId
         },
         type: "POST",
         success: function () {
-            location.replace("/detailRecipe?recipeNum=" + recipeId)
+            location.replace("/ingredientDetail?ingredientId=" + ingredientId)
         }
-    })
-}
-
-function checkReply(msg) {
-    Swal.fire({
-        title: msg,
-        icon: "warning"
     })
 }
 
 function deleteReply(num) {
     Swal.fire({
-        title: "댓글 삭제",
-        text: "해당 댓글을 정말 삭제하시겠습니까?",
+        title: "후기 삭제",
+        text: "해당 후기를 정말 삭제하시겠습니까?",
         imageUrl: "../static/images/image_11.png",
         imageAlt: "Custom image",
         showCancelButton: true,
@@ -60,26 +53,32 @@ function deleteReply(num) {
     });
 }
 
-function deleteRecipe(num) {
+function cartAdd(ingredientId) {
     Swal.fire({
-        title: "레시피 게시글 삭제",
-        text: "해당 레시피를 정말 삭제하시겠습니까?",
-        icon: "warning",
+        title: "장바구니",
+        text: "해당 상품을 장바구니에 추가하겠습니까?",
+        imageUrl: "../static/images/image_11.png",
+        imageAlt: "Custom image",
         showCancelButton: true,
-        confirmButtonText: '삭제',
+        confirmButtonText: '추가',
         cancelButtonText: '취소'
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: "/deleteRecipe?recipeId=" + num,
-                type: "get",
+                url: "/insertCart",
+                type: "POST",
+                data: {ingredientId: ingredientId},
                 success: function () {
                     Swal.fire({
-                        title: "삭제되었습니다.",
+                        title: "장바구니 추가 완료!!",
+                        text: "장바구니로 이동하시겠습니까?",
                         imageUrl: "../static/images/image_11.png",
                         imageAlt: "Custom image",
+                        showCancelButton: true,
+                        confirmButtonText: '이동',
+                        cancelButtonText: '취소'
                     }).then((result) => {
-                        location.replace("/listRecipe/1")
+
                     })
                 }
             })

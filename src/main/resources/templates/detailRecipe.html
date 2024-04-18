@@ -86,7 +86,7 @@
                                     </div>
                                     <span class="ingre_list_ea"
                                           th:text="${i.recipeIngredientQty+i.recipeIngredientUnit}"></span>
-                                    <a th:href="'/detaileIngredient?ingredientId'+${i.recipeIngredientIngredient}+''"
+                                    <a th:href="@{'/detailIngredient?ingredientId='+${i.recipeIngredientIngredient.id}}"
                                        class="ingre_list_btn">구매</a>
 
                                 </li>
@@ -119,7 +119,8 @@
                          style="width:920px;margin:0 auto 60px;">
                         <div class="carousel-inner" role="listbox">
                             <div class="carouItem centercrop">
-                                <img th:src="@{'../static/recipeImages/'+${recipe.recipeThumbnail}}" style="width:100%;">
+                                <img th:src="@{'../static/recipeImages/'+${recipe.recipeThumbnail}}"
+                                     style="width:100%;">
                             </div>
                         </div>
                     </div>
@@ -127,13 +128,17 @@
 
                 </div><!--/view_step -->
                 <div class="recipeControlBox">
-                    <button style="font-weight:bold;" class="btn-lg btn-delete " th:if="${session.userid==recipe.recipeMember.userid}"  th:onclick="|javascript:deleteRecipe(${recipe.id})|">삭제</button>
-<!--                    <div style="width: 100%;display: inline-block"></div>-->
-                    <button class="btn-lg btn-primary" th:if="${session.userid==recipe.recipeMember.userid}"  th:onclick="|location.href='@{'/updateRecipe?recipeId='+${recipe.id}}'|">수정</button>
+                    <button style="font-weight:bold;" class="btn-lg btn-delete "
+                            th:if="${session.userid==recipe.recipeMember.userid}"
+                            th:onclick="|javascript:deleteRecipe(${recipe.id})|">삭제
+                    </button>
+                    <!--                    <div style="width: 100%;display: inline-block"></div>-->
+                    <button class="btn-lg btn-primary" th:if="${session.userid==recipe.recipeMember.userid}"
+                            th:onclick="|location.href='@{'/updateRecipe?recipeId='+${recipe.id}}'|">수정
+                    </button>
                     <button class="btn-lg btn-default" onclick="history.back()">목록</button>
                 </div>
             </div>
-
             <div class="view_reply">
                 <div class="reply_write" th:if="${session.userid != null}">
                     <form id="insCmtFrm1" method="post">
@@ -157,10 +162,15 @@
                             </span>
                         </div>
                     </form>
-
                 </div>
-                <div class="reply_tit" id="reply_tit">댓글 <span id="recipeCommentListCount"
-                                                               th:text="${recipe.recipeReplyList.size}"></span></div>
+                <div class="reply_tit" id="reply_tit">댓글
+                    <span id="recipeCommentListCount"
+                          th:text="${recipe.recipeReplyList.size}"></span>
+                </div>
+                <div class="goods_box_none" th:if="${recipe.recipeReplyList.size()==0}">
+                    <img src="../static/images/icon_none.png">
+                    <p>등록된 댓글이 없습니다.</p>
+                </div>
                 <div id="recipeCommentList_1">
                     <div class="media reply_list" th:id="'replyDiv_'+${r.Id}" th:each="r : ${recipe.recipeReplyList}">
                         <div class="media-left"><a th:href="'/profile?id='+${r.replyMember.id}">
