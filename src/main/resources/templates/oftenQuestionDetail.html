@@ -199,12 +199,12 @@
                 <hr style="margin-top: 35px">
 
                 <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b>
-                <b th:text="${questions?.oftenQuestionTitle}">교환/반품 진행 시, 배송비가 부과 되나요?</b>
+                <b th:text="${question.oftenQuestionTitle}">교환/반품 진행 시, 배송비가 부과 되나요?</b>
                 <hr>
-                <b th:text="${questions?.oftenQuestionAnswer}">질문 답에 관한 내용이 들어가는 공간입니다.</b>
+                <b th:text="${question.oftenQuestionAnswer}">질문 답에 관한 내용이 들어가는 공간입니다.</b>
                 <br>
                 <button id="goBackButton" style="width: 100px;color: white; margin : 100px 0 0 300px; height: 50px; background-color: #D65454"
-                onclick="location.href='/faqList'">목록으로</button>
+                onclick="location.href='/oftenQuestions'">목록으로</button>
 
 
 
@@ -232,11 +232,7 @@
                     <script src='/static/js/plugins.js'></script>
                     <script src='/static/js/scripts.js'></script>
                     <script src='/static/js/masonry.pkgd.min.js'></script>
-                    <script>
-                        document.getElementById('goBackButton').addEventListener('click', function() {
-                            window.location.href = 'http://localhost:63342/FP/src/main/resources/templates/faqList.html?_ijt=d1bo8av2nfh8eel4juv8pcr6v9&_ij_reload=RELOAD_ON_SAVE'; // 실제 페이지 URL로 변경
-                        });
-                    </script>
+
 
                     </body>
 

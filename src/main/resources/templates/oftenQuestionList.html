@@ -223,7 +223,7 @@
                                 <tr th:each="q:${questions}">
                                     <td class="orderList_td" th:text="${q.id}"></td>
                                     <td class="orderList_td" >
-                                        <a th:href="@{|/oftenQuestionAnswer/${q.id}|}" th:text="${q.oftenQuestionTitle}" ></a></td>
+                                        <a th:href="@{|/oftenQuestionDetail/${q.id}|}" th:text="${q.oftenQuestionTitle}" ></a></td>
 
 
                                 </tr>

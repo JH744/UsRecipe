@@ -10,6 +10,9 @@
     <link rel='stylesheet' href='../static/css/style.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
     <link rel='stylesheet' href='../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
     <style>
 
         *{
@@ -170,16 +173,13 @@
 
 
     </style>
-    <script>
-        $(document).ready(function(){
-            $("header").load("./header.html");
-            $(".footer").load("./footer.html");
-        });
-    </script>
+
 </head>
 <body>
 <div class="templateBody">
-    <header><div th:replace="~{header :: header}"></div></header>
+    <header>
+        <div class="header" th:replace="header :: header"></div>
+    </header>
     <div class="mainBody">
 
         <aside id="news_aside" style="margin-right: 10px;">
@@ -218,13 +218,16 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td class="orderList_td"><a>10</a></td>
-                                    <td class="orderList_td">[안내] 배송 및 박스 서비스 지역 확대 안내(2024.03.29~)  </td>
-                                    <td class="orderList_td">관리자</td>
-                                    <td class="orderList_td">2024.03.28</td>
-                                </tr>
 
+
+                                <tr th:each="list:${list}">
+                                    <td class="orderList_td" th:text="${list.id}"></td>
+                                    <td class="orderList_td">
+                                        <a th:href="@{|/noticeDetail/${list.id}|}" th:text="${list.noticeTitle}"></a></td>
+                                    <td class="orderList_td">관리자</td>
+                                    <td class="orderList_td" th:text="${list.noticeSubmitDate}"></td>
+
+                                </tr>
 
 
                                 </tbody>
@@ -279,7 +282,8 @@
             });
         });
     </script>
-    <div th:replace="~{footer :: footer}"></div>
+    <div class="footer" th:replace="footer :: footer"></div>
 </div>
+
 </body>
 </html>

@@ -10,6 +10,8 @@
     <link rel='stylesheet' href='../static/css/style.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
     <link rel='stylesheet' href='../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+    <link rel="stylesheet" href="../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
     <style>
 
         *{
@@ -170,24 +172,21 @@
 
 
     </style>
-    <script>
-        $(document).ready(function(){
-            $("header").load("./header.html");
-            $(".footer").load("./footer.html");
-        });
-    </script>
+
 </head>
 <body>
 <div class="templateBody">
-    <header></header>
+    <header>
+        <div class="header" th:replace="header :: header"></div>
+    </header>
     <div class="mainBody">
 
         <aside id="news_aside" style="margin-right: 10px;">
             <ul class="news-ul">
                 <li class="news_title_wrap"><h4 class="news-title">고객센터</h4></li>
 
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/notionmain}" style="font-weight: bold;">공지사항<span>></span></a></li>
-                <li class="news_list_wrap"><a class="news-li" th:href="@{/question}" style="font-weight: bold; ">자주묻는질문<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/notice}" style="font-weight: bold;">공지사항<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/oftenQuestions}" style="font-weight: bold; ">자주묻는질문<span>></span></a></li>
 
 
             </ul>
@@ -199,14 +198,17 @@
                 <hr>
 
                 <b style="margin-right: 100px;font-family: Cafe24Dangdanghae">공지날짜</b>
-                <b>2024.02.26</b>
+                <b th:text="${notice?.noticeSubmitDate}">2024.02.26</b>
                 <br>
                 <hr>
-                <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b><b>[안내] 3월 배송 휴무 일정 안내 (2024.03.01~03.03)</b>
+                <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b>
+                <b th:text="${notice?.noticeTitle}">[안내] 3월 배송 휴무 일정 안내 (2024.03.01~03.03)</b>
                 <hr>
-                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">공지내용</b><b>공지에 관한 내용이 들어가는 공간입니다.</b>
+                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">공지내용</b>
+                <b th:text="${notice?.noticeContent}">공지에 관한 내용이 들어가는 공간입니다.</b>
                 <br>
-                <button style="width: 100px;color: white; margin : 100px 0 0 300px; height: 50px ;background-color: #D65454">목록으로</button>
+                <button style="width: 100px;color: white; margin : 100px 0 0 300px; height: 50px ;background-color: #D65454"
+                        onclick="location.href='/notice'">목록으로</button>
 
 
 
@@ -248,7 +250,7 @@
 
 
     </div>
-    <div class="footer"></div>
+    <div class="footer" th:replace="footer :: footer"></div>
 </div>
 </body>
 </html>

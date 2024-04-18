@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.View;
 import java.util.List;
 
 @Controller
@@ -24,17 +23,21 @@ public class OftenQuestionController {
 //자주묻는 질문 목록
     @GetMapping("/oftenQuestions")
     public String getAllQuestions(Model model) {
-        String View ="faqList";
+        String View = "oftenQuestionList";
         List<OftenQuestion> questions = oftenQuestionService.getAllQuestions();
         model.addAttribute("questions" ,questions);
         return View;
     }
 
-    @GetMapping("/{id}")
-    @ResponseBody
-    public ResponseEntity<OftenQuestion> getQuestionById(@PathVariable Long id) {
+    @GetMapping("/oftenQuestionDetail/{id}")
+    public String getOftenQuestionAnswer(@PathVariable Long id, Model model) {
         OftenQuestion question = oftenQuestionService.getQuestionById(id);
-        return ResponseEntity.ok(question);
+        if (question != null) {
+            model.addAttribute("question", question);
+            return "oftenQuestionDetail"; // 해당 경로의 Thymeleaf 뷰 페이지
+        } else {
+            return "errorPage"; // 질문이 존재하지 않을 경우 에러 페이지로 리디렉션
+        }
     }
 
     @PostMapping
