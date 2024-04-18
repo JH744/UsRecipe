@@ -11,6 +11,7 @@ $녹색: #74B243;
 
 body{
   overflow-y: auto;
+  font-family:'Poppins', 'Noto Sans KR', sans-serif;
 }
 
 a{
@@ -91,10 +92,10 @@ a{
   list-style: none;
   display: flex;
   justify-content: space-between;
-  width: 250px;
+  width: 300px;
   height: 20px;
   margin: auto;
-  padding: 20px 0 20px 50px ;
+  padding: 20px 0 20px 10px ;
 }
 
 .storeContainer2{
@@ -160,24 +161,94 @@ a{
 
 
 
-.pageBox{
-  width: 200px;
-  height: 20px;
-  margin: auto;
+  //페이지네이션
+  .pageBox{
+    width: 200px;
+    height: 20px;
+    margin: auto;
+    text-align: center;
+  }
   
+  
+  .pageNum{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid gray;
+    text-align: center;
+    padding-bottom: 3px;
+    border-radius: 3px;
+  
+  }
+  
+  .pageNum:hover{
+    background-color: #D65454;
+    color: #fff;
+  }
+
+
+
+.modelContainer{
+    position: relative;
+
+  .modalbox1, .modalbox2 , .modalbox3{
+    width: 300px; height: 150px;
+    background-color: #fff;
+    border: 4px solid rgb(211, 211, 211);
+    border-radius: 3px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    text-align: center;
+    display: none;
+
+    h3{
+      margin-top: 40px;
+      margin-bottom: 30px;
+    }
+
+  }
+
+
+  
+
+
+
 }
 
 
-.pageNum{
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 1px solid gray;
-  text-align: center;
+.deleteModalContainer{
+  position: relative;
+  width: 500px;
+
+}
+.deleteModal{
+  width: 400px;
+  height: 300px;
+  position: fixed;
+  left: auto;
+  top: auto;
+  border: 2px solid gray;
+  border-radius: 3px;
+
 
 }
 
-.pageNum:hover{
-  background-color: #D65454;
+
+.btnModal{
+  margin: 0px 10px;
+  height: 23px;
+  cursor: pointer;
+  background-color: rgb(13, 13, 13);
   color: #fff;
+  border-radius: 3px;
+  border: none;
+
 }
+
+
+.ingreId{
+  display: none;
+}
+
+

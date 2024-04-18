@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>유스레시피</title>
+    <link rel="stylesheet" href="../../static/css/templateBody.css" />
+    <link rel="stylesheet" href="../../static/css/recipe.css" />
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="../../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
+    <script>
+        $(document).ready(function() {
+
+            //검색 기능
+            $('#btnsearch').click(function() {
+                console.log("검색버튼 클릭됨")
+                var keyword = $('#searchbar').val(); // input 태그에서 값 가져오기
+                var pageNum = 1; // pageNum 값 설정
+                // '/listRecipe'로 GET 요청 수행, 'pageNum' 경로 변수  + 'keyword' 쿼리 파라미터 포함
+                window.location.href = `/listRecipe/${pageNum}?keyword=${encodeURIComponent(keyword)}`;
+            });
+
+
+
+            //찜하기
+            $('.btnWish').click(function(){
+                var $this = $(this); // 현재 요소를 $this에 저장
+                var recipeItemInfo= $(this).closest('.recipeItem_info');
+                var recipeId = recipeItemInfo.find('.recId').text();
+                console.log("레시피 ID: ", recipeId);
+                $.ajax({
+                    url: '/addWish', // 요청을 보낼 서버의 URL
+                    type: 'POST', // HTTP 요청 방식
+                    data: { Id: recipeId }, // 서버로 보낼 데이터
+                    success: function(response) {
+                        // 요청이 성공했을 때 실행될 함수
+                        console.log('서버 응답:', response);
+
+                        if(response ==='저장함'){
+                            $this.find('.heartIcon').attr('src', '/static/images/icon/heart3.png'); // 절대 경로 사용
+                            console.log('저장하고 하트변경')
+                        }else if(response ==='삭제함'){
+                            //삭제
+                            $this.find('.heartIcon').attr('src', '/static/images/icon/heart1.png'); // 절대 경로 사용
+                            console.log('삭제함');
+
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // 요청이 실패했을 때 실행될 함수
+                        console.error('에러 발생:', error);
+                    }
+                });
+            });
+
+
+            // 찜한 상품들은 붉은 하트를 보여줌
+            $('.recId').each(function() {
+                var $this = $(this); // 현재 요소를 $this에 저장
+                var id= parseFloat($(this).text());  // 현재 요소의 텍스트를 숫자로 변환하여 반환\
+                console.log(id);
+                $.ajax({
+                    url: '/checkWish',
+                    type: 'POST',
+                    data: { Id: id },
+                    success: function(response) {
+                        // 요청이 성공했을 때 실행될 함수
+                        console.log('서버 응답:', response);
+                        if(response ==='저장됨') {
+                            //찜목록에 담겨있다면 나타낼 UI
+                            var $heart = $this.closest('.recipeItem_info').find('.heartIcon');
+                            $heart.attr('src', '/static/images/icon/heart3.png');
+                            console.log("저장확인되어 하트색상변경")
+                        } else {
+                            console.log("찜목록에 없는 아이템")
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        // 요청이 실패했을 때 실행될 함수
+                        console.error('에러 발생:', error);
+                    }
+                });
+            })
+
+
+
+        });
+    </script>
+</head>
+<body>
+
+<div class="templateBody">
+    <header>
+        <div class="header" th:replace="header :: header"></div>
+    </header>
+    <div class="mainBody">
+        <div class="sortContainer">
+            <ul class="sortbox1" id="sortbox1">
+                <li><a th:href="@{/listRecipe/{i}(i=1, category='000')}">전체보기</a></li>
+                <li><a th:href="@{/listRecipe/{i}(i=1, category='1')}">밑반찬</a></li>
+                <li><a th:href="@{/listRecipe/{i}(i=1, category='2')}">메인반찬</a></li>
+                <li><a th:href="@{/listRecipe/{i}(i=1, category='3')}">국/탕</a></li>
+                <li><a th:href="@{/listRecipe/{i}(i=1, category='4')}">찌개</a></li>
+                <li><a th:href="@{/listRecipe/{i}(i=1, category='5')}">디저트</a></li>
+            </ul>
+            <ul class="sortbox2" id="sortbox2">
+                <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='id', direction='DESC')}">최신순</a></li>
+                <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='id',direction='ASC')}">오래된순</a></li>
+                <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='recipeWriter', direction='DESC')}">닉네임순</a></li>
+                <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='recipeViews', direction='DESC')}">조회수순</a></li>
+                <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='recipeTitle', direction='ASC')}">레시피명순</a></li>
+            </ul>
+        </div>
+        <div class="HowAboutContainer">
+            <h3>이 레시피는 어때요?</h3>
+            <div class="serchbox">
+                <input type="text" class="searchbar" id="searchbar">
+                <button class="btnsearch" id="btnsearch">검색</button>
+            </div>
+            <div class="Thisrecipe"> <!--여기에 레시피 사진추가-->
+            </div>
+            <div class="ThisrecipeInfo">
+                <div class="infobox">
+                    <h4>아침을 깨우는 예술, 부드러운 향연</h4>  <!--레시피 설명-->
+                    <p>황금빛 겉면 아래 숨겨진 부드러움과 고소한 치즈의 조화,
+                        오믈렛은 당신의 아침 식탁을 예술작품으로 변모시킵니다.
+                        신선한 허브와 다채로운 재료가 더해져 매 순간을
+                        특별하게 만드는 이 요리로 하루를 긍정적으로 시작해보세요.</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="hotrecipecontainer">
+
+            <h3>주간 인기 레시피</h3>
+            <div class="hotrecipebox" >
+                <div class="hotrecipe1" th:each=" Top4 :${listTop4}"  >
+                    <!--                  <img th:attr="src=@{'../static/images/' + ${Top4.recipeThumbnail}}"  class="hotRecipeImg">-->
+                    <span th:text="${Top4.recipeTitle}">인기레시피 타이틀</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="recipeContainer">
+
+            <div class="recipeItem"  th:each=" r : ${list}">
+                <div class="recipeItem_img"></div>
+                <div class="recipeItem_info">
+                    <p th:text="${r.recipeTitle}">레시피명</p>
+                    <span th:text="${r.recipeWriter}">닉네임</span><br>
+                    <span th:text="'조회수   '+${r.recipeViews}">조회수</span>
+                    <span th:text="${r.id}" class="recId">레시피id</span>
+                    <span class="btnWish"><img src="../../static/images/icon/heart1.png" height="20px" class="heartIcon" /></span>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="pageBox">
+            <th:block th:each="i:${#numbers.sequence(1,totalPage)}">
+                <a class="pageNum" th:href="@{|/listRecipe/${i}|}" th:text="${i}"></a> <!--URI방식임  -->
+            </th:block>
+
+
+        </div>
+
+    </div>
+    <div class="footer" th:replace="footer :: footer"></div>
+</div>
+
+</body>
+</html>

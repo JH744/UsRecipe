@@ -24,29 +24,31 @@ public class QOrders extends EntityPathBase<Orders> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final ListPath<OrderDetails, QOrderDetails> order_ordersdetail_list = this.<OrderDetails, QOrderDetails>createList("order_ordersdetail_list", OrderDetails.class, QOrderDetails.class, PathInits.DIRECT2);
+    public final ListPath<OrderDetails, QOrderDetails> orderOrdersdetailList = this.<OrderDetails, QOrderDetails>createList("orderOrdersdetailList", OrderDetails.class, QOrderDetails.class, PathInits.DIRECT2);
 
-    public final ListPath<Point, QPoint> order_point_list = this.<Point, QPoint>createList("order_point_list", Point.class, QPoint.class, PathInits.DIRECT2);
+    public final ListPath<Point, QPoint> orderPointList = this.<Point, QPoint>createList("orderPointList", Point.class, QPoint.class, PathInits.DIRECT2);
 
-    public final DateTimePath<java.time.LocalDateTime> orders_date = createDateTime("orders_date", java.time.LocalDateTime.class);
+    public final StringPath ordersContent = createString("ordersContent");
 
-    public final QMember orders_member;
+    public final DateTimePath<java.time.LocalDateTime> ordersDate = createDateTime("ordersDate", java.time.LocalDateTime.class);
 
-    public final QOrderState orders_order_state;
+    public final QMember ordersMember;
 
-    public final StringPath orders_receiver = createString("orders_receiver");
+    public final QOrderState ordersOrderState;
 
-    public final StringPath orders_receiver_addr = createString("orders_receiver_addr");
+    public final StringPath ordersReceiver = createString("ordersReceiver");
 
-    public final StringPath orders_receiver_phone = createString("orders_receiver_phone");
+    public final StringPath ordersReceiverAddr = createString("ordersReceiverAddr");
 
-    public final StringPath orders_request = createString("orders_request");
+    public final StringPath ordersReceiverPhone = createString("ordersReceiverPhone");
 
-    public final NumberPath<Integer> orders_sale_price = createNumber("orders_sale_price", Integer.class);
+    public final StringPath ordersRequest = createString("ordersRequest");
 
-    public final NumberPath<Integer> orders_total_price = createNumber("orders_total_price", Integer.class);
+    public final NumberPath<Integer> ordersSalePrice = createNumber("ordersSalePrice", Integer.class);
 
-    public final NumberPath<Integer> orders_used_point = createNumber("orders_used_point", Integer.class);
+    public final NumberPath<Integer> ordersTotalPrice = createNumber("ordersTotalPrice", Integer.class);
+
+    public final NumberPath<Integer> ordersUsedPoint = createNumber("ordersUsedPoint", Integer.class);
 
     public QOrders(String variable) {
         this(Orders.class, forVariable(variable), INITS);
@@ -66,8 +68,8 @@ public class QOrders extends EntityPathBase<Orders> {
 
     public QOrders(Class<? extends Orders> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.orders_member = inits.isInitialized("orders_member") ? new QMember(forProperty("orders_member")) : null;
-        this.orders_order_state = inits.isInitialized("orders_order_state") ? new QOrderState(forProperty("orders_order_state")) : null;
+        this.ordersMember = inits.isInitialized("ordersMember") ? new QMember(forProperty("ordersMember")) : null;
+        this.ordersOrderState = inits.isInitialized("ordersOrderState") ? new QOrderState(forProperty("ordersOrderState")) : null;
     }
 
 }

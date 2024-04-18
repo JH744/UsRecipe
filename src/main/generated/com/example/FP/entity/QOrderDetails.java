@@ -24,13 +24,13 @@ public class QOrderDetails extends EntityPathBase<OrderDetails> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final NumberPath<Integer> ingredient_price = createNumber("ingredient_price", Integer.class);
+    public final NumberPath<Integer> ingredientPrice = createNumber("ingredientPrice", Integer.class);
 
-    public final QOrders orders_detail;
+    public final QOrders ordersDetail;
 
-    public final QIngredient orders_ingredient;
+    public final QMember ordersDetailsMember;
 
-    public final QMember ordersMember;
+    public final QIngredient ordersIngredient;
 
     public QOrderDetails(String variable) {
         this(OrderDetails.class, forVariable(variable), INITS);
@@ -50,9 +50,9 @@ public class QOrderDetails extends EntityPathBase<OrderDetails> {
 
     public QOrderDetails(Class<? extends OrderDetails> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.orders_detail = inits.isInitialized("orders_detail") ? new QOrders(forProperty("orders_detail"), inits.get("orders_detail")) : null;
-        this.orders_ingredient = inits.isInitialized("orders_ingredient") ? new QIngredient(forProperty("orders_ingredient"), inits.get("orders_ingredient")) : null;
-        this.ordersMember = inits.isInitialized("ordersMember") ? new QMember(forProperty("ordersMember")) : null;
+        this.ordersDetail = inits.isInitialized("ordersDetail") ? new QOrders(forProperty("ordersDetail"), inits.get("ordersDetail")) : null;
+        this.ordersDetailsMember = inits.isInitialized("ordersDetailsMember") ? new QMember(forProperty("ordersDetailsMember")) : null;
+        this.ordersIngredient = inits.isInitialized("ordersIngredient") ? new QIngredient(forProperty("ordersIngredient"), inits.get("ordersIngredient")) : null;
     }
 
 }

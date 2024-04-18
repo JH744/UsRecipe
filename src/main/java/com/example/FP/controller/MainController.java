@@ -29,6 +29,7 @@ public class MainController {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String username = userDetails.getUsername();
             session.setAttribute("userid", username);
+            session.setAttribute("image", ms.findById(username).getImage());
             System.out.println(username);
             System.out.println("OAuth2User:" + oauth.getAttributes());
         }

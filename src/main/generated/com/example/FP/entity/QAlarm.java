@@ -22,13 +22,13 @@ public class QAlarm extends EntityPathBase<Alarm> {
 
     public static final QAlarm alarm = new QAlarm("alarm");
 
-    public final StringPath alarm_msg = createString("alarm_msg");
-
-    public final QRecipe alarm_recipe;
-
-    public final NumberPath<Integer> alarm_state = createNumber("alarm_state", Integer.class);
-
     public final QMember alarmMember;
+
+    public final StringPath alarmMsg = createString("alarmMsg");
+
+    public final QRecipe alarmRecipe;
+
+    public final NumberPath<Integer> alarmState = createNumber("alarmState", Integer.class);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
@@ -50,8 +50,8 @@ public class QAlarm extends EntityPathBase<Alarm> {
 
     public QAlarm(Class<? extends Alarm> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.alarm_recipe = inits.isInitialized("alarm_recipe") ? new QRecipe(forProperty("alarm_recipe"), inits.get("alarm_recipe")) : null;
         this.alarmMember = inits.isInitialized("alarmMember") ? new QMember(forProperty("alarmMember")) : null;
+        this.alarmRecipe = inits.isInitialized("alarmRecipe") ? new QRecipe(forProperty("alarmRecipe"), inits.get("alarmRecipe")) : null;
     }
 
 }

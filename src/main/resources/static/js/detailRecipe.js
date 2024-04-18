@@ -17,7 +17,8 @@ function insertReply() {
         data: {
             gradeStar: gradeStar,
             replyContent: replyContent,
-            recipeId: recipeId
+            recipeId: recipeId,
+            ingredientId:0
         },
         type: "POST",
         success: function () {
@@ -36,7 +37,7 @@ function checkReply(msg) {
 function deleteReply(num) {
     Swal.fire({
         title: "댓글 삭제",
-        text: "해당 요리 순서를 정말 삭제하시겠습니까?",
+        text: "해당 댓글을 정말 삭제하시겠습니까?",
         imageUrl: "../static/images/image_11.png",
         imageAlt: "Custom image",
         showCancelButton: true,

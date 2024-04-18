@@ -2,10 +2,9 @@ package com.example.FP.controller;
 
 import com.example.FP.entity.Ingredient;
 import com.example.FP.service.IngredientService;
-import com.google.gson.Gson;
+import com.example.FP.service.ReplyService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +21,7 @@ import java.util.List;
 public class IngredientController {
 
     private final IngredientService is;
+    private final ReplyService rs;
 
 
 
@@ -100,11 +100,12 @@ public class IngredientController {
 
 
 
-    @GetMapping("/ingredientDetail")
-    public String ingredientDetail(@RequestParam(name = "ingredientId") Long ingredientId, Model model){
+    @GetMapping("/detailIngredient")
+    public String detailIngredient(@RequestParam(name = "ingredientId") Long ingredientId, Model model){
         Ingredient ingredient = is.findById(ingredientId).get();
         model.addAttribute("ingredient",ingredient);
-        return "ingredientDetail";
+        model.addAttribute("reply",rs.findAllByIngredientReply(ingredientId));
+        return "all/detailIngredient";
     }
 
     @PostMapping("/searchIngredient")

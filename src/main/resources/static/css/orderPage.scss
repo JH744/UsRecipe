@@ -24,8 +24,11 @@ a{
 
 
 .mainBody{
-  width: 905px; height: 1100px;
+  width: 905px;
+  height: 1600px;
   margin: 0 auto;
+
+
   ul{
     list-style: none;  
     text-decoration: none;  
@@ -87,6 +90,8 @@ a{
   text-align: center;
 }
 
+
+
 .btnOrder{
   width: 330px;
   height: 55px;
@@ -94,7 +99,7 @@ a{
   color: #fff;
   font-size: 24px;
   font-weight: 600;
-  margin: 40 0 0 0px;
+  margin: 40px 0 0 0px;
   border: none;
   border-radius: 2%;
   position: relative;
@@ -104,6 +109,12 @@ a{
 }
 
 
+
+
+
+.nolook{
+  display: none;
+}
 
 
 
@@ -148,7 +159,8 @@ a{
 }
 
 .deletebtnbox{float: left;}
-.deletebtn{
+
+.btnAllDelete{
   background-color: #fff;
   border: 1px solid $애플배경색;
   color: $애플배경색;
@@ -157,16 +169,23 @@ a{
   cursor: pointer;
 }
 
+.btnAllDelete:hover{
+    color: #fff;
+    background-color: #000000;
+}
+
+
 
 .orderPricebox{
   clear: both;
 }
 .orderPriceFt1{
-  color: #a8a4a4;
+  color: #8d8a8a;
   font-weight: bold;
+  font-size: 17px;
 }
 .orderPriceFt2{
-  font-size: 16px;
+  font-size: 19px;
   font-weight: bolder;
   margin: 10px;
 }
@@ -180,11 +199,85 @@ a{
   color: #fff;
   font-size: 24px;
   font-weight: 600;
-  margin: 38px 0 0 0px;
+  margin: 30px 0 0 0px;
   border: none;
   border-radius: 2%;
   cursor: pointer;
 
 }
 
+
+.btnDelete{
+  margin: 0px 10px;
+  height: 23px;
+  cursor: pointer;
+  background-color: black;
+  color: #fff;
+  border-radius: 3px;
+  border: none;
+
+}
+
+
+.inputQty{
+  width: 30px;
+  border: 1px solid #cac7c7;
+}
+
+
+#btnMinus, #btnPlus{
+  width: 19px; height: 19.5px;
+  background-color: #cac7c7;
+  color: #000000;
+  border: none;
+  border-radius: 2px;
+  font-weight: 700; 
+  cursor: pointer; 
+}
+
+
+
+.deleteModalContainer{
+  position: relative;
+}
+
+
+
+.deleteModal{
+  position: fixed;
+  width: 270px;
+  height: 130px;
+  padding-top: 30px;
+  border: 2px solid #666464;
+  background-color: #fff;
+  margin:  auto;
+
+  top: 280px;
+  left: 43%;
+
+  display: none;
+
+  h3{
+    margin-bottom: 30px;
+    
+  }
+
+}
+
+
+
+.point1 , .point2{
+  color: #a8a4a4;
+
+}
+
+.point2{
+  margin: 0 10px;
+}
+
+.inputBox{
+  width: 800px;
+  height: 36px;
+  border: none;
+}
 

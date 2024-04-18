@@ -7,18 +7,20 @@
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
-
 </head>
 <div class="header" th:fragment="header">
     <div class=headerLeft>
-        <a href="/"><div class="headerLogo"></div></a>
+        <a th:href="@{/}">
+            <div class="headerLogo"></div>
+        </a>
         <nav>
             <ul class="headerMenu">
-                <li  class="recipeTag"><a>레시피 </a></li>
-                <li  class="storeTag"><a>상점</a></li>
-                <li  class="creatorTag"><a>크리에이터</a></li>
-                <li  class="csTag"><a>고객센터</a> </li>
-                <li  class="myPageTag"><a>마이페이지</a></li>
+                <li  class="recipeTag"><a th:href="@{/listRecipe/1}">레시피 </a></li>
+                <li  class="storeTag"><a th:href="@{/listIngredient/1}">재료</a></li>
+                <li  class="creatorTag"><a th:href="@{#}">크리에이터</a></li>
+                <li  class="csTag"><a th:href="@{#}">고객센터</a> </li>
+                <li  class="myPageTag"><a th:href="@{/orderList}">마이페이지</a></li>
+
             </ul>
         </nav>
     </div>
@@ -31,7 +33,7 @@
         </th:block>
         <th:block th:if="${session.userid != null}">
             <ul class="headerRight" id="loginHeaderRight"  >
-                <li class="imageTag"><img src="../static/images/member.png" class="memberImg"></li>
+                <li class="imageTag"><img th:src="@{|../static/images/${session.image}|}" class="memberImg" style="width: 50px; height: 50px"></li>
                 <li class="nickname"> <a class="memberInfo" href="/orderList" th:text="${session.userid}+'님'"></a></li>
                 <!-- 여기에서 회원가입 대신 로그아웃으로 표시하려면 주의합니다. -->
                 <li class="joinTag" id="loginJoinTag"><a href="/logout">로그아웃</a></li>
