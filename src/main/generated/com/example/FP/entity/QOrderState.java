@@ -22,7 +22,7 @@ public class QOrderState extends EntityPathBase<OrderState> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final ListPath<Orders, QOrders> orders_state_list = this.<Orders, QOrders>createList("orders_state_list", Orders.class, QOrders.class, PathInits.DIRECT2);
+    public final ListPath<Orders, QOrders> ordersStateList = this.<Orders, QOrders>createList("ordersStateList", Orders.class, QOrders.class, PathInits.DIRECT2);
 
     public final StringPath state = createString("state");
 

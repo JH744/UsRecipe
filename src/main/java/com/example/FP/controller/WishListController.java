@@ -1,11 +1,18 @@
 package com.example.FP.controller;
 
+import com.example.FP.entity.Cart;
+import com.example.FP.entity.WishList;
 import com.example.FP.service.WishListService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
@@ -30,4 +37,47 @@ public class WishListController {
 
         return "redirect:/user/wishList";
     }
+
+
+    @PostMapping("/addWish")
+    @ResponseBody
+    public String addWish(Model model, @RequestParam ("Id") Long Id){
+        System.out.println("전달받은거:"+Id);
+        long memberId = 52; //임시 회원id
+        // 찜목록에 이미 있는 지 조회
+        List<WishList> result =  ws.findById(Id,memberId);
+
+        String coment= "";
+        // result가 비어있다면 위시리스트에 새로 저장함.
+        if(result.isEmpty()){
+            ws.addWish(Id,memberId);
+            coment = "저장함";
+        }else{
+            ws.deleteWish(memberId,Id);
+            coment ="삭제함";
+        }
+        System.out.println(coment);
+        return coment;
+    }
+
+
+
+    @PostMapping("/checkWish")
+    @ResponseBody
+    public String checkWish(@RequestParam("Id") long Id){
+        System.out.println("확인할 id :"+Id);
+        long memberId = 52; //임시 회원id
+
+        List<WishList> result =  ws.findById(Id,memberId);
+        String coment= "";
+        if(result.isEmpty()){
+            coment = "저장안됨";
+        }else{
+            coment ="저장됨";
+        }
+        System.out.println(coment);
+        return coment;
+    }
+
+
 }

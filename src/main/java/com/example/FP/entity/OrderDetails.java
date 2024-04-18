@@ -18,6 +18,7 @@ public class OrderDetails {
     @Column(name = "order_detail_id")
     private Long id;
 
+    
     private int ingredientPrice;
 
     @ManyToOne

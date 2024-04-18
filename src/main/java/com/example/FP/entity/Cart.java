@@ -32,4 +32,9 @@ public class Cart {
         this.cartRecipe = cartRecipe;
         this.cartIngredient = cartIngredient;
     }
+
+    public Cart(Member cartMember, Ingredient cartIngredient) {
+        this.cartMember = cartMember;
+        this.cartIngredient = cartIngredient;
+    }
 }

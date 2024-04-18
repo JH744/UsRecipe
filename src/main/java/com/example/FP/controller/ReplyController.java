@@ -18,9 +18,16 @@ public class ReplyController {
     @ResponseBody
     public void insertReply(@RequestParam(name = "gradeStar") int gradeStar,
                             @RequestParam(name = "replyContent") String replyContent,
-                            @RequestParam(name = "recipeId") Long recipeId, HttpSession session) {
+                            @RequestParam(name = "recipeId") Long recipeId,
+                            @RequestParam(name = "ingredientId") Long ingredientId,HttpSession session) {
         String userid = (String) session.getAttribute("userid");
-        rs.insertReply(gradeStar, replyContent, recipeId, userid);
+        if(ingredientId==0){
+            ingredientId=null;
+        }
+        if(recipeId==0){
+            recipeId=null;
+        }
+        rs.insertReply(gradeStar, replyContent, recipeId, userid,ingredientId);
     }
 
     @PostMapping("/deleteReply")

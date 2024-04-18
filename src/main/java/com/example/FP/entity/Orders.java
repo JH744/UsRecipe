@@ -84,4 +84,13 @@ public class Orders {
         this.ordersContent = ordersContent;
 
     }
+
+    public Orders createOreders(Orders orders,Member member,OrderState orderState){
+        Orders order = new Orders(orders.ordersDate,orders.ordersReceiver,orders.ordersReceiverAddr,orders.ordersReceiverPhone,orders.ordersTotalPrice,orders.ordersSalePrice,orders.ordersUsedPoint*-1,orders.ordersRequest,member,orders.orderOrdersdetailList,orderState,orders.orderPointList,orders.ordersContent);
+        member.addPoint(orders);
+        member.usePoint(orders);
+
+        return order;
+    }
+
 }
