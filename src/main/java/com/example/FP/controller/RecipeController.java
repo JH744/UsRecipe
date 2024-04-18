@@ -1,5 +1,6 @@
 package com.example.FP.controller;
 
+
 import com.example.FP.entity.Recipe;
 import com.example.FP.entity.RecipeCategory;
 import com.example.FP.service.MemberService;
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import jakarta.servlet.http.HttpSession;
 import com.google.gson.JsonParser;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -28,11 +30,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
 
 
 @Controller
@@ -91,11 +90,12 @@ public class RecipeController {
         }
 
 
-        Page<Recipe> list =null;
+
+        Page<Recipe>  list =null;
         int totalPage = 0;
         //카테고리가 전체보기(000)이라면 모든 목록 불러오기
         if(category == null || category == 000) {
-            list = rs.listAll(pageable, keyword);
+             list = rs.listAll(pageable, keyword);
             totalPage = list.getTotalPages();
         }
         //카테고리가 전체보기(000)이 아니라면 카테고리 목록 불러오기
@@ -117,6 +117,7 @@ public class RecipeController {
         //이 레시피는 어때요?
         long HowAboutToday ;
         model.addAttribute("HowAbout",rs.randomList().get(0));
+
 
 
         //주간인기레시피

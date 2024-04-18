@@ -1,5 +1,9 @@
 package com.example.FP.service;
 
+import com.example.FP.entity.Recipe;
+import com.example.FP.entity.WishList;
+import com.example.FP.repository.RecipeRepository;
+import com.example.FP.repository.WishListRepository;
 import com.example.FP.dto.RecipeDto;
 import com.example.FP.dto.RecipeIngredientDto;
 import com.example.FP.dto.RecipeOrderDto;
@@ -17,7 +21,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+
 import java.io.File;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -41,9 +52,10 @@ public class RecipeService {
     }
 
     //레시피 목록 카테고리+검색+ 페이지네이션//
-    public Page<Recipe> listRecipes(String keyword, Long categoryId, Pageable pageable) {
+
+    public Page<Recipe> listRecipes(String keyword,Long categoryId,Pageable pageable) {
         Page<Recipe> recipesList =
-                rr.findByTitleContainingAndCategory(keyword, categoryId, pageable);
+        rr.findByTitleContainingAndCategory(keyword, categoryId, pageable);
 
         return recipesList;
     }
@@ -51,20 +63,6 @@ public class RecipeService {
     //레시피 전체 목록 + 페이지네이션 + 검색
     public Page<Recipe> listAll(Pageable pageable, String keyword) {
         return rr.findByTitleContaining(keyword, pageable);
-    }
-
-    // 이 레시피 어때요?
-    public Recipe HowAbout() {
-        //총 레시피의 수를 구함
-        long totalRecipe = rr.count();
-        Random r = new Random();
-        //랜덤으로 레시피를 하나 가져옴. (1부터 총갯수만큼)
-//        Long randomId = r.nextLong(totalRecipe +1 );
-        Long randomId = 1L;
-        System.out.println("난수:" + randomId);
-        Optional<Recipe> optional = rr.findById(randomId);
-        Recipe recipe = optional.get();
-        return recipe;
     }
 
 
@@ -76,6 +74,27 @@ public class RecipeService {
                 .collect(Collectors.toList());
         return rr.findByIdIn(recipeIds);
     }
+
+    // 이 레시피 어때요?
+    public Recipe HowAbout(){
+        //총 레시피의 수를 구함
+        long totalRecipe =  rr.count();
+        Random r = new Random();
+        //랜덤으로 레시피를 하나 가져옴. (1부터 총갯수만큼)
+        Long randomId = r.nextLong(totalRecipe +1 );
+        System.out.println("난수:"+randomId);
+              Optional<Recipe> optional = rr.findById(randomId);
+        Recipe recipe =optional.get();
+            return recipe;
+    }
+
+
+
+
+
+
+
+
 
     // 메인페이지 5개 보여줄 레시피
     public List<Recipe> top5() {

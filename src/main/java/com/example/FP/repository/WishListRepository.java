@@ -33,5 +33,4 @@ public interface WishListRepository extends JpaRepository<WishList,Long>, WishLi
     List<Object[]> findTopPopularRecipes(Pageable pageable);
 
 
-
 }

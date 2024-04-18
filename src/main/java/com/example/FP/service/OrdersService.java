@@ -1,5 +1,6 @@
 package com.example.FP.service;
 
+import com.example.FP.dto.OrdersDto;
 import com.example.FP.entity.OrderDetails;
 import com.example.FP.entity.Orders;
 import com.example.FP.repository.OrderDetailsRepository;
@@ -23,4 +24,8 @@ public class OrdersService {
     }
 
     public List<Orders> findAll(){ return or.findAll(); }
+
+    public void save(Orders o) {
+            or.save(o);
+    }
 }

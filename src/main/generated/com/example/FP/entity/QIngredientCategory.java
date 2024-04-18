@@ -7,7 +7,6 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
-import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -22,9 +21,7 @@ public class QIngredientCategory extends EntityPathBase<IngredientCategory> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final StringPath ingredient_category_name = createString("ingredient_category_name");
-
-    public final ListPath<Ingredient, QIngredient> ingredient_list = this.<Ingredient, QIngredient>createList("ingredient_list", Ingredient.class, QIngredient.class, PathInits.DIRECT2);
+    public final StringPath ingredientCategoryName = createString("ingredientCategoryName");
 
     public QIngredientCategory(String variable) {
         super(IngredientCategory.class, forVariable(variable));
