@@ -28,6 +28,7 @@ import java.util.List;
 public class MemberService implements UserDetailsService {
     private final MemberRepository mr;
     private final RecipeRepository rr;
+    private final PasswordEncoder passwordEncoder;
 
     // 존재하는 회원인지 확인
     public void validateDuplicateMember(Member member) {
@@ -43,8 +44,12 @@ public class MemberService implements UserDetailsService {
         mr.save(member);
         return member.getId();
     }
-    public void dataChange(Member member){
-        mr.save(member);
+    public void updateMember(Long memberId, MemberDto newMemberInfo) {
+        Member existingMember = mr.findById(memberId)
+                .orElseThrow(() -> new RuntimeException("Member not found with id " + memberId));
+        existingMember.changeMember(passwordEncoder.encode(newMemberInfo.getPassword()),newMemberInfo.getNickname(),newMemberInfo.getAddr());
+
+         mr.save(existingMember);
     }
 
     @Override

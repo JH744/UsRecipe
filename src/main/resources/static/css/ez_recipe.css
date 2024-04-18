@@ -27471,30 +27471,30 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 @keyframes slidein {
     from {
-        opacity:0;
+        opacity: 0;
     }
     to {
         opacity: 1;
     }
 }
 
-.ingredientGroup{
+.ingredientGroup {
     animation-duration: 1.5s;
     animation-name: slidein;
 }
 
-.ingredientSearchBox{
-    display:flex;
+.ingredientSearchBox {
+    display: flex;
     margin-bottom: 5px;
     justify-content: flex-start;
-    width:100%;
-}
-
-.ingredientSearchInput{
     width: 100%;
-    height:34px
 }
 
-.ingredient_headerInfo{
+.ingredientSearchInput {
+    width: 100%;
+    height: 34px
+}
+
+.ingredient_headerInfo {
     min-height: 353px;
 }

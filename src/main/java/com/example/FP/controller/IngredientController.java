@@ -2,6 +2,7 @@ package com.example.FP.controller;
 
 import com.example.FP.entity.Ingredient;
 import com.example.FP.service.IngredientService;
+import com.example.FP.service.ReplyService;
 import com.google.gson.Gson;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ import java.util.List;
 public class IngredientController {
 
     private final IngredientService is;
+    private final ReplyService rs;
 
 
 
@@ -100,9 +102,12 @@ public class IngredientController {
 
 
 
-    @GetMapping("/ingredientDetail")
-    public void ingredientDetail(){
-
+    @GetMapping("/detailIngredient")
+    public String detailIngredient(@RequestParam(name = "ingredientId") Long ingredientId, Model model){
+        Ingredient ingredient = is.findById(ingredientId).get();
+        model.addAttribute("ingredient",ingredient);
+        model.addAttribute("reply",rs.findAllByIngredientReply(ingredientId));
+        return "detailIngredient";
     }
 
     @PostMapping("/searchIngredient")

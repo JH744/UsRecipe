@@ -28344,3 +28344,18 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     justify-content: flex-start
 }
 
+.recipeControlBox {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px
+}
+
+.btn-delete{
+    color: #fff;
+    background-color: #666666;
+    border: 1px solid #666666;
+}
+
+.goods_box_none {text-align: center; color: #999; font-size: 16px; padding:60px 0 40px;}
+.goods_box_none img {width:80px;}
+.goods_box_none p {margin-top:15px;}

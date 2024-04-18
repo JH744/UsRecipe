@@ -41,7 +41,6 @@ public class OrdersController {
 
         model.addAttribute("list",os.findByOrderId(id));
 
-
         return "/user/orderListDetail";
 
     }

@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.apache.commons.io.FileUtils;
 import com.example.FP.service.RecipeService;
@@ -125,7 +126,7 @@ public class RecipeController {
         return "recipe";
     }
 
-
+    //레시피 등록 화면으로 이동
     @GetMapping("/addRecipe")
     public String addRecipe(Model model, HttpSession session){
         String role = ms.findById(session.getAttribute("userid")+"").getRole().name();
@@ -135,16 +136,18 @@ public class RecipeController {
         return "/addRecipe";
     }
 
+    //레시피 내부에서 사진 저장용
     @PostMapping(value="/uploadRecipePhoto", produces = "application/json")
     @ResponseBody
-    public String uploadRecipeMainPhoto(@RequestParam("file") MultipartFile multipartFile){
+    public String uploadRecipeMainPhoto(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request){
         JsonObject jsonObject = new JsonObject();
-        String fileRoot = "src/main/resources/static/images/";	//저장될 외부 파일 경로
+//        String fileRoot = "src/main/resources/static/images/";	//저장될 외부 파일 경로
+        String fileRoot = request.getServletContext().getRealPath("/recipeImages");	//저장될 외부 파일 경로
         String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
         String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 
         String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-        File targetFile = new File(fileRoot + savedFileName);
+        File targetFile = new File(fileRoot+"/"+ savedFileName);
 
         try {
             InputStream fileStream = multipartFile.getInputStream();
@@ -159,24 +162,32 @@ public class RecipeController {
         return gson.toJson(jsonObject);
     }
 
-    @PostMapping(value="/deleteRecipePhoto", produces = "application/json")
+    //레시피 사진 변경이 삭제용
+    @PostMapping(value="/deleteRecipePhoto", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public void deleteRecipePhoto(@RequestParam("fileName") String fileName){
-        String fileRoot = "src/main/resources/static/images/";	//저장될 외부 파일 경로
+    public void deleteRecipePhoto(@RequestBody Map<String,Object> deleteFileNameList, HttpServletRequest request){
+        String fileRoot = request.getServletContext().getRealPath("/recipeImages");	//저장될 외부 파일 경로
+        List<String> FileNameList = (List<String>) deleteFileNameList.get("deleteFileNameList");
         try {
-            File file = new File(fileRoot+fileName);
-            file.delete();
+            for(String photoName : FileNameList){
+                File file = new File(fileRoot+"/"+photoName);
+                System.out.println(photoName);
+                file.delete();
+            }
         } catch (Exception e) {
             System.out.println("예외발생 : "+e.getMessage());
         }
     }
 
-    @PostMapping("/insertRecipe")
+    //레시피 등록
+    @PostMapping("/saveRecipe")
+    @ResponseBody
         public String insertRecipe(@RequestParam Map<String, Object> recipeDataList,HttpSession session){
-        rs.insertRecipe(recipeDataList,session.getAttribute("userid").toString());
-        return "redirect:/";
+        Long recipeId = rs.saveRecipe(recipeDataList,session.getAttribute("userid").toString());
+        return "detailRecipe?recipeNum="+recipeId;
     }
 
+    //레시피 삭제 detailRecipe?recipeNum=값
     @GetMapping("/detailRecipe")
     public String detailRecipe(@RequestParam String recipeNum,Model model){
         Long id = Long.parseLong(recipeNum);
@@ -184,7 +195,18 @@ public class RecipeController {
         return "detailRecipe";
     }
 
-
+    //레시피 수정 updateRecipe?recipeId=값
+    @GetMapping("/updateRecipe")
+    public String updateRecipe(@RequestParam Long recipeId,Model model,HttpSession session) {
+        Recipe recipe = rs.detailRecipe(recipeId);
+        String view = "error/4xx";
+        if (recipe.getRecipeMember().getUserid().equals((String) session.getAttribute("userid"))) {
+            model.addAttribute("recipe", rs.detailRecipe(recipeId));
+            model.addAttribute("recipe_category", rc.findAllRecipeCategory());
+            view = "updateRecipe";
+        }
+        return view;
+    }
 
     // admin
     @GetMapping("/adminRecipe")
@@ -194,10 +216,23 @@ public class RecipeController {
         return "/admin/adminRecipeList";
     }
 
+    // 관리자가 레시피 삭제
     @PostMapping("/deleteRecipe/{id}")
     public String adminDeleteRecipe(@RequestParam Long id) {
         rs.deleteRecipe(id);
 
         return "redirect:/admin/adminReipeList";
+    }
+    
+    //유저가 본인 레시피 삭제
+    @GetMapping("/deleteRecipe")
+    public String deleteRecipe(@RequestParam Long recipeId,HttpSession session){
+        String view = "error/4xx";
+        Recipe recipe = rs.detailRecipe(recipeId);
+        if (recipe.getRecipeMember().getUserid().equals((String) session.getAttribute("userid"))) {
+            rs.deleteRecipe(recipeId);
+            view = "redirect:/listRecipe/1";
+        }
+        return view;
     }
 }

@@ -25,11 +25,10 @@ public class Member {
     @Id@GeneratedValue
     @Column(name = "member_id")
     private Long id;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String userid;
     private String password;
     private String name;
-    @Column(unique = true)
     private String nickname;
     private String addr;
     private String email;
@@ -107,6 +106,13 @@ public class Member {
         this.point = point;
     }
 
+    public Member(Long id, String password, String nickname, String addr) {
+        this.id = id;
+        this.password = password;
+        this.nickname = nickname;
+        this.addr = addr;
+    }
+
     public static Member createMember(MemberDto memberDto, PasswordEncoder passwordEncoder){
         System.out.println("맴버 생성");
         Member member = Member.builder()
@@ -120,6 +126,23 @@ public class Member {
                 .point(0)
                 .password(passwordEncoder.encode(memberDto.getPassword()))  //암호화처리
                 .image("person.png")
+                .role(MemberRole.MEMBER)
+                .build();
+        return member;
+    }
+    public static Member changeMember(MemberDto memberDto, PasswordEncoder passwordEncoder){
+        System.out.println("맴버 생성");
+        Member member = Member.builder()
+                .id(memberDto.getId())
+                .userid(memberDto.getUserid())
+                .name(memberDto.getName())
+                .nickname(memberDto.getNickname())
+                .addr(memberDto.getAddr())
+                .email(memberDto.getEmail())
+                .phone(memberDto.getPhone())
+                .birth(memberDto.getBirth())
+                .point(0)
+                .password(passwordEncoder.encode(memberDto.getPassword()))  //암호화처리
                 .role(MemberRole.MEMBER)
                 .build();
         return member;
@@ -156,6 +179,12 @@ public class Member {
         int usedPoint = orders.getOrdersUsedPoint();
         this.point-=usedPoint;
         System.out.println(this.getUserid()+" 님의 포인트 "+usedPoint+"원이 사용되었습니다");
+    }
+
+    public void changeMember(String password, String nickname, String addr){
+        this.password = password;
+        this.nickname = nickname;
+        this.addr =addr;
     }
 
 
