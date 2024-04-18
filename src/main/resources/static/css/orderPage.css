@@ -74,13 +74,17 @@ a {
   color: #fff;
   font-size: 24px;
   font-weight: 600;
-  margin: 40 0 0 0px;
+  margin: 40px 0 0 0px;
   border: none;
   border-radius: 2%;
   position: relative;
   top: 50px;
   left: 270px;
   cursor: pointer;
+}
+
+.nolook {
+  display: none;
 }
 
 .cartbox {
