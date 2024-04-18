@@ -221,7 +221,8 @@
                                 <tbody>
 
                                 <tr th:each="list:${list}">
-                                    <td class="orderList_td" th:text="${list.inquiryTitle}"></td>
+                                    <td class="orderList_td">
+                                        <a th:href="@{/inquiryDetail/{id}(id=${list.id})}" th:text="${list.inquiryTitle}"></a></td>
                                     <td class="orderList_td" th:text="${list.inquiryDate}"></td>
                                     <td class="orderList_td" th:text="${list.inquiryCategory}"></td>
                                     <td class="orderList_td" th:text="${list.inquiryState}"></td>
@@ -229,6 +230,10 @@
 
                                 </tbody>
                             </table>
+                            <div style="width: 100%; text-align: right;">
+                                <button id="createButton" style="width: 100px; color: white; margin: 100px 0 0 0; height: 50px; background-color: #D65454">문의하기</button>
+
+                            </div>
                         </div>
                         <!-- .container -->
 

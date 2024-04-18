@@ -20,6 +20,12 @@ public class InquiryService {
         return ir.listByUserid(userid);
     }
 
+
+    public Optional<Inquiry> findById(Long id) {
+        return ir.findById(id);
+    }
+
+
     public List<Inquiry> answered(){return ir.listInquiryAnswered();}
     public List<Inquiry> answeredYet(){return ir.listInquiryAnswerYet();}
     public void save(Inquiry inquiry){ir.save(inquiry);}
