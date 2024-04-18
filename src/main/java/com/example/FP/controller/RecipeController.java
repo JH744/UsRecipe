@@ -1,38 +1,29 @@
 package com.example.FP.controller;
 
+
 import com.example.FP.entity.Recipe;
-import com.example.FP.entity.RecipeCategory;
 import com.example.FP.service.MemberService;
 import com.example.FP.service.RecipeCategoryService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.io.FileUtils;
 import com.example.FP.service.RecipeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
 
 
 @Controller
@@ -91,11 +82,12 @@ public class RecipeController {
         }
 
 
-        Page<Recipe> list =null;
+
+        Page<Recipe>  list =null;
         int totalPage = 0;
         //카테고리가 전체보기(000)이라면 모든 목록 불러오기
         if(category == null || category == 000) {
-            list = rs.listAll(pageable, keyword);
+             list = rs.listAll(pageable, keyword);
             totalPage = list.getTotalPages();
         }
         //카테고리가 전체보기(000)이 아니라면 카테고리 목록 불러오기
@@ -119,6 +111,7 @@ public class RecipeController {
         model.addAttribute("HowAbout",rs.randomList().get(0));
 
 
+
         //주간인기레시피
         //찜목록 top4를 불러옴
         List<Recipe> listTop4 =rs.listTop4();
@@ -133,7 +126,7 @@ public class RecipeController {
         model.addAttribute("role",role);
         model.addAttribute("recipe_category",rc.findAllRecipeCategory());
 
-        return "/addRecipe";
+        return "/user/addRecipe";
     }
 
     //레시피 내부에서 사진 저장용
@@ -184,15 +177,15 @@ public class RecipeController {
     @ResponseBody
         public String insertRecipe(@RequestParam Map<String, Object> recipeDataList,HttpSession session){
         Long recipeId = rs.saveRecipe(recipeDataList,session.getAttribute("userid").toString());
-        return "detailRecipe?recipeNum="+recipeId;
+        return "/detailRecipe?recipeNum="+recipeId;
     }
 
-    //레시피 삭제 detailRecipe?recipeNum=값
+    //레시피 상세 detailRecipe?recipeNum=값
     @GetMapping("/detailRecipe")
     public String detailRecipe(@RequestParam String recipeNum,Model model){
         Long id = Long.parseLong(recipeNum);
         model.addAttribute("recipe",rs.detailRecipe(id));
-        return "detailRecipe";
+        return "/all/detailRecipe";
     }
 
     //레시피 수정 updateRecipe?recipeId=값
@@ -203,7 +196,7 @@ public class RecipeController {
         if (recipe.getRecipeMember().getUserid().equals((String) session.getAttribute("userid"))) {
             model.addAttribute("recipe", rs.detailRecipe(recipeId));
             model.addAttribute("recipe_category", rc.findAllRecipeCategory());
-            view = "updateRecipe";
+            view = "/user/updateRecipe";
         }
         return view;
     }
@@ -231,7 +224,7 @@ public class RecipeController {
         Recipe recipe = rs.detailRecipe(recipeId);
         if (recipe.getRecipeMember().getUserid().equals((String) session.getAttribute("userid"))) {
             rs.deleteRecipe(recipeId);
-            view = "redirect:/listRecipe/1";
+            view = "redirect:/all/listRecipe/1";
         }
         return view;
     }

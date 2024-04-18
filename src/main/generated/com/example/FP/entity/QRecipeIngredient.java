@@ -24,13 +24,15 @@ public class QRecipeIngredient extends EntityPathBase<RecipeIngredient> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final QIngredient recipe_ingredient_ingredient;
+    public final QIngredient recipeIngredientIngredient;
 
-    public final StringPath recipe_ingredient_need = createString("recipe_ingredient_need");
+    public final StringPath recipeIngredientNeed = createString("recipeIngredientNeed");
 
-    public final NumberPath<Integer> recipe_ingredient_qty = createNumber("recipe_ingredient_qty", Integer.class);
+    public final NumberPath<Integer> recipeIngredientQty = createNumber("recipeIngredientQty", Integer.class);
 
-    public final QRecipe recipe_ingredient_recipe;
+    public final QRecipe recipeIngredientRecipe;
+
+    public final StringPath recipeIngredientUnit = createString("recipeIngredientUnit");
 
     public QRecipeIngredient(String variable) {
         this(RecipeIngredient.class, forVariable(variable), INITS);
@@ -50,8 +52,8 @@ public class QRecipeIngredient extends EntityPathBase<RecipeIngredient> {
 
     public QRecipeIngredient(Class<? extends RecipeIngredient> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.recipe_ingredient_ingredient = inits.isInitialized("recipe_ingredient_ingredient") ? new QIngredient(forProperty("recipe_ingredient_ingredient"), inits.get("recipe_ingredient_ingredient")) : null;
-        this.recipe_ingredient_recipe = inits.isInitialized("recipe_ingredient_recipe") ? new QRecipe(forProperty("recipe_ingredient_recipe"), inits.get("recipe_ingredient_recipe")) : null;
+        this.recipeIngredientIngredient = inits.isInitialized("recipeIngredientIngredient") ? new QIngredient(forProperty("recipeIngredientIngredient"), inits.get("recipeIngredientIngredient")) : null;
+        this.recipeIngredientRecipe = inits.isInitialized("recipeIngredientRecipe") ? new QRecipe(forProperty("recipeIngredientRecipe"), inits.get("recipeIngredientRecipe")) : null;
     }
 
 }

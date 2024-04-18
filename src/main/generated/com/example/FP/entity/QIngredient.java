@@ -24,27 +24,23 @@ public class QIngredient extends EntityPathBase<Ingredient> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final NumberPath<Integer> ingredient_amount = createNumber("ingredient_amount", Integer.class);
+    public final NumberPath<Integer> ingredientAmount = createNumber("ingredientAmount", Integer.class);
 
-    public final ListPath<Cart, QCart> ingredient_cart_list = this.<Cart, QCart>createList("ingredient_cart_list", Cart.class, QCart.class, PathInits.DIRECT2);
+    public final StringPath ingredientDetail = createString("ingredientDetail");
 
-    public final QIngredientCategory ingredient_ingredient_category;
+    public final StringPath ingredientImage = createString("ingredientImage");
 
-    public final StringPath ingredient_name = createString("ingredient_name");
+    public final QIngredientCategory ingredientIngredientCategory;
 
-    public final ListPath<OrderDetails, QOrderDetails> ingredient_orderdetail_list = this.<OrderDetails, QOrderDetails>createList("ingredient_orderdetail_list", OrderDetails.class, QOrderDetails.class, PathInits.DIRECT2);
+    public final StringPath ingredientName = createString("ingredientName");
 
-    public final StringPath ingredient_origin = createString("ingredient_origin");
-
-    public final NumberPath<Integer> ingredient_qty = createNumber("ingredient_qty", Integer.class);
-
-    public final ListPath<Reply, QReply> ingredient_reply_list = this.<Reply, QReply>createList("ingredient_reply_list", Reply.class, QReply.class, PathInits.DIRECT2);
-
-    public final StringPath ingredient_unit = createString("ingredient_unit");
+    public final StringPath ingredientOrigin = createString("ingredientOrigin");
 
     public final NumberPath<Integer> ingredientPrice = createNumber("ingredientPrice", Integer.class);
 
-    public final ListPath<RecipeIngredient, QRecipeIngredient> recipe_ingredient_list = this.<RecipeIngredient, QRecipeIngredient>createList("recipe_ingredient_list", RecipeIngredient.class, QRecipeIngredient.class, PathInits.DIRECT2);
+    public final NumberPath<Integer> ingredientQty = createNumber("ingredientQty", Integer.class);
+
+    public final StringPath ingredientUnit = createString("ingredientUnit");
 
     public QIngredient(String variable) {
         this(Ingredient.class, forVariable(variable), INITS);
@@ -64,7 +60,7 @@ public class QIngredient extends EntityPathBase<Ingredient> {
 
     public QIngredient(Class<? extends Ingredient> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.ingredient_ingredient_category = inits.isInitialized("ingredient_ingredient_category") ? new QIngredientCategory(forProperty("ingredient_ingredient_category")) : null;
+        this.ingredientIngredientCategory = inits.isInitialized("ingredientIngredientCategory") ? new QIngredientCategory(forProperty("ingredientIngredientCategory")) : null;
     }
 
 }
