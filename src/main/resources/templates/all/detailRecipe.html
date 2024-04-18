@@ -173,7 +173,7 @@
                 </div>
                 <div id="recipeCommentList_1">
                     <div class="media reply_list" th:id="'replyDiv_'+${r.Id}" th:each="r : ${recipe.recipeReplyList}">
-                        <div class="media-left"><a th:href="'/profile?id='+${r.replyMember.id}">
+                        <div class="media-left">
                             <img
                                     class="media-object"
                                     src="../../static/images/chef2.png"
