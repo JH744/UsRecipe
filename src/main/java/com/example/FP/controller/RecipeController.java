@@ -116,7 +116,7 @@ public class RecipeController {
         //찜목록 top4를 불러옴
         List<Recipe> listTop4 =rs.listTop4();
         model.addAttribute("listTop4", listTop4);
-        return "recipe";
+        return "/all/recipe";
     }
 
     //레시피 등록 화면으로 이동
