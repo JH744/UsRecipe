@@ -40,7 +40,6 @@ public class WishListService {
     }
 
 
-
     public List<WishList> findById(Long id, HttpSession session) {
         Member m= ms.findById((String) session.getAttribute("userid"));
         return wr.findByWishlistMemberIdAndWishlistRecipeId(m.getId(), id);
@@ -50,7 +49,6 @@ public class WishListService {
     public void deleteWish(Long id,HttpSession session) {
         Member m= ms.findById((String) session.getAttribute("userid"));
         wr.deleteByMemberIdAndRecipeId(m.getId(),id);}
-
 
 
 

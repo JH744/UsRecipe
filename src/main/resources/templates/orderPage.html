@@ -60,10 +60,27 @@
             // 총결제금액  구하기  =    총상품가격 - 적립금
             function getTotalOrderPrice(){
                 var updatedTotal = 0;
+                var usePoint = $('#usePoint').val();
+                var hasPoint = $('#hasPoint').text();
+                console.log('usePoint:'+usePoint);
+                console.log('hasPoint:'+hasPoint);
+
+
+
+                // 사용 포인트 입력된 값이 있다면
                 if( $('#usePoint').val() != '' ){
+                    //사용포인트가 보유포인트보다 크면 초과했다는 문구 표시
+                    $('.overPoint').css('display','none');
+                    if( parseInt($('#usePoint').val()) > parseInt($('#hasPoint').text()) )
+                    {
+                        $('#usePoint').val('0');
+                        $('.overPoint').css('display','inline');
+                    }
+
                     updatedTotal =  parseInt(orderData.totalPrice) - parseInt($('#usePoint').val());
-                }else {
+                }else { // 사용 포인트 입력칸이 '' 일시
                     updatedTotal =  parseInt(orderData.totalPrice) - 0;
+                    $('.overPoint').css('display','none');
                 }
                 $('#totalOrderPrice').html(updatedTotal + '원');
             }
@@ -222,7 +239,9 @@
                         <th class="bgapple">적립금사용</th>
                         <td> <input type="number" id="usePoint" >
                             <input type="checkbox" id="useAllPoint">최대 사용
-                            보유포인트:<span id="hasPoint" th:text="${m.point}">p </span></td>
+                            보유포인트:<span id="hasPoint" th:text="${m.point}"></span><span>p</span>
+                            <span class="overPoint">사용가능한 적립금을 초과하였습니다.</span>
+                            </td>
                     </tr>
                     <tr>
                         <th class="bgapple">배송비</th>
