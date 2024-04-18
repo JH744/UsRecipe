@@ -131,8 +131,11 @@ public class RecipeService {
 //            update라면 해당 recipeId를 넣고 새로운 요리순서, 재료목록을 넣기위해 기존건 다 삭제해준다.
             if (jsonMap.get("recipeId") != null) {
                 recipeId = Long.parseLong(jsonMap.get("recipeId").toString());
-                rir.deleteAllByPreviousRecipeIgredient(recipeId);
-                ror.deleteAllByPreviousRecipeOrder(recipeId);
+                Long recipeIngredientId = rir.PreviousRecipeIngredientMaxId(recipeId);
+                rir.deleteAllByPreviousRecipeIngredient(recipeId,recipeIngredientId);
+
+                Long recipeOrderId = ror.PreviousRecipeOrderMaxId(recipeId);
+                ror.deleteAllByPreviousRecipeOrder(recipeId,recipeOrderId);
             }
             RecipeCategory recipeCategory = rcr.findById(recipeCategoryId).get();
 
@@ -141,8 +144,8 @@ public class RecipeService {
             rr.save(recipe);
 
             for (Map<String, Object> i : ingredientDataList) {
-                Long recipeIngredientId = Long.parseLong(i.get("recipeIngredientId").toString());
-                Ingredient ingredient = ir.findById(recipeIngredientId).get();
+                Long ingredientId = Long.parseLong(i.get("recipeIngredientId").toString());
+                Ingredient ingredient = ir.findById(ingredientId).get();
                 RecipeIngredientDto rid = new RecipeIngredientDto(
                         Integer.parseInt(i.get("recipeIngredientQty").toString()),
                         i.get("recipeIngredientNeed").toString(),
@@ -150,6 +153,7 @@ public class RecipeService {
                         ingredient,
                         i.get("recipeIngredientUnit").toString()
                 );
+                System.out.println(i.get("recipeIngredientNeed").toString()+"       재료이름");
                 RecipeIngredient recipeIngredient = RecipeIngredientMapper.toEntity(rid);
                 rir.save(recipeIngredient);
             }
@@ -203,8 +207,11 @@ public class RecipeService {
         } catch (Exception e) {
             System.out.println("레시피 삭제 사진 삭제 중 예외발생 : " + e.getMessage());
         }
-        rir.deleteAllByPreviousRecipeIgredient(recipeId);
-        ror.deleteAllByPreviousRecipeOrder(recipeId);
+        Long recipeIngredientId = rir.PreviousRecipeIngredientMaxId(recipeId);
+        rir.deleteAllByPreviousRecipeIngredient(recipeId,recipeIngredientId);
+        
+        Long recipeOrderId = ror.PreviousRecipeOrderMaxId(recipeId);
+        ror.deleteAllByPreviousRecipeOrder(recipeId,recipeOrderId);
         rr.deleteById(recipeId);
     }
 }
