@@ -185,7 +185,7 @@ public class RecipeController {
     public String detailRecipe(@RequestParam String recipeNum,Model model){
         Long id = Long.parseLong(recipeNum);
         model.addAttribute("recipe",rs.detailRecipe(id));
-        return "detailRecipe";
+        return "/all/detailRecipe";
     }
 
     //레시피 수정 updateRecipe?recipeId=값
