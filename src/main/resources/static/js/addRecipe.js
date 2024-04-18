@@ -127,7 +127,7 @@ function delStep(idx) {
     }).then((result) => {
         if (result.isConfirmed) {
             var step_photo_url = "#step_photo_url_" + idx
-            deletePhotoFiles($(step_photo_url).val())
+            deleteFileNameList.push($(step_photo_url).val());
 
             var divStep = $("#divStepItem_" + idx);
             var nextDivs = []
@@ -136,7 +136,7 @@ function delStep(idx) {
                 stepIndex = 2;
             }
             $.each(nextDivs, function (num) {
-                var index = idx + num
+                var index = parseInt(idx) + parseInt(num)
                 var divStepUpload = $(this).children(".divStepUpload")
                 $(this).attr("id", "divStepItem_" + index)
                 $(this).children("p").text("Step" + index)
@@ -220,11 +220,14 @@ function browseStepFile(idx) {
 }
 
 
+var deleteFileNameList = []
 // 이미지 파일 삭제
-function deletePhotoFiles(fileName) {
+function deletePhotoFiles(deleteFileNameLists) {
+    console.log(deleteFileNameLists)
     $.ajax({
-        data: {fileName: fileName},
+        data: JSON.stringify({deleteFileNameList:deleteFileNameLists}),
         type: "POST",
+        contentType: "application/json", // Content-Type을 명시적으로 지정
         url: "/deleteRecipePhoto"
     })
 }
@@ -235,7 +238,7 @@ function handlePhotoFiles(tag) {
     data.append("file", image[0]);
     var fileName = $(tag.data.imgUrlSaveTagId).val();
     if (fileName !== null && fileName !== "") {
-        deletePhotoFiles(fileName);
+        deleteFileNameList.push(fileName);
     }
 
     $.ajax({
@@ -338,16 +341,17 @@ function doSubmit() {
                 "recipeDataList": JSON.stringify(recipeData)
             }
             $.ajax({
-                url: '/insertRecipe',
+                url: '/saveRecipe',
                 data: recipeDataList,
                 type: "POST",
-                success:function(){
+                success:function(view){
+                    deletePhotoFiles(deleteFileNameList)
                     Swal.fire({
                         title:"저장되었습니다.",
                         imageUrl: "../static/images/image_11.png",
                         imageAlt: "Custom image",
                     }).then((result)=>{
-                        location.href="/"
+                        location.replace(view)
                     })
                 }
             })

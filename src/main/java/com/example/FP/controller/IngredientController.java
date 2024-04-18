@@ -101,8 +101,10 @@ public class IngredientController {
 
 
     @GetMapping("/ingredientDetail")
-    public void ingredientDetail(){
-
+    public String ingredientDetail(@RequestParam(name = "ingredientId") Long ingredientId, Model model){
+        Ingredient ingredient = is.findById(ingredientId).get();
+        model.addAttribute("ingredient",ingredient);
+        return "ingredientDetail";
     }
 
     @PostMapping("/searchIngredient")

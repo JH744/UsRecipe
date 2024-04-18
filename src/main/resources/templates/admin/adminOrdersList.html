@@ -211,7 +211,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="list:${list}">
-                                    <td class="orderList_td" ><a th:text="${list.getId()}" th:href="@{//orderDetail/${list.getId()}}"></a></td>
+                                    <td class="orderList_td" ><a th:text="${list.getId()}" th:href="@{/orderDetail/${list.getId()}}"></a></td>
                                     <td class="orderList_td" th:text="${list.ordersContent}">kim</td>
                                     <td class="orderList_td" th:text="${list.ordersDate}">seoul</td>
                                     <td class="orderList_td" th:text="${list.ordersTotalPrice}">seoul</td>

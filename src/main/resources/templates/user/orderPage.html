@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>유스레시피</title>
+    <link rel="stylesheet" href="../../static/css/templateBody.css" />
+    <link rel="stylesheet" href="../../static/css/orderPage.css" />
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<!--    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">-->
+<!--    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</head>
+<body >
+    <div class="templateBody">
+        <header>
+            <div class="header" th:replace="header :: header"></div>
+        </header>
+        <div class="mainBody">
+            <div class="orderTop">
+                <h2 class="orderTopLeft">주문결제</h2>
+                <div class="orderTopRight">
+                    <span>주문결제</span>
+                    <span>></span>
+                    <span class="whitegray">주문완료</span>
+                </div>
+            </div>
+            <div class="orderCustomerInfo">
+                <h4 class="fontStyle1">구매자정보</h4>
+                <table class="t1">
+                    <tr>
+                        <th class="bgapple">이름</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th class="bgapple">이메일</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th class="bgapple">휴대폰 정보</th>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="orderReceiverInfo">
+                <h4 class="fontStyle1">받는사람정보</h4>
+                <table class="t2">
+                    <tr>
+                        <th class="bgapple">이름</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th class="bgapple">이메일</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th class="bgapple">휴대폰 정보</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th class="bgapple">주소</th>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="orderDelivery">
+                <h4 class="fontStyle1">배송 물품</h4>
+                <table class="t3">
+                    <tr>
+                        <th class="bgapple">상품명</th>
+                        <th class="bgapple">수량</th>
+                        <th class="bgapple">가격</th>
+                    </tr>
+                    <tr>
+                        <td>피죤 파워 드릴펑 배수구세정제, 1L</td>
+                        <td>3</td>
+                        <td>60,000원</td>
+                    </tr>
+                    <tr>
+                        <td>피죤 파워 드릴펑 배수구세정제, 1L</td>
+                        <td>3</td>
+                        <td>60,000원</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="orderInfo">
+                <h4 class="fontStyle1">결제정보</h4>
+                <table class="t4">
+                    <tr>
+                        <th class="bgapple">총상품가격</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th class="bgapple">배송비</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th class="bgapple">총결제금액</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th class="bgapple">카드</th>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+
+            <button class="btnOrder">결제하기</button>
+        </div>
+        <div class="footer" th:replace="footer :: footer"></div>
+    </div>
+</body>
+</html>

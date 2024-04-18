@@ -21,6 +21,13 @@ public class EventController {
         return "/event";
     }
 
+    @GetMapping("/eventDetail/{id}")
+    public String eventDetail(@PathVariable Long id, Model model) {
+        model.addAttribute("list", es.findById(id));
+        return "/eventDetail";
+    }
+
+    // admin
     @GetMapping("/eventInsert")
     public String eventForm(){
         return "/eventInsert";
@@ -30,12 +37,6 @@ public class EventController {
     public String eventSubmit(EventDto eventDto){
         es.save(EventMapper.toEntity(eventDto));
         return "redirect:/eventList";
-    }
-
-    @GetMapping("/eventDetail/{id}")
-    public String eventDetail(@PathVariable Long id, Model model) {
-        model.addAttribute("list", es.findById(id));
-        return "/eventDetail";
     }
 
     @GetMapping("/eventUpdate/{id}")
@@ -50,8 +51,15 @@ public class EventController {
         return "redirect:/eventList";
     }
 
-    @GetMapping("/eventDelete/{id}")
-    public void eventDelete(@PathVariable Long id, Model model) {
+    @GetMapping("/admin/eventDelete/{id}")
+    public void eventDelete(@PathVariable Long id) {
         es.deleteEvent(id);
     }
+
+    @GetMapping("/admin/eventList")
+    public String adminEventList(Model model){
+        model.addAttribute("list", es.findAll());
+        return "/adminEventList";
+    }
+
 }
