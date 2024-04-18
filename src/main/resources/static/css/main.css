@@ -7,7 +7,6 @@
 .e56_3 {
     background-color: rgba(255, 255, 255, 1);
     width: 1440px;
-    height: 2059px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -139,15 +138,11 @@
 input:focus::placeholder {
     color: transparent;
 }
-.56_62 {
-       border: 1px solid rgba(0, 0, 0, 1);
-   }
 
 .e56_65 {
     color: rgba(255, 255, 255, 1);
     width: 1000px;
     height: 80px;
-
     left: 72px;
     top: 0px;
     font-family: 'Cafe24Dangdanghae';

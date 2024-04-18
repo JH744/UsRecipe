@@ -119,6 +119,7 @@ public class Member {
                 .birth(memberDto.getBirth())
                 .point(0)
                 .password(passwordEncoder.encode(memberDto.getPassword()))  //암호화처리
+                .image("person.png")
                 .role(MemberRole.MEMBER)
                 .build();
         return member;
