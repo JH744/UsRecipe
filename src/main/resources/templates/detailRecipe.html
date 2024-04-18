@@ -17,71 +17,7 @@
 
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap_20211222.css">
     <link rel="stylesheet" type="text/css" href="../static/css/ez_recipe_20240405.css">
-
-
-
-    <script>
-        function insertReply(){
-            var gradeStar = $("input[name=gradeStar]:checked").val()
-            var replyContent = $(".replyContent").val()
-            var recipeId = $(".recipeId").val()
-            console.log(replyContent)
-            if (gradeStar===undefined){
-                checkReply("별점을 입력해주세요!");
-                return false;
-            }
-            if (replyContent===""){
-                checkReply("댓글 내용을 입력해주세요!");
-                return false;
-            }
-
-            $.ajax({
-                url:"/insertReply",
-                data:{
-                    gradeStar:gradeStar,
-                    replyContent:replyContent,
-                    recipeId:recipeId
-                },
-                type:"POST",
-                success:function(){
-                    location.replace("/detailRecipe?recipeNum="+recipeId)
-                }
-            })
-        }
-
-        function checkReply(msg){
-            Swal.fire({
-                title: msg,
-                icon: "warning"
-            })
-        }
-
-        function deleteReply(num){
-            Swal.fire({
-                title: "댓글 삭제",
-                text: "해당 요리 순서를 정말 삭제하시겠습니까?",
-                imageUrl: "../static/images/image_11.png",
-                imageAlt: "Custom image",
-                showCancelButton: true,
-                confirmButtonText: '삭제',
-                cancelButtonText: '취소'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url:"/deleteReply",
-                        type:"POST",
-                        data:{replyId:num},
-                        success:function (){
-                            var prevCount = $("#recipeCommentListCount").text()
-                            $("#replyDiv_"+num).remove();
-                            $("#recipeCommentListCount").text(prevCount-1)
-                        }
-                    })
-                } else {
-                }
-            });
-        }
-    </script>
+    <script src="../static/js/detailRecipe.js"></script>
 
 </head>
 
@@ -103,9 +39,9 @@
 
                         <div class="centeredcrop">
                             <img id="main_thumbs"
-                                 th:src="@{'../static/images/'+${recipe.recipeThumbnail}}"
-                                 alt="main thumb" >
-<!--                            style="filter: blur(2px) contrast(75%);" 이미지 약간 블러 처리하는법-->
+                                 th:src="@{'../static/recipeImages/'+${recipe.recipeThumbnail}}"
+                                 alt="main thumb">
+                            <!--                            style="filter: blur(2px) contrast(75%);" 이미지 약간 블러 처리하는법-->
                         </div>
                         <div class="user_info2">
                             <a class="app_block_link_remove user_info2_pic"
@@ -170,7 +106,7 @@
                             <div th:id="'stepdescr'+${oState.index+1}" class="media-body"
                                  th:text="${o.recipeDetail}"></div>
                             <div th:id="'stepimg'+${oState.index+1}" class="media-right">
-                                <img th:src="@{'../static/images/'+${o.recipePhoto}}">
+                                <img th:src="@{'../static/recipeImages/'+${o.recipePhoto}}">
                             </div>
                         </div>
                     </div>
@@ -183,11 +119,19 @@
                          style="width:920px;margin:0 auto 60px;">
                         <div class="carousel-inner" role="listbox">
                             <div class="carouItem centercrop">
-                                <img th:src="@{'../static/images/'+${recipe.recipeThumbnail}}" style="width:100%;">
+                                <img th:src="@{'../static/recipeImages/'+${recipe.recipeThumbnail}}" style="width:100%;">
                             </div>
                         </div>
                     </div>
+
+
                 </div><!--/view_step -->
+                <div class="recipeControlBox">
+                    <button style="font-weight:bold;" class="btn-lg btn-delete " th:if="${session.userid==recipe.recipeMember.userid}"  th:onclick="|javascript:deleteRecipe(${recipe.id})|">삭제</button>
+<!--                    <div style="width: 100%;display: inline-block"></div>-->
+                    <button class="btn-lg btn-primary" th:if="${session.userid==recipe.recipeMember.userid}"  th:onclick="|location.href='@{'/updateRecipe?recipeId='+${recipe.id}}'|">수정</button>
+                    <button class="btn-lg btn-default" onclick="history.back()">목록</button>
+                </div>
             </div>
 
             <div class="view_reply">
@@ -216,7 +160,7 @@
 
                 </div>
                 <div class="reply_tit" id="reply_tit">댓글 <span id="recipeCommentListCount"
-                                                th:text="${recipe.recipeReplyList.size}"></span></div>
+                                                               th:text="${recipe.recipeReplyList.size}"></span></div>
                 <div id="recipeCommentList_1">
                     <div class="media reply_list" th:id="'replyDiv_'+${r.Id}" th:each="r : ${recipe.recipeReplyList}">
                         <div class="media-left"><a th:href="'/profile?id='+${r.replyMember.id}">
@@ -236,8 +180,10 @@
                                      th:each="star : ${#numbers.sequence((r.replyGrade)+1,5)}"
                                      style="display: inline-block; width: 20px; height: 20px"
                                      src="../static/images/noneStar2.png"/>
-                                <p th:text="${#temporals.format(r.replyDate, 'yyyy-MM-dd HH:mm')}" style="margin-left: 5px"></p><span th:if="${r.replyMember.Userid == session.userid}">|</span>
-                                <a th:href="'javascript:deleteReply('+${r.Id}+')'" th:if="${r.replyMember.Userid == session.userid}">삭제</a>
+                                <p th:text="${#temporals.format(r.replyDate, 'yyyy-MM-dd HH:mm')}"
+                                   style="margin-left: 5px"></p><span th:if="${r.replyMember.Userid == session.userid}">|</span>
+                                <a th:href="'javascript:deleteReply('+${r.Id}+')'"
+                                   th:if="${r.replyMember.Userid == session.userid}">삭제</a>
                             </h4>
 
                             <p th:text="${r.replyContent}" style="float:left;width: 60%"></p>
