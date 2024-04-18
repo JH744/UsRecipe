@@ -1,14 +1,19 @@
 package com.example.FP.service;
 
 import com.example.FP.dto.OrdersDto;
+
 import com.example.FP.entity.*;
+import com.example.FP.mapper.OrdersMapper;
 import com.example.FP.repository.OrderDetailsRepository;
 import com.example.FP.repository.OrdersRepository;
 import com.example.FP.repository.PointRepository;
+
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -17,6 +22,9 @@ public class OrdersService {
     private final OrdersRepository or;
     private final OrderDetailsRepository odr;
     private final PointRepository pr;
+
+    private final MemberService ms;
+
 
     public List<Orders> findAllOrderListByUserid(String userid){
         return or.findOrdersListByUserid(userid);
@@ -27,20 +35,41 @@ public class OrdersService {
 
     public List<Orders> findAll(){ return or.findAll(); }
 
-    public void save(Orders o) {
-            or.save(o);
+
+
+
+    public void save(OrdersDto o, HttpSession session) {
+
+        // 현재 날짜와 시간을 가져옵니다.
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        // 'yyyy-MM-dd'T'HH:mm' 형식의 포매터를 생성합니다.
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        // 현재 날짜와 시간을 지정된 포맷으로 문자열로 변환합니다.
+        String formattedDateTime = currentDateTime.format(formatter);
+        o.setOrders_date(LocalDateTime.parse(formattedDateTime));
+
+        //현재 로그인 회원 정보가져와 집어넣음
+        Member userid = ms.findById((String) session.getAttribute("userid"));
+
+        int usedPoint = 0;
+        if (o.getOrders_used_point() != null){
+            usedPoint = o.getOrders_used_point();
+        }
+        o.setOrders_used_point(usedPoint);
+        o.setOrders_member(userid);
+
+
+        or.save(OrdersMapper.toEntity(o));
     }
 
-    public Orders saveOrders(Orders o, Member m, OrderState os){
+    public Orders saveOrders(Orders o, Member m){
         Orders orders = new Orders();
-        orders.createOreders(o,m,os);
-        if(o.getOrdersUsedPoint()!=0){
-            Point point = new Point(o.getOrdersUsedPoint(),"상품구매에 의한 차감",m,o);
-            pr.save(point);
-        }
-        Point point = new Point((int)Math.round(o.getOrdersSalePrice()*0.01),"구매에 의한 적립",m,o);
-        pr.save(point);
-        return orders;
+        return orders.createOreders(o, m);
 
+
+    }
+
+    public void saveOrder(Orders o){
+        or.save(o);
     }
 }

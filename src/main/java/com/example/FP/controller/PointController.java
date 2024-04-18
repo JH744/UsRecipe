@@ -25,7 +25,7 @@ public class PointController {
         String userid = (String)session.getAttribute("userid");
 
         model.addAttribute("list",ps.findPointListByUserid(userid));
-        return "/pointList";
+        return "/user/pointList";
 
     }
 
@@ -35,7 +35,7 @@ public class PointController {
         String userid = (String)session.getAttribute("userid");
 
         model.addAttribute("list",ps.findGetPointListByUserId(userid));
-        return "/pointList";
+        return "/user/pointList";
 
     }
     //사용한 포인트내역 출력을 위한 메서드
@@ -44,7 +44,7 @@ public class PointController {
         String userid = (String)session.getAttribute("userid");
 
         model.addAttribute("list",ps.findUsedPointListByUserId(userid));
-        return "/pointList";
+        return "/user/pointList";
 
     }
 

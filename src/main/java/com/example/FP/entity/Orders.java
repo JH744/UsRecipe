@@ -39,8 +39,7 @@ public class Orders {
     private Member ordersMember;
 
 
-    @ManyToOne
-    @JoinColumn(name = "order_state_id")
+    @Enumerated(EnumType.STRING)
     private OrderState ordersOrderState;
 
     @Builder.Default
@@ -75,7 +74,11 @@ public class Orders {
         this.ordersReceiverPhone = ordersReceiverPhone;
         this.ordersTotalPrice = ordersTotalPrice;
         this.ordersSalePrice = ordersSalePrice;
-        this.ordersUsedPoint = ordersUsedPoint;
+        if(ordersUsedPoint==null){
+           this.ordersUsedPoint =0;
+        }else{
+            this.ordersUsedPoint = ordersUsedPoint;
+        }
         this.ordersRequest = ordersRequest;
         this.ordersMember = ordersMember;
         this.orderOrdersdetailList = orderOrdersdetailList;
@@ -85,8 +88,8 @@ public class Orders {
 
     }
 
-    public Orders createOreders(Orders orders,Member member,OrderState orderState){
-        Orders order = new Orders(orders.ordersDate,orders.ordersReceiver,orders.ordersReceiverAddr,orders.ordersReceiverPhone,orders.ordersTotalPrice,orders.ordersSalePrice,orders.ordersUsedPoint*-1,orders.ordersRequest,member,orders.orderOrdersdetailList,orderState,orders.orderPointList,orders.ordersContent);
+    public Orders createOreders(Orders orders,Member member){
+        Orders order = new Orders(orders.ordersDate,orders.ordersReceiver,orders.ordersReceiverAddr,orders.ordersReceiverPhone,orders.ordersTotalPrice,orders.ordersSalePrice,orders.ordersUsedPoint*-1,orders.ordersRequest,member,orders.orderOrdersdetailList,OrderState.ready,orders.orderPointList,orders.ordersContent);
         member.addPoint(orders);
         member.usePoint(orders);
 
