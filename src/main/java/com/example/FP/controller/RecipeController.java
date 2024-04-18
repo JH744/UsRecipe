@@ -142,7 +142,7 @@ public class RecipeController {
     public String uploadRecipeMainPhoto(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request){
         JsonObject jsonObject = new JsonObject();
 //        String fileRoot = "src/main/resources/static/images/";	//저장될 외부 파일 경로
-        String fileRoot = request.getServletContext().getRealPath("/images");	//저장될 외부 파일 경로
+        String fileRoot = request.getServletContext().getRealPath("/recipeImages");	//저장될 외부 파일 경로
         String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
         String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 
@@ -166,8 +166,7 @@ public class RecipeController {
     @PostMapping(value="/deleteRecipePhoto", consumes = "application/json", produces = "application/json")
     @ResponseBody
     public void deleteRecipePhoto(@RequestBody Map<String,Object> deleteFileNameList, HttpServletRequest request){
-        System.out.println("동작하는거 맞냐고 싯팔꺼          "+deleteFileNameList.get("deleteFileNameList"));
-        String fileRoot = request.getServletContext().getRealPath("/images");	//저장될 외부 파일 경로
+        String fileRoot = request.getServletContext().getRealPath("/recipeImages");	//저장될 외부 파일 경로
         List<String> FileNameList = (List<String>) deleteFileNameList.get("deleteFileNameList");
         try {
             for(String photoName : FileNameList){

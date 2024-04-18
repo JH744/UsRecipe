@@ -39,7 +39,7 @@
 
                         <div class="centeredcrop">
                             <img id="main_thumbs"
-                                 th:src="@{'../static/images/'+${recipe.recipeThumbnail}}"
+                                 th:src="@{'../static/recipeImages/'+${recipe.recipeThumbnail}}"
                                  alt="main thumb">
                             <!--                            style="filter: blur(2px) contrast(75%);" 이미지 약간 블러 처리하는법-->
                         </div>
@@ -106,7 +106,7 @@
                             <div th:id="'stepdescr'+${oState.index+1}" class="media-body"
                                  th:text="${o.recipeDetail}"></div>
                             <div th:id="'stepimg'+${oState.index+1}" class="media-right">
-                                <img th:src="@{'../static/images/'+${o.recipePhoto}}">
+                                <img th:src="@{'../static/recipeImages/'+${o.recipePhoto}}">
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                          style="width:920px;margin:0 auto 60px;">
                         <div class="carousel-inner" role="listbox">
                             <div class="carouItem centercrop">
-                                <img th:src="@{'../static/images/'+${recipe.recipeThumbnail}}" style="width:100%;">
+                                <img th:src="@{'../static/recipeImages/'+${recipe.recipeThumbnail}}" style="width:100%;">
                             </div>
                         </div>
                     </div>

@@ -50,7 +50,7 @@
                             </div>
                             <div id="divMainPhotoBox" is_over="0">
                                 <img id="mainPhotoHolder" onclick="browseMainFile()"
-                                     th:src="@{|../static/images/${recipe.recipeThumbnail}|}"
+                                     th:src="@{|../static/recipeImages/${recipe.recipeThumbnail}|}"
                                      style="width: 250px; height: 250px; cursor:pointer">
                                 <input type="hidden" id="recipe_thumbnail" name="recipe_thumbnail" th:value="${recipe.recipeThumbnail}">
                             </div>
@@ -176,7 +176,7 @@
                                         <div is_over="0" class="step_thumbnail_div">
                                             <img th:id="|stepPhotoHolder_${orderState.index+1}|" class="stepPhotoHolder"
                                                  th:onclick="|browseStepFile(${orderState.index+1})|"
-                                                 th:src="@{|../static/images/${recipeOrder.recipePhoto}|}" width="160"
+                                                 th:src="@{|../static/recipeImages/${recipeOrder.recipePhoto}|}" width="160"
                                                  height="160"
                                                  style="cursor:pointer">
                                         </div>
