@@ -26,6 +26,8 @@ public class OrdersController {
 
         return "/user/orderOK";
     }
+
+    //회원별 주문목록 출력을 위한 메서드
     @GetMapping("/orderList")
     public String orderList(Model model, HttpSession session){
         model.addAttribute("list",os.findAllOrderListByUserid((String)session.getAttribute("userid")));
@@ -36,6 +38,7 @@ public class OrdersController {
 
     }
 
+    //회원별 주문목록 상세화면 출력을 위한 메서드
     @GetMapping("/orderDetail/{id}")
     public String orderDetail(Model model, @PathVariable Long id){
 
@@ -48,6 +51,7 @@ public class OrdersController {
 
 
 
+    //관리자페이지에서 주문전체목록 출력을 위한 메서드
     @GetMapping("/adminOrderList")
     public String adminOrderList(Model model){
         model.addAttribute("list", os.findAll());

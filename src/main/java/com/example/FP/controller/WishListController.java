@@ -14,17 +14,20 @@ public class WishListController {
 
     private final WishListService ws;
 
+
+    //찜 목록을 출력해오기 위한 메소드
     @GetMapping("/wishList")
     public String wishListForm(HttpSession session, Model model){
+        model.addAttribute("list",ws.findAllWishList((String)session.getAttribute("userid")));
 
-        String userid = (String)session.getAttribute("userid");
-        model.addAttribute("list",ws.findAllWishList(userid));
-
-        return "/wishList";
+        return "/user/wishList";
     }
+
+    //찜 목록 삭제를 위한 메소드
     @GetMapping("/deleteWishlist/{id}")
     public String deleteWishlist(@PathVariable Long id){
         ws.deleteWishlist(id);
-        return "redirect:/wishList";
+
+        return "redirect:/user/wishList";
     }
 }

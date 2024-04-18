@@ -19,6 +19,7 @@ public class PointController {
 
     private final PointService ps;
 
+    //회원별 포인트 적립,사용 내역 출력화면을 위한 메서드
     @GetMapping("/pointList")
     public String listPoint(Model model, HttpSession session){
         String userid = (String)session.getAttribute("userid");
@@ -28,6 +29,7 @@ public class PointController {
 
     }
 
+    //적립된 포인트목록 출력을 위한 메서드
     @GetMapping("/pointList/get")
     public String listPointGet(Model model, HttpSession session){
         String userid = (String)session.getAttribute("userid");
@@ -36,6 +38,7 @@ public class PointController {
         return "/pointList";
 
     }
+    //사용한 포인트내역 출력을 위한 메서드
     @GetMapping("/pointList/used")
     public String listPointUsed(Model model, HttpSession session){
         String userid = (String)session.getAttribute("userid");
