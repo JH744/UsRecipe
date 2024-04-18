@@ -126,7 +126,7 @@ public class RecipeController {
         model.addAttribute("role",role);
         model.addAttribute("recipe_category",rc.findAllRecipeCategory());
 
-        return "/addRecipe";
+        return "/user/addRecipe";
     }
 
     //레시피 내부에서 사진 저장용
@@ -177,10 +177,10 @@ public class RecipeController {
     @ResponseBody
         public String insertRecipe(@RequestParam Map<String, Object> recipeDataList,HttpSession session){
         Long recipeId = rs.saveRecipe(recipeDataList,session.getAttribute("userid").toString());
-        return "detailRecipe?recipeNum="+recipeId;
+        return "/detailRecipe?recipeNum="+recipeId;
     }
 
-    //레시피 삭제 detailRecipe?recipeNum=값
+    //레시피 상세 detailRecipe?recipeNum=값
     @GetMapping("/detailRecipe")
     public String detailRecipe(@RequestParam String recipeNum,Model model){
         Long id = Long.parseLong(recipeNum);
@@ -196,7 +196,7 @@ public class RecipeController {
         if (recipe.getRecipeMember().getUserid().equals((String) session.getAttribute("userid"))) {
             model.addAttribute("recipe", rs.detailRecipe(recipeId));
             model.addAttribute("recipe_category", rc.findAllRecipeCategory());
-            view = "updateRecipe";
+            view = "/user/updateRecipe";
         }
         return view;
     }
@@ -224,7 +224,7 @@ public class RecipeController {
         Recipe recipe = rs.detailRecipe(recipeId);
         if (recipe.getRecipeMember().getUserid().equals((String) session.getAttribute("userid"))) {
             rs.deleteRecipe(recipeId);
-            view = "redirect:/listRecipe/1";
+            view = "redirect:/all/listRecipe/1";
         }
         return view;
     }

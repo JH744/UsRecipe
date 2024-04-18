@@ -105,7 +105,7 @@ public class IngredientController {
         Ingredient ingredient = is.findById(ingredientId).get();
         model.addAttribute("ingredient",ingredient);
         model.addAttribute("reply",rs.findAllByIngredientReply(ingredientId));
-        return "detailIngredient";
+        return "all/detailIngredient";
     }
 
     @PostMapping("/searchIngredient")

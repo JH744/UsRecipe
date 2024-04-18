@@ -12,7 +12,10 @@ public interface RecipeIngredientRepository extends JpaRepository<RecipeIngredie
 
 //    List<RecipeIngredient> findAllByRecipeIngredientRecipe();
 
+    @Query(value = "select max(recipe_ingredient_id) from recipe_ingredient where recipe_id=?1",nativeQuery = true)
+    Long PreviousRecipeIngredientMaxId(Long recipe_id);
+
     @Modifying
-    @Query(value = "delete from recipe_ingredient where recipe_id=?1",nativeQuery = true)
-    void deleteAllByPreviousRecipeIgredient(Long recipe_id);
+    @Query(value = "delete from recipe_ingredient where recipe_id=?1 and recipe_ingredient_id<=?2",nativeQuery = true)
+    void deleteAllByPreviousRecipeIngredient(Long recipe_id,Long recipe_ingredient_id);
 }
