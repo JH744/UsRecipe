@@ -187,9 +187,9 @@
                         <div class="storeItem_img"></div>
                         <button class="cartBtn"><img src="../../static/images/icon/카트.svg"/><span>담기</span></button>
                         <div class="storeItem_info">
-                            <p th:text="${i.ingredientName}">상품명</p>
+                            <a th:href="@{/detailIngredient(ingredientId=${i.id})}"><p th:text="${i.ingredientName}">상품명</p></a>
                             <p th:text="${i.ingredientPrice}">상품가격</p>
-                            <P th:text="${i.id}" class="ingreId">재료id</P>
+                            <P th:text="${i.id}" class="ingreId">재료id</P><!--장바구니담기 전송할 i.id-->
                         </div>
                     </div>
 

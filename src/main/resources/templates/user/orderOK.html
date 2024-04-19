@@ -26,7 +26,8 @@
                     <img src="../../static/images/icon/successicon.png" class="suclogo">
                     <p class="sucBox_coment2">주문이<br> 완료되었습니다.</p>
                     <span class="sucBox_coment3">결제해주셔서 감사합니다.</span>
-                    <button class="btnToOrderList">주문목록</button>
+
+                    <a th:href="@{/orderDetail/{userid}(userid=${userid})}" class="btnToOrderList">주문목록</a>
                 </div>
             </div>
         </div>

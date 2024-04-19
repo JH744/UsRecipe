@@ -42,7 +42,7 @@ public class OrdersController {
 
 
     @PostMapping("/orderOK")
-    public String orderOK(OrdersDto o, HttpSession session){
+    public String orderOK(OrdersDto o, HttpSession session, Model model){
         System.out.println("가져온 결제자명:" + o.getOrders_receiver());
         // 현재 날짜와 시간을 가져옵니다.
         LocalDateTime currentDateTime = LocalDateTime.now();
@@ -64,7 +64,8 @@ public class OrdersController {
 
 
         os.saveOrderDetails(session);
-
+         Member m=ms.findById((String) session.getAttribute("userid"));
+        model.addAttribute("userid",m.getId());
         return "/user/orderOK";
 
     }

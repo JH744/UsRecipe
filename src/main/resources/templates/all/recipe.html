@@ -151,7 +151,7 @@
             <div class="recipeItem"  th:each=" r : ${list}">
                 <div class="recipeItem_img"></div>
                 <div class="recipeItem_info">
-                    <p th:text="${r.recipeTitle}">레시피명</p>
+                    <a th:href="@{/detailRecipe(recipeNum=${r.id})}"> <p th:text="${r.recipeTitle}">레시피명</p></a>
                     <span th:text="${r.recipeWriter}">닉네임</span><br>
                     <span th:text="'조회수   '+${r.recipeViews}">조회수</span>
                     <span th:text="${r.id}" class="recId">레시피id</span>
