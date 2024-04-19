@@ -19,6 +19,44 @@
     <link rel="stylesheet" type="text/css" href="../../static/css/ez_recipe_20240405.css">
     <script src="../../static/js/detailRecipe.js"></script>
 
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.1/kakao.min.js"
+            integrity="sha384-kDljxUXHaJ9xAb2AzRd59KxjrFjzHa5TAoFQ6GbYTCAG0bjM55XohjjDT7tDDC01"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <script>
+        Kakao.init(kakaoinit); // 사용하려는 앱의 JavaScript 키 입력
+        var url = "http://www.localhost:8080/detaileRecipe?recipeNum=" + $("#recipeId").val()
+
+        function shareMessage() {
+            Kakao.Share.sendDefault({
+                objectType: 'feed',
+                content: {
+                    title: $("#recipeTitle").text(),
+                    description: '당신을 위한 레시피 - 유스레시피',
+                    imageUrl: $("#thumbUrl").val(),
+                    link: {
+                        // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
+                        webUrl: url,
+                    },
+                },
+                social: {
+                    viewCount: parseInt($("#recipeViews").text()),
+                },
+                buttons: [
+                    {
+                        title: '자세히 보기',
+                        link: {
+                            webUrl: url,
+                        },
+                    },
+                ],
+            });
+        }
+    </script>
+
 </head>
 
 <body>
@@ -30,10 +68,9 @@
         <div class="contentBody">
             <div class="container">
                 <div id="contents_area_full" style="clear:both;">
-
                     <div class="view2_pic">
                         <div class="view_cate st2" style="z-index:10;">
-                            <div class="view_cate_num"><span class="hit font_num"
+                            <div class="view_cate_num"><span class="hit font_num" id="recipeViews"
                                                              th:text="${recipe.recipeViews}"></span></div>
                         </div>
 
@@ -41,12 +78,14 @@
                             <img id="main_thumbs"
                                  th:src="@{'../static/recipeImages/'+${recipe.recipeThumbnail}}"
                                  alt="main thumb">
+                            <input id="thumbUrl" type="hidden"
+                                   th:value="'http://localhost:8080/static/recipeImages/'+${recipe.recipeThumbnail}">
                             <!--                            style="filter: blur(2px) contrast(75%);" 이미지 약간 블러 처리하는법-->
                         </div>
                         <div class="user_info2">
-                            <a class="app_block_link_remove user_info2_pic"
-                               href="/profile/index.html?uid=dollshouse"><img
-                                    src="../../static/images/chef2.png" style="background: #FFFFFF"></a>
+                            <img class="app_block_link_remove user_info2_pic"
+                                 th:src="|../../static/images/${recipe.recipeMember.image}|"
+                                 style="background: #FFFFFF">
                             <span class="user_info2_name" th:text="${recipe.recipeWriter}">
                                 <button id="friendDiv"
                                         type="button"
@@ -57,12 +96,12 @@
                     </div>
 
                     <div class="view2_summary st3">
-                        <h3 th:text="${recipe.recipeTitle}"></h3>
+                        <h3 th:text="${recipe.recipeTitle}" id="recipeTitle"></h3>
                         <div class="btn_list st2">
-                            <a onclick="$('#snsLinkModal').modal('show')"><img
-                                    src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_talk.png"><span>공유</span></a>
+                            <a onclick="javascript:shareMessage()"><img
+                                    src="../../static/images/btn_view_talk.png"><span>공유</span></a>
                             <a href="#reply_tit"><img
-                                    src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_re.png"><span>댓글<b
+                                    src="../../static/images/btn_view_re.png"><span>댓글<b
                                     class="st3" th:text="${recipe.recipeReplyList.size}"></b></span></a>
                         </div>
                     </div>
@@ -78,7 +117,8 @@
                         <div class="ready_ingre3" id="divConfirmedMaterialArea">
                             <ul>
                                 <b class="ready_ingre3_tt">[재료]</b>
-                                <li th:each="i : ${recipe.recipeIngredientList}">
+                                <li th:each="i, istate : ${recipe.recipeIngredientList}"
+                                    style="align-items: flex-start; display: flex">
                                     <div class="ingre_list_name">
                                         <p
                                                 th:text="${i.recipeIngredientNeed}">
@@ -86,12 +126,27 @@
                                     </div>
                                     <span class="ingre_list_ea"
                                           th:text="${i.recipeIngredientQty+i.recipeIngredientUnit}"></span>
-                                    <a th:href="@{'/detailIngredient?ingredientId='+${i.recipeIngredientIngredient.id}}"
-                                       class="ingre_list_btn">구매</a>
-
+                                    <div style="align-items: flex-start; display: flex">
+                                        <a class="ingredientCheckBoxA"
+                                           style="width: 31px; align-items: center; justify-items: center" th:if="${session.userid!=null}">
+                                            <input type="checkbox" class="ingredientCheckBox"
+                                                   th:id="|ingredientCheckBox_${istate.index}|"
+                                                   th:value="${i.recipeIngredientIngredient.id}">
+                                        </a>
+                                        <a th:href="@{'/detailIngredient?ingredientId='+${i.recipeIngredientIngredient.id}}"
+                                           class="ingre_list_btn">상세보기</a>
+                                    </div>
                                 </li>
-
                             </ul>
+                            <div style="display: flex;justify-content: flex-end;width: 100%" th:if="${session.userid!=null}">
+                                <input type='button' class='btn btn-default' id='ingredientAllCheckBtn'
+                                       onclick="javascript:allCheck('ingredientAllCheckBtn','allCheckBoxState','ingredientCheckBox')" value="모두 선택">
+                                <input type="checkbox" class="allCheckBoxState" style="display: none">
+                                <button type='button' class='btn btn-primary' data-bs-toggle='modal'
+                                        data-bs-target='#exampleModal' id='ingredientModalBtn' onclick="addCart('ingredientCheckBox','/findIngredient')">
+                                    장바구니 담기
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -176,7 +231,7 @@
                         <div class="media-left">
                             <img
                                     class="media-object"
-                                    src="../../static/images/chef2.png"
+                                    th:src="|../../static/images/${r.replyMember.image}|"
                                     data-holder-rendered="true"></a></div>
                         <div class="media-body">
                             <h4 class="media-heading">
@@ -204,6 +259,47 @@
                 </div>
 
             </div><!-- /view_reply -->
+        </div>
+        <!-- Modal -->
+        <div class="modal fade in" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:520px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">장바구니에 담기</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div style="width: auto; height:500px; border: 1px solid; overflow: auto">
+                            <table class="modal_IngredientSelect_column" style="width: 100%;">
+                                <thead>
+                                    <tr style="width: auto;">
+                                        <td>상품사진</td>
+                                        <td>재료명</td>
+                                        <td>가격</td>
+                                        <td>수량</td>
+                                        <td>체크</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="modal_tbody">
+
+                                </tbody>
+                            </table>
+                            <ul style="margin-right: 10px; padding:0 0 0 0" id="ingredientList">
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type='button' class='btn btn-default' id='ModalAllCheckBtn'
+                               onclick="javascript:allCheck('ModalAllCheckBtn','modalAllCheckBoxState','modalCheckBox')" value="선택 해제" style="background: #f5f5f5">
+                        <input type="checkbox" class="modalAllCheckBoxState" style="display: none" checked>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                        <button type="button" class="btn btn-primary" onclick="addCart('modalCheckBox','/addCartList')"
+                                data-bs-dismiss="modal">장바구니 담기
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div><!-- /contents_area -->
     <div class="footer" th:replace="footer :: footer"></div>

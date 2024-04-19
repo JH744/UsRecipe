@@ -19,29 +19,32 @@ public class PointController {
 
     private final PointService ps;
 
+    //회원별 포인트 적립,사용 내역 출력화면을 위한 메서드
     @GetMapping("/pointList")
     public String listPoint(Model model, HttpSession session){
         String userid = (String)session.getAttribute("userid");
 
         model.addAttribute("list",ps.findPointListByUserid(userid));
-        return "/pointList";
+        return "/user/pointList";
 
     }
 
+    //적립된 포인트목록 출력을 위한 메서드
     @GetMapping("/pointList/get")
     public String listPointGet(Model model, HttpSession session){
         String userid = (String)session.getAttribute("userid");
 
         model.addAttribute("list",ps.findGetPointListByUserId(userid));
-        return "/pointList";
+        return "/user/pointList";
 
     }
+    //사용한 포인트내역 출력을 위한 메서드
     @GetMapping("/pointList/used")
     public String listPointUsed(Model model, HttpSession session){
         String userid = (String)session.getAttribute("userid");
 
         model.addAttribute("list",ps.findUsedPointListByUserId(userid));
-        return "/pointList";
+        return "/user/pointList";
 
     }
 

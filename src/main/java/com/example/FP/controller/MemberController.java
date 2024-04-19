@@ -6,6 +6,8 @@ import com.example.FP.service.MailService;
 import com.example.FP.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -168,10 +170,14 @@ public class MemberController {
         return "/index";
     }
 
+    //비밀번호 일치여부 판단을 위한 화면 출력 메서드
     @GetMapping("/pwCheckDataChange")
     public String pwCheckDataChangeForm(){
         return "/user/pwCheckDataChange";
     }
+
+
+    //회원정보변경창 이전에 비밀번호 확인 일치여부를 확인하기 위한 메서드
     @PostMapping("/pwCheckDataChange")
     @ResponseBody
     public Boolean pwCheckDataChangeSubmit(HttpSession session, @RequestParam String password){
@@ -183,6 +189,8 @@ public class MemberController {
         return matches;
 
     }
+
+    //회원정보변경 창을 띄우기 위한 메서드
     @GetMapping("/dataChange")
     public String dataChangeForm(Model model,MemberDto memberDto,HttpSession session){
         model.addAttribute("memberDto",memberDto);
@@ -191,6 +199,8 @@ public class MemberController {
 
         return "/user/dataChange";
     }
+
+    //입력한 데이터를 통해 정보를 변경하기 위한 메서드
     @PostMapping("/dataChange")
     public String dataChangeSubmit(MemberDto memberDto,String addr1, String addr2){
         System.out.println("정보변경");
@@ -208,6 +218,7 @@ public class MemberController {
         return "redirect:/";
 
     }
+    //관리자가 회원을 삭제하기 위한 메서드
     @GetMapping("/deleteMember/{id}")
     public String deleteMember(@PathVariable Long id){
         memberService.deleteMember(id);

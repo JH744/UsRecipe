@@ -230,7 +230,7 @@
                                     <td class="orderList_td" th:text="${list.getId()}">1</td>
                                     <td class="orderList_td" th:text="${list.getOrdersContent()}">Otto</td>
                                     <td class="orderList_td"><a th:text="${list.getOrdersSalePrice()}" th:href="@{|/orderDetail/${list.getId()}|}">10000원</a></td>
-                                    <td class="orderList_td" th:text="${list.getOrdersOrderState().getState()}">asdf</td>
+                                    <td class="orderList_td" th:text="${list.getOrdersOrderState()}">asdf</td>
                                 </tr>
 
                                 </tbody>

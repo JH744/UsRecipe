@@ -131,7 +131,7 @@
                                         <input type="text" name="ingredientUnit" class="ingredientUnit form-control"
                                                style="width:140px;"
                                                placeholder="예) g,ml(단위)" th:value="${r.recipeIngredientUnit}"/>
-                                        <input type='hidden' name='ingredientId' class='ingredientId'>
+                                        <input type='hidden' name='ingredientId' class='ingredientId' th:value="${r.recipeIngredientIngredient.id}">
                                         <a th:href='|javascript:delIngredient(${rState.index})|' class="btn-del" style='' th:if="${rState.index>0}"></a>
                                 </ul>
                                 <div class="btn_add" style="padding:0 0 20px 350px; width:800px;">
