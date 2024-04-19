@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
@@ -201,6 +201,7 @@
                 <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b>
                 <b th:text="${question.oftenQuestionTitle}">교환/반품 진행 시, 배송비가 부과 되나요?</b>
                 <hr>
+                <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">답변</b>
                 <b th:text="${question.oftenQuestionAnswer}">질문 답에 관한 내용이 들어가는 공간입니다.</b>
                 <br>
 

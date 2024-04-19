@@ -19,7 +19,7 @@ public class OrderDetails {
     private Long id;
 
     
-    private int ingredientPrice;
+    private int cnt;
 
     @ManyToOne
     @JoinColumn(name = "orders_id")
@@ -36,9 +36,9 @@ public class OrderDetails {
 
 
 
-    public OrderDetails(int ingredientPrice, Orders ordersDetail, Member orderDetailsMember, Ingredient ordersIngredient) {
+    public OrderDetails(int cnt, Orders ordersDetail, Member orderDetailsMember, Ingredient ordersIngredient) {
 
-        this.ingredientPrice = ingredientPrice;
+        this.cnt = cnt;
         this.ordersDetail = ordersDetail;
         this.ordersDetailsMember = orderDetailsMember;
         this.ordersIngredient = ordersIngredient;

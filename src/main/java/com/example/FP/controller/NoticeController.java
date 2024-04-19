@@ -60,9 +60,5 @@ public class NoticeController {
         return "/admin/adminNoticeList";
     }
 
-    @GetMapping("/admin/notice")
-    public String adminNoticeList(Model model){
-        model.addAttribute("list", ns.findAll());
-        return "/admin/adminNoticeList";
-    }
+
 }
