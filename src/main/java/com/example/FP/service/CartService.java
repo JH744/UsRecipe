@@ -81,5 +81,4 @@ public class CartService {
                 cr.deleteByMemberIdAndIngredientName(memberId,ingredientName);
             }
     }
-
 }
