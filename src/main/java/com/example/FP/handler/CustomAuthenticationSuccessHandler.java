@@ -36,12 +36,12 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             session.setAttribute("userid", username);
             session.setAttribute("image", m.getImage());
             session.setAttribute("role", m.getRole());
-            if(role.equals("ADMIN")){
-                response.sendRedirect("/admin/member");
+
+            if (role.equals("ADMIN")) {
+                response.sendRedirect("/admin/adminMember");
                 return;
             }
-
-            if (prevPage != null && !prevPage.isEmpty()) {
+            if (prevPage != null && !prevPage.isEmpty() && !prevPage.contains("join")) {
                 // 이전 페이지로 리다이렉트
                 response.sendRedirect(prevPage);
                 return;
