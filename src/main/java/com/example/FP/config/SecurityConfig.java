@@ -24,7 +24,8 @@ public class SecurityConfig{
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .requestMatchers("/","/all/**", "/join","/joinOk","/static/**","/id_check","/sendEmail","/nickname_check","/mailCheck","/error")
+                .requestMatchers("/", "/all/**","/listIngredient/**", "/join","/joinOk","/static/**","/id_check","/sendEmail","/nickname_check","/mailCheck","/error"
+                , "/listRecipe/**", "/detailRecipe", "/detailIngredient", "/notice")
                 .permitAll()
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
@@ -38,7 +39,8 @@ public class SecurityConfig{
                 .and()
                 .oauth2Login()  // oauth2를 이용한 로그인
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
+                .successHandler(authenticationSuccessHandler)   // 로그인 성공시
+                .failureHandler(authenticationFailureHandler)   // 로그인 실패시
                 .userInfoEndpoint()
                 .userService(customOAuth2Service);
 
