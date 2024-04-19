@@ -1,5 +1,6 @@
 package com.example.FP.handler;
 
+import com.example.FP.entity.Member;
 import com.example.FP.service.MemberService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,8 +31,10 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             // authentication.getPrincipal()은 로그인한 사용자를 나타냅니다.
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String username = userDetails.getUsername();
+            Member m = ms.findById(username);
             session.setAttribute("userid", username);
-            session.setAttribute("image", ms.findById(username).getImage());
+            session.setAttribute("image", m.getImage());
+            session.setAttribute("role", m.getRole());
             if (prevPage != null && !prevPage.isEmpty()) {
                 // 이전 페이지로 리다이렉트
                 response.sendRedirect(prevPage);

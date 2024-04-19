@@ -203,10 +203,16 @@
                 <hr>
                 <b th:text="${question.oftenQuestionAnswer}">질문 답에 관한 내용이 들어가는 공간입니다.</b>
                 <br>
-                <button id="goBackButton" style="width: 100px;color: white; margin : 100px 0 0 300px; height: 50px; background-color: #D65454"
-                onclick="location.href='/oftenQuestions'">목록으로</button>
 
 
+                <th:block th:if="${role == 'USER'}">
+                    <button style="width: 100px;color: white; margin : 100px 0 0 300px; height: 50px; background-color: #D65454"
+                            onclick="location.href='/all/oftenQuestions'">목록으로</button>
+                </th:block>
+                <th:block th:if="${role == 'ADMIN'}">
+                    <button style="width: 100px;color: white; margin : 100px 0 0 300px; height: 50px; background-color: #D65454"
+                            onclick="location.href='/admin/oftenQuestions'">목록으로</button>
+                </th:block>
 
 
             </div>
