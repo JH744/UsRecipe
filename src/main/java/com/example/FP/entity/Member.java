@@ -25,11 +25,10 @@ public class Member {
     @Id@GeneratedValue
     @Column(name = "member_id")
     private Long id;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String userid;
     private String password;
     private String name;
-    @Column(unique = true)
     private String nickname;
     private String addr;
     private String email;
@@ -79,7 +78,7 @@ public class Member {
     @OneToMany(mappedBy = "pointMember")
     private List<Point> memberPointList= new ArrayList<>();
 
-    public Member(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth, MemberRole role, List<Inquiry> inquiryList, List<WishList> wishlistList, List<Recipe> recipeList, List<OrderDetails> orderDetailsMemberList, List<Cart> memberCartList, List<Reply> memberReplyList , List<Alarm> memberAlarmList,List<Point> memberPointList,List<Orders> memberOrdersList) {
+    public Member(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth, MemberRole role, List<Inquiry> inquiryList, List<WishList> wishlistList, List<Recipe> recipeList, List<OrderDetails> orderDetailsMemberList, List<Cart> memberCartList, List<Reply> memberReplyList , List<Alarm> memberAlarmList,List<Point> memberPointList,List<Orders> memberOrdersList, String image) {
         this.userid = userid;
         this.password = password;
         this.name = name;
@@ -99,7 +98,7 @@ public class Member {
         this.memberAlarmList = memberAlarmList;
         this.memberPointList = memberPointList;
         this.memberOrdersList = memberOrdersList;
-
+        this.image = image;
     }
 
     public Member(String name, Integer point) {
@@ -107,9 +106,34 @@ public class Member {
         this.point = point;
     }
 
+    public Member(Long id, String password, String nickname, String addr) {
+        this.id = id;
+        this.password = password;
+        this.nickname = nickname;
+        this.addr = addr;
+    }
+
     public static Member createMember(MemberDto memberDto, PasswordEncoder passwordEncoder){
         System.out.println("맴버 생성");
         Member member = Member.builder()
+                .userid(memberDto.getUserid())
+                .name(memberDto.getName())
+                .nickname(memberDto.getNickname())
+                .addr(memberDto.getAddr())
+                .email(memberDto.getEmail())
+                .phone(memberDto.getPhone())
+                .birth(memberDto.getBirth())
+                .point(0)
+                .password(passwordEncoder.encode(memberDto.getPassword()))  //암호화처리
+                .image("2120286.jpg")
+                .role(MemberRole.MEMBER)
+                .build();
+        return member;
+    }
+    public static Member changeMember(MemberDto memberDto, PasswordEncoder passwordEncoder){
+        System.out.println("맴버 생성");
+        Member member = Member.builder()
+                .id(memberDto.getId())
                 .userid(memberDto.getUserid())
                 .name(memberDto.getName())
                 .nickname(memberDto.getNickname())
@@ -134,6 +158,7 @@ public class Member {
                 .birth(memberDto.getBirth())
                 .phone(memberDto.getPhone())
                 .point(0)
+                .image("2120286.jpg")
                 .role(MemberRole.MEMBER)
                 .build();
         return member;
@@ -155,6 +180,12 @@ public class Member {
         int usedPoint = orders.getOrdersUsedPoint();
         this.point-=usedPoint;
         System.out.println(this.getUserid()+" 님의 포인트 "+usedPoint+"원이 사용되었습니다");
+    }
+
+    public void changeMember(String password, String nickname, String addr){
+        this.password = password;
+        this.nickname = nickname;
+        this.addr =addr;
     }
 
 

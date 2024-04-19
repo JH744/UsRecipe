@@ -17,4 +17,16 @@ public class PointService {
         return pr.pointListByUserid(userid);
 
     }
+
+    public List<Point> findUsedPointListByUserId(String userid){
+        return pr.usedPointListByUserid(userid);
+    }
+
+    public List<Point> findGetPointListByUserId(String userid){
+        return pr.addPointListByUserid(userid);
+    }
+
+    public void savePoint(Point point){
+        pr.save(point);
+    };
 }

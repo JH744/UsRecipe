@@ -4,6 +4,7 @@ import com.example.FP.dto.InquiryDto;
 import com.example.FP.entity.Inquiry;
 import com.example.FP.entity.InquiryState;
 import com.example.FP.entity.QInquiry;
+import com.example.FP.entity.QMember;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.example.FP.entity.QInquiry.inquiry;
+import static com.example.FP.entity.QMember.member;
 
 public class InquiryRepositoryImpl implements InquiryRepositoryCustom{
 
@@ -40,7 +42,7 @@ public class InquiryRepositoryImpl implements InquiryRepositoryCustom{
 
     @Override
     @Transactional
-    public void updateInquiry(Long id) {
-        queryFactory.update(inquiry).set(inquiry.inquiryState,InquiryState.YES).set(inquiry.inquiryAnswerDate, LocalDateTime.now()).where(inquiry.id.eq(id)).execute();
+    public void updateInquiry(Long id,String answer) {
+        queryFactory.update(inquiry).set(inquiry.inquiryState,InquiryState.YES).set(inquiry.inquiryAnswerDate, LocalDateTime.now()).set(inquiry.inquiryAnswer,answer).where(inquiry.id.eq(id)).execute();
     }
 }

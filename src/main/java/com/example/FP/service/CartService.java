@@ -1,6 +1,7 @@
 package com.example.FP.service;
 
 import com.example.FP.dto.CartIngredientDto;
+
 import com.example.FP.entity.Cart;
 import com.example.FP.entity.Ingredient;
 import com.example.FP.entity.Member;
@@ -24,6 +25,7 @@ public class CartService {
     private final IngredientRepository ir;
 
     private final MemberRepository mr;
+
     private final MemberService ms;
 
     //재료목록창에서  담기 클릭  장바구니 추가
@@ -40,6 +42,14 @@ public class CartService {
        Cart cart = new Cart(m,null,i);
        cr.save(cart);
     }
+    public void insertCart(String userid, Long ingredientId){
+        Member member = mr.findByUserid(userid);
+        Ingredient ingredient = ir.findById(ingredientId).get();
+
+        Cart cart = new Cart(member,ingredient);
+        cr.save(cart);
+    }
+
 
     //장바구니에 들어있는지 여부 확인
     public List<Cart> findById(Long id, HttpSession session){
@@ -51,11 +61,16 @@ public class CartService {
     }
 
 
+
     // 장바구니 리스트
     @Transactional(readOnly = true)
     public List<CartIngredientDto> listCart(HttpSession session) {
         Member m = ms.findById((String) session.getAttribute("userid"));
         return cr.findCartIngredientsByMemberId(m.getId());
+    }
+
+    public List<Cart> listCart(String userid){
+        return cr.findByUserid(userid);
     }
 
     //상품명과 로그인된id를 조회해 일치하는 장바구니 항목을 삭제함
@@ -66,7 +81,4 @@ public class CartService {
                 cr.deleteByMemberIdAndIngredientName(memberId,ingredientName);
             }
     }
-
-
-
 }

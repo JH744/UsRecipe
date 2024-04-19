@@ -22,7 +22,7 @@ public class MemberDto {
     private String phone;
     private int point;
     private String birth;
-
+    private String image;
     private MemberRole role;
 
 

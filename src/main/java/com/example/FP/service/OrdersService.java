@@ -1,12 +1,13 @@
 package com.example.FP.service;
 
 import com.example.FP.dto.OrdersDto;
-import com.example.FP.entity.Member;
-import com.example.FP.entity.OrderDetails;
-import com.example.FP.entity.Orders;
+
+import com.example.FP.entity.*;
 import com.example.FP.mapper.OrdersMapper;
 import com.example.FP.repository.OrderDetailsRepository;
 import com.example.FP.repository.OrdersRepository;
+import com.example.FP.repository.PointRepository;
+
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,10 @@ import java.util.List;
 public class OrdersService {
     private final OrdersRepository or;
     private final OrderDetailsRepository odr;
+    private final PointRepository pr;
+
     private final MemberService ms;
+
 
     public List<Orders> findAllOrderListByUserid(String userid){
         return or.findOrdersListByUserid(userid);
@@ -56,5 +60,16 @@ public class OrdersService {
 
 
         or.save(OrdersMapper.toEntity(o));
+    }
+
+    public Orders saveOrders(Orders o, Member m){
+        Orders orders = new Orders();
+        return orders.createOreders(o, m);
+
+
+    }
+
+    public void saveOrder(Orders o){
+        or.save(o);
     }
 }

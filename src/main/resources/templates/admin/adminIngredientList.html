@@ -216,7 +216,7 @@
                                 <tbody>
                                 <tr th:each="list: ${list}">
                                     <th scope="col" class="orderList_th" style="width: 10%" th:text="${list.id}">재료번호</th>
-                                    <th scope="col" class="orderList_th" ><img th:src="@{|/static/images/${list.getIngredientImage()}|}" style="width: 50px;height: 50px"></th>
+                                    <th scope="col" class="orderList_th"><img th:src="@{|../../static/ingredientImages/${list.getIngredientImage()}|}" style="width: 50px;height: 50px"></th>
                                     <th scope="col" class="orderList_th" th:text="${list.getIngredientName()}">재료명</th>
                                     <th scope="col" class="orderList_th" th:text="${list.getIngredientPrice()}">가격</th>
                                     <th scope="col" class="orderList_th" th:text="${list.getIngredientOrigin()}">원산지</th>
@@ -228,6 +228,7 @@
 
                                 </tbody>
                             </table>
+                            <a href="/admin/addIngredient" th:href="@{/admin/addIngredient}"><button style="height: 50px;width: 120px; margin-top: 30px; float: right; background: #D65454;border: none;color: white">재료추가</button></a>
 
                         </div>
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>

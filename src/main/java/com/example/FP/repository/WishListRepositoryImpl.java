@@ -23,7 +23,7 @@ public class WishListRepositoryImpl implements WishListRepositoryCustom{
 
     }
 
-    //유저아이디별 찜목록을 가져오기 위한 메소드
+    //유저아이디별 찜목록을 가져오기 위한 메소드 구현
     @Override
     public List<WishList> findByUserid(String userid) {
         List<WishList> list = queryFactory.selectFrom(wishList).where(wishList.wishlistMember.userid.eq(userid)).fetch();

@@ -11,6 +11,7 @@ import com.example.FP.repository.IngredientCategoryRepository;
 import com.example.FP.service.IngredientService;
 import com.example.FP.service.InquiryService;
 import com.example.FP.service.MemberService;
+import com.example.FP.service.NoticeService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class AdminController {
 
+    private final NoticeService ns;
     private final MemberService ms;
     private final InquiryService is;
     private final IngredientService igs;
@@ -56,9 +58,9 @@ public class AdminController {
     }
 
     @PostMapping("/inquiryDetail")
-    public String adminInquiryDetailSubmit(@RequestParam Long id){
+    public String adminInquiryDetailSubmit(@RequestParam Long id,String inquiryAnswer){
 
-        is.updateInquiry(id);
+        is.updateInquiry(id,inquiryAnswer);
 
         return "redirect:/admin/inquiry";
 
@@ -68,7 +70,14 @@ public class AdminController {
     public String deleteInquiry(@PathVariable Long id){
         is.deleteInquiry(id);
 
+
         return "redirect:/admin/inquiry";
+    }
+    @GetMapping("/notice")
+    public String listNotice(Model model){
+        model.addAttribute("list",ns.findAll());
+        return "/admin/adminNoticeList";
+
     }
 
     @GetMapping("/addIngredient")
@@ -88,7 +97,7 @@ public class AdminController {
 
 
         MultipartFile uploadFile = ingredientDto.getUploadFile();
-        String path = "C:\\FP\\src\\main\\resources\\static\\images";
+        String path = "C:\\FP\\src\\main\\resources\\webapp\\ingredientImages";
         System.out.println("경로 : " + path);
         String fname = uploadFile.getOriginalFilename();
         System.out.println("파일명 : " + fname);
@@ -100,9 +109,6 @@ public class AdminController {
         if (category != null) {
             // 올바른 IngredientCategory를 설정
             ingredientDto.setIngredient_ingredient_category(category);
-
-            // Ingredient 엔티티를 저장합니다.
-            igs.save(ingredientDto);
         } else {
 
         }
