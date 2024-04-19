@@ -2,7 +2,6 @@ package com.example.FP.controller;
 
 import com.example.FP.dto.OrdersDto;
 import com.example.FP.entity.Member;
-import com.example.FP.entity.OrderState;
 import com.example.FP.entity.Orders;
 import com.example.FP.entity.Point;
 import com.example.FP.mapper.OrdersMapper;
@@ -11,17 +10,13 @@ import com.example.FP.service.OrdersService;
 import com.example.FP.service.PointService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.WebUtils;
-import org.thymeleaf.standard.expression.Each;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -68,9 +63,14 @@ public class OrdersController {
         ps.savePoint(point);
 
 
+        os.saveOrderDetails(session);
 
+        return "/user/orderOK";
+
+    }
 
     //구매물품들의 상품명,수량,금액을 저장함
+    @ResponseBody
     @PostMapping("/orderSave")
     public String orderOK(@RequestBody Map<String, List<Map<String, Object>>> payload, HttpSession session){
 
@@ -83,13 +83,6 @@ public class OrdersController {
         session.setAttribute("products",products); // 구매품목들을 세션에 저장
         return "상품정보를 저장함";
     }
-
-
-
-        return "/user/orderOK";
-
-    }
-
 
 
     @GetMapping("/orderList")
