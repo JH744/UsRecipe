@@ -197,18 +197,19 @@
             <div id="notion_title_wrap" style="color: black;">
                 <span id="notion_spanB">1대1 문의 등록</span><span id="notion_spanL">문의를 등록할 수 있습니다.</span>
                 <hr>
+                <form th:action="@{/insertInquiry}" th:object="${inquiryDto}" method="post">
                 <h3 style="font-family: Cafe24Dangdanghae">문의하기</h3><br>
                 <b style="margin-right: 100px;font-family: Cafe24Dangdanghae">질문유형</b>
-                <select name="inquiry_category">
+                <select th:field="*{inquiry_category}">
                     <option value="계정">계정</option>
                     <option value="레시피">레시피</option>
                     <option value="재료">재료</option>
                     <option value="결제">결제</option>
                 </select><br>
                 <hr>
-                <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b><input type="text" style="width: 500px">
+                <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b><input type="text" th:field="*{inquiry_title}" style="width: 500px">
                 <hr>
-                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">문의내용</b><input type="text" style="width: 550px; height: 600px;">
+                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">문의내용</b><input type="text" th:field="*{inquiry_content}" style="width: 550px; height: 600px;">
                 <br><br><br><br>
 
 
@@ -233,7 +234,7 @@
                 <input type="submit" value="등록하기" style="margin-left: 380px; background-color: #D65454">
 
 
-
+                </form>
             </div>
 
             <div id="notion_box">
@@ -252,12 +253,6 @@
 
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
-                    <!-- #page -->
-                    <script src='/js/jquery.js'></script>
-                    <script src='/js/plugins.js'></script>
-                    <script src='/js/scripts.js'></script>
-                    <script src='/js/masonry.pkgd.min.js'></script>
-
                     </body>
 
                 </div>
@@ -274,5 +269,6 @@
     </div>
     <div class="footer" th:replace="footer :: footer"></div>
 </div>
+
 </body>
 </html>

@@ -231,8 +231,7 @@
                                 </tbody>
                             </table>
                             <div style="width: 100%; text-align: right;">
-                                <button id="createButton" style="width: 100px; color: white; margin: 100px 0 0 0; height: 50px; background-color: #D65454">문의하기</button>
-
+                                <button id="createButton" style="width: 100px; color: white; margin: 100px 0 0 0; height: 50px; background-color: #D65454" onclick="createInquiry()">문의하기</button>
                             </div>
                         </div>
                         <!-- .container -->
@@ -244,7 +243,12 @@
                     <script src='/js/plugins.js'></script>
                     <script src='/js/scripts.js'></script>
                     <script src='/js/masonry.pkgd.min.js'></script>
-
+                    <script>
+                        function createInquiry() {
+                            // 문의 등록 폼 페이지 URL로 리다이렉트
+                            window.location.href = '/insertInquiry';
+                        }
+                    </script>
                     </body>
 
                 </div>

@@ -210,9 +210,22 @@
                 <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">문의내용</b>
                 <b th:text="${inquiry?.inquiryAnswer}">문의 답변 내용입니다.</b>
                 <br>
-                <button style="width: 100px;color: white; margin : 100px 0 0 300px; height: 50px ;background-color: #D65454"  onclick="location.href='/inquiryList'">목록으로</button>
-                <button id="deleteButton" style="width: 100px; color: white; margin: 100px 0 0 20px; height: 50px; background-color: #D65454">삭제</button>
-                <button id="updateButton" style="width: 100px; color: white; margin: 100px 0 0 20px; height: 50px; background-color: #D65454">문의수정</button>
+                <div style="display: flex; justify-content: center; margin-top: 100px;">
+                    <button style="width: 100px; color: white; height: 50px; background-color: #D65454; margin-right: 20px;" onclick="location.href='/inquiryList'">목록으로</button>
+
+                    <form id="deleteForm" th:action="@{/deleteInquiry/{id}(id=${inquiry.id})}" method="post">
+                        <button id="deleteButton" type="submit" style="width: 100px; color: white; height: 50px; background-color: #D65454; margin-right: 20px;" onclick="return confirmDelete();">삭제</button>
+                    </form>
+
+
+                </div>
+
+                <script>
+                    function confirmDelete() {
+                        return confirm('이 문의를 정말 삭제하시겠습니까?');
+                    }
+                </script>
+
 
 
 

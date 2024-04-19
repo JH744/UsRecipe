@@ -27,15 +27,8 @@ public class InquiryRepositoryImpl implements InquiryRepositoryCustom{
 
     @Override
     public List<Inquiry> listByUserid(String userid) {
-        QInquiry inquiry = QInquiry.inquiry;
-        QMember member = QMember.member;
-        return queryFactory.selectFrom(inquiry)
-                .join(inquiry.inquiryMember, member)
-                .where(userid != null ? member.userid.eq(userid) : member.userid.isNotNull())
-                .fetch();
+        return queryFactory.selectFrom(inquiry).where(inquiry.inquiryAnswer.eq(userid)).fetch();
     }
-
-
 
     @Override
     public List<Inquiry> listInquiryAnswerYet() {
