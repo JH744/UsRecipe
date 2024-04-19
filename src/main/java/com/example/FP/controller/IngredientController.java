@@ -13,8 +13,11 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -93,7 +96,7 @@ public class IngredientController {
 
 
 
-        return "listIngredient" ;
+        return "/all/listIngredient" ;
     }
 
 
@@ -116,7 +119,19 @@ public class IngredientController {
     }
     @GetMapping("/deleteIngredient/{id}")
     public String deleteIngredient(@PathVariable Long id){
+        Ingredient ingredient = is.findById(id).get();
+
+        String path = "C:\\FP\\src\\main\\resources\\webapp\\ingredientImages";
+        String fname = ingredient.getIngredientImage();
+        try{
+            File file = new File(path+"/"+fname);
+            file.delete();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
         is.deleteIngredient(id);
+
         return "redirect:/admin/ingredient";
     }
 

@@ -3,6 +3,7 @@ package com.example.FP.controller;
 import com.example.FP.dto.InquiryDto;
 import com.example.FP.mapper.InquiryMapper;
 import com.example.FP.service.InquiryService;
+import com.example.FP.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,18 +17,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class InquiryController {
 
     private final InquiryService is;
+    private final MemberService ms;
 
     @GetMapping("/insertInquiry")
-    public String inquiryForm(){
+    public String inquiryForm(Model model,InquiryDto inquiryDto){
+        model.addAttribute("inquiry",inquiryDto);
         return "/user/inquiryForm";
 
     }
-    @PostMapping("/insetInquiry")
-    public String inquirySubmit(InquiryDto inquiryDto){
-        is.save(InquiryMapper.toEntity(inquiryDto));
-        return "redirect:/user/inquiryList";
+    @PostMapping("/insertInquiry")
+    public String inquirySubmit(InquiryDto inquiryDto,HttpSession session){
 
-
+        is.save(InquiryMapper.toEntity(inquiryDto),ms.findById((String)session.getAttribute("userid")));
+        return "redirect:/inquiryList";
     }
 
 

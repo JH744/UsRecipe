@@ -20,7 +20,10 @@ public class OrdersRepositoryImpl implements OrdersRepositoryCustom {
 
     @Override
     public List<Orders> findOrdersListByUserid(String userid) {
-        return queryFactory.select(orders).from(orders).where(orders.ordersMember.userid.eq(userid)).fetch();
+        return queryFactory.select(orders)
+                .from(orders)
+                .where(userid != null ? orders.ordersMember.userid.eq(userid) : orders.ordersMember.userid.isNull())
+                .fetch();
     }
 
 

@@ -68,6 +68,7 @@ public class AdminController {
     public String deleteInquiry(@PathVariable Long id){
         is.deleteInquiry(id);
 
+
         return "redirect:/admin/inquiry";
     }
 
@@ -88,7 +89,7 @@ public class AdminController {
 
 
         MultipartFile uploadFile = ingredientDto.getUploadFile();
-        String path = "C:\\FP\\src\\main\\resources\\static\\images";
+        String path = "C:\\FP\\src\\main\\resources\\webapp\\ingredientImages";
         System.out.println("경로 : " + path);
         String fname = uploadFile.getOriginalFilename();
         System.out.println("파일명 : " + fname);
@@ -100,9 +101,6 @@ public class AdminController {
         if (category != null) {
             // 올바른 IngredientCategory를 설정
             ingredientDto.setIngredient_ingredient_category(category);
-
-            // Ingredient 엔티티를 저장합니다.
-            igs.save(ingredientDto);
         } else {
 
         }

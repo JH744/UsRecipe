@@ -198,17 +198,18 @@
                 <span id="notion_spanB">1대1 문의 등록</span><span id="notion_spanL">문의를 등록할 수 있습니다.</span>
                 <hr>
                 <h3 style="font-family: Cafe24Dangdanghae">문의하기</h3><br>
+                <form th:object="${inquiry}" method="post" action="/insertInquiry">
                 <b style="margin-right: 100px;font-family: Cafe24Dangdanghae">질문유형</b>
-                <select name="inquiry_category">
+                <select name="inquiry_category" th:field="*{inquiry_category}">
                     <option value="계정">계정</option>
                     <option value="레시피">레시피</option>
                     <option value="재료">재료</option>
                     <option value="결제">결제</option>
                 </select><br>
                 <hr>
-                <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b><input type="text" style="width: 500px">
+                <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b><input type="text" style="width: 500px" th:field="*{inquiry_title}">
                 <hr>
-                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">문의내용</b><input type="text" style="width: 550px; height: 600px;">
+                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">문의내용</b><input type="text" style="width: 550px; height: 600px;" th:field="*{inquiry_content}">
                 <br><br><br><br>
 
 
@@ -231,6 +232,7 @@
 
 
                 <input type="submit" value="등록하기" style="margin-left: 380px; background-color: #D65454">
+                </form>
 
 
 
