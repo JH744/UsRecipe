@@ -84,11 +84,15 @@ a{
 .t1, .t2 ,.t3 , .t4 {
   border: 1px solid $애플배경색 ;
   padding: 0;
+
+
+  
 }
 .t1 td, .t2 td, .t3 td, .t4 td {
   border: 1px solid $애플배경색 ;
   width: 800px;
   height: 36px;
+
 }
 
 
@@ -121,6 +125,14 @@ a{
 .nolook{
   display: none;
 }
+
+.itemQty{
+  border: none;
+  height: 34px; width: 23px;
+  font-size: 16px;
+  font-family:'Poppins', 'Noto Sans KR', sans-serif;
+}
+
 
 
 

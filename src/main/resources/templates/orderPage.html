@@ -109,6 +109,32 @@
 
 
 
+            ////// 구매상품 데이터 수집 및 전송//////
+            let products = orderData.items.map(item => {
+                return {
+                    name: item.name,       // 상품명
+                    quantity: item.quantity, // 수량
+                    price: item.price       // 가격
+                };
+            });
+
+            function sendProducts(products) {
+                fetch('/orderOK', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ products })  // 상품 정보를 JSON 형식으로 변환
+                })
+                    .then(response => response.json())
+                    .then(data => console.log('Server response:', data))
+                    .catch(error => console.error('Error:', error));
+            }
+
+
+
+
+
             ///////   결제하기  //////////
 
             $(".btnOrder").click(function(){
@@ -117,7 +143,7 @@
                     pg:'kcp',
                     pay_method:'card',
                     merchant_uid:'merchant_'+new Date().getTime(),
-                    name:orderData.items[0].name +' 외 '+count+'개' ,
+                    name:orderData.items[0].name +' 외 '+(count-1)+'개' ,
                     amount:$('#totalOrderPrice').text(),  // 결제가격
                     buyer_email:$('#Email').val(),
                     buyer_name:$('#Name').val(),
@@ -143,6 +169,9 @@
                         $("#ordersUsedPoint").val($('#usePoint').val());
                         $("#ordersRequest").val($('#Request').val());
                         $("#ordersContent").val(res.name);
+
+                        sendProducts(products);
+
                         $("#pay").submit();
 
                     }else{
@@ -257,7 +286,7 @@
                     </tr>
                 </table>
             </div>
-
+            <button id="btnTest">데이터전송</button>
             <button class="btnOrder">결제하기</button>
             <form action="/orderOK" method="post" id="pay" class="nolook">
                 <input type="text" name="orders_receiver" id="ordersReceiver"  class="nolook">

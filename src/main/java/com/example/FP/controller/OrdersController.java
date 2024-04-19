@@ -6,19 +6,22 @@ import com.example.FP.entity.Orders;
 import com.example.FP.mapper.OrdersMapper;
 import com.example.FP.service.MemberService;
 import com.example.FP.service.OrdersService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.WebUtils;
+import org.thymeleaf.standard.expression.Each;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -42,11 +45,29 @@ public class OrdersController {
 
 
     @PostMapping("/orderOK")
-    public String orderOK(OrdersDto o, HttpSession session){
+    public String orderOK(OrdersDto o, HttpSession session) {
         System.out.println("가져온 결제자명:" + o.getOrders_receiver());
+
+
         os.save(o,session);
         return "orderOK";
     }
+
+
+    //구매물품들의 상품명,수량,금액을 저장함
+    @PostMapping("/orderSave")
+    public String orderOK(@RequestBody Map<String, List<Map<String, Object>>> payload, HttpSession session){
+
+        List<Map<String, Object>> products = payload.get("products");
+        products.forEach(product -> {
+            System.out.println("Product Name: " + product.get("name"));
+            System.out.println("Quantity: " + product.get("quantity"));
+            System.out.println("Price: " + product.get("price"));
+        });
+        session.setAttribute("products",products); // 구매품목들을 세션에 저장
+        return "상품정보를 저장함";
+    }
+
 
 
 
