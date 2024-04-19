@@ -134,7 +134,7 @@ function addCart(checkBoxClass, url) {
                             confirmButtonText: '이동',
                             cancelButtonText: '취소'
                         }).then((result) => {
-                            location.replace("/")
+                            location.replace("/cart")
                         })
                     }
                 })
