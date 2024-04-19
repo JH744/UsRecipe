@@ -30,7 +30,7 @@ public class MemberController {
     // 로그인 폼
     @GetMapping("/login")
     public String loginForm(HttpServletRequest request){
-
+        // 이전 페이지의 주소를 가져옴
         String uri = request.getHeader("Referer");
         if (uri != null && !uri.contains("/login")) {
             request.getSession().setAttribute("prevPage", uri);
@@ -117,7 +117,7 @@ public class MemberController {
         String toEmail = email.replace("%40", "@").trim(); // 이메일 가져오기
         HashMap<String, String > map = memberService.findByNameAndEmail(name, toEmail);
         if (map.get("success").equals("false")) {
-            return "redirect:/all/findUserid";
+            return "/all/findUserid";
         }
 
         model.addAttribute("name", name);
@@ -137,7 +137,7 @@ public class MemberController {
         String toEmail = email.replace("%40", "@").trim();
         Boolean res = memberService.findByUseridAndEmail(userid, toEmail);
         if (!res) {
-            return "redirect:/all/findUserPwd";
+            return "/all/findUserPwd";
         }
 
         try {

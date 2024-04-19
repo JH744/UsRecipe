@@ -31,11 +31,12 @@ public class SecurityConfig{
 
                 .and()
                 .formLogin().loginPage("/login")
-                .successHandler(authenticationSuccessHandler)
-                .failureHandler(authenticationFailureHandler)
+                .successHandler(authenticationSuccessHandler)   // 로그인 성공시
+                .failureHandler(authenticationFailureHandler)   // 로그인 실패시
                 .permitAll()
+                
                 .and()
-                .oauth2Login()
+                .oauth2Login()  // oauth2를 이용한 로그인
                 .loginPage("/login")
                 .defaultSuccessUrl("/")
                 .userInfoEndpoint()
