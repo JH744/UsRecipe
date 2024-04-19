@@ -4,6 +4,7 @@ import com.example.FP.dto.MemberDto;
 import com.example.FP.entity.Member;
 import com.example.FP.service.MailService;
 import com.example.FP.service.MemberService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -28,7 +29,13 @@ public class MemberController {
 
     // 로그인 폼
     @GetMapping("/login")
-    public String loginForm(){
+    public String loginForm(HttpServletRequest request){
+
+        String uri = request.getHeader("Referer");
+        if (uri != null && !uri.contains("/login")) {
+            request.getSession().setAttribute("prevPage", uri);
+            System.out.println(uri);
+        }
         return "/all/login";
     }
 
@@ -224,7 +231,7 @@ public class MemberController {
         return "redirect:/admin/member";
     }
 
-    @GetMapping("/adminMember")
+    @GetMapping("/admin/adminMember")
     public String memberList(Model model){
         model.addAttribute("list",memberService.findAllMember());
         return "/admin/adminMember";
