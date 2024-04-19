@@ -9,6 +9,9 @@
     <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
 </head>
 <div class="header" th:fragment="header">
+    <script>
+        $("head").append($('<link rel="shortcut icon" type="image/x-icon" href="/static/images/image_11_logo.ico">'))
+    </script>
     <div class=headerLeft>
         <a th:href="@{/}">
             <div class="headerLogo"></div>

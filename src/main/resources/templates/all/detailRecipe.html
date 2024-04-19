@@ -19,6 +19,41 @@
     <link rel="stylesheet" type="text/css" href="../../static/css/ez_recipe_20240405.css">
     <script src="../../static/js/detailRecipe.js"></script>
 
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.1/kakao.min.js"
+            integrity="sha384-kDljxUXHaJ9xAb2AzRd59KxjrFjzHa5TAoFQ6GbYTCAG0bjM55XohjjDT7tDDC01" crossorigin="anonymous"></script>
+
+    <script>
+        Kakao.init('e709ec556f6822e12f8e8f64039df390'); // 사용하려는 앱의 JavaScript 키 입력
+        var url = "http://www.localhost:8080/detaileRecipe?recipeNum="+$("#recipeId").val()
+        function shareMessage() {
+            Kakao.Share.sendDefault({
+                objectType: 'feed',
+                content: {
+                    title: $("#recipeTitle").text(),
+                    description: '당신을 위한 레시피 - 유스레시피',
+                    imageUrl:$("#thumbUrl").val(),
+                    link: {
+                        // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
+                        webUrl: url,
+                    },
+                },
+                social: {
+                    likeCount: 286,
+                    commentCount: 45,
+                    sharedCount: 845,
+                },
+                buttons: [
+                    {
+                        title: '자세히 보기',
+                        link: {
+                            webUrl: url,
+                        },
+                    },
+                ],
+            });
+        }
+    </script>
+
 </head>
 
 <body>
@@ -30,7 +65,6 @@
         <div class="contentBody">
             <div class="container">
                 <div id="contents_area_full" style="clear:both;">
-
                     <div class="view2_pic">
                         <div class="view_cate st2" style="z-index:10;">
                             <div class="view_cate_num"><span class="hit font_num"
@@ -41,12 +75,12 @@
                             <img id="main_thumbs"
                                  th:src="@{'../static/recipeImages/'+${recipe.recipeThumbnail}}"
                                  alt="main thumb">
+                            <input id="thumbUrl" type="hidden" th:value="'http://localhost:8080/static/recipeImages/'+${recipe.recipeThumbnail}">
                             <!--                            style="filter: blur(2px) contrast(75%);" 이미지 약간 블러 처리하는법-->
                         </div>
                         <div class="user_info2">
-                            <a class="app_block_link_remove user_info2_pic"
-                               href="/profile/index.html?uid=dollshouse"><img
-                                    src="../../static/images/chef2.png" style="background: #FFFFFF"></a>
+                                <img class="app_block_link_remove user_info2_pic"
+                                    th:src="|../../static/images/${recipe.recipeMember.image}|" style="background: #FFFFFF">
                             <span class="user_info2_name" th:text="${recipe.recipeWriter}">
                                 <button id="friendDiv"
                                         type="button"
@@ -57,12 +91,12 @@
                     </div>
 
                     <div class="view2_summary st3">
-                        <h3 th:text="${recipe.recipeTitle}"></h3>
+                        <h3 th:text="${recipe.recipeTitle}" id="recipeTitle"></h3>
                         <div class="btn_list st2">
-                            <a onclick="$('#snsLinkModal').modal('show')"><img
-                                    src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_talk.png"><span>공유</span></a>
+                            <a onclick="javascript:shareMessage()"><img
+                                    src="../../static/images/btn_view_talk.png"><span>공유</span></a>
                             <a href="#reply_tit"><img
-                                    src="https://recipe1.ezmember.co.kr/img/mobile/btn_view_re.png"><span>댓글<b
+                                    src="../../static/images/btn_view_re.png"><span>댓글<b
                                     class="st3" th:text="${recipe.recipeReplyList.size}"></b></span></a>
                         </div>
                     </div>
@@ -176,7 +210,7 @@
                         <div class="media-left">
                             <img
                                     class="media-object"
-                                    src="../../static/images/chef2.png"
+                                    th:src="|../../static/images/${r.replyMember.image}|"
                                     data-holder-rendered="true"></a></div>
                         <div class="media-body">
                             <h4 class="media-heading">
