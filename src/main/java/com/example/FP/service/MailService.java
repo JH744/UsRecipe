@@ -13,8 +13,9 @@ import java.util.Random;
 public class MailService {
 
     private final JavaMailSender javaMailSender;
-    private static int number;  // 인증시 보낼 랜덤번호
-    private static String senderEmail = System.getenv("email"); // 이메일 보내는 이
+    private static int number;
+
+    private static String senderEmail = System.getenv("email");
 
     //임의의 6자리 양수를 반환합니다.
     public void makeRandomNumber() {
