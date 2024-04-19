@@ -23,7 +23,7 @@ public class OftenQuestionController {
 //자주묻는 질문 목록
     @GetMapping("/oftenQuestions")
     public String getAllQuestions(Model model) {
-        String View = "oftenQuestionList";
+        String View = "/all/oftenQuestionList";
         List<OftenQuestion> questions = oftenQuestionService.getAllQuestions();
         model.addAttribute("questions" ,questions);
         return View;
@@ -34,7 +34,7 @@ public class OftenQuestionController {
         OftenQuestion question = oftenQuestionService.getQuestionById(id);
         if (question != null) {
             model.addAttribute("question", question);
-            return "oftenQuestionDetail"; // 해당 경로의 Thymeleaf 뷰 페이지
+            return "/all/oftenQuestionDetail"; // 해당 경로의 Thymeleaf 뷰 페이지
         } else {
             return "errorPage"; // 질문이 존재하지 않을 경우 에러 페이지로 리디렉션
         }

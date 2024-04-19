@@ -1,5 +1,6 @@
 package com.example.FP.controller;
 
+import com.example.FP.entity.Member;
 import com.example.FP.service.MemberService;
 import com.example.FP.service.RecipeService;
 import jakarta.servlet.http.HttpSession;
@@ -28,8 +29,10 @@ public class MainController {
         if (authentication != null && authentication.isAuthenticated() && authentication.getPrincipal() instanceof UserDetails) {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String username = userDetails.getUsername();
+            Member m =  ms.findById(username);
             session.setAttribute("userid", username);
-            session.setAttribute("image", ms.findById(username).getImage());
+            session.setAttribute("image", m.getImage());
+            session.setAttribute("role", m.getRole());
             System.out.println(username);
             System.out.println("OAuth2User:" + oauth.getAttributes());
         }

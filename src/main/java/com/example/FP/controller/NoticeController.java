@@ -27,7 +27,7 @@ public class NoticeController {
 
     @GetMapping("/noticeInsert")
     public String noticeForm(){
-        return "/noticeForm";
+        return "/all/noticeForm";
     }
 
     @PostMapping("/noticeInsert")
@@ -40,12 +40,12 @@ public class NoticeController {
     public String noticeDetail(@PathVariable Long id, Model model){
         Notice notice = ns.findById(id).orElseThrow(() -> new NoSuchElementException("No notice found for ID " + id));
         model.addAttribute("notice", notice);
-        return "noticeDetail";
+        return "/all/noticeDetail";
     }
     @GetMapping("/noticeUpdate/{id}")
     public String noticeUpdateForm(@PathVariable Long id, Model model){
         model.addAttribute("list", ns.findById(id));
-        return "/noticeUpdate";
+        return "/user/noticeUpdate";
     }
 
     @PostMapping("/noticeUpdate")
@@ -60,9 +60,5 @@ public class NoticeController {
         return "/admin/adminNoticeList";
     }
 
-    @GetMapping("/admin/notice")
-    public String adminNoticeList(Model model){
-        model.addAttribute("list", ns.findAll());
-        return "/admin/adminNoticeList";
-    }
+
 }
