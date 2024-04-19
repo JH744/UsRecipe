@@ -3,18 +3,26 @@ package com.example.FP.controller;
 import com.example.FP.entity.Ingredient;
 import com.example.FP.service.IngredientService;
 import com.example.FP.service.ReplyService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Parameters;
 import org.springframework.stereotype.Controller;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+
+import java.io.File;
 import java.util.List;
+
+import java.util.ArrayList;
 
 @Controller
 @RequiredArgsConstructor
@@ -93,7 +101,7 @@ public class IngredientController {
 
 
 
-        return "listIngredient" ;
+        return "/all/listIngredient" ;
     }
 
 
@@ -114,9 +122,35 @@ public class IngredientController {
         List<Ingredient> list = is.findAllByIngredientNameContaining(keyword);
         return list;
     }
+
+//    장바구니에 추가하기 위해 여러개 검색하는 용도
+    @PostMapping("/findIngredient")
+    @ResponseBody
+    public List<Ingredient> findIngredient(@RequestBody List<Long> checkList){
+        List<Ingredient> list = new ArrayList<Ingredient>();
+
+        for(Long id : checkList){
+            list.add(is.findById(id).get());
+        }
+
+        return list;
+    }
+
     @GetMapping("/deleteIngredient/{id}")
     public String deleteIngredient(@PathVariable Long id){
+        Ingredient ingredient = is.findById(id).get();
+
+        String path = "C:\\FP\\src\\main\\resources\\webapp\\ingredientImages";
+        String fname = ingredient.getIngredientImage();
+        try{
+            File file = new File(path+"/"+fname);
+            file.delete();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
         is.deleteIngredient(id);
+
         return "redirect:/admin/ingredient";
     }
 

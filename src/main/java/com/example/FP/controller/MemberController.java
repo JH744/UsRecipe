@@ -213,6 +213,7 @@ public class MemberController {
         System.out.println("정보변경");
 
         String addr = addr1 + " " + addr2;
+
         memberDto.setAddr(addr);
 
         System.out.println("id값 : " + memberDto.getId());

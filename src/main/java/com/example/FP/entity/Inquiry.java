@@ -8,7 +8,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Builder
@@ -33,6 +35,7 @@ public class Inquiry {
     @JoinColumn(name = "member_id")
     private Member inquiryMember;
 
+
     public Inquiry(String inquiryTitle, String inquiryContent, String inquiryAnswer, String inquiryCategory,LocalDateTime inquiryDate, LocalDateTime inquiryAnswerDate, InquiryState inquiryState, Member inquiryMember) {
         this.inquiryTitle = inquiryTitle;
         this.inquiryContent = inquiryContent;
@@ -42,6 +45,14 @@ public class Inquiry {
         this.inquiryAnswerDate = inquiryAnswerDate;
         this.inquiryState = inquiryState;
         this.inquiryMember = inquiryMember;
+    }
+
+    public Inquiry insertInquiry(Inquiry inquiry, Member member){
+
+        Inquiry inquiry1 = new Inquiry(inquiry.inquiryTitle,inquiry.inquiryContent,inquiry.inquiryAnswer,inquiry.inquiryCategory, LocalDateTime.now(),inquiry.inquiryAnswerDate,InquiryState.NO,member);
+
+        return inquiry1;
+
     }
 
 }

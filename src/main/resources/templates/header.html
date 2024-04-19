@@ -9,6 +9,9 @@
     <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
 </head>
 <div class="header" th:fragment="header">
+    <script>
+        $("head").append($('<link rel="shortcut icon" type="image/x-icon" href="/static/images/image_11_logo.ico">'))
+    </script>
     <div class=headerLeft>
         <a th:href="@{/}">
             <div class="headerLogo"></div>
@@ -18,7 +21,7 @@
                 <li  class="recipeTag"><a th:href="@{/listRecipe/1}">레시피 </a></li>
                 <li  class="storeTag"><a th:href="@{/listIngredient/1}">재료</a></li>
                 <li  class="creatorTag"><a th:href="@{#}">크리에이터</a></li>
-                <li  class="csTag"><a th:href="@{#}">고객센터</a> </li>
+                <li  class="csTag"><a th:href="@{/notice}">고객센터</a> </li>
                 <li  class="myPageTag"><a th:href="@{/orderList}">마이페이지</a></li>
 
             </ul>

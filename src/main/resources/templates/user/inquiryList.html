@@ -209,7 +209,7 @@
                     <div id="page">
                         <div class="container">
 
-                            <table class="table">
+                            <table class="table" id="inquiryTable">
                                 <thead>
                                 <tr>
                                     <th scope="col" class="orderList_th" style="width: 60%">제목</th>
@@ -219,25 +219,27 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
                                 <tr th:each="list:${list}">
-                                    <td class="orderList_td" th:text="${list.getInquiryTitle()}"><a>1</a></td>
+                                    <td class="orderList_td"><a th:href="@{/inquiryDetail/{id}(id=${list.id})}" th:text="${list.getInquiryTitle()}">1</a></td>
                                     <td class="orderList_td" th:text="${list.getInquiryDate()}">2024-04-03</td>
                                     <td class="orderList_td" th:text="${list.getInquiryCategory()}">계정</td>
-                                    <td class="orderList_td" th:text="${list.getInquiryState()}">답변완료</td>
+                                    <td class="orderList_td" th:text="${list.getInquiryState()}">답변상태</td>
                                 </tr>
 
                                 </tbody>
                             </table>
+
+                            <div style="width: 100%; text-align: right;">
+                                <a href="/insertInquiry"><button style="height: 50px;width: 120px; margin-top: 30px; float: right; background: #D65454;border: none;color: white">문의등록</button></a>
+                            </div>
+
                         </div>
                         <!-- .container -->
 
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
                     <!-- #page -->
-                    <script src='/js/jquery.js'></script>
-                    <script src='/js/plugins.js'></script>
-                    <script src='/js/scripts.js'></script>
-                    <script src='/js/masonry.pkgd.min.js'></script>
 
                     </body>
 
@@ -253,6 +255,7 @@
 
 
     </div>
+
     <div class="footer" th:replace="footer :: footer"></div>
 </div>
 </body>
