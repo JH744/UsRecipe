@@ -26,7 +26,7 @@ public class SecurityConfig{
                 .csrf().disable()
                 .authorizeRequests()
                 .requestMatchers("/", "/all/**","/listIngredient/**", "/join","/joinOk","/static/**","/id_check","/sendEmail","/nickname_check","/mailCheck","/error"
-                , "/listRecipe/**", "/detailRecipe", "/detailIngredient", "/notice")
+                , "/listRecipe/**", "/detailRecipe", "/detailIngredient", "/notice", "/oftenQuestions", "/oftenQuestionDetail/**", "/noticeDetail/**", "/eventDetail/**", "/eventList")
                 .permitAll()
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
