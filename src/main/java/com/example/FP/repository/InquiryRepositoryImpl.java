@@ -27,7 +27,7 @@ public class InquiryRepositoryImpl implements InquiryRepositoryCustom{
 
     @Override
     public List<Inquiry> listByUserid(String userid) {
-        return queryFactory.selectFrom(inquiry).where(inquiry.inquiryAnswer.eq(userid)).fetch();
+        return queryFactory.selectFrom(inquiry).where(inquiry.inquiryMember.userid.eq(userid)).fetch();
     }
 
     @Override

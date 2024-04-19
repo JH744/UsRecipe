@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
-    <link rel='stylesheet' href='../static/css/woocommerce-layout.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-    <link rel='stylesheet' href='../static/css/woocommerce.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/font-awesome.min.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/style.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce-layout.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/font-awesome.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/style.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="../static/css/footer.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
     <style>
 
         *{
@@ -195,7 +197,7 @@
         <section id="news_section">
 
             <div id="notion_title_wrap" style="color: black;">
-                <span id="notion_spanB">공지사항</span><span id="notion_spanL">공지사항을 확인할 수 있습니다.</span>
+                <span id="notion_spanB">자주묻는 질문</span><span id="notion_spanL">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span>
             </div>
 
             <div id="notion_box">
@@ -208,26 +210,25 @@
                     <div id="page">
                         <div class="container">
 
-                            <table class="table" id="noticeTable">
+                            <table class="table" id="faqTable">
                                 <thead>
-                                <tr>
+                                <tr >
                                     <th scope="col" class="orderList_th" style="width: 20%">번호</th>
                                     <th scope="col" class="orderList_th" >제목</th>
-                                    <th scope="col" class="orderList_th">작성자</th>
-                                    <th scope="col" class="orderList_th">작성일</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
 
+                                <tr th:each="q:${questions}">
+                                    <td class="orderList_td" th:text="${q.id}"></td>
+                                    <td class="orderList_td" >
+                                        <a th:href="@{|/oftenQuestionDetail/${q.id}|}" th:text="${q.oftenQuestionTitle}" ></a></td>
 
-                                <tr th:each="list:${list}">
-                                    <td class="orderList_td" th:text="${list.id}"></td>
-                                    <td class="orderList_td">
-                                        <a th:href="@{|/noticeDetail/${list.id}|}" th:text="${list.noticeTitle}"></a></td>
-                                    <td class="orderList_td">관리자</td>
-                                    <td class="orderList_td" th:text="${list.noticeSubmitDate}"></td>
 
                                 </tr>
+
+
 
 
                                 </tbody>
@@ -238,10 +239,10 @@
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
                     <!-- #page -->
-                    <script src='/static/js/jquery.js'></script>
-                    <script src='/static/js/plugins.js'></script>
-                    <script src='/static/js/scripts.js'></script>
-                    <script src='/static/js/masonry.pkgd.min.js'></script>
+                    <script src='../static/js/jquery.js'></script>
+                    <script src='../static/js/plugins.js'></script>
+                    <script src='../static/js/scripts.js'></script>
+                    <script src='../static/js/masonry.pkgd.min.js'></script>
 
                     </body>
 
@@ -253,37 +254,10 @@
 
 
 
-
-
     </div>
-    <script>
-        $(document).ready(function() {
-            $.ajax({
-                url: "/notice", // 컨트롤러의 매핑 URL
-                method: "GET", // HTTP 메소드
-                success: function(data) { // 요청 성공 시 실행할 함수
-                    var htmlContent = "";
-                    // 가져온 데이터로 HTML 테이블의 내용을 생성합니다.
-                    $.each(data, function(index, list) {
-                        htmlContent += "<tr>" +
 
-                            "<td>" + list.id+ "</td>" +
-                            "<td>" + list.noticeTitle + "</td>" +
-                            "<td>" + list.noticeSubmitDate + "</td>" +
-                            // 필드 이름 수정
-                            "</tr>";
-                    });
-                    // 생성된 내용을 테이블에 추가합니다.
-                    $("#noticeTable tbody").html(htmlContent);
-                },
-                error: function(error) { // 요청 실패 시 실행할 함수
-                    console.error("공지사항 데이터를 불러오는데 실패했습니다.", error);
-                }
-            });
-        });
-    </script>
-    <div class="footer" th:replace="footer :: footer"></div>
 </div>
 
+<div class="footer" th:replace="footer :: footer"></div>
 </body>
 </html>

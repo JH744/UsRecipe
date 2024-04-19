@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
-    <link rel='stylesheet' href='../static/css/woocommerce-layout.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-    <link rel='stylesheet' href='../static/css/woocommerce.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/font-awesome.min.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/style.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce-layout.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/font-awesome.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/style.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
-    <link rel="stylesheet" href="../static/css/footer.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/header.css"/>
+    <link rel='stylesheet' href='../../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+    <link rel="stylesheet" href="../../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
     <style>
 
         *{
@@ -194,18 +194,21 @@
         <section id="news_section">
 
             <div id="notion_title_wrap" style="color: black;">
-                <span id="notion_spanB">자주묻는 질문</span><span id="notion_spanL">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span>
-                <hr style="margin-top: 35px">
-
-                <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b>
-                <b th:text="${question.oftenQuestionTitle}">교환/반품 진행 시, 배송비가 부과 되나요?</b>
+                <span id="notion_spanB">공지사항</span><span id="notion_spanL">공지사항을 확인할 수 있습니다.</span>
                 <hr>
-                <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">답변</b>
-                <b th:text="${question.oftenQuestionAnswer}">질문 답에 관한 내용이 들어가는 공간입니다.</b>
-                <br>
-                <button id="goBackButton" style="width: 100px;color: white; margin : 100px 0 0 300px; height: 50px; background-color: #D65454"
-                onclick="location.href='/oftenQuestions'">목록으로</button>
 
+                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae">공지날짜</b>
+                <b th:text="${notice?.noticeSubmitDate}">2024.02.26</b>
+                <br>
+                <hr>
+                <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b>
+                <b th:text="${notice?.noticeTitle}">[안내] 3월 배송 휴무 일정 안내 (2024.03.01~03.03)</b>
+                <hr>
+                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">공지내용</b>
+                <b th:text="${notice?.noticeContent}">공지에 관한 내용이 들어가는 공간입니다.</b>
+                <br>
+                <button style="width: 100px;color: white; margin : 100px 0 0 300px; height: 50px ;background-color: #D65454"
+                        onclick="location.href='/notice'">목록으로</button>
 
 
 
@@ -228,11 +231,10 @@
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
                     <!-- #page -->
-                    <script src='/static/js/jquery.js'></script>
-                    <script src='/static/js/plugins.js'></script>
-                    <script src='/static/js/scripts.js'></script>
-                    <script src='/static/js/masonry.pkgd.min.js'></script>
-
+                    <script src='../static/js/jquery.js'></script>
+                    <script src='../static/js/plugins.js'></script>
+                    <script src='../static/js/scripts.js'></script>
+                    <script src='../static/js/masonry.pkgd.min.js'></script>
 
                     </body>
 

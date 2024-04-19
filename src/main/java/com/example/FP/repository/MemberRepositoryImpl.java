@@ -23,7 +23,9 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom{
 
     @Override
     public Member findByUserid(String userid) {
-        return queryFactory.selectFrom(member).where(member.userid.eq(userid)).fetchOne();
+        return queryFactory.selectFrom(member)
+                .where(userid == null ? member.userid.isNull() : member.userid.eq(userid))
+                .fetchOne();
     }
 
     @Override
@@ -35,10 +37,15 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom{
 
     @Override
     public Member findNamePointOrderCntByUserid(String userid) {
-        Tuple tuple = queryFactory.select(member.name, member.point).from(member).where(member.userid.eq(userid)).fetchOne();
+        Tuple tuple = queryFactory.select(member.name, member.point)
+                .from(member)
+                .where(userid != null ? member.userid.eq(userid) : member.userid.isNull())
+                .fetchOne();
+        if (tuple == null) {
+            return null; // 결과가 없는 경우 null 반환
+        }
         String name = tuple.get(member.name);
         Integer point = tuple.get(member.point);
-        return new Member(name,point);
-
+        return new Member(name, point);
     }
 }
