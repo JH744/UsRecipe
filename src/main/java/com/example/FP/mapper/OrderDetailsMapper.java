@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderDetailsMapper {
     public static OrderDetails toEntity(OrderDetailsDto orderDetailsDto){
-        OrderDetails orderDetails = new OrderDetails(orderDetailsDto.getIngredient_price(), orderDetailsDto.getOrders_detail(),orderDetailsDto.getOrders_member(),orderDetailsDto.getOrders_ingredient());
+        OrderDetails orderDetails = new OrderDetails(orderDetailsDto.getCnt(), orderDetailsDto.getOrders_detail(),orderDetailsDto.getOrders_member(),orderDetailsDto.getOrders_ingredient());
         return orderDetails;
 
 

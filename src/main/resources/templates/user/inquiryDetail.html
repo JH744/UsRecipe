@@ -209,14 +209,14 @@
                 <hr>
 
                 <div style="margin-top: 20px;">
-                    <b style="margin-right: 100px; font-family: 'Cafe24Dangdanghae';">답변:</b>
+                    <b style="margin-right: 100px; font-family: 'Cafe24Dangdanghae';">답변</b>
                     <div th:if="${inquiry?.inquiryAnswer}">
                         <!-- 답변이 있을 경우, 답변 내용을 표시 -->
                         <p th:text="${inquiry?.inquiryAnswer}" style="display: inline;"></p>
                     </div>
                     <div th:unless="${inquiry?.inquiryAnswer}">
                         <!-- 답변이 없을 경우, 메시지 표시 -->
-                        <p style="display: inline;">답변 대기 중입니다.</p>
+                        <p style="display: inline; font-family: Cafe24Dangdanghae;font-size: 17px;">답변 대기 중입니다.</p>
                     </div>
                 </div>
 

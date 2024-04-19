@@ -11,6 +11,7 @@ import com.example.FP.repository.IngredientCategoryRepository;
 import com.example.FP.service.IngredientService;
 import com.example.FP.service.InquiryService;
 import com.example.FP.service.MemberService;
+import com.example.FP.service.NoticeService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class AdminController {
 
+    private final NoticeService ns;
     private final MemberService ms;
     private final InquiryService is;
     private final IngredientService igs;
@@ -56,9 +58,9 @@ public class AdminController {
     }
 
     @PostMapping("/inquiryDetail")
-    public String adminInquiryDetailSubmit(@RequestParam Long id){
+    public String adminInquiryDetailSubmit(@RequestParam Long id,String inquiryAnswer){
 
-        is.updateInquiry(id);
+        is.updateInquiry(id,inquiryAnswer);
 
         return "redirect:/admin/inquiry";
 
@@ -70,6 +72,12 @@ public class AdminController {
 
 
         return "redirect:/admin/inquiry";
+    }
+    @GetMapping("/notice")
+    public String listNotice(Model model){
+        model.addAttribute("list",ns.findAll());
+        return "/admin/adminNoticeList";
+
     }
 
     @GetMapping("/addIngredient")
