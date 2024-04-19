@@ -48,9 +48,9 @@ public class InquiryService {
         ir.deleteById(id);
     }
 
-    public void updateInquiry(Long id){
+    public void updateInquiry(Long id,String answer){
 
-        ir.updateInquiry(id);
+        ir.updateInquiry(id,answer);
 
     }
 
