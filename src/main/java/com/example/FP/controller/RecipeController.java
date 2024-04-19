@@ -192,7 +192,7 @@ public class RecipeController {
     @GetMapping("/updateRecipe")
     public String updateRecipe(@RequestParam Long recipeId,Model model,HttpSession session) {
         Recipe recipe = rs.detailRecipe(recipeId);
-        String view = "error/4xx";
+        String view = "404";
         if (recipe.getRecipeMember().getUserid().equals((String) session.getAttribute("userid"))) {
             model.addAttribute("recipe", rs.detailRecipe(recipeId));
             model.addAttribute("recipe_category", rc.findAllRecipeCategory());
@@ -220,7 +220,7 @@ public class RecipeController {
     //유저가 본인 레시피 삭제
     @GetMapping("/deleteRecipe")
     public String deleteRecipe(@RequestParam Long recipeId,HttpSession session){
-        String view = "error/4xx";
+        String view = "404";
         Recipe recipe = rs.detailRecipe(recipeId);
         if (recipe.getRecipeMember().getUserid().equals((String) session.getAttribute("userid"))) {
             rs.deleteRecipe(recipeId);

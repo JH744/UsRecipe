@@ -22,7 +22,7 @@ public class NoticeController {
     @GetMapping("/notice")
     public String noticeList(Model model){
         model.addAttribute("list", ns.findAll());
-        return "/notice";
+        return "/all/notice";
     }
 
     @GetMapping("/noticeInsert")

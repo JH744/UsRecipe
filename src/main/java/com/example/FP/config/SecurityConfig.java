@@ -22,10 +22,11 @@ public class SecurityConfig{
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .requestMatchers("/","/all/**", "/join","/joinOk","/static/**","/id_check","/sendEmail","/nickname_check","/mailCheck","/error")
+                .requestMatchers("/", "/join","/joinOk","/static/**","/id_check","/sendEmail","/nickname_check","/mailCheck","/error")
                 .permitAll()
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
+
 
                 .and()
                 .formLogin().loginPage("/login").permitAll()
