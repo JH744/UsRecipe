@@ -32,9 +32,15 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String username = userDetails.getUsername();
             Member m = ms.findById(username);
+            String role = String.valueOf(m.getRole());
             session.setAttribute("userid", username);
             session.setAttribute("image", m.getImage());
             session.setAttribute("role", m.getRole());
+            if (role.equals("ADMIN")) {
+
+                response.sendRedirect("/admin/adminMember");
+                return;
+            }
             if (prevPage != null && !prevPage.isEmpty()) {
                 // 이전 페이지로 리다이렉트
                 response.sendRedirect(prevPage);
