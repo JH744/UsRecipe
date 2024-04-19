@@ -78,7 +78,7 @@ public class Member {
     @OneToMany(mappedBy = "pointMember")
     private List<Point> memberPointList= new ArrayList<>();
 
-    public Member(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth, MemberRole role, List<Inquiry> inquiryList, List<WishList> wishlistList, List<Recipe> recipeList, List<OrderDetails> orderDetailsMemberList, List<Cart> memberCartList, List<Reply> memberReplyList , List<Alarm> memberAlarmList,List<Point> memberPointList,List<Orders> memberOrdersList) {
+    public Member(String userid, String password, String name, String nickname, String addr, String email, String phone, int point, String birth, MemberRole role, List<Inquiry> inquiryList, List<WishList> wishlistList, List<Recipe> recipeList, List<OrderDetails> orderDetailsMemberList, List<Cart> memberCartList, List<Reply> memberReplyList , List<Alarm> memberAlarmList,List<Point> memberPointList,List<Orders> memberOrdersList, String image) {
         this.userid = userid;
         this.password = password;
         this.name = name;
@@ -98,7 +98,7 @@ public class Member {
         this.memberAlarmList = memberAlarmList;
         this.memberPointList = memberPointList;
         this.memberOrdersList = memberOrdersList;
-
+        this.image = image;
     }
 
     public Member(String name, Integer point) {
@@ -158,6 +158,7 @@ public class Member {
                 .birth(memberDto.getBirth())
                 .phone(memberDto.getPhone())
                 .point(0)
+                .image("person.png")
                 .role(MemberRole.MEMBER)
                 .build();
         return member;

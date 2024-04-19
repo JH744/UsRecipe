@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+
     <title>유스레시피</title>
     <link rel="stylesheet" href="../static/css/templateBody.css"/>
     <link rel="stylesheet" href="../static/css/main.css"/>
@@ -57,7 +58,7 @@
                 <th:block th:each="r:${recipe_list}">
                     <a th:href="@{'/detailRecipe?recipeNum=' + ${r.id}}">
                         <div class=e56_52>
-                            <div class="e56_53" th:style="'background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url(\'../static/images/' + ${r.recipeThumbnail} + '\')'">
+                            <div class="e56_53" th:style="'background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url(\'../static/recipeImages/' + ${r.recipeThumbnail} + '\')'">
                                 <div style="display: flex; flex-direction: column; justify-content: flex-end;">
                                     <span class="e56_39" th:text="${r.recipeTitle}"></span>
                                 </div>
@@ -75,7 +76,7 @@
                 <th:block th:each="m:${member_list}">
                     <a th:href="@{|/listRecipe/1?member_id=${m.getId()}|}">
                         <div class=e56_52>
-                            <div class="e56_99" th:style="'background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url(\'../static/images/' + ${m.image} + '\')'">
+                            <div class="e56_99" th:style="'background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url(\'../static/images/' + ${m.getImage()} + '\')'">
                                 <div style="display: flex; flex-direction: column; justify-content: flex-end;">
                                     <span class="e56_39" th:text="${m.nickname}"></span>
                                 </div>
@@ -92,7 +93,7 @@
                 <th:block th:each="rd:${random_list}">
                     <a th:href="@{'/detailRecipe?recipeNum=' + ${rd.id}}">
                         <div class=e56_52>
-                            <div class="e56_53" th:style="'background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url(\'../static/images/' + ${rd.recipeThumbnail} + '\')'">
+                            <div class="e56_53" th:style="'background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url(\'../static/recipeImages/' + ${rd.recipeThumbnail} + '\')'">
                                 <div style="display: flex; flex-direction: column; justify-content: flex-end;">
                                     <span class="e56_39" th:text="${rd.recipeTitle}"></span>
                                 </div>

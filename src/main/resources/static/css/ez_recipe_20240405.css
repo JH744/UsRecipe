@@ -3073,6 +3073,28 @@ body {
     margin-left: 20px;
 }
 
+.ingredientCheckBox  {
+    margin:-5px !important;
+    font-size: 14px;
+    color: #222;
+    border: 1px solid #d7d7d7;
+    padding: 5px 14px 7px;
+    line-height: 1;
+    border-radius: 15px;
+    height: 28px;
+}
+
+.ingredientCheckBoxA {
+    width: 31px;
+    font-size: 14px;
+    color: #222;
+    border: 1px solid #d7d7d7;
+    padding: 5px 14px 7px;
+    line-height: 1;
+    border-radius: 15px;
+    height: 28px;
+}
+
 .view_cont_old {
     padding: 45px 54px 40px;
     line-height: 160%;
@@ -28350,12 +28372,41 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     margin-top: 15px
 }
 
-.btn-delete{
+.btn-delete {
     color: #fff;
     background-color: #666666;
     border: 1px solid #666666;
 }
 
-.goods_box_none {text-align: center; color: #999; font-size: 16px; padding:60px 0 40px;}
-.goods_box_none img {width:80px;}
-.goods_box_none p {margin-top:15px;}
+.goods_box_none {
+    text-align: center;
+    color: #999;
+    font-size: 16px;
+    padding: 60px 0 40px;
+}
+
+.goods_box_none img {
+    width: 80px;
+}
+
+.goods_box_none p {
+    margin-top: 15px;
+}
+
+#modal_tbody{
+    width:100%
+}
+
+#modal_tbody > tr{
+    width:auto
+}
+
+thead > tr > td{
+    font-weight: bold;
+}
+
+.modal_IngredientSelect_column{
+    border-collapse: separate;
+    border-spacing: 0 1rem;
+    text-align: center;
+}

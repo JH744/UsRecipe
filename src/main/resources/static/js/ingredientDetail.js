@@ -65,9 +65,9 @@ function cartAdd(ingredientId) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: "/insertCart",
+                url: "/addCart",
                 type: "POST",
-                data: {ingredientId: ingredientId},
+                data: {Id: ingredientId},
                 success: function () {
                     Swal.fire({
                         title: "장바구니 추가 완료!!",

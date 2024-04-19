@@ -1,6 +1,7 @@
 package com.example.FP.details;
 
 import com.example.FP.entity.Member;
+import jakarta.servlet.http.HttpSession;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +16,6 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 
     private Member member;
     private Map<String, Object> attributes;
-
 
     //일반 로그인 생성자
     public PrincipalDetails(Member member) {
