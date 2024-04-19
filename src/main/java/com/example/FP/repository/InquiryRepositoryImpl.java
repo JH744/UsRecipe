@@ -42,7 +42,7 @@ public class InquiryRepositoryImpl implements InquiryRepositoryCustom{
 
     @Override
     @Transactional
-    public void updateInquiry(Long id) {
-        queryFactory.update(inquiry).set(inquiry.inquiryState,InquiryState.YES).set(inquiry.inquiryAnswerDate, LocalDateTime.now()).where(inquiry.id.eq(id)).execute();
+    public void updateInquiry(Long id,String answer) {
+        queryFactory.update(inquiry).set(inquiry.inquiryState,InquiryState.YES).set(inquiry.inquiryAnswerDate, LocalDateTime.now()).set(inquiry.inquiryAnswer,answer).where(inquiry.id.eq(id)).execute();
     }
 }

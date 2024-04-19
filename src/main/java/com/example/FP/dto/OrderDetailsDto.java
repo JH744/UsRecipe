@@ -12,7 +12,7 @@ public class OrderDetailsDto {
 
     private Long id;
 
-    private int ingredient_price;
+    private int cnt;
 
 
     private Orders orders_detail;

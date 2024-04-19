@@ -36,8 +36,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             session.setAttribute("userid", username);
             session.setAttribute("image", m.getImage());
             session.setAttribute("role", m.getRole());
-            if (role.equals("ADMIN")) {
 
+            if (role.equals("ADMIN")) {
                 response.sendRedirect("/admin/adminMember");
                 return;
             }
@@ -46,6 +46,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                 response.sendRedirect(prevPage);
                 return;
             }
+
+
         }
 
         response.sendRedirect("/");
