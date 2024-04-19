@@ -207,8 +207,15 @@
                 <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">공지내용</b>
                 <b th:text="${notice?.noticeContent}">공지에 관한 내용이 들어가는 공간입니다.</b>
                 <br>
-                <button style="width: 100px;color: white; margin : 100px 0 0 300px; height: 50px ;background-color: #D65454"
-                        onclick="location.href='/notice'">목록으로</button>
+                <th:block th:if="${role == 'USER'}">
+                    <button style="width: 100px;color: white; margin : 100px 0 0 300px; height: 50px ;background-color: #D65454"
+                            onclick="location.href='/all/notice'">목록으로</button>
+                </th:block>
+                <th:block th:if="${role == 'ADMIN'}">
+                    <button style="width: 100px;color: white; margin : 100px 0 0 300px; height: 50px ;background-color: #D65454"
+                            onclick="location.href='/admin/notice'">목록으로</button>
+                </th:block>
+
 
 
 
