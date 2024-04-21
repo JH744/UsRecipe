@@ -179,4 +179,15 @@ a {
 
 .ingreId {
   display: none;
+}
+
+.RecentlViewedContainer {
+  position: fixed;
+  top: 50%;
+  right: 30px;
+  padding: 13px;
+  border: 2px solid #d9d9d9;
+}
+.RecentlViewedContainer h4 {
+  margin-top: 0px;
 }/*# sourceMappingURL=store.css.map */
