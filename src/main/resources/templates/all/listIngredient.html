@@ -184,15 +184,18 @@
                 <div class="storeContainer2GirdBox">
 
                     <div class="storeItem" th:each=" i : ${list}">
-                        <div class="storeItem_img"></div>
-                        <button class="cartBtn"><img src="../../static/images/icon/카트.svg"/><span>담기</span></button>
+                        <a th:href="@{/detailIngredient(ingredientId=${i.id})}">
+                            <img th:attr="src=@{'../static/images/ingredients/' + ${i.ingredientImage}}"
+                             class="storeItem_img"
+                             onerror="this.onerror=null; this.src='../static/images/ingredients/img_none.png';">
+                        </a>
+                        <button class="cartBtn"><img class="cartIcon" src="../../static/images/icon/카트.svg"/><span>담기</span></button>
                         <div class="storeItem_info">
                             <a th:href="@{/detailIngredient(ingredientId=${i.id})}"><p th:text="${i.ingredientName}">상품명</p></a>
                             <p th:text="${i.ingredientPrice}">상품가격</p>
                             <P th:text="${i.id}" class="ingreId">재료id</P><!--장바구니담기 전송할 i.id-->
                         </div>
                     </div>
-
 
                 </div>
                 <div class="pageBox">
@@ -209,7 +212,7 @@
                         <button class="btnModal" id="btnClose">확인</button>
                 </div>
                 <div class="modalbox2" id="modalbox2" >
-                    <h3>장바구니에 상품을 추가하지 못했습니다.</h3>
+                    <h3>로그인시 이용이 가능합니다🙏</h3>
                     <button class="btnModal" id="btnClose2">확인</button>
                 </div>
                 <div class="modalbox3" id="modalbox3" >
@@ -218,6 +221,12 @@
                 </div>
 
            </div>
+
+           <div class="RecentlViewedContainer">
+                <div><h4>최근 본 상품</h4></div>
+                <div></div>
+           </div>
+
 
         </div>
         <div class="footer" th:replace="footer :: footer"></div>
