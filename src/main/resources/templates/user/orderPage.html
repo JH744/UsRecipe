@@ -60,10 +60,27 @@
             // 총결제금액  구하기  =    총상품가격 - 적립금
             function getTotalOrderPrice(){
                 var updatedTotal = 0;
+                var usePoint = $('#usePoint').val();
+                var hasPoint = $('#hasPoint').text();
+                console.log('usePoint:'+usePoint);
+                console.log('hasPoint:'+hasPoint);
+
+
+
+                // 사용 포인트 입력된 값이 있다면
                 if( $('#usePoint').val() != '' ){
+                    //사용포인트가 보유포인트보다 크면 초과했다는 문구 표시
+                    $('.overPoint').css('display','none');
+                    if( parseInt($('#usePoint').val()) > parseInt($('#hasPoint').text()) )
+                    {
+                        $('#usePoint').val('0');
+                        $('.overPoint').css('display','inline');
+                    }
+
                     updatedTotal =  parseInt(orderData.totalPrice) - parseInt($('#usePoint').val());
-                }else {
+                }else { // 사용 포인트 입력칸이 '' 일시
                     updatedTotal =  parseInt(orderData.totalPrice) - 0;
+                    $('.overPoint').css('display','none');
                 }
                 $('#totalOrderPrice').html(updatedTotal + '원');
             }
@@ -92,6 +109,32 @@
 
 
 
+            ////// 구매상품 데이터 수집 및 전송//////
+            let products = orderData.items.map(item => {
+                return {
+                    name: item.name,       // 상품명
+                    quantity: item.quantity, // 수량
+                    price: item.price       // 가격
+                };
+            });
+
+            function sendProducts(products) {
+                fetch('/orderSave', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ products })  // 상품 정보를 JSON 형식으로 변환
+                })
+                    .then(response => response.json())
+                    .then(data => console.log('Server response:', data))
+                    .catch(error => console.error('Error:', error));
+            }
+
+
+
+
+
             ///////   결제하기  //////////
 
             $(".btnOrder").click(function(){
@@ -100,7 +143,7 @@
                     pg:'kcp',
                     pay_method:'card',
                     merchant_uid:'merchant_'+new Date().getTime(),
-                    name:orderData.items[0].name +' 외 '+count+'개' ,
+                    name:orderData.items[0].name +' 외 '+(count-1)+'개' ,
                     amount:$('#totalOrderPrice').text(),  // 결제가격
                     buyer_email:$('#Email').val(),
                     buyer_name:$('#Name').val(),
@@ -126,6 +169,9 @@
                         $("#ordersUsedPoint").val($('#usePoint').val());
                         $("#ordersRequest").val($('#Request').val());
                         $("#ordersContent").val(res.name);
+
+                        sendProducts(products);
+
                         $("#pay").submit();
 
                     }else{
@@ -222,7 +268,9 @@
                         <th class="bgapple">적립금사용</th>
                         <td> <input type="number" id="usePoint" >
                             <input type="checkbox" id="useAllPoint">최대 사용
-                            보유포인트:<span id="hasPoint" th:text="${m.point}">p </span></td>
+                            보유포인트:<span id="hasPoint" th:text="${m.point}"></span><span>p</span>
+                            <span class="overPoint">사용가능한 적립금을 초과하였습니다.</span>
+                            </td>
                     </tr>
                     <tr>
                         <th class="bgapple">배송비</th>
@@ -238,7 +286,6 @@
                     </tr>
                 </table>
             </div>
-
             <button class="btnOrder">결제하기</button>
             <form action="/orderOK" method="post" id="pay" class="nolook">
                 <input type="text" name="orders_receiver" id="ordersReceiver"  class="nolook">

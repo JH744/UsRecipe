@@ -196,7 +196,7 @@
             <hr>
             <div id="notion_box">
                 <h3>구매자 &nbsp; 정보</h3>
-                <table  th:each="list:${list}">
+                <table>
                     <tr>
                         <td style="width: 20%" class="orderListDetailTable_td1">이름</td>
                         <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetailsMember().name}">김김김</td>
@@ -212,7 +212,7 @@
                 </table>
                 <br><br>
                 <h3>받는사람 &nbsp;정보</h3>
-                <table  th:each="list:${list}">
+                <table>
                     <tr>
                         <td style="width: 20%" class="orderListDetailTable_td1">이름</td>
                         <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersReceiver()}">김김김</td>
@@ -244,13 +244,13 @@
             <br><br>
             <h3>결제정보</h3>
             <table >
-                <tr th:each="list:${list}">
+                <tr>
                     <td style="width: 20%" class="orderListDetailTable_td1">총 상품가격</td>
                     <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersTotalPrice()}">10000원</td>
                 </tr>
                 <tr>
-                    <td style="width: 20%" class="orderListDetailTable_td1">배송비</td>
-                    <td class="orderListDetailTable_td2">0원</td>
+                    <td style="width: 20%" class="orderListDetailTable_td1">포인트 사용</td>
+                    <td class="orderListDetailTable_td2" th:text="${list.usedPoint}">0원</td>
                 </tr>
                 <tr th:each="list:${list}">
                     <td style="width: 20%" class="orderListDetailTable_td1">총결제금액</td>

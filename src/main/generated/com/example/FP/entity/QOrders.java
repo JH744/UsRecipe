@@ -34,7 +34,7 @@ public class QOrders extends EntityPathBase<Orders> {
 
     public final QMember ordersMember;
 
-    public final QOrderState ordersOrderState;
+    public final EnumPath<OrderState> ordersOrderState = createEnum("ordersOrderState", OrderState.class);
 
     public final StringPath ordersReceiver = createString("ordersReceiver");
 
@@ -69,7 +69,6 @@ public class QOrders extends EntityPathBase<Orders> {
     public QOrders(Class<? extends Orders> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.ordersMember = inits.isInitialized("ordersMember") ? new QMember(forProperty("ordersMember")) : null;
-        this.ordersOrderState = inits.isInitialized("ordersOrderState") ? new QOrderState(forProperty("ordersOrderState")) : null;
     }
 
 }
