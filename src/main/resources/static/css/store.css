@@ -1,4 +1,3 @@
-@charset "UTF-8";
 body {
   overflow-y: auto;
   font-family: "Poppins", "Noto Sans KR", sans-serif;
@@ -91,9 +90,6 @@ a {
   font-size: 16px;
   font-weight: 600px;
 }
-.storeItem img {
-  height: 22px;
-}
 .storeItem img, .storeItem span {
   vertical-align: middle;
   color: #333333;
@@ -103,13 +99,15 @@ a {
   background-color: #D65454;
 }
 
+.cartIcon {
+  height: 22px;
+}
+
 .storeItem_img {
+  display: block;
   border-radius: 2%;
   width: 249px;
   height: 320px;
-  background-image: url(../images/icon/토마토.png);
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 
 .pageBox {

@@ -1,4 +1,3 @@
-@charset "UTF-8";
 body {
   overflow-y: auto;
   font-family: "Poppins", "Noto Sans KR", sans-serif;
@@ -72,27 +71,31 @@ a {
   cursor: pointer;
 }
 
-.ThisrecipeInfo, .Thisrecipe {
+.ThisrecipeInfo, .ThisRecipe_img, .Thisrecipe {
   margin: 0;
   padding: 0;
-  width: 50%;
   height: 300px;
   border-radius: 5px;
 }
 
 .Thisrecipe {
-  background-image: url(../images/오믈렛.png);
-  background-size: auto;
+  width: 50%;
   float: left;
 }
 .Thisrecipe h3 {
   color: #fff;
-  position: relative;
   top: 250px;
   left: 180px;
+  position: relative;
+  top: -50px;
+}
+
+.ThisRecipe_img {
+  width: 100%;
 }
 
 .ThisrecipeInfo {
+  width: 50%;
   background-color: #f2f2f2;
   float: right;
 }
@@ -116,12 +119,11 @@ a {
   height: 245px;
   width: 160px;
   border-radius: 10px;
-  background-image: url(../images/김치볶음밥.png);
 }
 .hotrecipe1 span {
   color: #fff;
   position: relative;
-  top: 200px;
+  top: -50px;
   left: 43px;
   font-size: large;
 }
@@ -130,6 +132,7 @@ a {
   height: 245px;
   width: 160px;
   border-radius: 10px;
+  filter: brightness(70%);
 }
 
 .recipeContainer {

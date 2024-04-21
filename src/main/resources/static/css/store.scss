@@ -131,9 +131,6 @@ a{
     font-weight: 600px;
   }
 
-  img{
-    height: 22px;
-  }
 
   img,span{
     vertical-align: middle;
@@ -146,15 +143,18 @@ a{
   background-color: $버튼색상;
 }
 
-
+.cartIcon{
+  height: 22px;
+}
 
 
 .storeItem_img{
+  display: block;
   border-radius: 2%;
   width: 249px; height: 320px;
-  background-image: url(../images/icon/토마토.png);
-  background-repeat: no-repeat;
-  background-size: contain;
+  // background-image: url(../images/icon/토마토.png);
+  // background-repeat: no-repeat;
+  // background-size: contain;
 
 
 }
