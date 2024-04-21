@@ -184,9 +184,11 @@
                 <div class="storeContainer2GirdBox">
 
                     <div class="storeItem" th:each=" i : ${list}">
-                        <img th:attr="src=@{'../static/images/ingredients/' + ${i.ingredientImage}}"
+                        <a th:href="@{/detailIngredient(ingredientId=${i.id})}">
+                            <img th:attr="src=@{'../static/images/ingredients/' + ${i.ingredientImage}}"
                              class="storeItem_img"
                              onerror="this.onerror=null; this.src='../static/images/ingredients/img_none.png';">
+                        </a>
                         <button class="cartBtn"><img class="cartIcon" src="../../static/images/icon/카트.svg"/><span>담기</span></button>
                         <div class="storeItem_info">
                             <a th:href="@{/detailIngredient(ingredientId=${i.id})}"><p th:text="${i.ingredientName}">상품명</p></a>
