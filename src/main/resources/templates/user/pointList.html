@@ -227,9 +227,9 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="list:${list}">
-                                    <td th:text="${list.getPointContent()}"></td>
-                                    <td th:text="${list.getUsePoint()}"></td>
-                                    <td th:text="${list.getPointOrders().getOrdersDate()}"></td>
+                                    <td th:text="${list.getPointContent()}" style="text-align: center"></td>
+                                    <td th:text="${list.getUsePoint()}" style="text-align: center"></td>
+                                    <td th:text="${list.getPointOrders().getOrdersDate()}" style="text-align: center"></td>
                                 </tr>
 
                                 </tbody>
