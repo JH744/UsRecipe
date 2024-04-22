@@ -306,7 +306,6 @@ function doSubmit() {
     }).then((result) => {
         if (result.isConfirmed) {
             var recipeUrl = $("#cok_video_url").val();
-            alert(recipeUrl)
             var ingredientDataList = ingeredientData();
             var stepDataList = stepData();
             var recipeTitle = $("#recipe_title").val()

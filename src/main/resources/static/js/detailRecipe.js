@@ -176,3 +176,8 @@ function listAddToModal(list) {
 }
 
 var kakaoinit = '80a967748d2aab3a8cd782d8f47b8589'
+
+$(document).on("click",".ytp-large-play-button",function(){
+    console.log("tnlqkf")
+    $(".centeredcrop").css("display","relative").css("z-index","1")
+})
