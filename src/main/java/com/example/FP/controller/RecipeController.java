@@ -108,8 +108,11 @@ public class RecipeController {
 
         //이 레시피는 어때요?
         long HowAboutToday ;
-        model.addAttribute("HowAbout",rs.randomList().get(0));
-
+        List<Recipe> r_list = rs.randomList();
+        if (r_list != null && r_list.size() != 0) {
+            System.out.println(r_list);
+            model.addAttribute("HowAbout",rs.randomList().get(0));
+        }
 
 
         //주간인기레시피

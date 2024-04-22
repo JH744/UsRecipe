@@ -122,13 +122,13 @@
                 <input type="text" class="searchbar" id="searchbar">
                 <button class="btnsearch" id="btnsearch">검색</button>
             </div>
-            <div class="Thisrecipe">
+            <div class="Thisrecipe" th:if="${HowAbout != null}">
                 <a th:href="@{/detailRecipe(recipeNum=${HowAbout.id})}">
                     <img class="ThisRecipe_img" th:src="@{'../../static/images/' + ${HowAbout.recipeThumbnail}}" alt="레시피썸넬" />
                 </a>
                 <h3 th:text="${HowAbout.recipeTitle}"></h3>
             </div>
-            <div class="ThisrecipeInfo">
+            <div class="ThisrecipeInfo" th:if="${HowAbout != null}">
                 <div class="infobox">
                     <h4 th:text="${HowAbout.recipeWriter}+'님의 레시피입니다.'"></h4>  <!--레시피 설명-->
                     <p>매일의 식사를 특별하게 만드세요.<br>
@@ -144,7 +144,7 @@
                 <div class="hotrecipe1" th:each=" Top4 :${listTop4}"  >
                     <a th:href="@{/detailRecipe(recipeNum=${Top4.id})}">
                         <img th:attr="src=@{'../static/images/' + ${Top4.recipeThumbnail}}"  class="hotRecipeImg">
-                         <span th:text="${Top4.recipeTitle}">인기레시피 타이틀</span>
+                        <span th:text="${Top4.recipeTitle}">인기레시피 타이틀</span>
                     </a>
                 </div>
             </div>
@@ -154,8 +154,8 @@
 
             <div class="recipeItem"  th:each=" r : ${list}">
                 <a th:href="@{/detailRecipe(recipeNum=${r.id})}">
-                <img class="recipeItem_img" th:src="@{'../../static/images/' + ${r.recipeThumbnail}}" alt="레시피썸넬"
-                     onerror="this.onerror=null; this.src='../static/images/ingredients/img_none.png'"/>
+                    <img class="recipeItem_img" th:src="@{'../../static/images/' + ${r.recipeThumbnail}}" alt="레시피썸넬"
+                         onerror="this.onerror=null; this.src='../static/images/ingredients/img_none.png'"/>
                 </a>
                 <div class="recipeItem_info">
                     <a th:href="@{/detailRecipe(recipeNum=${r.id})}"> <p th:text="${r.recipeTitle}" >레시피명</p></a>
