@@ -36,7 +36,7 @@ body{
 .sortContainer{
     width: 500px;
     height: 88px;
-    margin: 0 auto;
+    margin: 0 auto 50px;
   
     ul{
       display: flex;
@@ -208,7 +208,7 @@ body{
   
     p{
       font-size: 22px;
-      margin: 10px 0 0 0;
+      margin: 5px 0 0 0;
     }
   
     span{
@@ -217,6 +217,8 @@ body{
     }
   
   
+
+
   }
   
   .recipeItem_img{
@@ -260,7 +262,43 @@ body{
   
 
   .heartIcon{
-    
+    position: absolute;
+    right: 5px;
+    height: 25px;
+    bottom: 0px;
   }
   
   
+
+  .gra{
+    width: 450px;
+    height: 150px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+    position: absolute;
+    top: 198px;
+    border-radius: 5px;
+  }
+
+  .recipeItem_info{
+    position: relative;
+  }
+
+
+
+.AddRecipeBox{position: relative; width: 905px;}
+.AddRecipe{
+  width: 70px;
+  height: 26px;
+  background-color: #000;
+  color: #fff;
+  position: absolute;
+  right: 5px;
+  bottom: 20px;
+  text-align: center;
+
+
+  span{
+    font-size: 13px;
+  }
+
+};
