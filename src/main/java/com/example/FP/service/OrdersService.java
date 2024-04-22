@@ -35,6 +35,13 @@ public class OrdersService {
 
     public List<Orders> findAll(){ return or.findAll(); }
 
+    public List<Orders> findByOrderState(String orderState){
+        if (orderState == null || orderState.equals("all")){
+            return or.findAll();
+        }
+        return or.findByOrderState(orderState);
+    }
+
 
 
 
@@ -71,5 +78,8 @@ public class OrdersService {
 
     public void saveOrder(Orders o){
         or.save(o);
+    }
+    public void changeState(Long id){
+        or.updateState(id);
     }
 }

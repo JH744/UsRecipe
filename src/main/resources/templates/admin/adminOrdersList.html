@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel='stylesheet' href='../../static/css/woocommerce-layout.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='../../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-    <link rel='stylesheet' href='../../static/css/woocommerce.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='../../static/css/font-awesome.min.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='../../static/css/style.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
     <link rel='stylesheet' href='../../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
     <link rel="stylesheet" href="../../static/css/footer.css" />
     <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script th:inline="javascript">
+        $(function (){
+            $("#state").change(function (){
+                let state = $("#state").val()
+                window.location.href="/admin/orders/"+state;
+
+            })
+
+
+        })
+
+    </script>
     <style>
 
         *{
@@ -193,8 +203,15 @@
 
             </div>
 
+
             <div style="margin-top:50px;" >
                 <div style=" text-align:left;">
+                    <select name="state" id="state">
+                        <option value="all">전체</option>
+                        <option value="ready">주문대기</option>
+                        <option value="done">주문완료</option>
+                        <option value="cancel">주문취소</option>
+                    </select>
                     <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
                     <div id="page">
                         <div class="container">
@@ -205,18 +222,18 @@
                                     <th scope="col" class="orderList_th">상품명</th>
                                     <th scope="col" class="orderList_th">주문일자</th>
                                     <th scope="col" class="orderList_th">가격</th>
-                                    <th scope="col" class="orderList_th">구매자</th>
-                                    <th scope="col" class="orderList_th">삭제</th>
+                                    <th scope="col" class="orderList_th">주문상태</th>
+                                    <th scope="col" class="orderList_th">취소</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="list:${list}">
-                                    <td class="orderList_td" ><a th:text="${list.getId()}" th:href="@{/orderDetail/${list.getId()}}"></a></td>
-                                    <td class="orderList_td" th:text="${list.ordersContent}">kim</td>
-                                    <td class="orderList_td" th:text="${list.ordersDate}">seoul</td>
-                                    <td class="orderList_td" th:text="${list.ordersTotalPrice}">seoul</td>
-                                    <td class="orderList_td" th:text="${list.ordersMember.name}">seoul</td>
-                                    <td class="orderList_td"><a th:href="@{|/deleteMember/${list.getId()}|}" th:text="삭제">삭제</a></td>
+                                    <td class="orderList_td" ><a id="td_id" th:text="${list.getId()}" th:href="@{/orderDetail/${list.getId()}}"></a></td>
+                                    <td class="orderList_td" id="td_content" th:text="${list.ordersContent}">kim</td>
+                                    <td class="orderList_td" id="td_date" th:text="${list.ordersDate}">seoul</td>
+                                    <td class="orderList_td" id="td_totalPrice" th:text="${list.ordersTotalPrice}+'원'">seoul</td>
+                                    <td class="orderList_td" id="td_orderState" th:text="${list.getOrdersOrderState().toString() == 'ready' ? '주문대기' : list.getOrdersOrderState().toString() == 'done' ? '주문완료' : list.getOrdersOrderState().toString() == 'cancel' ? '주문취소' : ''}"></td>
+                                    <td class="orderList_td" ><a th:href="@{|/admin/cancelOrder/${list.id}|}" class="cancelOrders" th:text="취소">취소</a></td>
                                 </tr>
 
                                 </tbody>
@@ -226,11 +243,7 @@
 
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
-                    <!-- #page -->
-                    <script src='/js/jquery.js'></script>
-                    <script src='/js/plugins.js'></script>
-                    <script src='/js/scripts.js'></script>
-                    <script src='/js/masonry.pkgd.min.js'></script>
+
 
                     </body>
 

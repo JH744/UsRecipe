@@ -23,6 +23,7 @@
         $(function () {
             var nickname = $(".input_nickname").val()
             var nickname_check = false;
+            var check = false;
 
 
 
@@ -216,11 +217,11 @@
 
 
                 if(nickname !== $(".input_nickname").val()){
+                    if(nickname_check==false){
                         event.preventDefault();
                         alert("닉네임 중복확인 하시오");
                         return false;
-                }else{
-                    nickname_check = true;
+                    }
                 }
 
 
@@ -235,6 +236,7 @@
                     }
 
                 }
+
 
             })
         });
