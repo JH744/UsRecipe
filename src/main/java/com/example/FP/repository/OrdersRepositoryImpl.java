@@ -3,6 +3,7 @@ package com.example.FP.repository;
 import com.example.FP.entity.*;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,8 +21,24 @@ public class OrdersRepositoryImpl implements OrdersRepositoryCustom {
 
     @Override
     public List<Orders> findOrdersListByUserid(String userid) {
-        return queryFactory.select(orders).from(orders).where(orders.ordersMember.userid.eq(userid)).fetch();
+        return queryFactory.select(orders)
+                .from(orders)
+                .where(userid != null ? orders.ordersMember.userid.eq(userid) : orders.ordersMember.userid.isNull())
+                .fetch();
     }
 
+    public List<Orders> findByOrderState(String orderStateString) {
+        OrderState orderState = OrderState.valueOf(orderStateString);
+        return queryFactory
+                .selectFrom(orders)
+                .where(orders.ordersOrderState.eq(orderState))
+                .fetch();
+    }
 
+    @Override
+    @Transactional
+    public void updateState(Long id) {
+        queryFactory.update(orders).set(orders.ordersOrderState,OrderState.cancel).where(orders.id.eq(id)).execute();
+
+    }
 }

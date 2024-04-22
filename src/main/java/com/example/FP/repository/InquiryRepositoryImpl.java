@@ -27,15 +27,8 @@ public class InquiryRepositoryImpl implements InquiryRepositoryCustom{
 
     @Override
     public List<Inquiry> listByUserid(String userid) {
-        QInquiry inquiry = QInquiry.inquiry;
-        QMember member = QMember.member;
-        return queryFactory.selectFrom(inquiry)
-                .join(inquiry.inquiryMember, member)
-                .where(userid != null ? member.userid.eq(userid) : member.userid.isNotNull())
-                .fetch();
+        return queryFactory.selectFrom(inquiry).where(inquiry.inquiryMember.userid.eq(userid)).fetch();
     }
-
-
 
     @Override
     public List<Inquiry> listInquiryAnswerYet() {
@@ -49,7 +42,7 @@ public class InquiryRepositoryImpl implements InquiryRepositoryCustom{
 
     @Override
     @Transactional
-    public void updateInquiry(Long id) {
-        queryFactory.update(inquiry).set(inquiry.inquiryState,InquiryState.YES).set(inquiry.inquiryAnswerDate, LocalDateTime.now()).where(inquiry.id.eq(id)).execute();
+    public void updateInquiry(Long id,String answer) {
+        queryFactory.update(inquiry).set(inquiry.inquiryState,InquiryState.YES).set(inquiry.inquiryAnswerDate, LocalDateTime.now()).set(inquiry.inquiryAnswer,answer).where(inquiry.id.eq(id)).execute();
     }
 }

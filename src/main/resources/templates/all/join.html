@@ -22,11 +22,12 @@
             var email_check = false;
             var nickname_check = false;
             var auth_check = false;
+            var num = /[0-9]/;
+            var eng = /[a-zA-Z]/;
+            var spe = /[~!@#$%^&*()_+|<>?:{}]/;
+
             function id_check(){
                 var id = $(".field_id input").val();             // 변수 id에  id값 대입
-                var spe = /[~!@#$%^&*()_+|<>?:{}]/;
-
-
 
                 if(id.length < 6){                     //만약에 id의 길이가 6보다 작으면
                     $(".field_id .txt_guide .txt_case1").css('color', '#b3130b');   //글자색 변경
@@ -39,10 +40,6 @@
 
             function pw_check(){
                 var pw = $(".field_pw input").val();                   // 변수 pw에 pw값 대입
-                var num = /[0-9]/;
-                var eng = /[a-zA-Z]/;
-                var spe = /[~!@#$%^&*()_+|<>?:{}]/;
-
                 if(pw.length < 10){                                  //pw의 길이가 10 이하일 때
                     $(".field_pw .txt_guide .txt_case1").css('color', '#b3130b');
                 }
@@ -54,7 +51,6 @@
                 if(num.test(pw) == 0 || eng.test(pw) == 0 || spe.test(pw) == 0){    // pw의 숫자가 없거나 , 영어가 없거나, 특수문자가 없을경우 실패
                     $(".field_pw .txt_guide .txt_case2").css('color', '#b3130b');
                 }
-
 
                 if(num.test(pw) == 1 && eng.test(pw) == 1 && spe.test(pw) == 1){ // pw의 숫자,영어,특수문자가 1개이상씩 있을경우 성공
                     $(".field_pw .txt_guide .txt_case2").css('color', '#0f851a');
@@ -84,7 +80,6 @@
             // onsubmit 관련된 코드짜기
             function on_id_check(){          //id 검사 함수
                 var id = $(".field_id input").val();
-                var spe = /[~!@#$%^&*()_+|<>?:{}]/;
                 if(id.length < 6){
                     alert('아이디를 정확히 입력해주세요');
                     return false;
@@ -101,9 +96,6 @@
 
             function on_pw_check(){           //비밀번호 검사 함수
                 var pw = $(".field_pw input").val();
-                var num = /[0-9]/;
-                var eng = /[a-zA-Z]/;
-                var spe = /[~!@#$%^&*()_+|<>?:{}]/;
                 if(pw.length < 10){
 
                     alert('비밀번호를 정확히 입력해주세요');

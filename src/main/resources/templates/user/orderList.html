@@ -229,8 +229,9 @@
                                 <tr th:each="list:${list}">
                                     <td class="orderList_td" th:text="${list.getId()}">1</td>
                                     <td class="orderList_td" th:text="${list.getOrdersContent()}">Otto</td>
-                                    <td class="orderList_td"><a th:text="${list.getOrdersSalePrice()}" th:href="@{|/orderDetail/${list.getId()}|}">10000원</a></td>
-                                    <td class="orderList_td" th:text="${list.getOrdersOrderState().getState()}">asdf</td>
+                                    <td class="orderList_td"><a th:text="${list.getOrdersSalePrice()}+'원'" th:href="@{|/orderDetail/${list.getId()}|}">10000원</a></td>
+                                    <td class="orderList_td" th:text="${list.getOrdersOrderState().toString() == 'ready' ? '주문대기' : list.getOrdersOrderState().toString() == 'done' ? '주문완료' : list.getOrdersOrderState().toString() == 'cancel' ? '주문취소' : ''}"></td>
+
                                 </tr>
 
                                 </tbody>

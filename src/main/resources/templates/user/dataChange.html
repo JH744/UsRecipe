@@ -10,24 +10,20 @@
     <link rel='stylesheet' href='../../static/css/style.css' type='text/css' media='all'/>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="/css/join.css">
+    <link rel="stylesheet" href="../../static/css/join.css">
 
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-<<<<<<< HEAD
     <link rel='stylesheet' href='../../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
-=======
-    <link rel='stylesheet' href='../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
->>>>>>> 3b41ce12e93f4da23bfa219dd38ae6543eeb805c
+
     <link rel="stylesheet" href="../../static/css/footer.css" />
     <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
 
         $(function () {
-
-
-
+            var nickname = $(".input_nickname").val()
             var nickname_check = false;
+            var check = false;
 
 
 
@@ -219,14 +215,15 @@
             $("#singup").click(function (event){
                 var check = false;                   //check변수에 false를 넣어주고 다른 함수들이 false를 반환하면 다음페이지로 못넘어가게 설정
 
-                $(".input_nickname").on("input",function (){
-                    alert("입력")
-                    if (nickname_check == check) {
+
+                if(nickname !== $(".input_nickname").val()){
+                    if(nickname_check==false){
                         event.preventDefault();
                         alert("닉네임 중복확인 하시오");
                         return false;
                     }
-                })
+                }
+
 
                 if( $(".field_pw input")!=null){
                     if (on_pw_check() == check) {
@@ -239,6 +236,7 @@
                     }
 
                 }
+
 
             })
         });

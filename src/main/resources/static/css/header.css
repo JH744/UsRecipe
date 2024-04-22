@@ -101,7 +101,7 @@
     margin:10px;
     margin-left: 10px;
     margin-right: 20px;
-    color:rgba(0, 0, 0, 1);
+    color:rgba(0, 0, 0, 1) !important;
     width:60px;
     height:32px;
     
@@ -144,11 +144,14 @@
     font-size:20px;
     letter-spacing:0;
 }
+.headerMenu a{
+    color: rgba(0,0,0,1) !important;
+}
 .myPageTag {
     margin:10px;
     margin-left: 10px;
     margin-right: 20px;
-    color:rgba(0, 0, 0, 1);
+    color:rgba(0, 0, 0, 1) !important;
     width:100px;
     height:32px;
     text-align:left;

@@ -2,15 +2,10 @@ package com.example.FP.controller;
 
 import com.example.FP.dto.IngredientDto;
 import com.example.FP.dto.InquiryDto;
-import com.example.FP.entity.Ingredient;
-import com.example.FP.entity.IngredientCategory;
-import com.example.FP.entity.Inquiry;
-import com.example.FP.entity.InquiryState;
+import com.example.FP.entity.*;
 import com.example.FP.mapper.InquiryMapper;
 import com.example.FP.repository.IngredientCategoryRepository;
-import com.example.FP.service.IngredientService;
-import com.example.FP.service.InquiryService;
-import com.example.FP.service.MemberService;
+import com.example.FP.service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -27,6 +22,8 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class AdminController {
 
+    private final OrdersService os;
+    private final NoticeService ns;
     private final MemberService ms;
     private final InquiryService is;
     private final IngredientService igs;
@@ -56,9 +53,9 @@ public class AdminController {
     }
 
     @PostMapping("/inquiryDetail")
-    public String adminInquiryDetailSubmit(@RequestParam Long id){
+    public String adminInquiryDetailSubmit(@RequestParam Long id,String inquiryAnswer){
 
-        is.updateInquiry(id);
+        is.updateInquiry(id,inquiryAnswer);
 
         return "redirect:/admin/inquiry";
 
@@ -68,7 +65,14 @@ public class AdminController {
     public String deleteInquiry(@PathVariable Long id){
         is.deleteInquiry(id);
 
+
         return "redirect:/admin/inquiry";
+    }
+    @GetMapping("/notice")
+    public String listNotice(Model model){
+        model.addAttribute("list",ns.findAll());
+        return "/admin/adminNoticeList";
+
     }
 
     @GetMapping("/addIngredient")
@@ -85,13 +89,11 @@ public class AdminController {
 
     @PostMapping("/addIngredient")
     public String addIngredientForm(IngredientDto ingredientDto, HttpServletRequest request){
-
+        System.out.println(ingredientDto.getIngredient_detail());
 
         MultipartFile uploadFile = ingredientDto.getUploadFile();
-        String path = "C:\\FP\\src\\main\\resources\\static\\images";
-        System.out.println("경로 : " + path);
+        String fileRoot = request.getServletContext().getRealPath("/ingredientImages");	//저장될 외부 파일 경로
         String fname = uploadFile.getOriginalFilename();
-        System.out.println("파일명 : " + fname);
         Long categoryId = ingredientDto.getIngredient_ingredient_category().getId();
 
         // ID를 사용하여 영속성 컨텍스트에 해당하는 IngredientCategory 엔티티를 로드
@@ -100,16 +102,13 @@ public class AdminController {
         if (category != null) {
             // 올바른 IngredientCategory를 설정
             ingredientDto.setIngredient_ingredient_category(category);
-
-            // Ingredient 엔티티를 저장합니다.
-            igs.save(ingredientDto);
         } else {
 
         }
         if(uploadFile!=null && !uploadFile.isEmpty()){
             try{
                 byte[] fileData = uploadFile.getBytes();
-                FileOutputStream fos = new FileOutputStream(path+"/"+fname);
+                FileOutputStream fos = new FileOutputStream(fileRoot+"/"+fname);
                 fos.write(fileData);
                 fos.close();
                 ingredientDto.setIngredient_image(fname);
@@ -125,8 +124,14 @@ public class AdminController {
 
     }
 
-    @GetMapping("/orders")
-    public String ordersList(Model model){
+    @GetMapping("/orders/{state}")
+    public String ordersList(Model model,@PathVariable String state){
+        System.out.println("전송받은 데이터 : " + state);
+        if(state.equals("all")){
+            model.addAttribute("list",os.findAll());
+        }
+
+        model.addAttribute("list",os.findByOrderState(state));
 
 
         return "/admin/adminOrdersList";
@@ -137,6 +142,13 @@ public class AdminController {
 
 
         return "/admin/adminRecipeList";
+    }
+    @GetMapping("/cancelOrder/{id}")
+    public String cancelOrder(@PathVariable Long id){
+        os.changeState(id);
+        return "redirect:/adminOrderList";
+
+
     }
 
 

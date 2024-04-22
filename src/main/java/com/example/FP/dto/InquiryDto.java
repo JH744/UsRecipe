@@ -2,10 +2,6 @@ package com.example.FP.dto;
 
 import com.example.FP.entity.InquiryState;
 import com.example.FP.entity.Member;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,4 +21,6 @@ public class InquiryDto {
 
 
     private Member inquiry_member;
+
+
 }

@@ -13,7 +13,7 @@ public interface InquiryRepositoryCustom {
 
     List<Inquiry> listInquiryAnswered();
 
-    void updateInquiry(Long id);
+    void updateInquiry(Long id,String answer);
 
 
 }

@@ -3,18 +3,27 @@ package com.example.FP.controller;
 import com.example.FP.entity.Ingredient;
 import com.example.FP.service.IngredientService;
 import com.example.FP.service.ReplyService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Parameters;
 import org.springframework.stereotype.Controller;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+
+import java.io.File;
 import java.util.List;
+
+import java.util.ArrayList;
 
 @Controller
 @RequiredArgsConstructor
@@ -93,7 +102,7 @@ public class IngredientController {
 
 
 
-        return "listIngredient" ;
+        return "/all/listIngredient" ;
     }
 
 
@@ -114,17 +123,44 @@ public class IngredientController {
         List<Ingredient> list = is.findAllByIngredientNameContaining(keyword);
         return list;
     }
+
+//    장바구니에 추가하기 위해 여러개 검색하는 용도
+    @PostMapping("/findIngredient")
+    @ResponseBody
+    public List<Ingredient> findIngredient(@RequestBody List<Long> checkList){
+        List<Ingredient> list = new ArrayList<Ingredient>();
+
+        for(Long id : checkList){
+            list.add(is.findById(id).get());
+        }
+
+        return list;
+    }
+
     @GetMapping("/deleteIngredient/{id}")
-    public String deleteIngredient(@PathVariable Long id){
+    public String deleteIngredient(@PathVariable Long id, HttpServletRequest request){
+        Ingredient ingredient = is.findById(id).get();
+
+        String fileRoot = request.getServletContext().getRealPath("/ingredientImages");	//저장될 외부 파일 경로
+        String fname = ingredient.getIngredientImage();
+        try{
+            File file = new File(fileRoot+"/"+fname);
+            file.delete();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
         is.deleteIngredient(id);
+
         return "redirect:/admin/ingredient";
     }
 
     @GetMapping("/admin/updateIngredient/{id}")
-    public String updateIngredientForm(@RequestParam("id") Long id, Model model) {
+    public String updateIngredient(@PathVariable("id") Long id, Model model) {
+        System.out.println("여기로 오긴 오니?");
         model.addAttribute("list", is.findAllIngredientCategory());
         model.addAttribute("i", is.findById(id).get());
-        return "/admin/updateIngredient";
+        return "/admin/adminUpdateIngredient";
     }
 
     @PostMapping("/")
@@ -132,5 +168,6 @@ public class IngredientController {
 
         return "";
     }
+
 
 }

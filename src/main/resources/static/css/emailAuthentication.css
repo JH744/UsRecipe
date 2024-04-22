@@ -16,6 +16,9 @@
 }
 
 .e65_429 {
+    border: none;
+    margin-top: 20px;
+    margin-left: 40px;
     background-color: rgba(213.5625395178795, 83.7318965792656, 83.7318965792656, 1);
     width: 330px;
     height: 55.402931213378906px;

@@ -26,46 +26,24 @@ public class CartController {
     private final CartService cs;
 
 
-
     @GetMapping("/cart")
-    public String cartList(Model model){
-
-        //model.addAttribute("list",cs.listCart());
-        //로그인한 회원의 id로 저장된 장바구니 목록을 가져옴
-        long memberId = 52; //임시 id 부여
-        //long memberId = 102;  // 빈 장바구니 확인용
-
-
-         var list = cs.listCart(memberId);
-
-
-
-        model.addAttribute("list",list);
-
-        return "cart";
+    public String cartList(Model model, HttpSession session) {
+        var list = cs.listCart(session);
+        model.addAttribute("list", list);
+        return "/user/cart";
     }
-
-@PostMapping("/insertCart")
-@ResponseBody
-    public String insertCart(@RequestParam(name = "ingredientId") Long ingredientId, HttpSession session){
-        String userid = session.getAttribute("userid").toString();
-        cs.insertCart(userid,ingredientId);
-        return "/";
-}
 
 
     @PostMapping("/checkCart")
     @ResponseBody
-    public String checkCart(@RequestParam("Id") long Id){
-        System.out.println("확인할 id :"+Id);
-        long memberId = 52; //임시 회원id
-
-        List<Cart> result =  cs.findById(Id,memberId);
-        String coment= "";
-        if(result.isEmpty()){
+    public String checkCart(@RequestParam("Id") long Id, HttpSession session) {
+        System.out.println("확인할 id :" + Id);
+        List<Cart> result = cs.findById(Id, session);
+        String coment = "";
+        if (result.isEmpty()) {
             coment = "저장안됨";
-        }else{
-            coment ="저장됨";
+        } else {
+            coment = "저장됨";
         }
         System.out.println(coment);
         return coment;
@@ -73,41 +51,51 @@ public class CartController {
     }
 
 
-
     @PostMapping("/addCart")
     @ResponseBody
-    public String addCart(Model model, @RequestParam ("Id") Long Id ){
-        System.out.println("전달받은거:"+Id);
-        long memberId = 52; //임시 회원id
+    public String addCart(HttpSession session, Model model, @RequestParam("Id") Long Id) {
+        System.out.println("전달받은거:" + Id);
 
-           List<Cart> result =  cs.findById(Id,memberId);
+        List<Cart> result = cs.findById(Id, session);
 
-            String coment= "";
-        if(result.isEmpty()){
-            cs.addCart(Id,memberId);
+        String coment = "";
+        if (result.isEmpty()) {
+            cs.addCart(Id, session);
             coment = "저장함";
-        }else{
-            coment ="저장안함";
+        } else {
+            coment = "저장안함";
         }
         System.out.println(coment);
         return coment;
+    }
+
+    //    장바구니 한꺼번에 저장하는거니까 지우지마세요
+    @PostMapping("/addCartList")
+    @ResponseBody
+    public void addCartList(HttpSession session, @RequestBody List<Long> checkList) {
+
+        for (Long Id : checkList) {
+            List<Cart> result = cs.findById(Id, session);
+            String coment = "";
+            if (result.isEmpty()) {
+                cs.addCart(Id, session);
+                coment = "저장함";
+            } else {
+                coment = "저장안함";
+            }
+        }
     }
 
 
     @PostMapping("/deleteCartItems")
     @ResponseBody
-    public String deleteCartItems(@RequestBody Map<String, List<String>> data) {
-        long memberId = 52; //임시 회원id
+    public String deleteCartItems(@RequestBody Map<String, List<String>> data, HttpSession session) {
 
         List<String> ingredientNames = data.get("ingredientNames");
-        System.out.println("전달받은 상품명들 : "+ingredientNames);
-            cs.deleteCart(ingredientNames,memberId);
-             return "기달";
+        System.out.println("전달받은 상품명들 : " + ingredientNames);
+        cs.deleteCart(ingredientNames, session);
+        return "기달";
     }
-
-
-
-
 
 
 }

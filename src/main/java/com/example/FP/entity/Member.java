@@ -125,7 +125,7 @@ public class Member {
                 .birth(memberDto.getBirth())
                 .point(0)
                 .password(passwordEncoder.encode(memberDto.getPassword()))  //암호화처리
-                .image("person.png")
+                .image("2120286.jpg")
                 .role(MemberRole.MEMBER)
                 .build();
         return member;
@@ -158,7 +158,7 @@ public class Member {
                 .birth(memberDto.getBirth())
                 .phone(memberDto.getPhone())
                 .point(0)
-                .image("person.png")
+                .image("2120286.jpg")
                 .role(MemberRole.MEMBER)
                 .build();
         return member;

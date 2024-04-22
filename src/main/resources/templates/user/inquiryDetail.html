@@ -207,12 +207,37 @@
                 <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b>
                 <b th:text="${inquiry?.inquiryTitle}">1대1 문의 제목입니다</b>
                 <hr>
-                <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">문의내용</b>
-                <b th:text="${inquiry?.inquiryAnswer}">문의 답변 내용입니다.</b>
+
+                <div style="margin-top: 20px;">
+                    <b style="margin-right: 100px; font-family: 'Cafe24Dangdanghae';">답변</b>
+                    <div th:if="${inquiry?.inquiryAnswer}">
+                        <!-- 답변이 있을 경우, 답변 내용을 표시 -->
+                        <p th:text="${inquiry?.inquiryAnswer}" style="display: inline;"></p>
+                    </div>
+                    <div th:unless="${inquiry?.inquiryAnswer}">
+                        <!-- 답변이 없을 경우, 메시지 표시 -->
+                        <p style="display: inline; font-family: Cafe24Dangdanghae;font-size: 17px;">답변 대기 중입니다.</p>
+                    </div>
+                </div>
+
                 <br>
-                <button style="width: 100px;color: white; margin : 100px 0 0 300px; height: 50px ;background-color: #D65454"  onclick="location.href='/inquiryList'">목록으로</button>
-                <button id="deleteButton" style="width: 100px; color: white; margin: 100px 0 0 20px; height: 50px; background-color: #D65454">삭제</button>
-                <button id="updateButton" style="width: 100px; color: white; margin: 100px 0 0 20px; height: 50px; background-color: #D65454">문의수정</button>
+
+                <div style="display: flex; justify-content: center; margin-top: 100px;">
+                    <button style="width: 100px; color: white; height: 50px; background-color: #D65454; margin-right: 20px;" onclick="location.href='/inquiryList'">목록으로</button>
+
+                    <form id="deleteForm" th:action="@{/deleteInquiry/{id}(id=${inquiry.id})}" method="post">
+                        <button id="deleteButton" type="submit" style="width: 100px; color: white; height: 50px; background-color: #D65454; margin-right: 20px;" onclick="return confirmDelete();">삭제</button>
+                    </form>
+
+
+                </div>
+
+                <script>
+                    function confirmDelete() {
+                        return confirm('이 문의를 정말 삭제하시겠습니까?');
+                    }
+                </script>
+
 
 
 
