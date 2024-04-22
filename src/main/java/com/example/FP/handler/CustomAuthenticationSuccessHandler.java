@@ -35,8 +35,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             String role = String.valueOf(m.getRole());
             session.setAttribute("userid", username);
             session.setAttribute("image", m.getImage());
-            session.setAttribute("role", m.getRole());
-
+            session.setAttribute("role", m.getRole().toString());
             if (role.equals("ADMIN")) {
                 response.sendRedirect("/admin/adminMember");
                 return;

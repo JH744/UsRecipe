@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>유스레시피</title>
     <link rel='stylesheet' href='../../static/css/woocommerce-layout.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='../../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
     <link rel='stylesheet' href='../../static/css/woocommerce.css' type='text/css' media='all'/>
@@ -50,8 +50,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <style type="text/css">
         input[type]{
-            border: none;
-            background-color: rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
+
+
             margin-bottom: 30px;
         }
 
@@ -172,14 +172,7 @@
 
 
     </style>
-    <script>
-        $(function (){
-            $("#btn_insert").click(function (){
-                location.href = "/admin/noticeInsert";
-            })
-        })
-    </script>
-</head>
+
 <body>
 <div class="templateBody">
     <header>
@@ -193,7 +186,21 @@
         <section id="news_section">
 
             <div id="notion_title_wrap" style="color: black;">
-                <span id="notion_spanB">공지사항 관리</span>
+                <span id="notion_spanB">공지사항 등록</span><span id="notion_spanL">공지를 등록할 수 있습니다.</span>
+                <hr>
+                <h3 style="font-family: Cafe24Dangdanghae">공지사항</h3><br>
+                <form method="post" action="/admin/noticeUpdate">
+                    <input type="hidden" th:value="${list.id}" name="id">
+                    <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b><input type="text" style="width: 500px" name="title" th:value="${list.noticeTitle}">
+                    <hr>
+                    <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">공지 내용</b><input type="text" style="width: 550px; height: 600px;" name="content" th:value="${list.noticeContent}">
+                    <br><br><br><br>
+
+                    <input type="submit" value="수정하기" style="margin-left: 380px; background-color: #D65454">
+                </form>
+
+
+
             </div>
 
             <div id="notion_box">
@@ -205,37 +212,13 @@
                     <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
                     <div id="page">
                         <div class="container">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col" class="orderList_th" style="width: 10%">공지사항 번호</th>
-                                    <th scope="col" class="orderList_th">제목</th>
-                                    <th scope="col" class="orderList_th">작성일자</th>
-                                    <th scope="col" class="orderList_th">삭제</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="list:${list}">
-                                    <td class="orderList_td"><a th:text="${list.id}" th:href="@{|/noticeDetail/${list.id}|}"></a></td>
-                                    <td class="orderList_td" th:text="${list.noticeTitle}"></td>
-                                    <td class="orderList_td" th:text="${list.noticeSubmitDate}"></td>
-                                    <td class="orderList_td"><a th:href="@{|/admin/noticeDelete/${list.id}|}" th:text="삭제"></a></td>
-                                </tr>
 
-                                </tbody>
-                            </table>
 
                         </div>
                         <!-- .container -->
 
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
-                    <!-- #page -->
-                    <script src='/js/jquery.js'></script>
-                    <script src='/js/plugins.js'></script>
-                    <script src='/js/scripts.js'></script>
-                    <script src='/js/masonry.pkgd.min.js'></script>
-                    <button id="btn_insert">생성</button>
                     </body>
 
                 </div>

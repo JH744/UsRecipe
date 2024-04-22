@@ -33,4 +33,10 @@ public class Notice {
         this.noticeTitle = noticeTitle;
         this.noticeSubmitDate = noticeSubmitDate;
     }
+
+    public void update(String noticeContent, String noticeTitle, LocalDateTime noticeSubmitDate) {
+        this.noticeContent = noticeContent;
+        this.noticeTitle = noticeTitle;
+        this.noticeSubmitDate = noticeSubmitDate;
+    }
 }
