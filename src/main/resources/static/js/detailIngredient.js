@@ -78,7 +78,9 @@ function cartAdd(ingredientId) {
                         confirmButtonText: '이동',
                         cancelButtonText: '취소'
                     }).then((result) => {
-
+                        if(result.isConfirmed) {
+                            location.replace("/cart")
+                        }
                     })
                 }
             })

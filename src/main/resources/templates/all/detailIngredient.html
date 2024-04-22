@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="../../static/css/store_20230103.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/bootstrap_20211222.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/ez_recipe_20240405.css">
-    <script src="../../static/js/ingredientDetail.js"></script>
+    <script src="../../static/js/detailIngredient.js"></script>
 </head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -49,7 +49,7 @@
                                                 <div class="s_view_pic">
                                                     <!--                                                <img th:src="@{'../static/images/'+${ingredient.ingredientImage}}"-->
                                                     <!--                                                     class="middle">-->
-                                                    <img th:src="@{../static/images/${ingredient.ingredientImage}}"
+                                                    <img th:src="@{|../../static/ingredientImages/${ingredient.ingredientImage}|}"
                                                          class="middle">
                                                     <div class="s_view_pic_zoom"><a href="#lyZoom" id="mainImage">
 
@@ -206,7 +206,7 @@
                                             <!--상세정보 //-->
                                             <div class="D_goods_info">
                                                 <div class="info_cont detail" id="goodsDetailInfo"
-                                                     style="padding-bottom:100px; height:2500px;">
+                                                     style="padding-bottom:100px;">
                                                     <div class="detail_explain_box">
                                                         <div class="image-manual">
                                                             <!-- 이미지 -->
@@ -276,7 +276,7 @@
                         <div class="media-left"><a th:href="'/profile?id='+${r.replyMember.id}">
                             <img
                                     class="media-object"
-                                    src="../../static/images/chef2.png"
+                                    th:src="|../../static/images/${r.replyMember.image}|"
                                     data-holder-rendered="true"></a></div>
                         <div class="media-body">
                             <h4 class="media-heading">

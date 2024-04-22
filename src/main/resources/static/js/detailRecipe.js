@@ -134,7 +134,9 @@ function addCart(checkBoxClass, url) {
                             confirmButtonText: '이동',
                             cancelButtonText: '취소'
                         }).then((result) => {
-                            location.replace("/cart")
+                            if(result.isConfirmed) {
+                                location.replace("/cart")
+                            }
                         })
                     }
                 })
@@ -156,6 +158,7 @@ function addCart(checkBoxClass, url) {
 
 
 function listAddToModal(list) {
+    $("#modal_tbody").empty();
     $.each(list, function () {
         var ingredientImage = $("<td class='modalListTd'><img src='../../static/images/" + this.ingredientImage + "' style='width:50px;height: 50px'></td>");
         var ingredientName = $("<td class='modalListTd'>" + this.ingredientName + "</td>");
