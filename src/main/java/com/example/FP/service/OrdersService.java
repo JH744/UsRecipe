@@ -84,6 +84,9 @@ public class OrdersService {
         or.save(o);
     }
 
+    public void changeState(Long id){
+        or.updateState(id);
+    }
 
 
     public void saveOrderDetails(HttpSession session){
@@ -118,13 +121,12 @@ public class OrdersService {
                 odr.save(od);
             }
         }
+
         
-    public void changeState(Long id){
-        or.updateState(id);
+
 
     }
 
-    }
 
 
 
