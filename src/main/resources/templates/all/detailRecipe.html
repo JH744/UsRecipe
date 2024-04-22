@@ -75,12 +75,21 @@
                         </div>
 
                         <div class="centeredcrop">
+                            <th:block th:if="${recipe.recipeThumbnail != null && recipe.recipeUrl == null}">
                             <img id="main_thumbs"
                                  th:src="@{'../static/recipeImages/'+${recipe.recipeThumbnail}}"
                                  alt="main thumb">
                             <input id="thumbUrl" type="hidden"
                                    th:value="'http://localhost:8080/static/recipeImages/'+${recipe.recipeThumbnail}">
                             <!--                            style="filter: blur(2px) contrast(75%);" 이미지 약간 블러 처리하는법-->
+                            </th:block>
+                            <th:block th:if="${recipe.recipeUrl != null}">
+                                <iframe id="youtube" th:src="${recipe.getRecipeUrl()}"
+                                        title="YouTube video player" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen style="width: 800px;height: 300px;"></iframe>
+
+                            </th:block>
                         </div>
                         <div class="user_info2">
                             <img class="app_block_link_remove user_info2_pic"

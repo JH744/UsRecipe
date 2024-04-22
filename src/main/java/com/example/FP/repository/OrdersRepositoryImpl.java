@@ -39,6 +39,9 @@ public class OrdersRepositoryImpl implements OrdersRepositoryCustom {
     @Transactional
     public void updateState(Long id) {
         queryFactory.update(orders).set(orders.ordersOrderState,OrderState.cancel).where(orders.id.eq(id)).execute();
+    }
 
+    public Member cancelOrderMember(Long id){
+        return queryFactory.select(orders.ordersMember).from(orders).where(orders.id.eq(id)).fetchOne();
     }
 }

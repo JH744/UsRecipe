@@ -125,7 +125,7 @@ public class Member {
                 .birth(memberDto.getBirth())
                 .point(0)
                 .password(passwordEncoder.encode(memberDto.getPassword()))  //암호화처리
-                .image("2120286.jpg")
+                .image("member.jpg")
                 .role(MemberRole.MEMBER)
                 .build();
         return member;
@@ -158,7 +158,7 @@ public class Member {
                 .birth(memberDto.getBirth())
                 .phone(memberDto.getPhone())
                 .point(0)
-                .image("2120286.jpg")
+                .image("member.jpg")
                 .role(MemberRole.MEMBER)
                 .build();
         return member;
@@ -186,6 +186,14 @@ public class Member {
         this.password = password;
         this.nickname = nickname;
         this.addr =addr;
+    }
+
+    public void cancelOrderMember(Orders orders){
+        int returnUsePoint = orders.getOrdersUsedPoint();
+        int returnAddPoint = (int)Math.round(orders.getOrdersSalePrice()*0.01);
+        this.point -= returnAddPoint;
+        this.point+= returnUsePoint;
+
     }
 
 
