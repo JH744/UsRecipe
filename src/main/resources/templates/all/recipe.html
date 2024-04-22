@@ -88,7 +88,6 @@
             })
 
 
-
         });
     </script>
 </head>
@@ -122,13 +121,13 @@
                 <input type="text" class="searchbar" id="searchbar">
                 <button class="btnsearch" id="btnsearch">검색</button>
             </div>
-            <div class="Thisrecipe">
+            <div class="Thisrecipe" th:if="${HowAbout != null}">
                 <a th:href="@{/detailRecipe(recipeNum=${HowAbout.id})}">
                     <img class="ThisRecipe_img" th:src="@{'../../static/images/' + ${HowAbout.recipeThumbnail}}" alt="레시피썸넬" />
                 </a>
                 <h3 th:text="${HowAbout.recipeTitle}"></h3>
             </div>
-            <div class="ThisrecipeInfo">
+            <div class="ThisrecipeInfo" th:if="${HowAbout != null}">
                 <div class="infobox">
                     <h4 th:text="${HowAbout.recipeWriter}+'님의 레시피입니다.'"></h4>  <!--레시피 설명-->
                     <p>매일의 식사를 특별하게 만드세요.<br>
@@ -176,7 +175,6 @@
 
 
         </div>
-
     </div>
     <div class="footer" th:replace="footer :: footer"></div>
 </div>
