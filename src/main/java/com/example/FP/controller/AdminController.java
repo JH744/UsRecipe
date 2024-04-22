@@ -51,6 +51,14 @@ public class AdminController {
 
         return "/admin/adminInquiryDetail";
     }
+    @GetMapping("/orderDetail/{id}")
+    public String orderDetail(Model model, @PathVariable Long id){
+
+        model.addAttribute("list",os.findByOrderId(id));
+
+        return "/admin/adminOrderListDetail";
+
+    }
 
     @PostMapping("/inquiryDetail")
     public String adminInquiryDetailSubmit(@RequestParam Long id,String inquiryAnswer){
@@ -92,6 +100,7 @@ public class AdminController {
         System.out.println(ingredientDto.getIngredient_detail());
 
         MultipartFile uploadFile = ingredientDto.getUploadFile();
+
         String fileRoot = request.getServletContext().getRealPath("/ingredientImages");	//저장될 외부 파일 경로
         String fname = uploadFile.getOriginalFilename();
         Long categoryId = ingredientDto.getIngredient_ingredient_category().getId();

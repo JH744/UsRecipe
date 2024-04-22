@@ -109,13 +109,11 @@
 
 
         $('.toDetail').click(function (){
-                console.log("a태그 눌러짐");
                 var href =    $(this).attr('href');
-                console.log("가져온href:"+href);
                 var src = $(this).find('img').attr('src');
-                console.log("가져온src:"+src);
 
             let previousData =localStorage.getItem('items');
+
             let items = previousData? JSON.parse(previousData) :[];
                items.push({
                     HREF :href,
@@ -265,7 +263,7 @@
 
                     <div class="storeItem" th:each=" i : ${list}">
                         <a th:href="@{/detailIngredient(ingredientId=${i.id})}" class="toDetail">
-                            <img th:attr="src=@{'../static/images/ingredients/' + ${i.ingredientImage}}"
+                            <img th:attr="src=@{'../../static/ingredientImages/' + ${i.ingredientImage}}"
                              class="storeItem_img"
                              onerror="this.onerror=null; this.src='../static/images/ingredients/img_none.png'">
                         </a>

@@ -89,6 +89,11 @@ public class OrdersService {
     }
 
 
+    public Member buyMember(Long id){
+        return odr.buyMember(id);
+    }
+
+
     public void saveOrderDetails(HttpSession session){
         // 회원이 막 주문했을 주문목록 가져옴.
         Member m = ms.findById((String) session.getAttribute("userid"));
@@ -121,13 +126,6 @@ public class OrdersService {
                 odr.save(od);
             }
         }
-
-        
-
-
     }
-
-
-
 
 
