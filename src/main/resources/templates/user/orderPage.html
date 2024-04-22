@@ -138,12 +138,19 @@
             ///////   결제하기  //////////
 
             $(".btnOrder").click(function(){
+                let name ;
+                if(count == 1 ){
+                    name = orderData.items[0].name;
+                }else{
+                    name = orderData.items[0].name +' 외 '+(count-1)+'개';
+                }
+
                 IMP.init("imp40354073"); //r가맹점 식별코드
                 IMP.request_pay({
                     pg:'kcp',
                     pay_method:'card',
                     merchant_uid:'merchant_'+new Date().getTime(),
-                    name:orderData.items[0].name +' 외 '+(count-1)+'개' ,
+                    name:name,
                     amount:$('#totalOrderPrice').text(),  // 결제가격
                     buyer_email:$('#Email').val(),
                     buyer_name:$('#Name').val(),
