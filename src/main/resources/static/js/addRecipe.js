@@ -305,6 +305,8 @@ function doSubmit() {
         cancelButtonText: '취소'
     }).then((result) => {
         if (result.isConfirmed) {
+            var recipeUrl = $("#cok_video_url").val();
+            alert(recipeUrl)
             var ingredientDataList = ingeredientData();
             var stepDataList = stepData();
             var recipeTitle = $("#recipe_title").val()
@@ -331,6 +333,7 @@ function doSubmit() {
                 return false;
             }
             var recipeData = {
+                recipeUrl:recipeUrl,
                 ingredientDataList: ingredientDataList,
                 stepDataList: stepDataList,
                 recipeTitle: recipeTitle,
