@@ -199,6 +199,31 @@
                     $(this).find(".cart[saved='false']").attr('stroke', '#333');
                 })
 
+
+
+
+        var $fixed = $('#RecentlyViewedContainer');
+        var stopPosition = 1000; // 고정을 해제할 스크롤 위치 (픽셀 단위)
+
+        $(window).on('scroll', function() {
+            if ($(this).scrollTop() > stopPosition) {
+                console.log("도달함")
+                $fixed.css({
+                    'position': 'absolute',
+                    'top': stopPosition + 'px'
+                });
+            } else {
+                $fixed.css({
+                    'position': 'fixed',
+                    'top': '30%'
+                });
+            }
+        });
+
+
+
+
+
     });
 </script>
 
