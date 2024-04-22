@@ -4,6 +4,7 @@ import com.example.FP.entity.Ingredient;
 import com.example.FP.service.IngredientService;
 import com.example.FP.service.ReplyService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -137,13 +138,13 @@ public class IngredientController {
     }
 
     @GetMapping("/deleteIngredient/{id}")
-    public String deleteIngredient(@PathVariable Long id){
+    public String deleteIngredient(@PathVariable Long id, HttpServletRequest request){
         Ingredient ingredient = is.findById(id).get();
 
-        String path = "C:\\FP\\src\\main\\resources\\webapp\\ingredientImages";
+        String fileRoot = request.getServletContext().getRealPath("/ingredientImages");	//저장될 외부 파일 경로
         String fname = ingredient.getIngredientImage();
         try{
-            File file = new File(path+"/"+fname);
+            File file = new File(fileRoot+"/"+fname);
             file.delete();
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -155,10 +156,11 @@ public class IngredientController {
     }
 
     @GetMapping("/admin/updateIngredient/{id}")
-    public String updateIngredientForm(@RequestParam("id") Long id, Model model) {
+    public String updateIngredient(@PathVariable("id") Long id, Model model) {
+        System.out.println("여기로 오긴 오니?");
         model.addAttribute("list", is.findAllIngredientCategory());
         model.addAttribute("i", is.findById(id).get());
-        return "/admin/updateIngredient";
+        return "/admin/adminUpdateIngredient";
     }
 
     @PostMapping("/")
@@ -166,5 +168,6 @@ public class IngredientController {
 
         return "";
     }
+
 
 }

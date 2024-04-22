@@ -222,7 +222,7 @@
                                     <th scope="col" class="orderList_th" th:text="${list.getIngredientOrigin()}">원산지</th>
                                     <th scope="col" class="orderList_th" th:text="${list.getIngredientAmount()}">중량</th>
                                     <th scope="col" class="orderList_th" th:text="${list.getIngredientQty()}">재고</th>
-                                    <th scope="col" class="orderList_th"><a th:text="수정" th:href="@{|/updateIngredient/${list.id}|}">수정</a></th>
+                                    <th scope="col" class="orderList_th"><a th:text="수정" th:href="@{|/admin/updateIngredient/${list.id}|}">수정</a></th>
                                     <th scope="col" class="orderList_th"><a th:text="삭제" th:href="@{|/deleteIngredient/${list.id}|}">삭제</a></th>
                                 </tr>
 

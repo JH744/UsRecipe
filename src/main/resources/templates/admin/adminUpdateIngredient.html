@@ -44,6 +44,9 @@
             justify-content: center;
         }
 
+        .ingredient_table_td{
+            width: 60px;
+        }
     </style>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
@@ -53,6 +56,12 @@
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="../../static/js/summernote/summernote-lite.js"></script>
+    <script src="../../static/js/summernote/lang/summernote-ko-KR.js"></script>
+    <script src="../../static/js/summernoteLoad.js"></script>
+
+    <link rel="stylesheet" href="../../static/css/summernote/summernote-lite.css">
     <style type="text/css">
         input[type]{
 
@@ -134,11 +143,11 @@
             font-weight: bold;
         }
         #news_section{
-            width: 79%;
+            width: 100%;
             float: left;
         }
         #notion_title_wrap{
-            width: 800px;
+            width: 100%;
         }
         #notion_spanB{
             font-family: 'Cafe24Dangdanghae';
@@ -188,9 +197,6 @@
     </header>
     <div class="mainBody">
 
-        <aside id="news_aside" style="margin-right: 10px;" th:replace="/admin/adminSidebar :: adminSidebar">
-
-        </aside>
         <section id="news_section">
 
             <div id="notion_title_wrap" style="color: black;">
@@ -232,12 +238,17 @@
                     </tr>
                     <tr>
                         <td class="ingredient_table_td">재료설명 &nbsp;&nbsp;</td>
-                        <td><textarea name="ingredient_detail" rows="30" cols="30" th:text="${i.ingredientDetail}"></textarea></td>
+                        <td><textarea id="summernote" name="ingredient_detail" th:utext="${i.ingredientDetail}" rows="50"></textarea></td>
                     </tr>
                 </table>
                     <br><br><br><br>
-                    <input type="submit" value="등록하기" style="width: 150px; height: 50px;background-color: #D65454;margin-left: 300px; border: none; color: white" >
-
+                    <div style="display: flex; justify-content: center; width: 100%">
+                        <input type="submit" value="수정하기"
+                               style="margin-right: 10px;width: 150px; height: 50px;background-color: #D65454; border: none; color: white">
+                        <input type="button" value="취소"
+                               style="width: 150px; height: 50px;background-color: #FFFFFF; border: 1px solid black; color: black"
+                               onclick="history.back()">
+                    </div>
                 </form>
 
             </div>
