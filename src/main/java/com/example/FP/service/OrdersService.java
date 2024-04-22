@@ -89,8 +89,10 @@ public class OrdersService {
         or.updateState(id);
         Member member = or.cancelOrderMember(id);
         member.cancelOrderMember(orders);
-        pr.save(new Point((int)Math.round(orders.getOrdersSalePrice()*0.01),"주문취소에 의한 적립금 반환",member,orders));
-        pr.save(new Point(orders.getOrdersUsedPoint(),"주문취소에 의한 사용포인트 반환",member,orders));
+        pr.save(new Point(((int)Math.round(orders.getOrdersSalePrice()*0.01))*-1,"주문취소에 의한 적립금 반환",member,orders));
+        if(orders.getOrdersUsedPoint()<0) {
+            pr.save(new Point((orders.getOrdersUsedPoint())*-1, "주문취소에 의한 사용포인트 반환", member, orders));
+        }
 
     }
 

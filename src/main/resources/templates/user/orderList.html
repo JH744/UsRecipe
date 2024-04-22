@@ -228,7 +228,7 @@
                                 <tbody>
                                 <tr th:each="list:${list}">
                                     <td class="orderList_td" th:text="${list.getId()}">1</td>
-                                    <td class="orderList_td"><a th:href="@{|/orderDetail/${list.getId()}|}" th:text="${list.getOrdersContent()}"></a>Otto</td>
+                                    <td class="orderList_td"><a th:href="@{|/orderDetail/${list.getId()}|}" th:text="${list.getOrdersContent()}"></a></td>
                                     <td class="orderList_td"><a th:text="${list.getOrdersSalePrice()}+'원'" >10000원</a></td>
                                     <td class="orderList_td" th:text="${list.getOrdersOrderState().toString() == 'ready' ? '주문대기' : list.getOrdersOrderState().toString() == 'done' ? '주문완료' : list.getOrdersOrderState().toString() == 'cancel' ? '주문취소' : ''}"></td>
 

@@ -191,9 +191,8 @@ public class Member {
     public void cancelOrderMember(Orders orders){
         int returnUsePoint = orders.getOrdersUsedPoint();
         int returnAddPoint = (int)Math.round(orders.getOrdersSalePrice()*0.01);
-        this.point -= returnAddPoint;
-        this.point+= returnUsePoint;
-
+        this.point += -1*(returnAddPoint);
+        this.point += (returnUsePoint*-1);
     }
 
 

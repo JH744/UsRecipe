@@ -262,6 +262,9 @@
             </table>
             <br><br>
             <button style="border: none; color: white; background-color:#D65454;width: 150px;height: 50px; margin-left: 350px;" th:onclick="|window.location.href='@{/orderList}'|"> 목록으로 </button>
+            <th:block th:if="${list[0].getOrdersDetail().getOrdersOrderState()==T(com.example.FP.entity.OrderState).ready}">
+            <button style="border: none; color: white; background-color:#D65454;width: 150px;height: 50px; margin-left: 100px;" ><a th:text="주문취소" th:href="@{/cancelOrder/{id}(id=${list[0].ordersDetail.id})}">주문취소</a> </button>
+            </th:block>
             <br><br>
 
             <div style="margin-top:50px;" >
