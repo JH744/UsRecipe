@@ -114,6 +114,13 @@ public class OrdersController {
         model.addAttribute("list", os.findAll());
         return "/admin/adminOrdersList";
     }
+    @GetMapping("/cancelOrder/{id}")
+    public String cancelOrder(@PathVariable Long id){
+        os.changeState(id);
+        return "redirect:/orderList";
+
+
+    }
 
 
 }

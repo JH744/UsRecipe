@@ -48,6 +48,18 @@
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function(){
+            $("#submitBtn").click(function(event){
+                if($("#check").is(':checked')===false){
+                    event.preventDefault();
+                    alert("개인정보 제공동의에 체크해주세요.")
+
+                }
+            })
+
+        })
+    </script>
     <style type="text/css">
         input[type]{
 
@@ -207,9 +219,9 @@
                         <option value="결제">결제</option>
                     </select><br>
                     <hr>
-                    <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b><input type="text" style="width: 500px" th:field="*{inquiry_title}">
+                    <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b><input type="text" style="width: 500px" th:field="*{inquiry_title}" required>
                     <hr>
-                    <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">문의내용</b><input type="text" style="width: 550px; height: 600px;" th:field="*{inquiry_content}">
+                    <b style="margin-right: 100px;font-family: Cafe24Dangdanghae ">문의내용</b><input type="text" style="width: 550px; height: 600px;" th:field="*{inquiry_content}" required>
                     <br><br><br><br>
 
 
@@ -227,11 +239,11 @@
 
                         동의 철회 방법: 사용자가 동의를 철회하고 개인정보 제공을 중단할 수 있는 방법이 설명됩니다.
                         <hr>
-                        <input type="checkbox"> <b>개인정보 제3자 제공에 동의합니다</b>
+                        <input type="checkbox" id="check"> <b>개인정보 제3자 제공에 동의합니다</b>
                     </div>
 
 
-                    <input type="submit" value="등록하기" style="margin-left: 380px; background-color: #D65454">
+                    <input type="submit" id="submitBtn" value="등록하기" style="margin-left: 380px; background-color: #D65454">
                 </form>
 
 
