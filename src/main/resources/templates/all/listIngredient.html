@@ -30,7 +30,11 @@
                      if(response ==='저장됨') {
                          //장바구니에 담겨있다면 나타낼 UI
                          var $btn = $this.closest('.storeItem').find('.cartBtn');
-                                    $btn.css('backgroundColor','#D65454')
+                                    $btn.css('backgroundColor','#D65454');
+                                    $btn.find("span").css('color','#fff');
+                                    $btn.find('.cart').attr('stroke', '#fff');
+                                    $btn.find('.cart').attr('saved',"true");
+
                          console.log("저장확인되어 버튼색상변경")
                      } else {
                          console.log("저장되지 않은 아이템")
@@ -63,6 +67,9 @@
                     if(response ==='저장함'){
                         //담기버튼 색상 변경
                         $this.css('backgroundColor','#D65454');
+                        $this.find('span').css('color','#fff');
+                        $this.find('.cart').attr('stroke', '#fff');
+                        $this.find('.cart').attr('saved',"true");
                         //"장바구니에 상품을 담았습니다" 출력
                         $('#modalbox1').css('display', 'block');
 
@@ -79,46 +86,6 @@
             });
 
         });
-
-
-
-        // 담기 클릭시 장바구니 추가하기
-        $('').click(function() {
-            var storeItemElement = $(this).closest('.storeItem');
-            var ingredientId = storeItemElement.find('.ingreId').text();
-            console.log("상품 ID: ", ingredientId);
-            //  상품 id를 전달 후 장바구니 추가 요청
-            $.ajax({
-                url: '/addCart', // 요청을 보낼 서버의 URL
-                type: 'POST', // HTTP 요청 방식
-                data: { Id: ingredientId }, // 서버로 보낼 데이터
-                success: function(response) {
-                    // 요청이 성공했을 때 실행될 함수
-                    console.log('서버 응답:', response);
-
-                    if(response ==='저장함'){
-                        $('#modalbox1').css('display', 'block');
-                    }else {
-                        $('#modalbox3').css('display', 'block');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    // 요청이 실패했을 때 실행될 함수
-                    console.error('에러 발생:', error);
-                    $('#modalbox2').css('display', 'block');
-                }
-            });
-
-        });
-
-
-
-
-
-
-
-
-
 
 
 
@@ -189,8 +156,6 @@
             })
         }
 
-           // var defaultTop = parseInt($('.RecentlyViewedBox').css('top'), 10);
-           // console.log('defaluttop:'+defaultTop);
 
             $('#scrollUp').click(function() {
                 // 현재 .RecentlyViewedBox의 top 위치를 가죠옴
@@ -223,10 +188,16 @@
                 }
             });
 
-
-
         loadRecentlyViewed();
 
+
+                // 장바구니 icon 호버이벤트
+                $(".cartBtn").on("mouseenter",function(){
+                    $(this).find(".cart").attr('stroke', '#fff');
+                })
+                $(".cartBtn").on("mouseleave",function(){
+                    $(this).find(".cart[saved='false']").attr('stroke', '#333');
+                })
 
     });
 </script>
@@ -273,10 +244,24 @@
                              class="storeItem_img"
                              onerror="this.onerror=null; this.src='../static/images/ingredients/img_none.png'">
                         </a>
-                        <button class="cartBtn"><img class="cartIcon" src="../../static/images/icon/카트.svg"/><span>담기</span></button>
+                        <button class="cartBtn">
+                            <!-- <img class="cartIcon" src="../../static/images/icon/카트.svg"/> -->
+                            <svg width="22" height="22" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                                <g fill="none" fill-rule="evenodd">
+                                    <path d="M36 36H0V0h36z"/>
+                                    <g class="cart" saved="false" transform="translate(5.164 6.547)" stroke="#333" stroke-linecap="square" stroke-linejoin="round" stroke-width="1.7">
+                                        <path d="m25.68 3.66-2.72 11.57H7.37L4.66 3.66z"/>
+                                        <circle cx="20.52" cy="20.78" r="2.14"/>
+                                        <circle cx="9.81" cy="20.78" r="2.14"/>
+                                        <path d="M0 0h3.8l1.76 7.5"/>
+                                    </g>
+                                </g>
+                            </svg>
+                            <span>담기</span>
+                        </button>
                         <div class="storeItem_info">
                             <a th:href="@{/detailIngredient(ingredientId=${i.id})}"><p th:text="${i.ingredientName}">상품명</p></a>
-                            <p th:text="${i.ingredientPrice}">상품가격</p>
+                            <p th:text="${i.ingredientPrice}+'원'">상품가격</p>
                             <P th:text="${i.id}" class="ingreId">재료id</P><!--장바구니담기 전송할 i.id-->
                         </div>
                     </div>

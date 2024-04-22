@@ -8,6 +8,10 @@ a {
   color: black;
 }
 
+.footer {
+  z-index: 99;
+}
+
 .mainBody {
   width: 905px;
   height: 1600px;
@@ -61,6 +65,10 @@ a {
   padding: 20px 0 20px 10px;
 }
 
+.Container1_box2ul li:hover {
+  border-bottom: 3px solid #74B243;
+}
+
 .storeContainer2 {
   margin: auto;
 }
@@ -89,14 +97,21 @@ a {
   height: 19px;
   font-size: 16px;
   font-weight: 600px;
-}
-.storeItem img, .storeItem span {
-  vertical-align: middle;
   color: #333333;
+}
+.storeItem svg, .storeItem span {
+  vertical-align: middle;
+}
+
+.storeItem_info p {
+  margin: 0 0 5px 0;
 }
 
 .cartBtn:hover {
   background-color: #D65454;
+}
+.cartBtn:hover span {
+  color: #fff;
 }
 
 .cartIcon {
@@ -113,7 +128,7 @@ a {
 .pageBox {
   width: 200px;
   height: 20px;
-  margin: auto;
+  margin: 30px auto 0 auto;
   text-align: center;
 }
 
@@ -146,6 +161,7 @@ a {
   right: 10px;
   text-align: center;
   display: none;
+  z-index: 2;
 }
 .modelContainer .modalbox1 h3, .modelContainer .modalbox2 h3, .modelContainer .modalbox3 h3 {
   margin-top: 40px;
@@ -188,7 +204,6 @@ a {
   padding: 13px;
   border: 2px solid #d9d9d9;
   display: none;
-  z-index: -1;
 }
 #RecentlyViewedContainer h4 {
   margin-top: 0px;
