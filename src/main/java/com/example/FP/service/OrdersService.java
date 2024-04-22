@@ -86,11 +86,10 @@ public class OrdersService {
     public void changeState(Long id){
         or.updateState(id);
     }
+
     public Member buyMember(Long id){
         return odr.buyMember(id);
     }
-
-
 
 
     public void saveOrderDetails(HttpSession session){
@@ -125,5 +124,6 @@ public class OrdersService {
                 odr.save(od);
             }
         }
+
     }
 

@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 
 @Controller
@@ -25,15 +27,23 @@ public class NoticeController {
         return "/all/notice";
     }
 
-    @GetMapping("/noticeInsert")
-    public String noticeForm(){
-        return "/all/noticeForm";
+    @GetMapping("/admin/noticeList")
+    public String adminNoticeList(Model model){
+        model.addAttribute("list", ns.findAll());
+        return "/admin/adminNoticeList";
     }
 
-    @PostMapping("/noticeInsert")
+    @GetMapping("/admin/noticeInsert")
+    public String noticeForm(Model model, NoticeDto noticeDto){
+        model.addAttribute("notice", noticeDto);
+        return "/admin/adminNoticeForm";
+    }
+
+    @PostMapping("/admin/noticeInsert")
     public String noticeSubmit(NoticeDto noticeDto){
+        noticeDto.setNotice_submit_date(LocalDateTime.now());
         ns.save(NoticeMapper.toEntity(noticeDto));
-        return "redirect:/notice";
+        return "redirect:/admin/noticeList";
     }
 
     @GetMapping("/noticeDetail/{id}")
@@ -42,22 +52,25 @@ public class NoticeController {
         model.addAttribute("notice", notice);
         return "/all/noticeDetail";
     }
-    @GetMapping("/noticeUpdate/{id}")
+    @GetMapping("/admin/noticeUpdate/{id}")
     public String noticeUpdateForm(@PathVariable Long id, Model model){
-        model.addAttribute("list", ns.findById(id));
-        return "/user/noticeUpdate";
+        Notice n = ns.findById(id).get();
+        model.addAttribute("list", n);
+        return "/admin/adminNoticeUpdate";
     }
 
-    @PostMapping("/noticeUpdate")
-    public String noticeUpdateSubmit(NoticeDto noticeDto){
-        ns.save(NoticeMapper.toEntity(noticeDto));
-        return "redirect:/notice";
+    @PostMapping("/admin/noticeUpdate")
+    public String noticeUpdateSubmit(@RequestParam Long id, @RequestParam String title, @RequestParam String content){
+        Notice n = ns.findById(id).get();
+        n.update(title, content, LocalDateTime.now());
+        ns.save(n);
+        return "redirect:/admin/noticeList";
     }
 
     @GetMapping("/admin/noticeDelete/{id}")
     public String noticeDelete(@PathVariable Long id) {
         ns.deleteNotice(id);
-        return "/admin/adminNoticeList";
+        return "redirect:/admin/noticeList";
     }
 
 

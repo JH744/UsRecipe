@@ -154,7 +154,8 @@
 
             <div class="recipeItem"  th:each=" r : ${list}">
                 <a th:href="@{/detailRecipe(recipeNum=${r.id})}">
-                <img class="recipeItem_img" th:src="@{'../../static/images/' + ${r.recipeThumbnail}}" alt="레시피썸넬" />
+                <img class="recipeItem_img" th:src="@{'../../static/images/' + ${r.recipeThumbnail}}" alt="레시피썸넬"
+                     onerror="this.onerror=null; this.src='../static/images/ingredients/img_none.png'"/>
                 </a>
                 <div class="recipeItem_info">
                     <a th:href="@{/detailRecipe(recipeNum=${r.id})}"> <p th:text="${r.recipeTitle}" >레시피명</p></a>
