@@ -5,11 +5,13 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Type;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
@@ -32,6 +34,7 @@ public class Ingredient {
     private String ingredientUnit;
     private int ingredientQty;
     private String ingredientImage;
+    @Column(length = 10000)
     private String ingredientDetail;
 
     @Transient
