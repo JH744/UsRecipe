@@ -38,6 +38,13 @@ public class OrdersService {
 
     public List<Orders> findAll(){ return or.findAll(); }
 
+    public List<Orders> findByOrderState(String orderState){
+        if (orderState == null || orderState.equals("all")){
+            return or.findAll();
+        }
+        return or.findByOrderState(orderState);
+    }
+
 
 
 
@@ -78,6 +85,7 @@ public class OrdersService {
     }
 
 
+
     public void saveOrderDetails(HttpSession session){
         // 회원이 막 주문했을 주문목록 가져옴.
         Member m = ms.findById((String) session.getAttribute("userid"));
@@ -110,5 +118,14 @@ public class OrdersService {
                 odr.save(od);
             }
         }
+        
+    public void changeState(Long id){
+        or.updateState(id);
+
     }
+
+    }
+
+
+
 

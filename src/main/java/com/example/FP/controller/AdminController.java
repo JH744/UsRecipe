@@ -2,16 +2,10 @@ package com.example.FP.controller;
 
 import com.example.FP.dto.IngredientDto;
 import com.example.FP.dto.InquiryDto;
-import com.example.FP.entity.Ingredient;
-import com.example.FP.entity.IngredientCategory;
-import com.example.FP.entity.Inquiry;
-import com.example.FP.entity.InquiryState;
+import com.example.FP.entity.*;
 import com.example.FP.mapper.InquiryMapper;
 import com.example.FP.repository.IngredientCategoryRepository;
-import com.example.FP.service.IngredientService;
-import com.example.FP.service.InquiryService;
-import com.example.FP.service.MemberService;
-import com.example.FP.service.NoticeService;
+import com.example.FP.service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -28,6 +22,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class AdminController {
 
+    private final OrdersService os;
     private final NoticeService ns;
     private final MemberService ms;
     private final InquiryService is;
@@ -131,8 +126,14 @@ public class AdminController {
 
     }
 
-    @GetMapping("/orders")
-    public String ordersList(Model model){
+    @GetMapping("/orders/{state}")
+    public String ordersList(Model model,@PathVariable String state){
+        System.out.println("전송받은 데이터 : " + state);
+        if(state.equals("all")){
+            model.addAttribute("list",os.findAll());
+        }
+
+        model.addAttribute("list",os.findByOrderState(state));
 
 
         return "/admin/adminOrdersList";
@@ -143,6 +144,13 @@ public class AdminController {
 
 
         return "/admin/adminRecipeList";
+    }
+    @GetMapping("/cancelOrder/{id}")
+    public String cancelOrder(@PathVariable Long id){
+        os.changeState(id);
+        return "redirect:/adminOrderList";
+
+
     }
 
 
