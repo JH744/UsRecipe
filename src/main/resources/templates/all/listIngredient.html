@@ -173,6 +173,7 @@
                 items= [];
             }else {
                 items = JSON.parse(previousData);
+                // 자주본 상품 ui 보이도록 설정
                 $('#RecentlyViewedContainer').css('display','block');
             }
 
@@ -188,20 +189,38 @@
             })
         }
 
-
+           // var defaultTop = parseInt($('.RecentlyViewedBox').css('top'), 10);
+           // console.log('defaluttop:'+defaultTop);
 
             $('#scrollUp').click(function() {
                 // 현재 .RecentlyViewedBox의 top 위치를 가죠옴
-                var currentTop = parseInt($('.RecentlyViewedBox').css('top'), 10);
-                // top 위치를 +20px만큼  이동시킴
-                $('.RecentlyViewedBox').css('top', (currentTop + 20) + 'px');
+                let currentTop = parseInt($('.RecentlyViewedBox').css('top'), 10);
+                console.log('currenttop:'+currentTop);
+                 if(currentTop  < 0 ){
+                     // top 위치를 +20px만큼  이동시킴
+                 $('.RecentlyViewedBox').css('top', (currentTop + 20) + 'px');
+                 }
             });
 
+
+
+
             $('#scrollDown').click(function() {
+                var viewBoxHeight =  parseInt($('.RecentlyViewedBox').css('height'), 10);
+
+                console.log("h1"+viewBoxHeight)
+                var viewport =  parseInt($('.viewport').css('height'), 10);
+                console.log("h2"+viewport)
+                var boundary = Math.abs(viewBoxHeight -viewport);
+                console.log("h3"+boundary)
+
+
                 // 현재 .RecentlyViewedBox의 top 위치를 가져옴
-                var currentTop = parseInt($('.RecentlyViewedBox').css('top'), 10);
+                let currentTop = parseInt($('.RecentlyViewedBox').css('top'), 10);
                 // top 위치를 -20px만큼 이동
-                $('.RecentlyViewedBox').css('top', (currentTop - 20) + 'px');
+                if(currentTop > -boundary){
+                    $('.RecentlyViewedBox').css('top', (currentTop - 20) + 'px');
+                }
             });
 
 
