@@ -236,9 +236,9 @@
                     <th style="width: 20%"class="orderListDetailTable_th1">가격</th>
                 </tr>
                 <tr>
-                    <td th:text="${list.getOrdersIngredient().getIngredientName()}">충북 음성 사과</td>
-                    <td>1</td>
-                    <td th:text="${list.getOrdersIngredient().getIngredientPrice()}">10000</td>
+                    <td th:text="${list.getOrdersIngredient().getIngredientName()}" style="text-align: center">충북 음성 사과</td>
+                    <td style="text-align: center" th:text="${list.getCnt()}"></td>
+                    <td th:text="${list.getOrdersIngredient().getIngredientPrice()}" style="text-align: center">10000</td>
                 </tr>
             </table>
             <br><br>
