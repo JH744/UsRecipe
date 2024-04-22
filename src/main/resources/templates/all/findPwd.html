@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    <script>
+    <script th:inline="javascript">
         $(function (){
             $("#check").click(function (event){
                 if ($("#userid").val() == ""){
@@ -34,6 +34,11 @@
             $(".e138_612").click(function (){
                 location.href = "/all/findUserid";
             })
+
+            var ch = [[${success}]];
+            if (!ch) {
+                alert("아이디와 비밀번호를 알맞게 입력해주세요")
+            }
         })
     </script>
 </head>

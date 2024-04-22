@@ -116,7 +116,8 @@ public class MemberController {
     public String findIdSubmit(@RequestParam String name, @RequestParam String email, Model model){
         String toEmail = email.replace("%40", "@").trim(); // 이메일 가져오기
         HashMap<String, String > map = memberService.findByNameAndEmail(name, toEmail);
-        if (map.get("success").equals("false")) {
+        if (map.get("success") == null || map.get("success").equals("false")) {
+            model.addAttribute("success", "fail");
             return "/all/findUserid";
         }
 
@@ -137,7 +138,8 @@ public class MemberController {
         String toEmail = email.replace("%40", "@").trim();
         Boolean res = memberService.findByUseridAndEmail(userid, toEmail);
         if (!res) {
-            return "/all/findUserPwd";
+            model.addAttribute("success", "fail");
+            return "/all/findPwd";
         }
 
         try {
