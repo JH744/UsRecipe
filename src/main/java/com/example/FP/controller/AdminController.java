@@ -89,13 +89,11 @@ public class AdminController {
 
     @PostMapping("/addIngredient")
     public String addIngredientForm(IngredientDto ingredientDto, HttpServletRequest request){
-
+        System.out.println(ingredientDto.getIngredient_detail());
 
         MultipartFile uploadFile = ingredientDto.getUploadFile();
-        String path = "C:\\FP\\src\\main\\resources\\webapp\\ingredientImages";
-        System.out.println("경로 : " + path);
+        String fileRoot = request.getServletContext().getRealPath("/ingredientImages");	//저장될 외부 파일 경로
         String fname = uploadFile.getOriginalFilename();
-        System.out.println("파일명 : " + fname);
         Long categoryId = ingredientDto.getIngredient_ingredient_category().getId();
 
         // ID를 사용하여 영속성 컨텍스트에 해당하는 IngredientCategory 엔티티를 로드
@@ -110,7 +108,7 @@ public class AdminController {
         if(uploadFile!=null && !uploadFile.isEmpty()){
             try{
                 byte[] fileData = uploadFile.getBytes();
-                FileOutputStream fos = new FileOutputStream(path+"/"+fname);
+                FileOutputStream fos = new FileOutputStream(fileRoot+"/"+fname);
                 fos.write(fileData);
                 fos.close();
                 ingredientDto.setIngredient_image(fname);
