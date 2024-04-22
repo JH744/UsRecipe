@@ -83,8 +83,8 @@
                                                                             alt="구매아이콘">적립
                                                                     </dt>
                                                                     <dd><b class="color_point1"
-                                                                           th:text="${#numbers.formatInteger(ingredient.ingredientPrice*0.05, 3, 'COMMA') + '원'}"></b>
-                                                                        적립<span> (모든 회원 구매액의 0.5% 적립)</span></dd>
+                                                                           th:text="${#numbers.formatInteger(ingredient.ingredientPrice*0.01, 3, 'COMMA') + '원'}"></b>
+                                                                        적립<span> (모든 회원 구매액의 0.1% 적립)</span></dd>
                                                                 </dl>
 
                                                                 <div class="option">

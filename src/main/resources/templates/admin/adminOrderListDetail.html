@@ -176,8 +176,17 @@
     </header>
     <div class="mainBody">
 
-        <aside id="news_aside" style="margin-right: 10px;" th:replace="/admin/adminSidebar :: adminSidebar">
+        <aside id="news_aside" style="margin-right: 10px;">
+            <ul class="news-ul">
+                <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
 
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/orderList}" style="font-weight: bold;">주문내역<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/pointList}" style="font-weight: bold;">적립내역<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/inquiryList}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/pwCheckDataChange}" style="font-weight: bold;">정보변경<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/wishList}" style="font-weight: bold;">찜목록<span>></span></a></li>
+
+            </ul>
         </aside>
         <section id="news_section">
             <div id="notion_title_wrap">
@@ -187,34 +196,34 @@
             <hr>
             <div id="notion_box">
                 <h3>구매자 &nbsp; 정보</h3>
-                <table  th:each="list:${list}">
+                <table>
                     <tr>
                         <td style="width: 20%" class="orderListDetailTable_td1">이름</td>
-                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetailsMember().name}">김김김</td>
+                        <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetailsMember().name}">김김김</td>
                     </tr>
                     <tr>
                         <td style="width: 20%" class="orderListDetailTable_td1">이메일</td>
-                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetailsMember().email}">example@gmail.com</td>
+                        <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetailsMember().email}">example@gmail.com</td>
                     </tr>
                     <tr>
                         <td style="width: 20%" class="orderListDetailTable_td1">연락처</td>
-                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetailsMember().phone}">010-0000-0000</td>
+                        <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetailsMember().phone}">010-0000-0000</td>
                     </tr>
                 </table>
                 <br><br>
                 <h3>받는사람 &nbsp;정보</h3>
-                <table  th:each="list:${list}">
+                <table>
                     <tr>
                         <td style="width: 20%" class="orderListDetailTable_td1">이름</td>
-                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersReceiver()}">김김김</td>
+                        <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetail().getOrdersReceiver()}">김김김</td>
                     </tr>
                     <tr>
                         <td style="width: 20%" class="orderListDetailTable_td1">주소</td>
-                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersReceiverAddr()}">서울시 마포구 어쩌구 저쩌구</td>
+                        <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetail().getOrdersReceiverAddr()}">서울시 마포구 어쩌구 저쩌구</td>
                     </tr>
                     <tr>
                         <td style="width: 20%" class="orderListDetailTable_td1">연락처</td>
-                        <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersReceiverPhone()}">010-0000-0000</td>
+                        <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetail().getOrdersReceiverPhone()}">010-0000-0000</td>
                     </tr>
                 </table>
             </div>
@@ -235,24 +244,24 @@
             <br><br>
             <h3>결제정보</h3>
             <table >
-                <tr th:each="list:${list}">
+                <tr>
                     <td style="width: 20%" class="orderListDetailTable_td1">총 상품가격</td>
-                    <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersTotalPrice()}">10000원</td>
+                    <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetail().getOrdersTotalPrice()}">10000원</td>
                 </tr>
                 <tr>
-                    <td style="width: 20%" class="orderListDetailTable_td1">배송비</td>
-                    <td class="orderListDetailTable_td2">0원</td>
+                    <td style="width: 20%" class="orderListDetailTable_td1">포인트 사용</td>
+                    <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetail().getOrdersUsedPoint()}">0원</td>
                 </tr>
-                <tr th:each="list:${list}">
+                <tr>
                     <td style="width: 20%" class="orderListDetailTable_td1">총결제금액</td>
-                    <td class="orderListDetailTable_td2" th:text="${list.getOrdersDetail().getOrdersSalePrice()}">10000원</td>
+                    <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetail().getOrdersSalePrice()}">10000원</td>
                 </tr>
                 <td style="width: 20%" class="orderListDetailTable_td1">결제방법</td>
                 <td class="orderListDetailTable_td2">카드</td>
                 </tr>
             </table>
             <br><br>
-            <button style="border: none; color: white; background-color:#D65454;width: 150px;height: 50px; margin-left: 350px;" th:onclick="|window.location.href='@{/orderList}'|"> 목록으로 </button>
+            <button style="border: none; color: white; background-color:#D65454;width: 150px;height: 50px; margin-left: 350px;" th:onclick="|window.location.href='@{/admin/orders/all}'|"> 목록으로 </button>
             <br><br>
 
             <div style="margin-top:50px;" >
@@ -270,10 +279,10 @@
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
                     <!-- #page -->
-                    <script src='/static/js/jquery.js'></script>
-                    <script src='/static/js/plugins.js'></script>
-                    <script src='/static/js/scripts.js'></script>
-                    <script src='/static/js/masonry.pkgd.min.js'></script>
+                    <script src='/js/jquery.js'></script>
+                    <script src='/js/plugins.js'></script>
+                    <script src='/js/scripts.js'></script>
+                    <script src='/js/masonry.pkgd.min.js'></script>
 
                     </body>
                 </div>
