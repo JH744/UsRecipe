@@ -11,158 +11,168 @@
     <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script>
-    $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
 
 
-        //이미 장바구니 저장된 식품들은 담기버튼에 색상표현.
-         $('.ingreId').each(function() {
-             var $this = $(this); // 현재 요소를 $this에 저장
-             var id= parseFloat($(this).text());  // 현재 요소의 텍스트를 숫자로 변환하여 반환\
-              console.log(id);
-             $.ajax({
-                 url: '/checkCart',
-                 type: 'POST',
-                 data: { Id: id },
-                 success: function(response) {
-                     // 요청이 성공했을 때 실행될 함수
-                     console.log('서버 응답:', response);
-                     if(response ==='저장됨') {
-                         //장바구니에 담겨있다면 나타낼 UI
-                         var $btn = $this.closest('.storeItem').find('.cartBtn');
-                                    $btn.css('backgroundColor','#D65454');
-                                    $btn.find("span").css('color','#fff');
-                                    $btn.find('.cart').attr('stroke', '#fff');
-                                    $btn.find('.cart').attr('saved',"true");
+            //이미 장바구니 저장된 식품들은 담기버튼에 색상표현.
+            $('.ingreId').each(function() {
+                var $this = $(this); // 현재 요소를 $this에 저장
+                var id= parseFloat($(this).text());  // 현재 요소의 텍스트를 숫자로 변환하여 반환\
+                console.log(id);
+                $.ajax({
+                    url: '/checkCart',
+                    type: 'POST',
+                    data: { Id: id },
+                    success: function(response) {
+                        // 요청이 성공했을 때 실행될 함수
+                        console.log('서버 응답:', response);
+                        if(response ==='저장됨') {
+                            //장바구니에 담겨있다면 나타낼 UI
+                            var $btn = $this.closest('.storeItem').find('.cartBtn');
+                            $btn.css('backgroundColor','#D65454');
+                            $btn.find("span").css('color','#fff');
+                            $btn.find('.cart').attr('stroke', '#fff');
+                            $btn.find('.cart').attr('saved',"true");
 
-                         console.log("저장확인되어 버튼색상변경")
-                     } else {
-                         console.log("저장되지 않은 아이템")
-                     }
-                 },
-                 error: function (xhr, status, error) {
-                     // 요청이 실패했을 때 실행될 함수
-                     console.error('에러 발생:', error);
-                 }
-             });
-         })
-
-
-
-        // 담기 클릭시 장바구니 추가하기
-        $('.cartBtn').click(function() {
-            var $this = $(this);
-            var storeItemElement = $(this).closest('.storeItem');
-            var ingredientId = storeItemElement.find('.ingreId').text();
-            console.log("상품 ID: ", ingredientId);
-            //  상품 id를 전달 후 장바구니 추가 요청
-            $.ajax({
-                url: '/addCart', // 요청을 보낼 서버의 URL
-                type: 'POST', // HTTP 요청 방식
-                data: { Id: ingredientId }, // 서버로 보낼 데이터
-                success: function(response) {
-                    // 요청이 성공했을 때 실행될 함수
-                    console.log('서버 응답:', response);
-
-                    if(response ==='저장함'){
-                        //담기버튼 색상 변경
-                        $this.css('backgroundColor','#D65454');
-                        $this.find('span').css('color','#fff');
-                        $this.find('.cart').attr('stroke', '#fff');
-                        $this.find('.cart').attr('saved',"true");
-                        //"장바구니에 상품을 담았습니다" 출력
-                        $('#modalbox1').css('display', 'block');
-
-                    }else {
-                        //"이미 장바구니에 담겨있는 상품입니다" 출력
-                        $('#modalbox3').css('display', 'block');
+                            console.log("저장확인되어 버튼색상변경")
+                        } else {
+                            console.log("저장되지 않은 아이템")
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        // 요청이 실패했을 때 실행될 함수
+                        console.error('에러 발생:', error);
                     }
-                },
-                error: function(xhr, status, error) {
-                    // 요청이 실패했을 때 실행될 함수
-                    console.error('에러 발생:', error);
-                    $('#modalbox2').css('display', 'block');
-                }
+                });
+            })
+
+
+
+            // 담기 클릭시 장바구니 추가하기
+            $('.cartBtn').click(function() {
+                var $this = $(this);
+                var storeItemElement = $(this).closest('.storeItem');
+                var ingredientId = storeItemElement.find('.ingreId').text();
+                console.log("상품 ID: ", ingredientId);
+                //  상품 id를 전달 후 장바구니 추가 요청
+                $.ajax({
+                    url: '/addCart', // 요청을 보낼 서버의 URL
+                    type: 'POST', // HTTP 요청 방식
+                    data: { Id: ingredientId }, // 서버로 보낼 데이터
+                    success: function(response) {
+                        // 요청이 성공했을 때 실행될 함수
+                        console.log('서버 응답:', response);
+
+                        if(response ==='저장함'){
+                            //담기버튼 색상 변경
+                            $this.css('backgroundColor','#D65454');
+                            $this.find('span').css('color','#fff');
+                            $this.find('.cart').attr('stroke', '#fff');
+                            $this.find('.cart').attr('saved',"true");
+                            //"장바구니에 상품을 담았습니다" 출력
+                            $('#modalbox1').css('display', 'block');
+
+                        }else {
+                            //"이미 장바구니에 담겨있는 상품입니다" 출력
+                            $('#modalbox3').css('display', 'block');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // 요청이 실패했을 때 실행될 함수
+                        console.error('에러 발생:', error);
+                        $('#modalbox2').css('display', 'block');
+                    }
+                });
+
             });
 
-        });
 
 
 
 
+            // 담기 버튼 클릭시 나타나는 모달창 닫기
+            $('#btnClose').click(()=>{
+                $('#modalbox1').css('display','none');
+            })
+            $('#btnClose2').click(()=>{
+                $('#modalbox2').css('display','none');
+            })
+            $('#btnClose3').click(()=>{
+                $('#modalbox3').css('display','none');
+            })
 
-        // 담기 버튼 클릭시 나타나는 모달창 닫기
-        $('#btnClose').click(()=>{
-            $('#modalbox1').css('display','none');
-        })
-        $('#btnClose2').click(()=>{
-            $('#modalbox2').css('display','none');
-        })
-        $('#btnClose3').click(()=>{
-            $('#modalbox3').css('display','none');
-        })
-
-        $('#btnToCart').click(()=>{
-            window.location.href = "/cart";
-        })
-
+            $('#btnToCart').click(()=>{
+                window.location.href = "/cart";
+            })
 
 
-        $('.toDetail').click(function (){
+
+            $('.toDetail').click(function (){
                 var href =    $(this).attr('href');
                 var src = $(this).find('img').attr('src');
 
-            let previousData =localStorage.getItem('items');
+                let previousData =localStorage.getItem('items');
 
-            let items = previousData? JSON.parse(previousData) :[];
-               items.push({
-                    HREF :href,
-                    SRC  :src
-               });
+                let items = previousData? JSON.parse(previousData) :[];
+                var ch = true;
+                for (let i = 0; i < items.length; i++) {
+                    if (items[i]["HREF"] === href) {
+                        ch = false;
+                    }
+                }
+
+                if (items.length === 0 || ch) {
+                    items.push({
+                        HREF :href,
+                        SRC  :src
+                    });
+                }
+
                 if(items.length > 5){
                     items.shift();
                 }
 
                 let data = JSON.stringify(items);
-            localStorage.setItem('items', data);
+                localStorage.setItem('items', data);
             })
 
 
 
-        function loadRecentlyViewed() {
-            let previousData =localStorage.getItem('items');
-            //로컬스토리지에서 가져온 데이터가 null이면 빈배열을 넣고, 데이터가 있다면 파싱한다.
-            //let items = previousData? JSON.parse(previousData) :[];
-            let items;
-            if(previousData == null){
-                items= [];
-            }else {
-                items = JSON.parse(previousData);
-                // 자주본 상품 ui 보이도록 설정
-                $('#RecentlyViewedContainer').css('display','block');
+            function loadRecentlyViewed() {
+                let previousData =localStorage.getItem('items');
+                //로컬스토리지에서 가져온 데이터가 null이면 빈배열을 넣고, 데이터가 있다면 파싱한다.
+                //let items = previousData? JSON.parse(previousData) :[];
+                let items;
+                if(previousData == null){
+                    items= [];
+                }else {
+                    items = JSON.parse(previousData);
+                    // 자주본 상품 ui 보이도록 설정
+                    $('#RecentlyViewedContainer').css('display','block');
+                }
+
+
+                items.map(function (item,index){
+                    var itemHref=item.HREF;
+                    var itemSrc=item.SRC;
+                    var a = $("<a></a>").attr('href',itemHref);
+                    var img = $("<img/>").attr('src',itemSrc);
+                    img.addClass('imgSize');
+                    a.append(img);
+                    $('.RecentlyViewedBox').prepend(a); // 최신요소를 계속 해서 위쪽에 배치시킴
+                })
             }
-
-
-            items.map(function (item,index){
-                var itemHref=item.HREF;
-                var itemSrc=item.SRC;
-                var a = $("<a></a>").attr('href',itemHref);
-                var img = $("<img/>").attr('src',itemSrc);
-                img.addClass('imgSize');
-                a.append(img);
-                $('.RecentlyViewedBox').prepend(a); // 최신요소를 계속 해서 위쪽에 배치시킴
-            })
-        }
 
 
             $('#scrollUp').click(function() {
                 // 현재 .RecentlyViewedBox의 top 위치를 가죠옴
                 let currentTop = parseInt($('.RecentlyViewedBox').css('top'), 10);
                 console.log('currenttop:'+currentTop);
-                 if(currentTop  < 0 ){
-                     // top 위치를 +20px만큼  이동시킴
-                 $('.RecentlyViewedBox').css('top', (currentTop + 20) + 'px');
-                 }
+                if(currentTop  < 0 ){
+                    // top 위치를 +20px만큼  이동시킴
+                    $('.RecentlyViewedBox').css('top', (currentTop + 20) + 'px');
+                }
             });
 
 
@@ -186,124 +196,124 @@
                 }
             });
 
-        loadRecentlyViewed();
+            loadRecentlyViewed();
 
 
-                // 장바구니 icon 호버이벤트
-                $(".cartBtn").on("mouseenter",function(){
-                    $(this).find(".cart").attr('stroke', '#fff');
-                })
-                $(".cartBtn").on("mouseleave",function(){
-                    $(this).find(".cart[saved='false']").attr('stroke', '#333');
-                })
+            // 장바구니 icon 호버이벤트
+            $(".cartBtn").on("mouseenter",function(){
+                $(this).find(".cart").attr('stroke', '#fff');
+            })
+            $(".cartBtn").on("mouseleave",function(){
+                $(this).find(".cart[saved='false']").attr('stroke', '#333');
+            })
 
-    });
-</script>
+        });
+    </script>
 
 </head>
 <body >
-    <div class="templateBody">
-        <header>
-            <div class="header" th:replace="header :: header"></div>
-        </header>
-        <div class="mainBody">
-            <div class="storeContainer1">
-                <h2>재료 스토어</h2>
-                <div class="Container1_box">
-                    <ul class="Container1_boxul">
-                        <li><a th:href="@{/listIngredient/{i}(i=1, category='000')}">전체보기</a></li>
-                        <li><a th:href="@{/listIngredient/{i}(i=1, category='1')}">소고기</a></li>
-                        <li><a th:href="@{/listIngredient/{i}(i=1, category='2')}">돼지고기</a></li>
-                        <li><a th:href="@{/listIngredient/{i}(i=1, category='3')}">닭고기</a></li>
-                        <li><a th:href="@{/listIngredient/{i}(i=1, category='4')}">채소</a></li>
-                        <li><a th:href="@{/listIngredient/{i}(i=1, category='5')}">과일</a></li>
-                        <li>카테고리1</li>
-                        <li>카테고리2</li>
-                        <li>카테고리3</li>
-                    </ul>
-                </div>
-
-                <div class="Container1_box2">
-                    <ul class="Container1_box2ul">
-                        <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='id', direction='DESC')}">최신순</a></li>
-                        <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='id',direction='ASC')}">오래된순</a></li>
-                        <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='ingredientPrice', direction='DESC')}">가격높은순</a></li>
-                        <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='ingredientPrice',direction='ASC')}">가격낮은순</a></li>
-                    </ul>
-                </div>
+<div class="templateBody">
+    <header>
+        <div class="header" th:replace="header :: header"></div>
+    </header>
+    <div class="mainBody">
+        <div class="storeContainer1">
+            <h2>재료 스토어</h2>
+            <div class="Container1_box">
+                <ul class="Container1_boxul">
+                    <li><a th:href="@{/listIngredient/{i}(i=1, category='000')}">전체보기</a></li>
+                    <li><a th:href="@{/listIngredient/{i}(i=1, category='1')}">소고기</a></li>
+                    <li><a th:href="@{/listIngredient/{i}(i=1, category='2')}">돼지고기</a></li>
+                    <li><a th:href="@{/listIngredient/{i}(i=1, category='3')}">닭고기</a></li>
+                    <li><a th:href="@{/listIngredient/{i}(i=1, category='4')}">채소</a></li>
+                    <li><a th:href="@{/listIngredient/{i}(i=1, category='5')}">과일</a></li>
+                    <li>카테고리1</li>
+                    <li>카테고리2</li>
+                    <li>카테고리3</li>
+                </ul>
             </div>
 
-            <div class="storeContainer2">
-                <div class="storeContainer2GirdBox">
+            <div class="Container1_box2">
+                <ul class="Container1_box2ul">
+                    <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='id', direction='DESC')}">최신순</a></li>
+                    <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='id',direction='ASC')}">오래된순</a></li>
+                    <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='ingredientPrice', direction='DESC')}">가격높은순</a></li>
+                    <li><a th:href="@{/listIngredient/{i}(i=1, sortBy='ingredientPrice',direction='ASC')}">가격낮은순</a></li>
+                </ul>
+            </div>
+        </div>
 
-                    <div class="storeItem" th:each=" i : ${list}">
-                        <a th:href="@{/detailIngredient(ingredientId=${i.id})}" class="toDetail">
-                            <img th:attr="src=@{'../../static/ingredientImages/' + ${i.ingredientImage}}"
+        <div class="storeContainer2">
+            <div class="storeContainer2GirdBox">
+
+                <div class="storeItem" th:each=" i : ${list}">
+                    <a th:href="@{/detailIngredient(ingredientId=${i.id})}" class="toDetail">
+                        <img th:attr="src=@{'../../static/ingredientImages/' + ${i.ingredientImage}}"
                              class="storeItem_img"
                              onerror="this.onerror=null; this.src='../static/images/ingredients/img_none.png'">
-                        </a>
-                        <button class="cartBtn">
-                            <!-- <img class="cartIcon" src="../../static/images/icon/카트.svg"/> -->
-                            <svg width="22" height="22" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-                                <g fill="none" fill-rule="evenodd">
-                                    <path d="M36 36H0V0h36z"/>
-                                    <g class="cart" saved="false" transform="translate(5.164 6.547)" stroke="#333" stroke-linecap="square" stroke-linejoin="round" stroke-width="1.7">
-                                        <path d="m25.68 3.66-2.72 11.57H7.37L4.66 3.66z"/>
-                                        <circle cx="20.52" cy="20.78" r="2.14"/>
-                                        <circle cx="9.81" cy="20.78" r="2.14"/>
-                                        <path d="M0 0h3.8l1.76 7.5"/>
-                                    </g>
+                    </a>
+                    <button class="cartBtn">
+                        <!-- <img class="cartIcon" src="../../static/images/icon/카트.svg"/> -->
+                        <svg width="22" height="22" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                            <g fill="none" fill-rule="evenodd">
+                                <path d="M36 36H0V0h36z"/>
+                                <g class="cart" saved="false" transform="translate(5.164 6.547)" stroke="#333" stroke-linecap="square" stroke-linejoin="round" stroke-width="1.7">
+                                    <path d="m25.68 3.66-2.72 11.57H7.37L4.66 3.66z"/>
+                                    <circle cx="20.52" cy="20.78" r="2.14"/>
+                                    <circle cx="9.81" cy="20.78" r="2.14"/>
+                                    <path d="M0 0h3.8l1.76 7.5"/>
                                 </g>
-                            </svg>
-                            <span>담기</span>
-                        </button>
-                        <div class="storeItem_info">
-                            <a th:href="@{/detailIngredient(ingredientId=${i.id})}"><p th:text="${i.ingredientName}">상품명</p></a>
-                            <p th:text="${i.ingredientPrice}+'원'">상품가격</p>
-                            <P th:text="${i.id}" class="ingreId">재료id</P><!--장바구니담기 전송할 i.id-->
-                        </div>
+                            </g>
+                        </svg>
+                        <span>담기</span>
+                    </button>
+                    <div class="storeItem_info">
+                        <a th:href="@{/detailIngredient(ingredientId=${i.id})}"><p th:text="${i.ingredientName}">상품명</p></a>
+                        <p th:text="${i.ingredientPrice}+'원'">상품가격</p>
+                        <P th:text="${i.id}" class="ingreId">재료id</P><!--장바구니담기 전송할 i.id-->
                     </div>
-
                 </div>
-                <div class="pageBox">
-                     <th:block th:each="i:${#numbers.sequence(1,totalPage)}">
-                        <a class="pageNum" th:href="@{|/listIngredient/${i}|}" th:text="${i}"></a> <!--URI방식임  -->
-                     </th:block>
 
-                </div>
             </div>
-            <div class="modelContainer">
-                <div class="modalbox1" id="modalbox1">
-                        <h3>장바구니에 상품을 담았습니다.</h3>  
-                        <button class="btnModal" id="btnToCart">장바구니로 이동</button>
-                        <button class="btnModal" id="btnClose">확인</button>
-                </div>
-                <div class="modalbox2" id="modalbox2" >
-                    <h3>로그인시 이용이 가능합니다🙏</h3>
-                    <button class="btnModal" id="btnClose2">확인</button>
-                </div>
-                <div class="modalbox3" id="modalbox3" >
-                    <h3>이미 장바구니에 담겨있는 상품입니다.</h3>
-                    <button class="btnModal" id="btnClose3">확인</button>
-                </div>
+            <div class="pageBox">
+                <th:block th:each="i:${#numbers.sequence(1,totalPage)}">
+                    <a class="pageNum" th:href="@{|/listIngredient/${i}|}" th:text="${i}"></a> <!--URI방식임  -->
+                </th:block>
 
-           </div>
+            </div>
+        </div>
+        <div class="modelContainer">
+            <div class="modalbox1" id="modalbox1">
+                <h3>장바구니에 상품을 담았습니다.</h3>
+                <button class="btnModal" id="btnToCart">장바구니로 이동</button>
+                <button class="btnModal" id="btnClose">확인</button>
+            </div>
+            <div class="modalbox2" id="modalbox2" >
+                <h3>로그인시 이용이 가능합니다🙏</h3>
+                <button class="btnModal" id="btnClose2">확인</button>
+            </div>
+            <div class="modalbox3" id="modalbox3" >
+                <h3>이미 장바구니에 담겨있는 상품입니다.</h3>
+                <button class="btnModal" id="btnClose3">확인</button>
+            </div>
 
-                <!-- 최근 본 상품-->
-           <div id="RecentlyViewedContainer">
-             <img id="scrollUp"  src="../../static/images/icon/upArrow.png"/>
-                <div><h4>최근 본 상품</h4></div>
-               <div id="recentlyViewedItems" class="viewport">
+        </div>
+
+        <!-- 최근 본 상품-->
+        <div id="RecentlyViewedContainer">
+            <img id="scrollUp"  src="../../static/images/icon/upArrow.png"/>
+            <div><h4>최근 본 상품</h4></div>
+            <div id="recentlyViewedItems" class="viewport">
                 <div class="RecentlyViewedBox">
                     <!-- 최근 본 상품 목록 영역-->
                 </div>
-               </div>
-             <img id="scrollDown"  src="../../static/images/icon/downArrow.png"/>
-           </div>
-
-
+            </div>
+            <img id="scrollDown"  src="../../static/images/icon/downArrow.png"/>
         </div>
-        <div class="footer" th:replace="footer :: footer"></div>
+
+
     </div>
+    <div class="footer" th:replace="footer :: footer"></div>
+</div>
 </body>
 </html>
