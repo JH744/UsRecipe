@@ -192,6 +192,9 @@ public class MemberController {
         String pw = memberService.pwCheck(id);
         System.out.println("입력 비번 : " + password);
         boolean matches = passwordEncoder.matches(password, pw);
+        if(matches){
+            session.setAttribute("pw",password);
+        }
 
         return matches;
 
@@ -201,7 +204,7 @@ public class MemberController {
     @GetMapping("/dataChange")
     public String dataChangeForm(Model model,MemberDto memberDto,HttpSession session){
         model.addAttribute("memberDto",memberDto);
-        model.addAttribute("login", memberService.findById((String)session.getAttribute("userid")));
+        model.addAttribute("login", memberService.findById((String) session.getAttribute("userid")));
 
 
         return "/user/dataChange";
@@ -209,10 +212,17 @@ public class MemberController {
 
     //입력한 데이터를 통해 정보를 변경하기 위한 메서드
     @PostMapping("/dataChange")
-    public String dataChangeSubmit(MemberDto memberDto,String addr1, String addr2){
+    public String dataChangeSubmit(MemberDto memberDto,HttpSession session, String addr1, String addr2){
         System.out.println("정보변경");
+        System.out.println(memberDto.getPassword());
 
         String addr = addr1 + " " + addr2;
+        Member member = memberService.findById((String)session.getAttribute("userid"));
+        if(memberDto.getPassword().isEmpty()){
+            memberDto.setPassword((String)session.getAttribute("pw"));
+
+        }
+        System.out.println("비밀번호 : " + memberDto.getPassword());
 
         memberDto.setAddr(addr);
 
