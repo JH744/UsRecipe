@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
@@ -115,7 +115,13 @@
                 <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='recipeViews', direction='DESC')}">조회수순</a></li>
                 <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='recipeTitle', direction='ASC')}">레시피명순</a></li>
             </ul>
-        </div>
+       </div>
+         <div class="AddRecipeBox"   sec:authorize="isAuthenticated()">
+              <div class="AddRecipe">
+             <a href="/addRecipe" ><span>레시피등록</span></a>
+              </div>
+         </div>
+
         <div class="HowAboutContainer">
             <h3>이 레시피는 어때요?</h3>
             <div class="serchbox">
@@ -126,6 +132,7 @@
                 <a th:href="@{/detailRecipe(recipeNum=${HowAbout.id})}">
                     <img class="ThisRecipe_img" th:src="@{'../../static/images/' + ${HowAbout.recipeThumbnail}}" alt="레시피썸넬" />
                 </a>
+                <div class="gra"></div>
                 <h3 th:text="${HowAbout.recipeTitle}"></h3>
             </div>
             <div class="ThisrecipeInfo">
@@ -176,6 +183,9 @@
 
 
         </div>
+
+
+
 
     </div>
     <div class="footer" th:replace="footer :: footer"></div>
