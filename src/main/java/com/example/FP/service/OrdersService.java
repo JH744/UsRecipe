@@ -83,9 +83,11 @@ public class OrdersService {
     public void saveOrder(Orders o){
         or.save(o);
     }
+
     public void changeState(Long id){
         or.updateState(id);
     }
+
 
     public Member buyMember(Long id){
         return odr.buyMember(id);
@@ -124,6 +126,6 @@ public class OrdersService {
                 odr.save(od);
             }
         }
-
     }
+
 
