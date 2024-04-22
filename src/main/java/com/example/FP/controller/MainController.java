@@ -33,6 +33,7 @@ public class MainController {
             session.setAttribute("userid", username);
             session.setAttribute("image", m.getImage());
             session.setAttribute("role", m.getRole());
+
             System.out.println(username);
             System.out.println("OAuth2User:" + oauth.getAttributes());
         }

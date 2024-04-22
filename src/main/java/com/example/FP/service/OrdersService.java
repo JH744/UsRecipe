@@ -86,6 +86,9 @@ public class OrdersService {
     public void changeState(Long id){
         or.updateState(id);
     }
+    public Member buyMember(Long id){
+        return odr.buyMember(id);
+    }
 
 
 
