@@ -122,15 +122,17 @@
                 <input type="text" class="searchbar" id="searchbar">
                 <button class="btnsearch" id="btnsearch">검색</button>
             </div>
-            <div class="Thisrecipe"> <!--여기에 레시피 사진추가-->
+            <div class="Thisrecipe">
+                <a th:href="@{/detailRecipe(recipeNum=${HowAbout.id})}">
+                    <img class="ThisRecipe_img" th:src="@{'../../static/images/' + ${HowAbout.recipeThumbnail}}" alt="레시피썸넬" />
+                </a>
+                <h3 th:text="${HowAbout.recipeTitle}"></h3>
             </div>
             <div class="ThisrecipeInfo">
                 <div class="infobox">
-                    <h4>아침을 깨우는 예술, 부드러운 향연</h4>  <!--레시피 설명-->
-                    <p>황금빛 겉면 아래 숨겨진 부드러움과 고소한 치즈의 조화,
-                        오믈렛은 당신의 아침 식탁을 예술작품으로 변모시킵니다.
-                        신선한 허브와 다채로운 재료가 더해져 매 순간을
-                        특별하게 만드는 이 요리로 하루를 긍정적으로 시작해보세요.</p>
+                    <h4 th:text="${HowAbout.recipeWriter}+'님의 레시피입니다.'"></h4>  <!--레시피 설명-->
+                    <p>매일의 식사를 특별하게 만드세요.<br>
+                        매번 특별한 레시피를 찾고 계시나요?<br><br> '이 레시피 어때요?'에서 그 해답을 찾아보세요.</p>
                 </div>
             </div>
 
@@ -140,8 +142,10 @@
             <h3>주간 인기 레시피</h3>
             <div class="hotrecipebox" >
                 <div class="hotrecipe1" th:each=" Top4 :${listTop4}"  >
-                    <!--                  <img th:attr="src=@{'../static/images/' + ${Top4.recipeThumbnail}}"  class="hotRecipeImg">-->
-                    <span th:text="${Top4.recipeTitle}">인기레시피 타이틀</span>
+                    <a th:href="@{/detailRecipe(recipeNum=${Top4.id})}">
+                        <img th:attr="src=@{'../static/images/' + ${Top4.recipeThumbnail}}"  class="hotRecipeImg">
+                         <span th:text="${Top4.recipeTitle}">인기레시피 타이틀</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -149,9 +153,12 @@
         <div class="recipeContainer">
 
             <div class="recipeItem"  th:each=" r : ${list}">
-                <div class="recipeItem_img"></div>
+                <a th:href="@{/detailRecipe(recipeNum=${r.id})}">
+                <img class="recipeItem_img" th:src="@{'../../static/images/' + ${r.recipeThumbnail}}" alt="레시피썸넬"
+                     onerror="this.onerror=null; this.src='../static/images/ingredients/img_none.png'"/>
+                </a>
                 <div class="recipeItem_info">
-                    <p th:text="${r.recipeTitle}">레시피명</p>
+                    <a th:href="@{/detailRecipe(recipeNum=${r.id})}"> <p th:text="${r.recipeTitle}" >레시피명</p></a>
                     <span th:text="${r.recipeWriter}">닉네임</span><br>
                     <span th:text="'조회수   '+${r.recipeViews}">조회수</span>
                     <span th:text="${r.id}" class="recId">레시피id</span>

@@ -41,19 +41,18 @@ public class WishListController {
 
     @PostMapping("/addWish")
     @ResponseBody
-    public String addWish(Model model, @RequestParam ("Id") Long Id){
+    public String addWish(Model model, @RequestParam ("Id") Long Id,HttpSession session){
         System.out.println("전달받은거:"+Id);
-        long memberId = 52; //임시 회원id
         // 찜목록에 이미 있는 지 조회
-        List<WishList> result =  ws.findById(Id,memberId);
+        List<WishList> result =  ws.findById(Id,session);
 
         String coment= "";
         // result가 비어있다면 위시리스트에 새로 저장함.
         if(result.isEmpty()){
-            ws.addWish(Id,memberId);
+            ws.addWish(Id,session);
             coment = "저장함";
         }else{
-            ws.deleteWish(memberId,Id);
+            ws.deleteWish(Id,session);
             coment ="삭제함";
         }
         System.out.println(coment);
@@ -64,11 +63,10 @@ public class WishListController {
 
     @PostMapping("/checkWish")
     @ResponseBody
-    public String checkWish(@RequestParam("Id") long Id){
+    public String checkWish(@RequestParam("Id") long Id, HttpSession session){
         System.out.println("확인할 id :"+Id);
-        long memberId = 52; //임시 회원id
 
-        List<WishList> result =  ws.findById(Id,memberId);
+        List<WishList> result =  ws.findById(Id,session);
         String coment= "";
         if(result.isEmpty()){
             coment = "저장안됨";

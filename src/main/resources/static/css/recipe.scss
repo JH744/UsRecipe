@@ -105,7 +105,6 @@ body{
   %이레시피어때요{
     margin: 0;
     padding: 0;
-    width: 50%;
     height: 300px;
     border-radius: 5px
   }
@@ -113,22 +112,28 @@ body{
   
   .Thisrecipe{
     @extend %이레시피어때요;
-    background-image: url(../images/오믈렛.png);
-    background-size: auto;
-  
+    width: 50%;
     float: left;
   
     h3{
       color: #fff;
-      position: relative;
       top: 250px;
       left: 180px; 
-  
+      position: relative;
+      top: -50px;
     }
   }
-  
+
+  .ThisRecipe_img{
+    @extend %이레시피어때요;
+    width: 100%;
+  }
+
+
+
   .ThisrecipeInfo{
     @extend %이레시피어때요;
+    width: 50%;
     background-color:#f2f2f2;
     float: right;
   }
@@ -158,12 +163,12 @@ body{
     width: 160px;
     border-radius: 10px;
     //나중에 이미지 경로 지워야함 
-    background-image: url(../images/김치볶음밥.png);
+    // background-image: url(../images/김치볶음밥.png);
   
     span{
       color: #fff;
       position: relative;
-      top:200px;
+      top:-50px;
       left: 43px;
       font-size: large;
     }
@@ -178,6 +183,7 @@ body{
     height: 245px;
     width: 160px;
     border-radius: 10px;
+    filter: brightness(70%);
   }
   
   
@@ -214,9 +220,10 @@ body{
   }
   
   .recipeItem_img{
+    display: block;
     width: 220px;
     height: 220px;
-    background-image: url(../images/된장국.png);
+    
   }
 
 

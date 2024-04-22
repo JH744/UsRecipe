@@ -21,4 +21,7 @@ public interface IngredientRepository extends JpaRepository<Ingredient,Long>,Ing
 
 
     List<Ingredient> findAllByIngredientNameContaining(String keyword);
+
+
+    Ingredient findByIngredientName(String ingredientName);
 }

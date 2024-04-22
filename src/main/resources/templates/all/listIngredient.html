@@ -140,11 +140,76 @@
         })
 
 
+
+        $('.toDetail').click(function (){
+                console.log("a태그 눌러짐");
+                var href =    $(this).attr('href');
+                console.log("가져온href:"+href);
+                var src = $(this).find('img').attr('src');
+                console.log("가져온src:"+src);
+
+            let previousData =localStorage.getItem('items');
+            let items = previousData? JSON.parse(previousData) :[];
+               items.push({
+                    HREF :href,
+                    SRC  :src
+               });
+                if(items.length > 5){
+                    items.shift();
+                }
+
+                let data = JSON.stringify(items);
+            localStorage.setItem('items', data);
+            })
+
+
+
+        function loadRecentlyViewed() {
+            let previousData =localStorage.getItem('items');
+            //로컬스토리지에서 가져온 데이터가 null이면 빈배열을 넣고, 데이터가 있다면 파싱한다.
+            //let items = previousData? JSON.parse(previousData) :[];
+            let items;
+            if(previousData == null){
+                items= [];
+            }else {
+                items = JSON.parse(previousData);
+                $('#RecentlyViewedContainer').css('display','block');
+            }
+
+
+            items.map(function (item,index){
+                var itemHref=item.HREF;
+                var itemSrc=item.SRC;
+                var a = $("<a></a>").attr('href',itemHref);
+                var img = $("<img/>").attr('src',itemSrc);
+                img.addClass('imgSize');
+                a.append(img);
+                $('.RecentlyViewedBox').prepend(a); // 최신요소를 계속 해서 위쪽에 배치시킴
+            })
+        }
+
+
+
+            $('#scrollUp').click(function() {
+                // 현재 .RecentlyViewedBox의 top 위치를 가죠옴
+                var currentTop = parseInt($('.RecentlyViewedBox').css('top'), 10);
+                // top 위치를 +20px만큼  이동시킴
+                $('.RecentlyViewedBox').css('top', (currentTop + 20) + 'px');
+            });
+
+            $('#scrollDown').click(function() {
+                // 현재 .RecentlyViewedBox의 top 위치를 가져옴
+                var currentTop = parseInt($('.RecentlyViewedBox').css('top'), 10);
+                // top 위치를 -20px만큼 이동
+                $('.RecentlyViewedBox').css('top', (currentTop - 20) + 'px');
+            });
+
+
+
+        loadRecentlyViewed();
+
+
     });
-
-
-
-
 </script>
 
 </head>
@@ -155,7 +220,7 @@
         </header>
         <div class="mainBody">
             <div class="storeContainer1">
-                <h2>스토어</h2>
+                <h2>재료 스토어</h2>
                 <div class="Container1_box">
                     <ul class="Container1_boxul">
                         <li><a th:href="@{/listIngredient/{i}(i=1, category='000')}">전체보기</a></li>
@@ -184,15 +249,18 @@
                 <div class="storeContainer2GirdBox">
 
                     <div class="storeItem" th:each=" i : ${list}">
-                        <div class="storeItem_img"></div>
-                        <button class="cartBtn"><img src="../../static/images/icon/카트.svg"/><span>담기</span></button>
+                        <a th:href="@{/detailIngredient(ingredientId=${i.id})}" class="toDetail">
+                            <img th:attr="src=@{'../static/images/ingredients/' + ${i.ingredientImage}}"
+                             class="storeItem_img"
+                             onerror="this.onerror=null; this.src='../static/images/ingredients/img_none.png'">
+                        </a>
+                        <button class="cartBtn"><img class="cartIcon" src="../../static/images/icon/카트.svg"/><span>담기</span></button>
                         <div class="storeItem_info">
-                            <p th:text="${i.ingredientName}">상품명</p>
+                            <a th:href="@{/detailIngredient(ingredientId=${i.id})}"><p th:text="${i.ingredientName}">상품명</p></a>
                             <p th:text="${i.ingredientPrice}">상품가격</p>
-                            <P th:text="${i.id}" class="ingreId">재료id</P>
+                            <P th:text="${i.id}" class="ingreId">재료id</P><!--장바구니담기 전송할 i.id-->
                         </div>
                     </div>
-
 
                 </div>
                 <div class="pageBox">
@@ -209,7 +277,7 @@
                         <button class="btnModal" id="btnClose">확인</button>
                 </div>
                 <div class="modalbox2" id="modalbox2" >
-                    <h3>장바구니에 상품을 추가하지 못했습니다.</h3>
+                    <h3>로그인시 이용이 가능합니다🙏</h3>
                     <button class="btnModal" id="btnClose2">확인</button>
                 </div>
                 <div class="modalbox3" id="modalbox3" >
@@ -218,6 +286,19 @@
                 </div>
 
            </div>
+
+                <!-- 최근 본 상품-->
+           <div id="RecentlyViewedContainer">
+             <img id="scrollUp"  src="../../static/images/icon/upArrow.png"/>
+                <div><h4>최근 본 상품</h4></div>
+               <div id="recentlyViewedItems" class="viewport">
+                <div class="RecentlyViewedBox">
+                    <!-- 최근 본 상품 목록 영역-->
+                </div>
+               </div>
+             <img id="scrollDown"  src="../../static/images/icon/downArrow.png"/>
+           </div>
+
 
         </div>
         <div class="footer" th:replace="footer :: footer"></div>

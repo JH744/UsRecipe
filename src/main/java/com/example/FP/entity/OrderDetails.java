@@ -3,22 +3,23 @@ package com.example.FP.entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.Optional;
 
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 public class OrderDetails {
-    @Id@GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "order_detail_id")
     private Long id;
 
-    
+
     private int cnt;
 
     @ManyToOne
@@ -35,7 +36,6 @@ public class OrderDetails {
     private Ingredient ordersIngredient;
 
 
-
     public OrderDetails(int cnt, Orders ordersDetail, Member orderDetailsMember, Ingredient ordersIngredient) {
 
         this.cnt = cnt;
@@ -44,4 +44,6 @@ public class OrderDetails {
         this.ordersIngredient = ordersIngredient;
 
     }
+
+
 }

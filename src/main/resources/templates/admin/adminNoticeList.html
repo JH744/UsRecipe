@@ -172,6 +172,13 @@
 
 
     </style>
+    <script>
+        $(function (){
+            $("#btn_insert").click(function (){
+                location.href = "/admin/noticeInsert";
+            })
+        })
+    </script>
 </head>
 <body>
 <div class="templateBody">
@@ -209,7 +216,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="list:${list}">
-                                    <td class="orderList_td"><a th:text="${list.id}" th:href="@{/noticeDetail/${list.id}}"></a></td>
+                                    <td class="orderList_td"><a th:text="${list.id}" th:href="@{|/noticeDetail/${list.id}|}"></a></td>
                                     <td class="orderList_td" th:text="${list.noticeTitle}"></td>
                                     <td class="orderList_td" th:text="${list.noticeSubmitDate}"></td>
                                     <td class="orderList_td"><a th:href="@{|/admin/noticeDelete/${list.id}|}" th:text="삭제"></a></td>
@@ -228,7 +235,7 @@
                     <script src='/js/plugins.js'></script>
                     <script src='/js/scripts.js'></script>
                     <script src='/js/masonry.pkgd.min.js'></script>
-
+                    <button id="btn_insert">생성</button>
                     </body>
 
                 </div>
