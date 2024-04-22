@@ -6,6 +6,7 @@ import com.example.FP.repository.RecipeRepository;
 import com.example.FP.repository.MemberRepository;
 import com.example.FP.repository.RecipeRepository;
 import com.example.FP.repository.WishListRepository;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ public class WishListService {
 
     private final RecipeRepository rr;
     private final MemberRepository mr;
+    private final MemberService ms;
 
     public List<WishList> findAllWishList(String userid){
         return wr.findByUserid(userid);
@@ -29,24 +31,24 @@ public class WishListService {
 
 
     //레시피목록 찜버튼 클릭   위시리스트추가
-    public void addWish(Long id, long memberId) {
+    public void addWish(Long id,HttpSession session) {
+        Member m= ms.findById((String) session.getAttribute("userid"));
         Optional<Recipe> recipe =rr.findById(id);
         Recipe r=recipe.get();
-        Optional<Member> member=mr.findById(memberId);
-        Member  m = member.get();
         WishList wishList = new WishList(m,r);
         wr.save(wishList);
     }
 
 
-
-    public List<WishList> findById(Long id, long memberId) {
-        return wr.findByWishlistMemberIdAndWishlistRecipeId(memberId, id);
+    public List<WishList> findById(Long id, HttpSession session) {
+        Member m= ms.findById((String) session.getAttribute("userid"));
+        return wr.findByWishlistMemberIdAndWishlistRecipeId(m.getId(), id);
     }
 
     // 로그인회원id와 레시피id가 일치하는 위시리스트삭제.
-    public void deleteWish(long memberId,Long id) {wr.deleteByMemberIdAndRecipeId(memberId,id);}
-
+    public void deleteWish(Long id,HttpSession session) {
+        Member m= ms.findById((String) session.getAttribute("userid"));
+        wr.deleteByMemberIdAndRecipeId(m.getId(),id);}
 
 
 

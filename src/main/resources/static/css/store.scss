@@ -131,9 +131,6 @@ a{
     font-weight: 600px;
   }
 
-  img{
-    height: 22px;
-  }
 
   img,span{
     vertical-align: middle;
@@ -146,15 +143,18 @@ a{
   background-color: $버튼색상;
 }
 
-
+.cartIcon{
+  height: 22px;
+}
 
 
 .storeItem_img{
+  display: block;
   border-radius: 2%;
   width: 249px; height: 320px;
-  background-image: url(../images/icon/토마토.png);
-  background-repeat: no-repeat;
-  background-size: contain;
+  // background-image: url(../images/icon/토마토.png);
+  // background-repeat: no-repeat;
+  // background-size: contain;
 
 
 }
@@ -252,3 +252,40 @@ a{
 }
 
 
+#RecentlyViewedContainer{
+  position: fixed;
+  top: 30%;
+  right: 30px;
+  padding: 13px;
+  border: 2px solid $애플배경색;
+  display: none;
+  h4{
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+
+}
+.viewport{
+  max-height: 350px;
+  overflow-y: hidden;
+}
+.RecentlyViewedBox{
+  max-height: 330px;  
+  position: relative;
+}
+
+
+.imgSize{
+  width: 82px;
+  height:100px;
+  display: block;
+  margin: 4px 0px;
+}
+
+
+
+#scrollUp, #scrollDown{
+  display: block;
+  height: 22px;width: 22px;
+  margin: auto;
+}
