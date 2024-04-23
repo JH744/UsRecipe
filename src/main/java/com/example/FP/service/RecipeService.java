@@ -60,6 +60,14 @@ public class RecipeService {
         return recipesList;
     }
 
+    //레시피 목록 카테고리+검색+ 페이지네이션 + 맴버id//
+    public Page<Recipe> listRecipes(String keyword,Long categoryId, Long memberId, Pageable pageable) {
+        Page<Recipe> recipesList =
+                rr.findByTitleContainingAndCategoryAndMemberId(keyword, categoryId, memberId,pageable);
+
+        return recipesList;
+    }
+
     //레시피 전체 목록 + 페이지네이션 + 검색
     public Page<Recipe> listAll(Pageable pageable, String keyword) {
         return rr.findByTitleContaining(keyword, pageable);

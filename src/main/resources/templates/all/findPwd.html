@@ -34,12 +34,11 @@
             $(".e138_612").click(function (){
                 location.href = "/all/findUserid";
             })
-
-            var ch = [[${success}]];
-            if (!ch) {
-                alert("아이디와 비밀번호를 알맞게 입력해주세요")
-            }
         })
+    </script>
+
+    <script th:if="${success != null}">
+        alert("이름과 이메일를 알맞게 입력해주세요");
     </script>
 </head>
 <body>

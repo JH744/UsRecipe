@@ -29,7 +29,9 @@ public class MemberController {
 
     // 로그인 폼
     @GetMapping("/login")
-    public String loginForm(HttpServletRequest request){
+    public String loginForm(HttpServletRequest request, Model model){
+        model.addAttribute("errorMessage", request.getSession().getAttribute("errorMessage"));
+        request.getSession().removeAttribute("errorMessage");
         // 이전 페이지의 주소를 가져옴
         String uri = request.getHeader("Referer");
         if (uri != null && !uri.contains("/login")) {
@@ -109,7 +111,10 @@ public class MemberController {
 
     // 아이디 찾기
     @GetMapping("/all/findUserid")
-    public String findIdForm(){ return "/all/findUserid"; }
+    public String findIdForm(Model model){
+        model.addAttribute("success", null);
+        return "/all/findUserid";
+    }
     
     // 아이디 찾기
     @PostMapping("/all/findUserid")
@@ -120,16 +125,17 @@ public class MemberController {
             model.addAttribute("success", "fail");
             return "/all/findUserid";
         }
-
         model.addAttribute("name", name);
         model.addAttribute("userid", map.get("userid"));
-
         return "/all/findUseridOk";
     }
 
     // 비밀번호 찾기
     @GetMapping("/all/findUserPwd")
-    public String findPwdForm(){ return "/all/findPwd"; }
+    public String findPwdForm(Model model){
+        model.addAttribute("success", null);
+        return "/all/findPwd";
+    }
 
     // 비밀번호 찾기
     @PostMapping("/all/findUserPwd")
