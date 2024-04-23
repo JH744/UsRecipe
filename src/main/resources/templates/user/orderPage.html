@@ -57,6 +57,10 @@
                 $(".t3").append(tr);
             })
 
+
+
+
+
             // 총결제금액  구하기  =    총상품가격 - 적립금
             function getTotalOrderPrice(){
                 var updatedTotal = 0;
@@ -64,6 +68,7 @@
                 var hasPoint = $('#hasPoint').text();
                 console.log('usePoint:'+usePoint);
                 console.log('hasPoint:'+hasPoint);
+
 
 
 
@@ -103,9 +108,14 @@
             });
 
             //최대 사용 체크 시
-            $('#usePoint').change(()=>{
+            $('#usePoint').change(function() {
+                // 사용 포인트 입력칸에 음수가 들어갈 경우 0으로 바꾸기.
+                if ($(this).val() < 0) {
+                    $(this).val('0');
+                }
+
                 getTotalOrderPrice();
-            })
+            });
 
 
 
@@ -138,12 +148,19 @@
             ///////   결제하기  //////////
 
             $(".btnOrder").click(function(){
+                let name ;
+                if(count == 1 ){
+                    name = orderData.items[0].name;
+                }else{
+                    name = orderData.items[0].name +' 외 '+(count-1)+'개';
+                }
+
                 IMP.init("imp40354073"); //r가맹점 식별코드
                 IMP.request_pay({
                     pg:'kcp',
                     pay_method:'card',
                     merchant_uid:'merchant_'+new Date().getTime(),
-                    name:orderData.items[0].name +' 외 '+(count-1)+'개' ,
+                    name:name,
                     amount:$('#totalOrderPrice').text(),  // 결제가격
                     buyer_email:$('#Email').val(),
                     buyer_name:$('#Name').val(),
@@ -181,6 +198,9 @@
                     }
                 });
             });
+
+
+
 
 
         });

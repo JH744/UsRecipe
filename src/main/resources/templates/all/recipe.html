@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>유스레시피</title>
@@ -115,7 +115,13 @@
                 <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='recipeViews', direction='DESC')}">조회수순</a></li>
                 <li><a th:href="@{/listRecipe/{i}(i=1, sortBy='recipeTitle', direction='ASC')}">레시피명순</a></li>
             </ul>
-        </div>
+       </div>
+         <div class="AddRecipeBox"   sec:authorize="isAuthenticated()">
+              <div class="AddRecipe">
+             <a href="/addRecipe" ><span>레시피등록</span></a>
+              </div>
+         </div>
+
         <div class="HowAboutContainer">
             <h3>이 레시피는 어때요?</h3>
             <div class="serchbox">
@@ -124,8 +130,9 @@
             </div>
             <div class="Thisrecipe" th:if="${HowAbout != null}">
                 <a th:href="@{/detailRecipe(recipeNum=${HowAbout.id})}">
-                    <img class="ThisRecipe_img" th:src="@{'../../static/images/' + ${HowAbout.recipeThumbnail}}" alt="레시피썸넬" />
+                    <img class="ThisRecipe_img" th:src="@{'../../static/recipeImages/' + ${HowAbout.recipeThumbnail}}" alt="레시피썸넬" />
                 </a>
+                <div class="gra"></div>
                 <h3 th:text="${HowAbout.recipeTitle}"></h3>
             </div>
             <div class="ThisrecipeInfo" th:if="${HowAbout != null}">
@@ -143,7 +150,7 @@
             <div class="hotrecipebox" >
                 <div class="hotrecipe1" th:each=" Top4 :${listTop4}"  >
                     <a th:href="@{/detailRecipe(recipeNum=${Top4.id})}">
-                        <img th:attr="src=@{'../static/images/' + ${Top4.recipeThumbnail}}"  class="hotRecipeImg">
+                        <img th:attr="src=@{'../static/recipeImages/' + ${Top4.recipeThumbnail}}"  class="hotRecipeImg">
                         <span th:text="${Top4.recipeTitle}">인기레시피 타이틀</span>
                     </a>
                 </div>
@@ -154,7 +161,7 @@
 
             <div class="recipeItem"  th:each=" r : ${list}">
                 <a th:href="@{/detailRecipe(recipeNum=${r.id})}">
-                    <img class="recipeItem_img" th:src="@{'../../static/images/' + ${r.recipeThumbnail}}" alt="레시피썸넬"
+                    <img class="recipeItem_img" th:src="@{'../../static/recipeImages/' + ${r.recipeThumbnail}}" alt="레시피썸넬"
                          onerror="this.onerror=null; this.src='../static/images/ingredients/img_none.png'"/>
                 </a>
                 <div class="recipeItem_info">
@@ -162,7 +169,7 @@
                     <span th:text="${r.recipeWriter}">닉네임</span><br>
                     <span th:text="'조회수   '+${r.recipeViews}">조회수</span>
                     <span th:text="${r.id}" class="recId">레시피id</span>
-                    <span class="btnWish"><img src="../../static/images/icon/heart1.png" height="20px" class="heartIcon" /></span>
+                    <span class="btnWish"><img src="../../static/images/icon/heart1.png" height="20px" class="heartIcon"  /></span>
                 </div>
             </div>
 
@@ -176,6 +183,9 @@
 
 
         </div>
+
+
+
 
     </div>
     <div class="footer" th:replace="footer :: footer"></div>

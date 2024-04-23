@@ -127,7 +127,10 @@ public class RecipeService {
             List<Map<String, Object>> stepDataList = (List<Map<String, Object>>) jsonMap.get("stepDataList");
             String recipeThumbnail = jsonMap.get("recipeThumbnail").toString();
             String recipeTitle = jsonMap.get("recipeTitle").toString();
-            String recipeUrl = jsonMap.get("recipeUrl").toString();
+            String recipeUrl = null;
+            if(jsonMap.get("recipeUrl")!=null){
+                recipeUrl=jsonMap.get("recipeUrl").toString();
+            }
             Long recipeCategoryId = Long.parseLong(jsonMap.get("recipeCategory").toString());
 //            update라면 해당 recipeId를 넣고 새로운 요리순서, 재료목록을 넣기위해 기존건 다 삭제해준다.
             if (jsonMap.get("recipeId") != null) {

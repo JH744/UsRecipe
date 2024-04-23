@@ -160,7 +160,7 @@ function addCart(checkBoxClass, url) {
 function listAddToModal(list) {
     $("#modal_tbody").empty();
     $.each(list, function () {
-        var ingredientImage = $("<td class='modalListTd'><img src='../../static/images/" + this.ingredientImage + "' style='width:50px;height: 50px'></td>");
+        var ingredientImage = $("<td class='modalListTd'><img src='../../static/ingredientImages/" + this.ingredientImage + "' style='width:50px;height: 50px'></td>");
         var ingredientName = $("<td class='modalListTd'>" + this.ingredientName + "</td>");
         var ingredientPrice = $("<td class='modalListTd'>" + this.ingredientPrice + "</td>");
         var ingredientAmountAndIngredientUnit = $("<td class='modalListTd'>" + this.ingredientAmount + this.ingredientUnit + "</td>");
@@ -176,3 +176,7 @@ function listAddToModal(list) {
 }
 
 var kakaoinit = '80a967748d2aab3a8cd782d8f47b8589'
+
+$(document).on("click",".ytp-large-play-button",function(){
+    $(".centeredcrop").css("display","relative").css("z-index","1")
+})
