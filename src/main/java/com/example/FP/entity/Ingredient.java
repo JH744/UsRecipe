@@ -56,4 +56,18 @@ public class Ingredient {
         this.ingredientDetail = ingredientDetail;
         this.ingredientIngredientCategory = ingredientIngredientCategory;
     }
+    public Ingredient(Long id,String ingredientName, int ingredientPrice, String ingredientOrigin, int ingredientAmount, String ingredientUnit, int ingredientQty, String ingredientImage, String ingredientDetail, IngredientCategory ingredientIngredientCategory) {
+        this.id = id;
+        this.ingredientName = ingredientName;
+        this.ingredientPrice = ingredientPrice;
+        this.ingredientOrigin = ingredientOrigin;
+        this.ingredientAmount = ingredientAmount;
+        this.ingredientUnit = ingredientUnit;
+        this.ingredientQty = ingredientQty;
+        this.ingredientImage = ingredientImage;
+        this.ingredientDetail = ingredientDetail;
+        this.ingredientIngredientCategory = ingredientIngredientCategory;
+    }
+
+
 }
