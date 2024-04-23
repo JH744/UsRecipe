@@ -98,8 +98,6 @@ public class AdminController {
 
     @PostMapping("/addIngredient")
     public String addIngredientForm(IngredientDto ingredientDto, HttpServletRequest request){
-        System.out.println(ingredientDto.getIngredient_detail());
-
         MultipartFile uploadFile = ingredientDto.getUploadFile();
 
         String fileRoot = request.getServletContext().getRealPath("/ingredientImages");	//저장될 외부 파일 경로
