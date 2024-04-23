@@ -97,9 +97,14 @@ public class RecipeController {
         }
 
         if (member_id != null) {
-            list = rs.listRecipes(keyword, category, pageable);
+            System.out.println("아이디 들어옴");
+            list = rs.listRecipes(keyword, category, member_id,pageable);
             totalPage = list.getTotalPages();
+            for (Recipe l: list) {
+                System.out.println(l.getRecipeTitle());
+            }
         }
+
         model.addAttribute("list", list);
         model.addAttribute("totalPage", totalPage);
 
@@ -109,15 +114,21 @@ public class RecipeController {
         //이 레시피는 어때요?
         long HowAboutToday ;
         List<Recipe> r_list = rs.randomList();
-        if (r_list != null && r_list.size() != 0) {
-            System.out.println(r_list);
-            model.addAttribute("HowAbout",rs.randomList().get(0));
+        if (r_list != null && !r_list.isEmpty()) {
+            System.out.println(rs.randomList().get(0).getRecipeTitle() + " 레피시 추천");
+            model.addAttribute("HowAbout", r_list.get(0));
+        } else {
+            model.addAttribute("HowAbout", null);
         }
 
 
         //주간인기레시피
         //찜목록 top4를 불러옴
-        List<Recipe> listTop4 =rs.listTop4();
+        List<Recipe> listTop4 = rs.listTop4();
+        for (Recipe ls4: listTop4) {
+            System.out.println("랭킹4");
+            System.out.println(ls4);
+        }
         model.addAttribute("listTop4", listTop4);
         return "/all/recipe";
     }
@@ -187,7 +198,10 @@ public class RecipeController {
     @GetMapping("/detailRecipe")
     public String detailRecipe(@RequestParam String recipeNum,Model model){
         Long id = Long.parseLong(recipeNum);
-        model.addAttribute("recipe",rs.detailRecipe(id));
+        Recipe recipe = rs.detailRecipe(id);
+
+        model.addAttribute("recipe",recipe);
+        model.addAttribute("writer",recipe.getRecipeMember().getNickname());
         return "/all/detailRecipe";
     }
 
@@ -204,21 +218,6 @@ public class RecipeController {
         return view;
     }
 
-    // admin
-    @GetMapping("/adminRecipe")
-    public String adminRecipeList(Model model){
-        model.addAttribute("list", rs.findAll());
-
-        return "/admin/adminRecipeList";
-    }
-
-    // 관리자가 레시피 삭제
-    @PostMapping("/deleteRecipe/{id}")
-    public String adminDeleteRecipe(@RequestParam Long id) {
-        rs.deleteRecipe(id);
-
-        return "redirect:/admin/adminReipeList";
-    }
     
     //유저가 본인 레시피 삭제
     @GetMapping("/deleteRecipe")
@@ -227,7 +226,7 @@ public class RecipeController {
         Recipe recipe = rs.detailRecipe(recipeId);
         if (recipe.getRecipeMember().getUserid().equals((String) session.getAttribute("userid"))) {
             rs.deleteRecipe(recipeId);
-            view = "redirect:/all/listRecipe/1";
+            view = "redirect:/listRecipe/1";
         }
         return view;
     }

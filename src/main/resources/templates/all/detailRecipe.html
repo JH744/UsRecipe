@@ -95,7 +95,7 @@
                             <img class="app_block_link_remove user_info2_pic"
                                  th:src="|../../static/${recipe.recipeMember.image}|"
                                  style="background: #FFFFFF">
-                            <span class="user_info2_name" th:text="${recipe.recipeWriter}">
+                            <span class="user_info2_name" th:text="${writer}">
                                 <button id="friendDiv"
                                         type="button"
                                         class="btn btn-xs btn-default"
@@ -112,6 +112,10 @@
                             <a href="#reply_tit"><img
                                     src="../../static/images/btn_view_re.png"><span>댓글<b
                                     class="st3" th:text="${recipe.recipeReplyList.size}"></b></span></a>
+                            <a onclick="javascript:wishCheck()">
+                                <img src="../../static/images/btn_addWish.png" class="heartIcon"/>
+                                <span>찜하기</span>
+                            </a>
                         </div>
                     </div>
 

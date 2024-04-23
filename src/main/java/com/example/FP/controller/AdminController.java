@@ -28,6 +28,7 @@ public class AdminController {
     private final InquiryService is;
     private final IngredientService igs;
     private final IngredientCategoryRepository ir;
+    private final RecipeService rs;
 
     @GetMapping("/member")
     public String adminMemberForm(Model model){
@@ -95,8 +96,8 @@ public class AdminController {
     }
 
 
-    @PostMapping("/addIngredient")
-    public String addIngredientForm(IngredientDto ingredientDto, HttpServletRequest request){
+    @PostMapping("/saveIngredient")
+    public String saveIngredientForm(@ModelAttribute IngredientDto ingredientDto, HttpServletRequest request){
         MultipartFile uploadFile = ingredientDto.getUploadFile();
 
         String fileRoot = request.getServletContext().getRealPath("/ingredientImages");	//저장될 외부 파일 경로
@@ -144,18 +145,28 @@ public class AdminController {
         return "/admin/adminOrdersList";
     }
 
-    @GetMapping("/recipe")
-    public String recipeList(Model model){
-
-
-        return "/admin/adminRecipeList";
-    }
     @GetMapping("/cancelOrder/{id}")
     public String cancelOrder(@PathVariable Long id){
         os.changeState(id);
         return "redirect:/adminOrderList";
 
 
+    }
+
+    // admin
+    @GetMapping("/recipe")
+    public String adminRecipeList(Model model){
+        model.addAttribute("list", rs.findAll());
+
+        return "/admin/adminRecipeList";
+    }
+
+    // 관리자가 레시피 삭제
+    @PostMapping("/deleteRecipe/{id}")
+    public String adminDeleteRecipe(@RequestParam Long id) {
+        rs.deleteRecipe(id);
+
+        return "redirect:/adminRecipeList";
     }
 
 

@@ -109,7 +109,10 @@ public class MemberController {
 
     // 아이디 찾기
     @GetMapping("/all/findUserid")
-    public String findIdForm(){ return "/all/findUserid"; }
+    public String findIdForm(Model model){
+        model.addAttribute("success", null);
+        return "/all/findUserid";
+    }
     
     // 아이디 찾기
     @PostMapping("/all/findUserid")
@@ -120,16 +123,17 @@ public class MemberController {
             model.addAttribute("success", "fail");
             return "/all/findUserid";
         }
-
         model.addAttribute("name", name);
         model.addAttribute("userid", map.get("userid"));
-
         return "/all/findUseridOk";
     }
 
     // 비밀번호 찾기
     @GetMapping("/all/findUserPwd")
-    public String findPwdForm(){ return "/all/findPwd"; }
+    public String findPwdForm(Model model){
+        model.addAttribute("success", null);
+        return "/all/findPwd";
+    }
 
     // 비밀번호 찾기
     @PostMapping("/all/findUserPwd")

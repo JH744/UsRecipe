@@ -209,7 +209,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="list:${list}">
-                                    <td class="orderList_td"><a th:text="${list.id}" th:href="@{/recipe/${list.id}}"></a></td>
+                                    <td class="orderList_td"><a th:text="${list.id}" th:href="@{|/detailRecipe?recipeNum=${list.id}|}"></a></td>
                                     <td class="orderList_td" th:text="${list.recipeTitle}"></td>
                                     <td class="orderList_td" th:text="${list.recipeMember.nickname}"></td>
                                     <td class="orderList_td"><a th:href="@{|/admin/deleteRecipe/${list.id}|}" th:text="삭제"></a></td>
@@ -225,11 +225,6 @@
 
                         <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
-                    <!-- #page -->
-                    <script src='/js/jquery.js'></script>
-                    <script src='/js/plugins.js'></script>
-                    <script src='/js/scripts.js'></script>
-                    <script src='/js/masonry.pkgd.min.js'></script>
 
                     </body>
 

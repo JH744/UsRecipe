@@ -202,7 +202,8 @@
             <div id="notion_title_wrap" style="color: black;">
                 <span id="notion_spanB">재료추가</span>
                 <hr>
-                <form enctype="multipart/form-data" method="post" th:action>
+                <form enctype="multipart/form-data" method="post" action="/admin/saveIngredient">
+                    <input type="hidden" name="id" th:value="${i.id}">
                 <table style="margin-left: 0px; text-align: center;">
                     <tr>
                         <td class="ingredient_table_td">재료 카테고리 &nbsp;&nbsp;</td>

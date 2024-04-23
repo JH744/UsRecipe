@@ -60,6 +60,14 @@ public class RecipeService {
         return recipesList;
     }
 
+    //레시피 목록 카테고리+검색+ 페이지네이션 + 맴버id//
+    public Page<Recipe> listRecipes(String keyword,Long categoryId, Long memberId, Pageable pageable) {
+        Page<Recipe> recipesList =
+                rr.findByTitleContainingAndCategoryAndMemberId(keyword, categoryId, memberId,pageable);
+
+        return recipesList;
+    }
+
     //레시피 전체 목록 + 페이지네이션 + 검색
     public Page<Recipe> listAll(Pageable pageable, String keyword) {
         return rr.findByTitleContaining(keyword, pageable);
@@ -129,7 +137,9 @@ public class RecipeService {
             String recipeTitle = jsonMap.get("recipeTitle").toString();
             String recipeUrl = null;
             if(jsonMap.get("recipeUrl")!=null){
-                recipeUrl=jsonMap.get("recipeUrl").toString();
+                if(!jsonMap.get("recipeUrl").toString().equals("")){
+                    recipeUrl=jsonMap.get("recipeUrl").toString();
+                }
             }
             Long recipeCategoryId = Long.parseLong(jsonMap.get("recipeCategory").toString());
 //            update라면 해당 recipeId를 넣고 새로운 요리순서, 재료목록을 넣기위해 기존건 다 삭제해준다.

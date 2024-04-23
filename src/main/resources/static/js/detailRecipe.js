@@ -2,7 +2,6 @@ function insertReply() {
     var gradeStar = $("input[name=gradeStar]:checked").val()
     var replyContent = $(".replyContent").val()
     var recipeId = $(".recipeId").val()
-    console.log(replyContent)
     if (gradeStar === undefined) {
         checkReply("별점을 입력해주세요!");
         return false;
@@ -179,4 +178,48 @@ var kakaoinit = '80a967748d2aab3a8cd782d8f47b8589'
 
 $(document).on("click",".ytp-large-play-button",function(){
     $(".centeredcrop").css("display","relative").css("z-index","1")
+})
+
+function wishCheck(){
+    var $this = $(this); // 현재 요소를 $this에 저장
+    var recipeItemInfo= $(this).closest('.recipeItem_info');
+    var recipeId = $(".recipeId").val();
+    $.ajax({
+        url: '/addWish', // 요청을 보낼 서버의 URL
+        type: 'POST', // HTTP 요청 방식
+        data: { Id: recipeId }, // 서버로 보낼 데이터
+        success: function(response) {
+            // 요청이 성공했을 때 실행될 함수
+            if(response ==='저장함'){
+                $('.heartIcon').attr('src', '../../static/images/btn_delWish.png'); // 절대 경로 사용
+            }else if(response ==='삭제함'){
+                //삭제
+                $('.heartIcon').attr('src', '../../static/images/btn_addWish.png'); // 절대 경로 사용
+            }
+        },
+        error: function(xhr, status, error) {
+            // 요청이 실패했을 때 실행될 함수
+        }
+    });
+};
+
+
+// 찜한 상품들은 붉은 하트를 보여줌
+$(document).ready(function() {
+    var id= $(".recipeId").val()
+    $.ajax({
+        url: '/checkWish',
+        type: 'POST',
+        data: { Id: id },
+        success: function(response) {
+            // 요청이 성공했을 때 실행될 함수
+            if(response ==='저장됨') {
+                //찜목록에 담겨있다면 나타낼 UI
+                $(".heartIcon").attr('src', '../../static/images/btn_delWish.png');
+            } else {
+            }
+        },
+        error: function (xhr, status, error) {
+        }
+    });
 })
