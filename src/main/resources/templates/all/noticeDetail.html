@@ -198,7 +198,8 @@
                 <hr>
 
                 <b style="margin-right: 100px;font-family: Cafe24Dangdanghae">공지날짜</b>
-                <b th:text="${notice?.noticeSubmitDate}">2024.02.26</b>
+
+                <b th:text="${#temporals.format(notice?.noticeSubmitDate, 'yyyy-MM-dd')}">2024.02.26</b>
                 <br>
                 <hr>
                 <b style="margin-right: 128px; font-family: Cafe24Dangdanghae">제목</b>
