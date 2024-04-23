@@ -216,8 +216,8 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="list:${list}">
-                                    <td class="orderList_td"><a th:text="${list.id}" th:href="@{|/noticeDetail/${list.id}|}"></a></td>
-                                    <td class="orderList_td" th:text="${list.noticeTitle}"></td>
+                                    <td class="orderList_td" th:text="${list.id}"></td>
+                                    <td class="orderList_td" ><a th:text="${list.noticeTitle}" th:href="@{|/noticeDetail/${list.id}|}"></a></td>
                                     <td class="orderList_td" th:text="${list.noticeSubmitDate}"></td>
                                     <td class="orderList_td"><a th:href="@{|/admin/noticeDelete/${list.id}|}" th:text="삭제"></a></td>
                                 </tr>

@@ -15,6 +15,7 @@ import java.io.IOException;
 public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+        request.getSession().setAttribute("errorMessage", "fail");
         // 로그인 실패했으므로 로그인 페이지로 이동
         response.sendRedirect("/login");
     }

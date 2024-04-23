@@ -29,7 +29,9 @@ public class MemberController {
 
     // 로그인 폼
     @GetMapping("/login")
-    public String loginForm(HttpServletRequest request){
+    public String loginForm(HttpServletRequest request, Model model){
+        model.addAttribute("errorMessage", request.getSession().getAttribute("errorMessage"));
+        request.getSession().removeAttribute("errorMessage");
         // 이전 페이지의 주소를 가져옴
         String uri = request.getHeader("Referer");
         if (uri != null && !uri.contains("/login")) {
