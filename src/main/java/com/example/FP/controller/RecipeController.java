@@ -230,7 +230,7 @@ public class RecipeController {
         Recipe recipe = rs.detailRecipe(recipeId);
         if (recipe.getRecipeMember().getUserid().equals((String) session.getAttribute("userid"))) {
             rs.deleteRecipe(recipeId);
-            view = "redirect:/all/listRecipe/1";
+            view = "redirect:/listRecipe/1";
         }
         return view;
     }
