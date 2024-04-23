@@ -124,7 +124,11 @@ public class RecipeController {
 
         //주간인기레시피
         //찜목록 top4를 불러옴
-        List<Recipe> listTop4 =rs.listTop4();
+        List<Recipe> listTop4 = rs.listTop4();
+        for (Recipe ls4: listTop4) {
+            System.out.println("랭킹4");
+            System.out.println(ls4);
+        }
         model.addAttribute("listTop4", listTop4);
         return "/all/recipe";
     }
