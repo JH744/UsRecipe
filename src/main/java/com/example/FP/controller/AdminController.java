@@ -29,6 +29,8 @@ public class AdminController {
     private final IngredientService igs;
     private final IngredientCategoryRepository ir;
     private final RecipeService rs;
+    private final WishListService ws;
+    private final ReplyService ps;
 
     @GetMapping("/member")
     public String adminMemberForm(Model model){
@@ -162,11 +164,11 @@ public class AdminController {
     }
 
     // 관리자가 레시피 삭제
-    @PostMapping("/deleteRecipe/{id}")
-    public String adminDeleteRecipe(@RequestParam Long id) {
+    @GetMapping("/deleteRecipe/{id}")
+    public String adminDeleteRecipe(@PathVariable Long id) {
         rs.deleteRecipe(id);
 
-        return "redirect:/adminRecipeList";
+        return "redirect:/admin/recipe";
     }
 
 
