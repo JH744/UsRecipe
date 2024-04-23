@@ -73,8 +73,8 @@ $(document).ready(function () {
             processData: false,
             success: function (data) {
                 //항상 업로드된 파일의 url이 있어야 한다.
-                $(editor).summernote('insertImage', data.url);
-                $("#summernote").add("<img src='" + data.url + "'></img>")
+                $(editor).summernote('insertImage', data);
+                $("#summernote").add("<img src='" + data + "'></img>")
             }
         });
     }
