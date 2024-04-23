@@ -163,11 +163,5 @@ public class IngredientController {
         return "/admin/adminUpdateIngredient";
     }
 
-    @PostMapping("/")
-    public String updateIngredientSubmit(){
-
-        return "";
-    }
-
 
 }

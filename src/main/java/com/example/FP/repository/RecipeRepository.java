@@ -52,4 +52,15 @@ public interface RecipeRepository extends JpaRepository<Recipe,Long> {
     //찜목록 top4의 id를 전달해 일치하는 리스트를 가져옴
     List<Recipe> findByIdIn(List<Long> ids);
 
+    // 레시피목록 : 키워드 검색 + 카테고리 + 페이징 + 맴버id
+    @Query("SELECT r FROM Recipe r WHERE " +
+            "(:keyword IS NULL OR r.recipeTitle LIKE %:keyword%) AND " +
+            "(:categoryId IS NULL OR r.recipeCategory.id = :categoryId) AND"+
+            "(:memberId IS NULL OR r.recipeMember.id = :memberId)")
+    Page<Recipe> findByTitleContainingAndCategoryAndMemberId(
+            @Param("keyword") String keyword,
+            @Param("categoryId") Long categoryId,
+            @Param("memberId") Long memberId,
+            Pageable pageable);
+
 }
