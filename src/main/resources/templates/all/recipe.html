@@ -130,7 +130,7 @@
             </div>
             <div class="Thisrecipe" th:if="${HowAbout != null}">
                 <a th:href="@{/detailRecipe(recipeNum=${HowAbout.id})}">
-                    <img class="ThisRecipe_img" th:src="@{'../../static/images/' + ${HowAbout.recipeThumbnail}}" alt="레시피썸넬" />
+                    <img class="ThisRecipe_img" th:src="@{'../../static/recipeImages/' + ${HowAbout.recipeThumbnail}}" alt="레시피썸넬" />
                 </a>
                 <div class="gra"></div>
                 <h3 th:text="${HowAbout.recipeTitle}"></h3>
@@ -150,7 +150,7 @@
             <div class="hotrecipebox" >
                 <div class="hotrecipe1" th:each=" Top4 :${listTop4}"  >
                     <a th:href="@{/detailRecipe(recipeNum=${Top4.id})}">
-                        <img th:attr="src=@{'../static/images/' + ${Top4.recipeThumbnail}}"  class="hotRecipeImg">
+                        <img th:attr="src=@{'../static/recipeImages/' + ${Top4.recipeThumbnail}}"  class="hotRecipeImg">
                         <span th:text="${Top4.recipeTitle}">인기레시피 타이틀</span>
                     </a>
                 </div>
@@ -161,7 +161,7 @@
 
             <div class="recipeItem"  th:each=" r : ${list}">
                 <a th:href="@{/detailRecipe(recipeNum=${r.id})}">
-                    <img class="recipeItem_img" th:src="@{'../../static/images/' + ${r.recipeThumbnail}}" alt="레시피썸넬"
+                    <img class="recipeItem_img" th:src="@{'../../static/recipeImages/' + ${r.recipeThumbnail}}" alt="레시피썸넬"
                          onerror="this.onerror=null; this.src='../static/images/ingredients/img_none.png'"/>
                 </a>
                 <div class="recipeItem_info">
