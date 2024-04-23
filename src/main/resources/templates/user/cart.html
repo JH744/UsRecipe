@@ -104,6 +104,7 @@
             $(document).on('click', '#btnMinus', function() {
                 var $input = $(this).closest('tr').find('.inputQty');
                 var currentQty = parseInt($input.val(), 10);  // 현재 입력 필드의 값을 정수로 파싱
+                console.log("currentQty:"+currentQty)
                 if(currentQty > 1) {
                     $input.val(currentQty - 1);  // 입력 필드의 값을 1씩 차감
                     CalcPriceAndQty.call(this); // 수량에 맞는 주문금액 구하기
