@@ -2,6 +2,7 @@ package com.example.FP.controller;
 
 import com.example.FP.entity.Ingredient;
 import com.example.FP.service.IngredientService;
+import com.example.FP.service.RecipeIngredientService;
 import com.example.FP.service.ReplyService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,6 +32,7 @@ public class IngredientController {
 
     private final IngredientService is;
     private final ReplyService rs;
+    private final RecipeIngredientService ris;
 
 
 
@@ -149,7 +151,8 @@ public class IngredientController {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-
+        ris.updateIngredientId(id);
+        rs.deleteAllByIngredientId(id);
         is.deleteIngredient(id);
 
         return "redirect:/admin/ingredient";
@@ -157,7 +160,6 @@ public class IngredientController {
 
     @GetMapping("/admin/updateIngredient/{id}")
     public String updateIngredient(@PathVariable("id") Long id, Model model) {
-        System.out.println("여기로 오긴 오니?");
         model.addAttribute("list", is.findAllIngredientCategory());
         model.addAttribute("i", is.findById(id).get());
         return "/admin/adminUpdateIngredient";

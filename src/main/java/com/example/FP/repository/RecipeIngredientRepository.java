@@ -18,4 +18,8 @@ public interface RecipeIngredientRepository extends JpaRepository<RecipeIngredie
     @Modifying
     @Query(value = "delete from recipe_ingredient where recipe_id=?1 and recipe_ingredient_id<=?2",nativeQuery = true)
     void deleteAllByPreviousRecipeIngredient(Long recipe_id,Long recipe_ingredient_id);
+
+    @Modifying
+    @Query(value = "update recipe_ingredient set ingredient_id=null where ingredient_id=?1",nativeQuery = true)
+    void updateIngredientId(Long ingredient_id);
 }

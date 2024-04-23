@@ -11,6 +11,7 @@ import com.example.FP.repository.MemberRepository;
 import com.example.FP.repository.RecipeRepository;
 import com.example.FP.repository.ReplyRepository;
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +52,10 @@ public class ReplyService {
 
     public List<Reply> findAllByIngredientReply(Long ingredientId){
         return rr.findAllByIngredientReply(ingredientId);
+    }
+
+    @Transactional
+    public void deleteAllByIngredientId(Long ingredient_id){
+        rr.deleteAllByIngredientId(ingredient_id);
     }
 }
