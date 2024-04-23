@@ -25,9 +25,9 @@ import com.google.gson.JsonObject;
 @Controller
 public class SummerNoteController {
 
-	@PostMapping(value="/uploadSummernoteImageFile", produces = "application/json")
+	@PostMapping(value="/uploadSummernoteImageFile")
 	@ResponseBody
-	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) {
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) {
 		JsonObject jsonObject = new JsonObject();
 
 		String fileRoot = request.getServletContext().getRealPath("/ingredientImages");	//저장될 외부 파일 경로
@@ -36,27 +36,28 @@ public class SummerNoteController {
 				
 		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
 		
-		File targetFile = new File(fileRoot + savedFileName);	
-		
+		File targetFile = new File(fileRoot+"/" + savedFileName);
+		String url = "";
 		try {
 			InputStream fileStream = multipartFile.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
-			jsonObject.addProperty("url", "../static/ingredientImages/"+savedFileName);
+			url = ("../../static/ingredientImages/"+savedFileName);
+			url = ("../../static/ingredientImages/"+savedFileName);
 			jsonObject.addProperty("responseCode", "success");
 				
-		} catch (IOException e) {
+		} catch (Exception e) {
 			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
 			jsonObject.addProperty("responseCode", "error");
 			e.printStackTrace();
 		}
-		return jsonObject;
+		return url;
 	}
 	
 	@PostMapping("/deleteSummernoteImageFile")
 	@ResponseBody
 	public void deleteSummernoteImageFile(@RequestParam("file") String filename, HttpServletRequest request) {
 		String fileRoot = request.getServletContext().getRealPath("/ingredientImages");	//저장될 외부 파일 경로
-		File file = new File(fileRoot+filename);
+		File file = new File(fileRoot+"/"+filename);
 		FileUtils.deleteQuietly(file);	//저장된 파일 삭제
 	}
 }
