@@ -225,7 +225,9 @@
                                     <td class="orderList_td">
                                         <a th:href="@{|/noticeDetail/${list.id}|}" th:text="${list.noticeTitle}"></a></td>
                                     <td class="orderList_td">관리자</td>
-                                    <td class="orderList_td" th:text="${list.noticeSubmitDate}"></td>
+
+                                    <td class="orderList_td" th:text="${#temporals.format(list.noticeSubmitDate, 'yyyy-MM-dd')}"></td>
+
 
                                 </tr>
 
