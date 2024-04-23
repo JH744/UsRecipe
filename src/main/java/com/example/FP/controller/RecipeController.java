@@ -198,7 +198,10 @@ public class RecipeController {
     @GetMapping("/detailRecipe")
     public String detailRecipe(@RequestParam String recipeNum,Model model){
         Long id = Long.parseLong(recipeNum);
-        model.addAttribute("recipe",rs.detailRecipe(id));
+        Recipe recipe = rs.detailRecipe(id);
+
+        model.addAttribute("recipe",recipe);
+        model.addAttribute("writer",recipe.getRecipeMember().getNickname());
         return "/all/detailRecipe";
     }
 
