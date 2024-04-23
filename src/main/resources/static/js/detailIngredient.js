@@ -22,12 +22,13 @@ function insertReply() {
         },
         type: "POST",
         success: function () {
-            location.replace("/ingredientDetail?ingredientId=" + ingredientId)
+            location.replace("/detailIngredient?ingredientId=" + ingredientId)
         }
     })
 }
 
 function deleteReply(num) {
+    var ingredientId = $(".ingredientId").val()
     Swal.fire({
         title: "후기 삭제",
         text: "해당 후기를 정말 삭제하시겠습니까?",
@@ -43,9 +44,10 @@ function deleteReply(num) {
                 type: "POST",
                 data: {replyId: num},
                 success: function () {
-                    var prevCount = $("#recipeCommentListCount").text()
-                    $("#replyDiv_" + num).remove();
-                    $("#recipeCommentListCount").text(prevCount - 1)
+                    location.replace("/detailIngredient?ingredientId=" + ingredientId)
+                    // var prevCount = $("#recipeCommentListCount").text()
+                    // $("#replyDiv_" + num).remove();
+                    // $("#recipeCommentListCount").text(prevCount - 1)
                 }
             })
         } else {
