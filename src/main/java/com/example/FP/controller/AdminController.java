@@ -96,8 +96,8 @@ public class AdminController {
     }
 
 
-    @PostMapping("/addIngredient")
-    public String addIngredientForm(IngredientDto ingredientDto, HttpServletRequest request){
+    @PostMapping("/saveIngredient")
+    public String saveIngredientForm(@ModelAttribute IngredientDto ingredientDto, HttpServletRequest request){
         MultipartFile uploadFile = ingredientDto.getUploadFile();
 
         String fileRoot = request.getServletContext().getRealPath("/ingredientImages");	//저장될 외부 파일 경로

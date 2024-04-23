@@ -198,7 +198,10 @@ public class RecipeController {
     @GetMapping("/detailRecipe")
     public String detailRecipe(@RequestParam String recipeNum,Model model){
         Long id = Long.parseLong(recipeNum);
-        model.addAttribute("recipe",rs.detailRecipe(id));
+        Recipe recipe = rs.detailRecipe(id);
+
+        model.addAttribute("recipe",recipe);
+        model.addAttribute("writer",recipe.getRecipeMember().getNickname());
         return "/all/detailRecipe";
     }
 
@@ -223,7 +226,7 @@ public class RecipeController {
         Recipe recipe = rs.detailRecipe(recipeId);
         if (recipe.getRecipeMember().getUserid().equals((String) session.getAttribute("userid"))) {
             rs.deleteRecipe(recipeId);
-            view = "redirect:/all/listRecipe/1";
+            view = "redirect:/listRecipe/1";
         }
         return view;
     }
