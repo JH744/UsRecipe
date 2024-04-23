@@ -36,8 +36,9 @@ public class MailService {
         try {
             message.setFrom(senderEmail);
             message.setRecipients(MimeMessage.RecipientType.TO, mail);
-            message.setSubject("인증 이메일 입니다.");
+            message.setSubject("U's Recipe 인증 이메일 입니다.");
             String body = "";
+            body += "<h1> 당신을 위한 레시피 - 유스레시피 </h1>";
             body += "<h3>" + "요청하신 인증 번호입니다." + "</h3>";
             body += "<h1>" + number + "</h1>";
             body += "<h3>" + "감사합니다." + "</h3>";
