@@ -105,15 +105,15 @@ public class RecipeService {
 
 
     // 메인페이지 5개 보여줄 레시피
-    public List<Recipe> top5() {
-        return rr.findTop5ByOrderByRecipeViewsDesc();
+    public List<Recipe> top4() {
+        return rr.findTop4ByOrderByRecipeViewsDesc();
     }
 
     // 랜덤으로 레시피 5개 리턴
     public List<Recipe> randomList() {
         List<Recipe> list = rr.findAll();
         Collections.shuffle(list);
-        List<Recipe> randomRecipes = list.subList(0, Math.min(5, list.size()));
+        List<Recipe> randomRecipes = list.subList(0, Math.min(4, list.size()));
         return randomRecipes;
     }
 

@@ -17,7 +17,7 @@ import java.util.List;
 public interface RecipeRepository extends JpaRepository<Recipe,Long> {
     Page<Recipe> findPageBy(Pageable page);
 
-    List<Recipe> findTop5ByOrderByRecipeViewsDesc();
+    List<Recipe> findTop4ByOrderByRecipeViewsDesc();
 
     @Query(value = "select IFNULL(max(recipe_id),0)+1 from recipe", nativeQuery = true)
     Long nextRecipeId();
