@@ -209,9 +209,11 @@ public class RecipeController {
     @GetMapping("/updateRecipe")
     public String updateRecipe(@RequestParam Long recipeId,Model model,HttpSession session) {
         Recipe recipe = rs.detailRecipe(recipeId);
+        String role = ms.findById(session.getAttribute("userid")+"").getRole().name();
         String view = "404";
         if (recipe.getRecipeMember().getUserid().equals((String) session.getAttribute("userid"))) {
             model.addAttribute("recipe", rs.detailRecipe(recipeId));
+            model.addAttribute("role",role);
             model.addAttribute("recipe_category", rc.findAllRecipeCategory());
             view = "/user/updateRecipe";
         }
