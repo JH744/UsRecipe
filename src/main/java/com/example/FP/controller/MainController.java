@@ -32,7 +32,7 @@ public class MainController {
             Member m =  ms.findById(username);
             session.setAttribute("userid", username);
             session.setAttribute("image", m.getImage());
-            session.setAttribute("role", m.getRole());
+            session.setAttribute("role", m.getRole().toString());
 
             System.out.println(username);
             System.out.println("OAuth2User:" + oauth.getAttributes());
