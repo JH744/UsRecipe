@@ -161,7 +161,7 @@ public class RecipeService {
                 Long ingredientId = Long.parseLong(i.get("recipeIngredientId").toString());
                 Ingredient ingredient = ir.findById(ingredientId).get();
                 RecipeIngredientDto rid = new RecipeIngredientDto(
-                        Integer.parseInt(i.get("recipeIngredientQty").toString()),
+                        i.get("recipeIngredientQty").toString(),
                         i.get("recipeIngredientNeed").toString(),
                         recipe,
                         ingredient,

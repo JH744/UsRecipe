@@ -23,7 +23,7 @@ public interface RecipeRepository extends JpaRepository<Recipe,Long> {
     Long nextRecipeId();
 
     @Modifying
-    @Query(value = "update Recipe set recipe_views = recipe_views+1 where recipe_Id=:recipeId",nativeQuery = true)
+    @Query(value = "update recipe set recipe_views = recipe_views+1 where recipe_Id=:recipeId",nativeQuery = true)
     void UpdateRecipeViews(@Param("recipeId") Long recipeId);
 
 //    Recipe findById();

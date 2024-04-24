@@ -30,7 +30,7 @@ public class Ingredient {
     private String ingredientName;
     private int ingredientPrice;
     private String ingredientOrigin;
-    private int ingredientAmount;
+    private String ingredientAmount;
     private String ingredientUnit;
     private int ingredientQty;
     private String ingredientImage;
@@ -45,7 +45,7 @@ public class Ingredient {
     @JoinColumn(name = "ingredient_category_id")
     private IngredientCategory ingredientIngredientCategory;
 
-    public Ingredient(String ingredientName, int ingredientPrice, String ingredientOrigin, int ingredientAmount, String ingredientUnit, int ingredientQty, String ingredientImage, String ingredientDetail, IngredientCategory ingredientIngredientCategory) {
+    public Ingredient(String ingredientName, int ingredientPrice, String ingredientOrigin, String ingredientAmount, String ingredientUnit, int ingredientQty, String ingredientImage, String ingredientDetail, IngredientCategory ingredientIngredientCategory) {
         this.ingredientName = ingredientName;
         this.ingredientPrice = ingredientPrice;
         this.ingredientOrigin = ingredientOrigin;
@@ -56,7 +56,7 @@ public class Ingredient {
         this.ingredientDetail = ingredientDetail;
         this.ingredientIngredientCategory = ingredientIngredientCategory;
     }
-    public Ingredient(Long id,String ingredientName, int ingredientPrice, String ingredientOrigin, int ingredientAmount, String ingredientUnit, int ingredientQty, String ingredientImage, String ingredientDetail, IngredientCategory ingredientIngredientCategory) {
+    public Ingredient(Long id,String ingredientName, int ingredientPrice, String ingredientOrigin, String ingredientAmount, String ingredientUnit, int ingredientQty, String ingredientImage, String ingredientDetail, IngredientCategory ingredientIngredientCategory) {
         this.id = id;
         this.ingredientName = ingredientName;
         this.ingredientPrice = ingredientPrice;
