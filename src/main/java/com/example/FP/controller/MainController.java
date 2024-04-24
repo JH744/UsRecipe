@@ -38,7 +38,7 @@ public class MainController {
             System.out.println("OAuth2User:" + oauth.getAttributes());
         }
 
-        model.addAttribute("recipe_list", rs.top5());
+        model.addAttribute("recipe_list", rs.top4());
         model.addAttribute("member_list", ms.findTop5());
         model.addAttribute("random_list", rs.randomList());
 
