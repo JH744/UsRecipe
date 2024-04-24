@@ -90,7 +90,6 @@ public class RecipeService {
         Random r = new Random();
         //랜덤으로 레시피를 하나 가져옴. (1부터 총갯수만큼)
         Long randomId = r.nextLong(totalRecipe +1 );
-        System.out.println("난수:"+randomId);
               Optional<Recipe> optional = rr.findById(randomId);
         Recipe recipe =optional.get();
             return recipe;
@@ -167,7 +166,6 @@ public class RecipeService {
                         ingredient,
                         i.get("recipeIngredientUnit").toString()
                 );
-                System.out.println(i.get("recipeIngredientNeed").toString()+"       재료이름");
                 RecipeIngredient recipeIngredient = RecipeIngredientMapper.toEntity(rid);
                 rir.save(recipeIngredient);
             }

@@ -36,7 +36,6 @@ public class MemberController {
         String uri = request.getHeader("Referer");
         if (uri != null && !uri.contains("/login")) {
             request.getSession().setAttribute("prevPage", uri);
-            System.out.println(uri);
         }
         return "/all/login";
     }
@@ -44,7 +43,6 @@ public class MemberController {
     // 회원가입 폼
     @GetMapping("/join")
     public String joinForm(Model model){
-        System.out.println("회원가입 하기");
         model.addAttribute("memberFormDto", new MemberDto());
 
         return "/all/join";
@@ -59,8 +57,6 @@ public class MemberController {
                              String month,
                              String day
                              ){
-        System.out.println("회원가입 완료");
-        System.out.println(memberFormDto.getUserid());
 
 
         String addr = addr1 + " " + addr2; // 주소와 상세 주소 합치기
@@ -77,13 +73,10 @@ public class MemberController {
     @PostMapping("/id_check")
     @ResponseBody
     public String checkId(@RequestBody String userid){
-        System.out.println("아이디중복");
         Boolean res = memberService.findByUserid(userid);
         if (res) {
-            System.out.println("실패");
             return "fail";
         }
-        System.out.println("성공");
         return "success";
     }
 
@@ -91,14 +84,10 @@ public class MemberController {
     @PostMapping("/nickname_check")
     @ResponseBody
     public String checkNickname(@RequestBody String nickname){
-        System.out.println(nickname);
-        System.out.println("이메일중복 확인");
         Boolean res = memberService.findByNickname(nickname);
         if (res) {
-            System.out.println("실패");
             return "fail";
         }
-        System.out.println("성공");
         return "success";
     }
 
@@ -140,7 +129,6 @@ public class MemberController {
     // 비밀번호 찾기
     @PostMapping("/all/findUserPwd")
     public String findPwdSubmit(@RequestParam String userid, @RequestParam String email, Model model){
-        System.out.println("비밀번호 찾기 클릭");
         String toEmail = email.replace("%40", "@").trim();
         Boolean res = memberService.findByUseridAndEmail(userid, toEmail);
         if (!res) {
@@ -154,7 +142,6 @@ public class MemberController {
             model.addAttribute("userid", userid);
             model.addAttribute("num", num);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
         }
         return "/all/emailAuthentication";
     }
@@ -198,7 +185,6 @@ public class MemberController {
     public Boolean pwCheckDataChangeSubmit(HttpSession session, @RequestParam String password){
         String id = (String)session.getAttribute("userid");
         String pw = memberService.pwCheck(id);
-        System.out.println("입력 비번 : " + password);
         boolean matches = passwordEncoder.matches(password, pw);
         if(matches){
             session.setAttribute("pw",password);
@@ -221,8 +207,6 @@ public class MemberController {
     //입력한 데이터를 통해 정보를 변경하기 위한 메서드
     @PostMapping("/dataChange")
     public String dataChangeSubmit(MemberDto memberDto,HttpSession session, String addr1, String addr2){
-        System.out.println("정보변경");
-        System.out.println(memberDto.getPassword());
 
         String addr = addr1 + " " + addr2;
         Member member = memberService.findById((String)session.getAttribute("userid"));
@@ -230,15 +214,12 @@ public class MemberController {
             memberDto.setPassword((String)session.getAttribute("pw"));
 
         }
-        System.out.println("비밀번호 : " + memberDto.getPassword());
 
         memberDto.setAddr(addr);
 
-        System.out.println("id값 : " + memberDto.getId());
 
         memberService.updateMember(memberDto.getId(),memberDto);
 
-        System.out.println("정보변경 완료");
 
         return "redirect:/";
 

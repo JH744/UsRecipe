@@ -40,7 +40,6 @@ public class MemberService implements UserDetailsService {
 
     public Long join(Member member){
         validateDuplicateMember(member);
-        System.out.println("맴버 서비스");
         mr.save(member);
         return member.getId();
     }
@@ -54,7 +53,6 @@ public class MemberService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("loadUserByUsername 실행");
         Member m = mr.findByUserid(username);
         if (m == null) {
             throw new UsernameNotFoundException(username);
@@ -72,7 +70,6 @@ public class MemberService implements UserDetailsService {
 
     public String pwCheck(String userid){
         String passwordById = mr.findPasswordById(userid);
-        System.out.println(passwordById);
 
         return passwordById;
     }
@@ -166,7 +163,6 @@ public class MemberService implements UserDetailsService {
         for (int i = 0; ids.size() > i; i++) {
             arr_id.add(ids.get(i).getId());
         }
-        System.out.println(arr_id);
         list = mr.findByIdIn(arr_id);
 
         return list;

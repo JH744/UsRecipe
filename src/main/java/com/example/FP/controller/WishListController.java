@@ -42,7 +42,6 @@ public class WishListController {
     @PostMapping("/addWish")
     @ResponseBody
     public String addWish(Model model, @RequestParam ("Id") Long Id,HttpSession session){
-        System.out.println("전달받은거:"+Id);
         // 찜목록에 이미 있는 지 조회
         List<WishList> result =  ws.findById(Id,session);
 
@@ -55,7 +54,6 @@ public class WishListController {
             ws.deleteWish(Id,session);
             coment ="삭제함";
         }
-        System.out.println(coment);
         return coment;
     }
 
@@ -64,7 +62,6 @@ public class WishListController {
     @PostMapping("/checkWish")
     @ResponseBody
     public String checkWish(@RequestParam("Id") long Id, HttpSession session){
-        System.out.println("확인할 id :"+Id);
 
         List<WishList> result =  ws.findById(Id,session);
         String coment= "";
@@ -73,7 +70,6 @@ public class WishListController {
         }else{
             coment ="저장됨";
         }
-        System.out.println(coment);
         return coment;
     }
 

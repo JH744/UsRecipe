@@ -223,7 +223,6 @@ function browseStepFile(idx) {
 var deleteFileNameList = []
 // 이미지 파일 삭제
 function deletePhotoFiles(deleteFileNameLists) {
-    console.log(deleteFileNameLists)
     $.ajax({
         data: JSON.stringify({deleteFileNameList:deleteFileNameLists}),
         type: "POST",
