@@ -161,8 +161,17 @@
 
             <div class="recipeItem"  th:each=" r : ${list}">
                 <a th:href="@{/detailRecipe(recipeNum=${r.id})}">
+                    <th:block th:if="${r.getRecipeUrl()==null}">
                     <img class="recipeItem_img" th:src="@{'../../static/recipeImages/' + ${r.recipeThumbnail}}" alt="레시피썸넬"
                          onerror="this.onerror=null; this.src='../static/images/ingredients/img_none.png'"/>
+                    </th:block>
+                    <th:block th:if="${r.getRecipeUrl()!=null}">
+                        <iframe id="youtube" th:src="${r.getRecipeUrl()}"
+                                title="YouTube video player" frameborder="0"
+                                width="220" height="220"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen style="width: 200px;height: 200px;"></iframe>
+                    </th:block>
                 </a>
                 <div class="recipeItem_info">
                     <a th:href="@{/detailRecipe(recipeNum=${r.id})}"> <p th:text="${r.recipeTitle}" >레시피명</p></a>
