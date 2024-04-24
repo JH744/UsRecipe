@@ -222,7 +222,7 @@
 
                                 <tr th:each="list:${list}">
                                     <td class="orderList_td"><a th:href="@{/inquiryDetail/{id}(id=${list.id})}" th:text="${list.getInquiryTitle()}">1</a></td>
-                                    <td class="orderList_td" th:text="${list.getInquiryDate()}">2024-04-03</td>
+                                    <td class="orderList_td" th:text="${#temporals.format(list.inquiryDate, 'yyyy-MM-dd')}">2024-04-03</td>
                                     <td class="orderList_td" th:text="${list.getInquiryCategory()}">계정</td>
                                     <td class="orderList_td" th:text="${list.getInquiryState()}">답변상태</td>
                                 </tr>
