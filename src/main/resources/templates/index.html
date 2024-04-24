@@ -76,7 +76,7 @@
                 <th:block th:each="m:${member_list}">
                     <a th:href="@{|/listRecipe/1?member_id=${m.getId()}|}">
                         <div class=e56_52>
-                            <div class="e56_99" th:style="'background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url(\'../static/images/' + ${m.getImage()} + '\')'">
+                            <div class="e56_99" th:style="'background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url(\'../static/' + ${m.getImage()} + '\')'">
                                 <div style="display: flex; flex-direction: column; justify-content: flex-end;">
                                     <span class="e56_39" th:text="${m.nickname}"></span>
                                 </div>
