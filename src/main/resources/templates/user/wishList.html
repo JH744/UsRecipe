@@ -203,7 +203,7 @@
                                                     </th:block>
 
                                                     <th:block th:if="${list.getWishlistRecipe().getRecipeUrl()==null}">
-                                                        <img th:src="@{|/../static/images/${list.getWishlistRecipe().getRecipeThumbnail()}|}" style="padding-top: -50px; width: 200px;height: 200px;">
+                                                        <img th:src="@{|../../static/recipeImages/${list.getWishlistRecipe().getRecipeThumbnail()}|}" style="padding-top: -50px; width: 200px;height: 200px;">
                                                     </th:block>
                                                     <h3 th:text="${list.getWishlistRecipe().getRecipeTitle()}" style="font-family: Cafe24Dangdanghae;margin-bottom: 20px">상품명</h3>
                                                     <span class="price"><span class="amount" th:text="${list.getWishlistRecipe().getRecipeWriter()}" style="font-family: Cafe24Dangdanghae;">글쓴이</span></span><br>
