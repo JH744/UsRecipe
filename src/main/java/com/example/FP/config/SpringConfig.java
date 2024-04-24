@@ -13,7 +13,6 @@ import java.util.Properties;
 public class SpringConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
-        System.out.println("passwordEncoder 동작함.");
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 

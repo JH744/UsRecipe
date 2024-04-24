@@ -59,11 +59,7 @@ public class IngredientController {
         //sort에 null이 아닌 새값이 전달된 경우 세션에 새롭게 저장.
         if(sortBy != null) {
             session.setAttribute("sort", sortBy);
-            System.out.println("sortBy저장됨");
-            System.out.println(session.getAttribute("sort"));
             session.setAttribute("direction", direction);
-            System.out.println("direction저장됨");
-            System.out.println(session.getAttribute("direction"));
         }else {
             //sort가 null이면 기존session에서 값을 가져옴
             sortBy = (String) session.getAttribute("sort");
@@ -76,9 +72,6 @@ public class IngredientController {
         if (sortBy != null && !sortBy.isEmpty()) {  //정렬조건이 넘어 올 경우
             Sort.Direction Direction = (direction.equals("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC );
             pageable = PageRequest.of(page-1, 6, Direction, sortBy);
-            System.out.println("소트 뽑아봄");
-            System.out.println(sortBy);
-            System.out.println(pageable.getSort());
         } else {  // 정렬 방향이 지정되지 않았을 경우 기본값 사용
             pageable = PageRequest.of(page-1, 6);
         }

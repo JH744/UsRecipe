@@ -136,7 +136,6 @@ public class AdminController {
 
     @GetMapping("/orders/{state}")
     public String ordersList(Model model,@PathVariable String state){
-        System.out.println("전송받은 데이터 : " + state);
         if(state.equals("all")){
             model.addAttribute("list",os.findAll());
         }

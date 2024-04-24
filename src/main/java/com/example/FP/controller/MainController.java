@@ -22,7 +22,6 @@ public class MainController {
 
     @GetMapping("/")
     public String index(HttpSession session, Model model, @AuthenticationPrincipal OAuth2User oauth){
-        System.out.println("홈");
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();
 
@@ -32,10 +31,8 @@ public class MainController {
             Member m =  ms.findById(username);
             session.setAttribute("userid", username);
             session.setAttribute("image", m.getImage());
-            session.setAttribute("role", m.getRole());
+            session.setAttribute("role", m.getRole().toString());
 
-            System.out.println(username);
-            System.out.println("OAuth2User:" + oauth.getAttributes());
         }
 
         model.addAttribute("recipe_list", rs.top4());

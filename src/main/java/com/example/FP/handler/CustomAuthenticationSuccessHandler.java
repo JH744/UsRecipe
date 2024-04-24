@@ -22,12 +22,10 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     private final MemberService ms;
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
-        System.out.println("핸들러");
         HttpSession session = request.getSession();
         if (session != null) {
             // 로그인 페이지로 이동전에 있던 홈페이지 url를 가져옴
             String prevPage = (String) session.getAttribute("prevPage");
-            System.out.println(prevPage);
             // authentication.getPrincipal()은 로그인한 사용자를 나타냅니다.
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String username = userDetails.getUsername();
@@ -40,7 +38,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                 response.sendRedirect("/admin/adminMember");
                 return;
             }
-            if (prevPage != null && !prevPage.isEmpty() && !prevPage.contains("join")) {
+            if (prevPage != null && !prevPage.isEmpty() && !prevPage.contains("join") && !prevPage.contains("find") && !prevPage.contains("admin") && !prevPage.contains("new")) {
                 // 이전 페이지로 리다이렉트
                 response.sendRedirect(prevPage);
                 return;

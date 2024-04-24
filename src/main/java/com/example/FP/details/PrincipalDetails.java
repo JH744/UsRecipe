@@ -19,13 +19,11 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 
     //일반 로그인 생성자
     public PrincipalDetails(Member member) {
-        System.out.println("일반 로그인 생성자");
         this.member = member;
     }
 
     //OAuth 로그인 생성자
     public PrincipalDetails(Member member, Map<String, Object> attributes ) {
-        System.out.println("OAuth 로그인 생성자");
         this.member = member;
         this.attributes = attributes;
     }
