@@ -1,0 +1,316 @@
+$연한그레이 : #f0f0f0;
+$애플배경색 : #d9d9d9;
+$버튼색상 : #D65454;
+$녹색: #74B243;
+
+
+
+
+
+//초기화
+
+body{
+  overflow-y: auto;
+  font-family:'Poppins', 'Noto Sans KR', sans-serif;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.footer{
+ z-index: 99;
+}
+
+
+
+.mainBody{
+  width: 905px; height: 1600px;
+  margin: 0 auto;
+  ul{
+    list-style: none;
+    text-decoration: none;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 재료 목록(스토어) //
+
+
+.storeContainer1{
+  width: 100%;
+  max-width: 788px;
+  height: 350px;
+  margin: auto;
+  text-align: center;
+
+}
+
+.Container1_box{
+  border: 3px solid $애플배경색;
+  width: 100%;
+  height: 176px;
+}
+
+
+.Container1_boxul{
+  padding: 20px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px  130px;
+  font-weight: 500;
+  font-size: 16px;
+
+  li{
+    width: 80px;
+    cursor: pointer;
+  }
+
+  :hover{
+    color: $버튼색상;
+    font-weight: 800;
+  }
+
+
+}
+
+
+
+.Container1_box2ul{
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  height: 20px;
+  margin: auto;
+  padding: 20px 0 20px 10px ;
+}
+
+
+.Container1_box2ul li:hover{
+  border-bottom: 3px solid #74B243;
+}
+
+
+.storeContainer2{
+  margin: auto;
+}
+
+
+.storeContainer2GirdBox{
+  padding-left: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 249px);
+  gap: 31px 18px;
+
+}
+
+.storeItem{
+  width: 249px; height: 490px;
+
+  button{
+    width: 100%;
+    background-color: #fff;
+    border:1px solid $애플배경색;
+    border-radius: 3px;
+    margin: 5px 0 5px 0;
+    height: 36px;
+    cursor: pointer;
+
+  }
+
+  span{
+    height: 19px;
+    font-size: 16px;
+    font-weight: 600px;
+    color: #333333;
+  }
+
+
+  svg,span{
+    vertical-align: middle;
+  }
+
+}
+
+.storeItem_info {
+  p{
+    margin: 0 0 5px 0;
+    
+  }
+}
+
+.cartBtn:hover{
+  background-color: $버튼색상;
+  span{
+    color: #fff;
+  }
+
+}
+
+.cartIcon{
+  height: 22px;
+}
+
+
+.storeItem_img{
+  display: block;
+  border-radius: 2%;
+  width: 249px; height: 320px;
+  // background-image: url(../images/icon/토마토.png);
+  // background-repeat: no-repeat;
+  // background-size: contain;
+
+}
+
+
+
+  //페이지네이션
+  .pageBox{
+    width: 200px;
+    height: 20px;
+    margin: 30px auto 0 auto;
+    text-align: center;
+  }
+  
+  
+  .pageNum{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid gray;
+    text-align: center;
+    padding-bottom: 3px;
+    border-radius: 3px;
+  
+  }
+  
+  .pageNum:hover{
+    background-color: #D65454;
+    color: #fff;
+  }
+
+
+
+.modelContainer{
+    position: relative;
+
+  .modalbox1, .modalbox2 , .modalbox3{
+    width: 300px; height: 150px;
+    background-color: #fff;
+    border: 4px solid rgb(211, 211, 211);
+    border-radius: 3px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    text-align: center;
+    display: none;
+    z-index: 2;
+
+    h3{
+      margin-top: 40px;
+      margin-bottom: 30px;
+    }
+
+  }
+
+
+  
+
+
+
+}
+
+
+.deleteModalContainer{
+  position: relative;
+  width: 500px;
+
+}
+.deleteModal{
+  width: 400px;
+  height: 300px;
+  position: fixed;
+  left: auto;
+  top: auto;
+  border: 2px solid gray;
+  border-radius: 3px;
+
+
+}
+
+
+.btnModal{
+  margin: 0px 10px;
+  height: 23px;
+  cursor: pointer;
+  background-color: rgb(13, 13, 13);
+  color: #fff;
+  border-radius: 3px;
+  border: none;
+
+}
+
+
+.ingreId{
+  display: none;
+}
+
+
+#RecentlyViewedContainer{
+  position: fixed;
+  top: 30%;
+  right: 30px;
+  padding: 13px;
+  border: 2px solid $애플배경색;
+  display: none;
+  // z-index: -1;
+
+
+
+  h4{
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+
+}
+.viewport{
+  max-height: 350px;
+  overflow-y: hidden;
+}
+.RecentlyViewedBox{
+  position: relative;
+}
+
+
+.imgSize{
+  width: 82px;
+  height:100px;
+  display: block;
+  margin: 4px 0px;
+}
+
+
+
+#scrollUp, #scrollDown{
+  display: block;
+  height: 22px;width: 22px;
+  margin: auto;
+}
+
+

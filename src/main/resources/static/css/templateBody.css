@@ -1,0 +1,17 @@
+body{
+    margin: 0;
+}
+.templateBody {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: space-between;
+    width: 100%;
+    min-height: 1250px;
+}
+
+header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,38 @@
+
+.footer {
+    margin-top: 5px;
+    width:100%;
+    min-width:1280px;
+    padding: 0;
+    background:rgba(242.24999696016312, 242.24999696016312, 242.24999696016312, 1);
+    box-sizing: border-box;
+    bottom:0;
+    border:10px solid #F2F2F2 ;
+}
+.footerDivTag {
+    display: flex;
+    justify-content: center;
+    height:200px;
+
+}
+.footerPTag {
+    margin: 50px;
+    color: #727171;
+    font-weight: 500;
+    left:352px;
+    top:29px;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-align:left;
+    font-size:13px;
+    line-height: 1.6;
+    letter-spacing:0;
+}
+
+.footerLogo {
+    margin:50px;
+    width:111px;
+    height:95px;
+    background-image:url(../images/image_27_gray.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>유스레시피</title>
+    <link rel="stylesheet" href="../../static/css/templateBody.css" />
+    <link rel="stylesheet" href="../../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $(function (){
+            $(".e57_136").click(function (){
+                location.href = "/login"
+            })
+        })
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="../../static/css/joinOk.css">
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div class="templateBody">
+    <header>
+        <div class="header" th:replace="header :: header"></div>
+    </header>
+    <div class="mainBody">
+        <div class=e57_135>
+            <div>
+                <span  class="e57_119">회원가입이
+                    <br>
+                완료되었습니다.</span>
+            </div>
+            <div class="e57_122"></div>
+                <div><span  class="e57_118">회원가입을 축하합니다.</span></div>
+        </div>
+        <button class=e57_136>
+            로그인하기
+        </button>
+    </div>
+    <div class="footer" th:replace="footer :: footer"></div>
+</div>
+</body>
+</html>

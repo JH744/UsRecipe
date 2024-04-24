@@ -1,0 +1,190 @@
+@font-face {
+    font-family: 'JalnanGothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cafe24Simplehae';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cafe24Dangdanghae';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.2/Cafe24Dangdanghae.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    height:110px;
+    margin: 0 0 20px 0;
+    padding: 0 0 0 0;
+    margin-left: 200px;
+}
+
+.header ul > li{
+    font-size:16px;
+    font-family: 'JalnanGothic';
+}
+.header ul > li:hover{
+    color: #D65454;
+}
+
+.headerLogo {
+    margin:10px;
+    padding: 0 0 0 0;
+    width:111px;
+    height:95px;
+    background-image:url(../images/image_11.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+.headerMenu{
+    margin:10px 30px 10px 10px;
+    padding: 20px;
+    display: flex;
+    list-style: none;
+
+}
+.headerRight {
+    width:450px;
+    margin:10px;
+    margin-left: 30px;
+    padding: 20px;
+    display: flex;
+    list-style: none;
+    font-size:16px;
+}
+.loginTag {
+
+    color: black;
+    width:150px;
+    height:32px;
+    margin: 10px;
+    text-align:right;
+    font-size:16px;
+    letter-spacing:0;
+    margin-bottom: 20px;
+
+}
+
+.nickname{
+    color: black;
+    width:auto;
+    height:32px;
+    margin: 10px;
+    text-align:right;
+    font-size:16px;
+    letter-spacing:0;
+    margin-top: 25px;
+}
+
+.joinTag {
+    color:rgba(0, 0, 0, 1);
+    width:200px;
+    height:32px;
+    margin: 10px;
+    text-align:left;
+    font-size:16px;
+    letter-spacing:0;
+
+}
+
+.headerLeft {
+    display: flex;
+}
+.recipeTag {
+    margin:10px;
+    margin-left: 10px;
+    margin-right: 20px;
+    color:rgba(0, 0, 0, 1) !important;
+    width:60px;
+    height:32px;
+    
+    text-align:left;
+    font-size:20px;
+    letter-spacing:0;
+}
+.storeTag {
+    margin:10px;
+    margin-left: 10px;
+    margin-right: 20px;
+    color:rgba(0, 0, 0, 1);
+    width:40px;
+    height:32px;
+    
+    text-align:left;
+    font-size:20px;
+    letter-spacing:0;
+}
+.csTag {
+    margin:10px;
+    margin-left: 10px;
+    margin-right: 20px;
+    color:rgba(0, 0, 0, 1);
+    width:80px;
+    height:32px;
+    
+    text-align:left;
+    font-size:20px;
+    letter-spacing:0;
+}
+.creatorTag {
+    margin:10px;
+    margin-left: 10px;
+    margin-right: 20px;
+    color:rgba(0, 0, 0, 1);
+    width:100px;
+    height:32px;
+    text-align:left;
+    font-size:20px;
+    letter-spacing:0;
+}
+.headerMenu a{
+    color: rgba(0,0,0,1) !important;
+}
+.myPageTag {
+    margin:10px;
+    margin-left: 10px;
+    margin-right: 20px;
+    color:rgba(0, 0, 0, 1) !important;
+    width:100px;
+    height:32px;
+    text-align:left;
+    font-size:20px;
+    letter-spacing:0;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.memberInfo{
+    width: 100px;
+    top: 30px;
+
+}
+#loginHeaderRight{
+    width: 450px;
+    padding: 0;
+
+
+
+}
+#loginJoinTag{
+    width: 120px;
+    margin-top: 26px;
+}
+.memberImg{
+    margin-bottom: -18px;
+}
+
+.imageTag{
+    margin-top: 10px;
+    text-align: right;
+}

@@ -1,0 +1,304 @@
+$연한그레이 : #f0f0f0;
+$애플배경색 : #d9d9d9;
+$버튼색상 : #D65454;
+$녹색: #74B243;
+
+//초기화
+
+body{
+    overflow-y: auto;
+    font-family:'Poppins', 'Noto Sans KR', sans-serif;
+
+  }
+  
+  a{
+    text-decoration: none;
+    color: black;
+  }
+  
+  
+  
+  .mainBody{
+    width: 905px; height: 1800px;
+    margin: 0 auto;
+    ul{
+      list-style: none;  
+      text-decoration: none;  
+    }
+  
+  }
+
+
+////레시피 목록 //// 
+
+
+
+.sortContainer{
+    width: 500px;
+    height: 88px;
+    margin: 0 auto 50px;
+  
+    ul{
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 0;
+      margin-bottom: 5px;
+  
+      
+      li{
+        cursor: pointer;
+        border-radius: 8px;
+        padding: 2px;
+      }
+  
+  
+      :hover{
+        background-color: $녹색;
+        color: #fff;
+        font-weight: 600;
+      }
+      
+    }
+  
+  
+  }
+  
+  .HowAboutContainer{
+    width: 100%;
+    max-width: 900px;
+    height: 350px;
+    position: relative;
+  
+    h3{
+      margin-top: 0;
+    }
+  
+  
+  }
+  
+  
+  .serchbox{
+    position: absolute;
+    right: 0;
+    top: 0;
+  
+    text-align: center;
+  
+  
+    input{
+      width: 250px;
+      height: 21px;
+    }
+    button{
+      height: 27px;
+      margin: 0;
+      background-color: $녹색;
+      border: 0;
+      border-radius: 3px;
+      color: #fff;
+      cursor: pointer;
+    }
+  
+  }
+  
+  %이레시피어때요{
+    margin: 0;
+    padding: 0;
+    height: 300px;
+    border-radius: 5px
+  }
+  
+  
+  .Thisrecipe{
+    @extend %이레시피어때요;
+    width: 50%;
+    float: left;
+  
+    h3{
+      color: #fff;
+      top: 250px;
+      left: 180px; 
+      position: relative;
+      top: -50px;
+    }
+  }
+
+  .ThisRecipe_img{
+    @extend %이레시피어때요;
+    width: 100%;
+  }
+
+
+
+  .ThisrecipeInfo{
+    @extend %이레시피어때요;
+    width: 50%;
+    background-color:#f2f2f2;
+    float: right;
+  }
+  
+  .infobox{
+    width: 80%;height: 80%;
+    padding: 50px 30px 30px 30px;
+  }
+  
+  
+  //주간 인기 레시피
+  .hotrecipecontainer{
+    margin: 0 auto;
+  }
+  
+  .hotrecipebox{
+    display: flex;
+    justify-content: space-evenly;
+  
+    
+  
+  }
+  
+  
+  %hotrecipe{
+    height: 245px;
+    width: 160px;
+    border-radius: 10px;
+    //나중에 이미지 경로 지워야함 
+    // background-image: url(../images/김치볶음밥.png);
+  
+    span{
+      color: #fff;
+      position: relative;
+      top:-50px;
+      left: 43px;
+      font-size: large;
+    }
+  
+  }
+  
+  .hotrecipe1{
+    @extend %hotrecipe;
+  }
+
+  .hotRecipeImg{
+    height: 245px;
+    width: 160px;
+    border-radius: 10px;
+    filter: brightness(70%);
+  }
+  
+  
+  
+  
+  
+  
+  //레시피 리스트//
+  .recipeContainer{
+    margin: 80px auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  
+  .recipeItem  {
+    width: 220px;
+    height: 350px;
+    margin-bottom: 20px;
+  
+  
+    p{
+      font-size: 22px;
+      margin: 5px 0 0 0;
+    }
+  
+    span{
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #8b8b8b;
+    }
+  
+  
+
+
+  }
+  
+  .recipeItem_img{
+    display: block;
+    width: 220px;
+    height: 220px;
+    
+  }
+
+
+  //페이지네이션
+  .pageBox{
+    width: 200px;
+    height: 20px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  
+  .pageNum{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid gray;
+    text-align: center;
+    padding-bottom: 3px;
+    border-radius: 3px;
+  
+  }
+  
+  .pageNum:hover{
+    background-color: #D65454;
+    color: #fff;
+  }
+  
+  
+  
+  .recId{
+    display: none;
+  }
+  
+
+  .heartIcon{
+    position: absolute;
+    right: 5px;
+    height: 25px;
+    bottom: 0px;
+  }
+  
+  
+
+  .gra{
+    width: 450px;
+    height: 150px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+    position: absolute;
+    top: 198px;
+    border-radius: 5px;
+  }
+
+  .recipeItem_info{
+    position: relative;
+  }
+
+
+
+.AddRecipeBox{position: relative; width: 905px;}
+.AddRecipe{
+  width: 70px;
+  height: 26px;
+  background-color: #000;
+  color: #fff;
+  position: absolute;
+  right: 5px;
+  bottom: 8px;
+  text-align: center;
+
+
+  span{
+    font-size: 13px;
+  }
+
+};

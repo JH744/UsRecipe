@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>유스레시피</title>
+    <link rel='stylesheet' href='../../static/css/woocommerce-layout.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+    <link rel='stylesheet' href='../../static/css/woocommerce.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/font-awesome.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/style.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+    <link rel='stylesheet' href='../../static/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+    <link rel="stylesheet" href="../../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
+    <style>
+
+        *{
+
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html{
+            height: 100%;
+        }
+        .templateBody {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-content: space-between;
+            width: 100%;
+
+        }
+        .mainBody{
+            min-height: 100vh;
+
+
+
+        }
+
+        header{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style type="text/css">
+        input[type]{
+            border: none;
+            background-color: rgba(247.00000047683716, 247.00000047683716, 251.00000023841858, 1);
+            margin-bottom: 30px;
+        }
+
+        @font-face {
+            font-family: 'Cafe24Simplehae';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Cafe24Dangdanghae';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.2/Cafe24Dangdanghae.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        *{
+            margin: 0 auto;
+            padding: 0;
+        }
+        #news_main{
+            height:700px;
+            width:1200px;
+            margin: 0 auto;
+        }
+        #news_aside{
+            width: 20%;
+            float: left;
+            margin-top: 100px;
+        }
+        .news_title_wrap{
+            padding: 20px;
+            background: #D65454;
+            list-style-type: none;
+        }
+        .news-title{
+            font-family: 'Cafe24Simplehae';
+            font-size: 25px;
+            letter-spacing: 2px;
+            color: white;
+        }
+        .news-ul{
+            font-family: 'Cafe24Simplehae';
+            font-size: 20px;
+        }
+        .news_img_wrap {
+            text-align: center;
+            padding: 30px 0 30px 0;
+            border: 1px solid #dddddd;
+            list-style-type: none;
+        }
+        .news_list_wrap{
+            border: 1px solid #dddddd;
+            padding: 15px 0 15px 10px;
+            list-style-type: none;
+        }
+        .news-ul span{
+            float: right;
+            margin-right: 15px;
+        }
+        /*.news-ul a:link, .news-ul a:visited, .news-ul a:active{*/
+        /*    text-decoration: none;*/
+        /*    color: #ffa550;*/
+        /*}*/
+        .news-ul a:hover{
+            color: #D65454;
+            font-weight: bold;
+        }
+        #news_section{
+            width: 79%;
+            float: left;
+        }
+        #notion_title_wrap{
+            width: 800px;
+        }
+        #notion_spanB{
+            font-family: 'Cafe24Dangdanghae';
+            font-size: 35px;
+            padding-right:20px ;
+            color: black;
+        }
+        #notion_spanL{
+            font-family: 'Cafe24Simplehae';
+            color:#aaaaaa;
+        }
+
+        .tb2 a:active, .tb2 a:link, .td2 a:visited {
+            text-decoration: none;
+            color: black;
+        }
+        .tb2 a:hover {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        table th{
+            background-color: lightgrey;
+        }
+        .orderListDetailTable_td1{
+            background-color: lightgrey;
+            text-align: center;
+            color: black;
+        }
+        .orderListDetailTable_th1{
+            background-color: lightgrey;
+            text-align: center;
+            color: black;
+        }
+        .orderListDetailTable_td2{
+            padding-left: 20px;
+        }
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+<div class="templateBody">
+    <header>
+        <div class="header" th:replace="header :: header"></div>
+    </header>
+    <div class="mainBody">
+
+        <aside id="news_aside" style="margin-right: 10px;">
+            <ul class="news-ul">
+                <li class="news_title_wrap"><h4 class="news-title">마이페이지</h4></li>
+
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/orderList}" style="font-weight: bold;">주문내역<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/pointList}" style="font-weight: bold;">적립내역<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/inquiryList}" style="font-weight: bold; ">1대1문의<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/pwCheckDataChange}" style="font-weight: bold;">정보변경<span>></span></a></li>
+                <li class="news_list_wrap"><a class="news-li" th:href="@{/wishList}" style="font-weight: bold;">찜목록<span>></span></a></li>
+
+            </ul>
+        </aside>
+        <section id="news_section">
+            <div id="notion_title_wrap">
+                <span id="notion_spanB">주문/결제</span>
+                <small>주문상세</small>
+            </div>
+            <hr>
+            <div id="notion_box">
+                <h3>구매자 &nbsp; 정보</h3>
+                <table>
+                    <tr>
+                        <td style="width: 20%" class="orderListDetailTable_td1">이름</td>
+                        <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetailsMember().name}">김김김</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%" class="orderListDetailTable_td1">이메일</td>
+                        <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetailsMember().email}">example@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%" class="orderListDetailTable_td1">연락처</td>
+                        <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetailsMember().phone}">010-0000-0000</td>
+                    </tr>
+                </table>
+                <br><br>
+                <h3>받는사람 &nbsp;정보</h3>
+                <table>
+                    <tr>
+                        <td style="width: 20%" class="orderListDetailTable_td1">이름</td>
+                        <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetail().getOrdersReceiver()}">김김김</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%" class="orderListDetailTable_td1">주소</td>
+                        <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetail().getOrdersReceiverAddr()}">서울시 마포구 어쩌구 저쩌구</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%" class="orderListDetailTable_td1">연락처</td>
+                        <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetail().getOrdersReceiverPhone()}">010-0000-0000</td>
+                    </tr>
+                </table>
+            </div>
+            <br><br>
+            <h3>배송물품 정보</h3>
+            <table  th:each="list:${list}">
+                <tr >
+                    <th style="width: 60% ;text-align: center" class="orderListDetailTable_th1">상품명</th>
+                    <th style="width: 15%;margin-right: 20px;"class="orderListDetailTable_th1">수량</th>
+                    <th style="width: 20%"class="orderListDetailTable_th1">가격</th>
+                </tr>
+                <tr>
+                    <td th:text="${list.getOrdersIngredient().getIngredientName()}" style="text-align: center">충북 음성 사과</td>
+                    <td style="text-align: center" th:text="${list.getCnt()}"></td>
+                    <td th:text="${list.getOrdersIngredient().getIngredientPrice()}" style="text-align: center">10000</td>
+                </tr>
+            </table>
+            <br><br>
+            <h3>결제정보</h3>
+            <table >
+                <tr>
+                    <td style="width: 20%" class="orderListDetailTable_td1">총 상품가격</td>
+                    <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetail().getOrdersTotalPrice()}">10000원</td>
+                </tr>
+                <tr>
+                    <td style="width: 20%" class="orderListDetailTable_td1">포인트 사용</td>
+                    <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetail().getOrdersUsedPoint()}">0원</td>
+                </tr>
+                <tr>
+                    <td style="width: 20%" class="orderListDetailTable_td1">총결제금액</td>
+                    <td class="orderListDetailTable_td2" th:text="${list[0].getOrdersDetail().getOrdersSalePrice()}">10000원</td>
+                </tr>
+                <td style="width: 20%" class="orderListDetailTable_td1">결제방법</td>
+                <td class="orderListDetailTable_td2">카드</td>
+                </tr>
+            </table>
+            <br><br>
+            <button style="border: none; color: white; background-color:#D65454;width: 150px;height: 50px; margin-left: 350px;" th:onclick="|window.location.href='@{/admin/orders/all}'|"> 목록으로 </button>
+            <br><br>
+
+            <div style="margin-top:50px;" >
+                <div style="margin-left: 100px; text-align:left;">
+                    <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
+                    <div id="page">
+                        <div class="container">
+
+                            <!-- #masthead -->
+
+                            <!-- #content -->
+                        </div>
+                        <!-- .container -->
+
+                        <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
+                    </div>
+                    <!-- #page -->
+                    <script src='/js/jquery.js'></script>
+                    <script src='/js/plugins.js'></script>
+                    <script src='/js/scripts.js'></script>
+                    <script src='/js/masonry.pkgd.min.js'></script>
+
+                    </body>
+                </div>
+            </div>
+
+
+
+        </section>
+
+
+        <footer>
+        </footer>
+
+
+    </div>
+    <div class="footer" th:replace="footer :: footer"></div>
+</div>
+</body>
+</html>

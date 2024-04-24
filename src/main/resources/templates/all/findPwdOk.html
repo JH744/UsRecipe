@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>유스레시피</title>
+    <link rel="stylesheet" href="../../static/css/templateBody.css" />
+    <link rel="stylesheet" href="../../static/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/css/findPwdOk.css">
+    <script>
+        $(function (){
+            $(".e65_573").click(function (){
+                location.href = "/login"
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="templateBody">
+        <header>
+            <div class="header" th:replace="header :: header"></div>
+        </header>
+        <div class="mainBody">
+            <div class=e65_567>
+                 <div class="e65_591"></div>
+                <div>
+                    <span class="e65_574">비밀번호 변경이
+                        <br>완료되었습니다.
+                    </span>
+                </div>
+                <div>
+                    <button class="e65_573">로그인 하러가기</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer" th:replace="footer :: footer"></div>
+    </div>
+</body>
+</html>
+
