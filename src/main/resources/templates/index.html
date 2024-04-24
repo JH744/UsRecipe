@@ -22,6 +22,15 @@
                 // '/listRecipe'로 GET 요청 수행, 'pageNum' 경로 변수  + 'keyword' 쿼리 파라미터 포함
                 location.href = `/listRecipe/${pageNum}?keyword=${encodeURIComponent(keyword)}`;
             });
+
+            $(document).on('keyup', '#searchbar', function enter_search(e) {
+                const code = e.keyCode;
+
+                if (code === 13) {
+                    $("#btnsearch").click();
+                }
+            })
+
         })
     </script>
 </head>
