@@ -31,9 +31,6 @@ public class CartService {
     //재료목록창에서  담기 클릭  장바구니 추가
     public void addCart(Long id, HttpSession session) {
         Member m = ms.findById((String) session.getAttribute("userid"));
-        System.out.println("로그인한 회원:"+m.getId());
-        System.out.println("로그인한 회원:"+m.getUserid());
-        System.out.println("로그인한 회원:"+m.getName());
 
         // ingredient 객체와 member 객체를 cart에 저장
         Optional<Member> mm= mr.findById(52L);
@@ -56,7 +53,6 @@ public class CartService {
         Member m = ms.findById((String) session.getAttribute("userid"));
 
         List<Cart> list =  cr.findByCartMemberIdAndCartIngredientId(m.getId(),id);
-        System.out.println("찾아온 카트 : "+ list);
        return list;
     }
 

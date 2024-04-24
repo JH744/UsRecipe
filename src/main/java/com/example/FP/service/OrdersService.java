@@ -109,7 +109,6 @@ public class OrdersService {
         if (!o.isEmpty()) {
 
             Orders latestOrder = o.get(0);  // 첫 번째 결과를 선택, 정렬이 중요함
-            System.out.println(latestOrder.getId());
             // 필요한 로직 수행
         } else {
             // 결과가 없는 경우의 처리 로직
@@ -120,9 +119,7 @@ public class OrdersService {
         // 물품의 갯수만큼 주문상세 내역 저장함
         for (Map<String, Object> product : products) {
                 String ingredientName = (String) product.get("name");
-            System.out.println(ingredientName);
                 String quantity = (String) product.get("quantity");
-            System.out.println(quantity);
                 int cnt = Integer.parseInt(quantity);
                 Ingredient i = ir.findByIngredientName(ingredientName);
 

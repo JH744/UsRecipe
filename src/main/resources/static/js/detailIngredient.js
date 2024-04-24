@@ -2,7 +2,6 @@ function insertReply() {
     var gradeStar = $("input[name=gradeStar]:checked").val()
     var replyContent = $(".replyContent").val()
     var ingredientId = $(".ingredientId").val()
-    console.log(replyContent)
     if (gradeStar === undefined) {
         checkReply("별점을 입력해주세요!");
         return false;

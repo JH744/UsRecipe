@@ -56,8 +56,6 @@ public class CustomOAuth2Service extends DefaultOAuth2UserService {
 //        System.out.println("닉네임 " + nickname);
 
         String registrationId = userRequest.getClientRegistration().getRegistrationId(); // 소셜로그인 provide를 가져옴
-        System.out.println("registrationId = " + registrationId);
-        System.out.println(oauth2user.getAttributes());
         // if문을 통해 소셜로그인 구분
         if (registrationId.equals("kakao")) {
             oAuth2MemberInfo = new KakaoMemberInfo(oauth2user.getAttributes());
@@ -78,7 +76,6 @@ public class CustomOAuth2Service extends DefaultOAuth2UserService {
 
         Member m = memberRepository.findByEmail(email);
         if (m == null) {
-            System.out.println("회원 없음");
             MemberDto memberDto = new MemberDto(
                     name,
                     email,

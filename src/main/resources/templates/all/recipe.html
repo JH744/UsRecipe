@@ -18,7 +18,6 @@
 
             //검색 기능
             $('#btnsearch').click(function() {
-                console.log("검색버튼 클릭됨")
                 var keyword = $('#searchbar').val(); // input 태그에서 값 가져오기
                 var pageNum = 1; // pageNum 값 설정
                 // '/listRecipe'로 GET 요청 수행, 'pageNum' 경로 변수  + 'keyword' 쿼리 파라미터 포함
@@ -32,28 +31,23 @@
                 var $this = $(this); // 현재 요소를 $this에 저장
                 var recipeItemInfo= $(this).closest('.recipeItem_info');
                 var recipeId = recipeItemInfo.find('.recId').text();
-                console.log("레시피 ID: ", recipeId);
                 $.ajax({
                     url: '/addWish', // 요청을 보낼 서버의 URL
                     type: 'POST', // HTTP 요청 방식
                     data: { Id: recipeId }, // 서버로 보낼 데이터
                     success: function(response) {
                         // 요청이 성공했을 때 실행될 함수
-                        console.log('서버 응답:', response);
 
                         if(response ==='저장함'){
                             $this.find('.heartIcon').attr('src', '/static/images/icon/heart3.png'); // 절대 경로 사용
-                            console.log('저장하고 하트변경')
                         }else if(response ==='삭제함'){
                             //삭제
                             $this.find('.heartIcon').attr('src', '/static/images/icon/heart1.png'); // 절대 경로 사용
-                            console.log('삭제함');
 
                         }
                     },
                     error: function(xhr, status, error) {
                         // 요청이 실패했을 때 실행될 함수
-                        console.error('에러 발생:', error);
                     }
                 });
             });
@@ -63,26 +57,21 @@
             $('.recId').each(function() {
                 var $this = $(this); // 현재 요소를 $this에 저장
                 var id= parseFloat($(this).text());  // 현재 요소의 텍스트를 숫자로 변환하여 반환\
-                console.log(id);
                 $.ajax({
                     url: '/checkWish',
                     type: 'POST',
                     data: { Id: id },
                     success: function(response) {
                         // 요청이 성공했을 때 실행될 함수
-                        console.log('서버 응답:', response);
                         if(response ==='저장됨') {
                             //찜목록에 담겨있다면 나타낼 UI
                             var $heart = $this.closest('.recipeItem_info').find('.heartIcon');
                             $heart.attr('src', '/static/images/icon/heart3.png');
-                            console.log("저장확인되어 하트색상변경")
                         } else {
-                            console.log("찜목록에 없는 아이템")
                         }
                     },
                     error: function (xhr, status, error) {
                         // 요청이 실패했을 때 실행될 함수
-                        console.error('에러 발생:', error);
                     }
                 });
             })

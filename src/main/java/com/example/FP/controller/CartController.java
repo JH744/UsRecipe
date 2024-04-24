@@ -37,7 +37,6 @@ public class CartController {
     @PostMapping("/checkCart")
     @ResponseBody
     public String checkCart(@RequestParam("Id") long Id, HttpSession session) {
-        System.out.println("확인할 id :" + Id);
         List<Cart> result = cs.findById(Id, session);
         String coment = "";
         if (result.isEmpty()) {
@@ -45,7 +44,6 @@ public class CartController {
         } else {
             coment = "저장됨";
         }
-        System.out.println(coment);
         return coment;
 
     }
@@ -54,7 +52,6 @@ public class CartController {
     @PostMapping("/addCart")
     @ResponseBody
     public String addCart(HttpSession session, Model model, @RequestParam("Id") Long Id) {
-        System.out.println("전달받은거:" + Id);
 
         List<Cart> result = cs.findById(Id, session);
 
@@ -65,7 +62,6 @@ public class CartController {
         } else {
             coment = "저장안함";
         }
-        System.out.println(coment);
         return coment;
     }
 
@@ -92,7 +88,6 @@ public class CartController {
     public String deleteCartItems(@RequestBody Map<String, List<String>> data, HttpSession session) {
 
         List<String> ingredientNames = data.get("ingredientNames");
-        System.out.println("전달받은 상품명들 : " + ingredientNames);
         cs.deleteCart(ingredientNames, session);
         return "기달";
     }

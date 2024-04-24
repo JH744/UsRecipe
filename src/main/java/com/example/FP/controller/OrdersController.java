@@ -33,7 +33,6 @@ public class OrdersController {
         //String id = "asd123"; // 임시 id
        String id = (String) session.getAttribute("userid");
        Member m =  ms.findById(id);
-        System.out.println("가져온 회원객체 :"+m);
 
         model.addAttribute("m", ms.findById(id));
 
@@ -43,7 +42,6 @@ public class OrdersController {
 
     @PostMapping("/orderOK")
     public String orderOK(OrdersDto o, HttpSession session, Model model){
-        System.out.println("가져온 결제자명:" + o.getOrders_receiver());
         // 현재 날짜와 시간을 가져옵니다.
         LocalDateTime currentDateTime = LocalDateTime.now();
         // 'yyyy-MM-dd'T'HH:mm' 형식의 포매터를 생성합니다.
@@ -77,9 +75,6 @@ public class OrdersController {
 
         List<Map<String, Object>> products = payload.get("products");
         products.forEach(product -> {
-            System.out.println("Product Name: " + product.get("name"));
-            System.out.println("Quantity: " + product.get("quantity"));
-            System.out.println("Price: " + product.get("price"));
         });
         session.setAttribute("products",products); // 구매품목들을 세션에 저장
         return "상품정보를 저장함";

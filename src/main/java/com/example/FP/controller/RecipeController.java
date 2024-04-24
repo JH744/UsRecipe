@@ -43,8 +43,6 @@ public class RecipeController {
                              @RequestParam(required = false ) Long member_id,
                              HttpSession session){
 
-        System.out.println("전달받은 검색어:"+ keyword);
-
         // **정렬 및 카테고리 상태유지** //
         //category에 null이 아닌 새값이 전달된 경우 세션에 새롭게 저장.
         if(category != null) {
@@ -57,11 +55,7 @@ public class RecipeController {
         //sort에 null이 아닌 새값이 전달된 경우 세션에 새롭게 저장.
         if(sortBy != null) {
             session.setAttribute("sort", sortBy);
-            System.out.println("sortBy저장됨");
-            System.out.println(session.getAttribute("sort"));
             session.setAttribute("direction", direction);
-            System.out.println("direction저장됨");
-            System.out.println(session.getAttribute("direction"));
         }else {
             //sort가 null이면 기존session에서 값을 가져옴
             sortBy = (String) session.getAttribute("sort");
@@ -74,9 +68,6 @@ public class RecipeController {
         if (sortBy != null && !sortBy.isEmpty()) {  //정렬조건이 넘어 올 경우
             Sort.Direction Direction = (direction.equals("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC );
             pageable = PageRequest.of(page-1, 8, Direction, sortBy);
-            System.out.println("소트 뽑아봄");
-            System.out.println(sortBy);
-            System.out.println(pageable.getSort());
         } else {  // 정렬 방향이 지정되지 않았을 경우 기본값 사용
             pageable = PageRequest.of(page-1, 8);
         }
@@ -97,11 +88,9 @@ public class RecipeController {
         }
 
         if (member_id != null) {
-            System.out.println("아이디 들어옴");
             list = rs.listRecipes(keyword, category, member_id,pageable);
             totalPage = list.getTotalPages();
             for (Recipe l: list) {
-                System.out.println(l.getRecipeTitle());
             }
         }
 
@@ -115,7 +104,6 @@ public class RecipeController {
         long HowAboutToday ;
         List<Recipe> r_list = rs.randomList();
         if (r_list != null && !r_list.isEmpty()) {
-            System.out.println(rs.randomList().get(0).getRecipeTitle() + " 레피시 추천");
             model.addAttribute("HowAbout", r_list.get(0));
         } else {
             model.addAttribute("HowAbout", null);
@@ -126,8 +114,6 @@ public class RecipeController {
         //찜목록 top4를 불러옴
         List<Recipe> listTop4 = rs.listTop4();
         for (Recipe ls4: listTop4) {
-            System.out.println("랭킹4");
-            System.out.println(ls4);
         }
         model.addAttribute("listTop4", listTop4);
         return "/all/recipe";
@@ -162,7 +148,6 @@ public class RecipeController {
             jsonObject.addProperty("url", savedFileName);
             jsonObject.addProperty("responseCode", "success");
         } catch (Exception e) {
-            System.out.println("예외발생 : "+e.getMessage());
             jsonObject.addProperty("responseCode", "error");
         }
         Gson gson = new Gson();
@@ -178,11 +163,9 @@ public class RecipeController {
         try {
             for(String photoName : FileNameList){
                 File file = new File(fileRoot+"/"+photoName);
-                System.out.println(photoName);
                 file.delete();
             }
         } catch (Exception e) {
-            System.out.println("예외발생 : "+e.getMessage());
         }
     }
 
