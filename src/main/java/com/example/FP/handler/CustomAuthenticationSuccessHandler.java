@@ -38,7 +38,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                 response.sendRedirect("/admin/adminMember");
                 return;
             }
-            if (prevPage != null && !prevPage.isEmpty() && !prevPage.contains("join")) {
+            if (prevPage != null && !prevPage.isEmpty() && !prevPage.contains("join") && !prevPage.contains("find") && !prevPage.contains("admin") && !prevPage.contains("new")) {
                 // 이전 페이지로 리다이렉트
                 response.sendRedirect(prevPage);
                 return;
