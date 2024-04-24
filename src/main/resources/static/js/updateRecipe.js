@@ -72,7 +72,7 @@ function addIngredient(index) {
         "</button>" +
         "<input name=\"ingredientCategory\" class=\"ingredientCategory\" readonly='' value='-분류-' style='color:#898989'>" +
         "<input name=\"ingredientName\" class=\"ingredientName\" value='-재료명-' readonly='' style='color:#898989'>\n" +
-        "<input type=\"number\" class=\"ingredientQty form-control\" style=\"width:100px;\" placeholder=\"10(수량)\"/>\n" +
+        "<input type=\"text\" class=\"ingredientQty form-control\" style=\"width:100px;\" placeholder=\"10(수량)\"/>\n" +
         "<input type=\"text\" class=\"ingredientUnit form-control\" style=\"width:140px;\" placeholder=\"예) g,ml(단위)\"/>\n" +
         "<input type='hidden' name='ingredientId' class='ingredientId'>" +
         "<a  href='javascript:delIngredient(" + ingredientIndex + ")' class=\"btn-del\" style=''></a></li>"

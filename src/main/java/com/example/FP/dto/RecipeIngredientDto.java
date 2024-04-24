@@ -14,7 +14,7 @@ public class RecipeIngredientDto {
 
     private Long id;
 
-    private int recipe_ingredient_qty;
+    private String recipe_ingredient_qty;
     private String recipe_ingredient_need;
     private String recipe_ingredient_unit;
 
@@ -24,7 +24,7 @@ public class RecipeIngredientDto {
 
     private Ingredient recipe_ingredient_ingredient;
 
-    public RecipeIngredientDto(int recipe_ingredient_qty, String recipe_ingredient_need, Recipe recipe_ingredient_recipe, Ingredient recipe_ingredient_ingredient,String recipe_ingredient_unit) {
+    public RecipeIngredientDto(String recipe_ingredient_qty, String recipe_ingredient_need, Recipe recipe_ingredient_recipe, Ingredient recipe_ingredient_ingredient,String recipe_ingredient_unit) {
         this.recipe_ingredient_qty = recipe_ingredient_qty;
         this.recipe_ingredient_need = recipe_ingredient_need;
         this.recipe_ingredient_recipe = recipe_ingredient_recipe;
