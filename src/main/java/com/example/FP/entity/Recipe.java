@@ -28,7 +28,7 @@ public class Recipe {
     private int recipeViews;
 
     @Builder.Default
-    @OneToMany(mappedBy = "wishlistRecipe")
+    @OneToMany(mappedBy = "wishlistRecipe", cascade = CascadeType.REMOVE)
     private List<WishList> wishlistList = new ArrayList<>();
 
     @ManyToOne
@@ -44,11 +44,11 @@ public class Recipe {
     private List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "cartRecipe")
+    @OneToMany(mappedBy = "cartRecipe", cascade = CascadeType.REMOVE)
     private List<Cart> recipeCartList = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "replyRecipe")
+    @OneToMany(mappedBy = "replyRecipe", cascade = CascadeType.REMOVE)
     private List<Reply> recipeReplyList = new ArrayList<>();
 
     @Builder.Default
@@ -56,7 +56,7 @@ public class Recipe {
     private List<RecipeOrder> recipeRecipeOrderList = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "alarmRecipe")
+    @OneToMany(mappedBy = "alarmRecipe", cascade = CascadeType.REMOVE)
     private List<Alarm> recipeAlarm = new ArrayList<>();
 
 

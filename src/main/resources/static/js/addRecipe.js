@@ -66,7 +66,7 @@ function addIngredient() {
         "</button>" +
         "<input name=\"ingredientCategory\" class=\"ingredientCategory\" readonly='' value='-분류-' style='color:#898989'>" +
         "<input name=\"ingredientName\" class=\"ingredientName\" value='-재료명-' readonly='' style='color:#898989'>\n" +
-        "<input type=\"number\" class=\"ingredientQty form-control\" style=\"width:100px;\" placeholder=\"10(수량)\"/>\n" +
+        "<input type=\"text\" class=\"ingredientQty form-control\" style=\"width:100px;\" placeholder=\"10(수량)\"/>\n" +
         "<input type=\"text\" class=\"ingredientUnit form-control\" style=\"width:140px;\" placeholder=\"예) g,ml(단위)\"/>\n" +
         "<input type='hidden' name='ingredientId' class='ingredientId'>" +
         "<a  href='javascript:delIngredient(" + ingredientIndex + ")' class=\"btn-del\" style=''></a></li>"
@@ -223,7 +223,6 @@ function browseStepFile(idx) {
 var deleteFileNameList = []
 // 이미지 파일 삭제
 function deletePhotoFiles(deleteFileNameLists) {
-    console.log(deleteFileNameLists)
     $.ajax({
         data: JSON.stringify({deleteFileNameList:deleteFileNameLists}),
         type: "POST",
@@ -305,6 +304,7 @@ function doSubmit() {
         cancelButtonText: '취소'
     }).then((result) => {
         if (result.isConfirmed) {
+            var recipeUrl = $("#cok_video_url").val();
             var ingredientDataList = ingeredientData();
             var stepDataList = stepData();
             var recipeTitle = $("#recipe_title").val()
@@ -331,6 +331,7 @@ function doSubmit() {
                 return false;
             }
             var recipeData = {
+                recipeUrl:recipeUrl,
                 ingredientDataList: ingredientDataList,
                 stepDataList: stepDataList,
                 recipeTitle: recipeTitle,

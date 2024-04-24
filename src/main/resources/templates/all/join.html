@@ -223,7 +223,6 @@
                     url: "/id_check",    //해당 url로 데이터를 넘김
                     data: $('.field_id input').val(),
                     success: function (data) {
-                        console.log(data);
                         if (data == "fail") {
                             alert("이미 존재하는 아이디 입니다.");
                             $(".field_id .txt_guide .txt_case2").css('color', '#b3130b');
@@ -248,13 +247,11 @@
                 }
                 email_overlap_input = document.querySelector('input[name="email"]');
                 var email = encodeURIComponent($('#email').val())
-                console.log(email);
                 $.ajax({
                     type: "POST",
                     url: "/sendEmail",    //해당 url로 데이터를 넘김
                     data: email,
                     success: function (data) {
-                        console.log(data);
                         if (data['success'] == "fail") {
                             alert("이미 존재하는 이메일 입니다.");
                             email_overlap_input.focus();
@@ -279,13 +276,11 @@
                 }
                 nickname_overlap_input = document.querySelector('input[name="nickname"]');
                 var nickname = $('.field_nickname input').val();
-                console.log(nickname);
                 $.ajax({
                     type: "POST",
                     url: "/nickname_check",    //해당 url로 데이터를 넘김
                     data: nickname,
                     success: function (data) {
-                        console.log(data);
                         if (data == "fail") {
                             alert("이미 존재하는 닉네임 입니다.");
                             nickname_overlap_input.focus();
@@ -308,13 +303,11 @@
                 }
 
                 var authCode = $('#authCode').val();
-                console.log(authCode);
                 $.ajax({
                     type: "POST",
                     url: "/mailCheck",    //해당 url로 데이터를 넘김
                     data: authCode,
                     success: function (data) {
-                        console.log(data);
                         if (data == "fail") {
                             alert("인증번호가 틀렸습니다.");
                             auth_check = false;
@@ -498,7 +491,7 @@
                                                     10자 이상 입력
                                                 </span>
                                                 <span class="txt txt_case2">
-                                                    영문/숫자/특수문자(공백 제외)만 허용하며, 2개 이상 조합
+                                                    영문/숫자/특수문자(공백 제외)만 허용하며, 3개 이상 조합
                                                 </span>
                                             </p>
                                         </td>

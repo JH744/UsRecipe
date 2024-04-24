@@ -22,11 +22,9 @@ public class MailController {
     public HashMap<String, Object> mailSend(@RequestBody String email){
         HashMap<String, Object> map = new HashMap<>();
         String toEmail = email.replace("%40", "@").trim();
-        System.out.println("이메일중복 확인");
         Boolean res = memberService.findByEmail(toEmail);
         try {
             if (!res) {
-                System.out.println("성공");
                 number = mailService.sendMail(toEmail);
                 String num = String.valueOf(number);
                 map.put("success", "success");

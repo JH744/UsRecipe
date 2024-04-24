@@ -18,7 +18,7 @@ public class RecipeIngredient {
     @Column(name = "recipe_ingredient_id")
     private Long id;
 
-    private int recipeIngredientQty;
+    private String recipeIngredientQty;
     private String recipeIngredientNeed;
     private String recipeIngredientUnit;
 
@@ -30,7 +30,7 @@ public class RecipeIngredient {
     @JoinColumn(name = "ingredient_id")
     private Ingredient recipeIngredientIngredient;
 
-    public RecipeIngredient(int recipeIngredientQty, String recipeIngredientNeed, Recipe recipeIngredientRecipe, Ingredient recipeIngredientIngredient,String recipeIngredientUnit) {
+    public RecipeIngredient(String recipeIngredientQty, String recipeIngredientNeed, Recipe recipeIngredientRecipe, Ingredient recipeIngredientIngredient,String recipeIngredientUnit) {
         this.recipeIngredientQty = recipeIngredientQty;
         this.recipeIngredientNeed = recipeIngredientNeed;
         this.recipeIngredientRecipe = recipeIngredientRecipe;

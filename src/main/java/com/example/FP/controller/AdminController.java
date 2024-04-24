@@ -28,6 +28,9 @@ public class AdminController {
     private final InquiryService is;
     private final IngredientService igs;
     private final IngredientCategoryRepository ir;
+    private final RecipeService rs;
+    private final WishListService ws;
+    private final ReplyService ps;
 
     @GetMapping("/member")
     public String adminMemberForm(Model model){
@@ -50,6 +53,14 @@ public class AdminController {
         model.addAttribute("list",is.listById(id));
 
         return "/admin/adminInquiryDetail";
+    }
+    @GetMapping("/orderDetail/{id}")
+    public String orderDetail(Model model, @PathVariable Long id){
+
+        model.addAttribute("list",os.findByOrderId(id));
+
+        return "/admin/adminOrderListDetail";
+
     }
 
     @PostMapping("/inquiryDetail")
@@ -87,11 +98,10 @@ public class AdminController {
     }
 
 
-    @PostMapping("/addIngredient")
-    public String addIngredientForm(IngredientDto ingredientDto, HttpServletRequest request){
-        System.out.println(ingredientDto.getIngredient_detail());
-
+    @PostMapping("/saveIngredient")
+    public String saveIngredientForm(@ModelAttribute IngredientDto ingredientDto, HttpServletRequest request){
         MultipartFile uploadFile = ingredientDto.getUploadFile();
+
         String fileRoot = request.getServletContext().getRealPath("/ingredientImages");	//저장될 외부 파일 경로
         String fname = uploadFile.getOriginalFilename();
         Long categoryId = ingredientDto.getIngredient_ingredient_category().getId();
@@ -126,7 +136,6 @@ public class AdminController {
 
     @GetMapping("/orders/{state}")
     public String ordersList(Model model,@PathVariable String state){
-        System.out.println("전송받은 데이터 : " + state);
         if(state.equals("all")){
             model.addAttribute("list",os.findAll());
         }
@@ -137,18 +146,28 @@ public class AdminController {
         return "/admin/adminOrdersList";
     }
 
-    @GetMapping("/recipe")
-    public String recipeList(Model model){
-
-
-        return "/admin/adminRecipeList";
-    }
     @GetMapping("/cancelOrder/{id}")
     public String cancelOrder(@PathVariable Long id){
         os.changeState(id);
         return "redirect:/adminOrderList";
 
 
+    }
+
+    // admin
+    @GetMapping("/recipe")
+    public String adminRecipeList(Model model){
+        model.addAttribute("list", rs.findAll());
+
+        return "/admin/adminRecipeList";
+    }
+
+    // 관리자가 레시피 삭제
+    @GetMapping("/deleteRecipe/{id}")
+    public String adminDeleteRecipe(@PathVariable Long id) {
+        rs.deleteRecipe(id);
+
+        return "redirect:/admin/recipe";
     }
 
 

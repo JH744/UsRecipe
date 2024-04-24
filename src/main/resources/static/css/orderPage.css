@@ -18,6 +18,11 @@ a {
   text-decoration: none;
 }
 
+.overPoint {
+  color: #e27209;
+  display: none;
+}
+
 .orderTop {
   border-bottom: 3px solid #626161;
   overflow: hidden;
@@ -85,6 +90,14 @@ a {
 
 .nolook {
   display: none;
+}
+
+.itemQty {
+  border: none;
+  height: 34px;
+  width: 23px;
+  font-size: 16px;
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
 }
 
 .cartbox {

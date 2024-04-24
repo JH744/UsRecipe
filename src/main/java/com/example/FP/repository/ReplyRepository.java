@@ -2,6 +2,7 @@ package com.example.FP.repository;
 
 import com.example.FP.entity.Reply;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
@@ -13,4 +14,8 @@ public interface ReplyRepository extends JpaRepository<Reply,Long> {
 
     @Query(value = "select * from reply where ingredient_id=?1",nativeQuery = true)
     List<Reply> findAllByIngredientReply(Long ingredientId);
+
+    @Modifying
+    @Query(value = "delete from reply where ingredient_id=?1",nativeQuery = true)
+    void deleteAllByIngredientId(Long ingredient_id);
 }

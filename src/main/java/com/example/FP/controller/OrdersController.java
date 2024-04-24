@@ -2,7 +2,6 @@ package com.example.FP.controller;
 
 import com.example.FP.dto.OrdersDto;
 import com.example.FP.entity.Member;
-import com.example.FP.entity.OrderState;
 import com.example.FP.entity.Orders;
 import com.example.FP.entity.Point;
 import com.example.FP.mapper.OrdersMapper;
@@ -11,18 +10,15 @@ import com.example.FP.service.OrdersService;
 import com.example.FP.service.PointService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -37,7 +33,6 @@ public class OrdersController {
         //String id = "asd123"; // 임시 id
        String id = (String) session.getAttribute("userid");
        Member m =  ms.findById(id);
-        System.out.println("가져온 회원객체 :"+m);
 
         model.addAttribute("m", ms.findById(id));
 
@@ -46,8 +41,7 @@ public class OrdersController {
 
 
     @PostMapping("/orderOK")
-    public String orderOK(OrdersDto o, HttpSession session){
-        System.out.println("가져온 결제자명:" + o.getOrders_receiver());
+    public String orderOK(OrdersDto o, HttpSession session, Model model){
         // 현재 날짜와 시간을 가져옵니다.
         LocalDateTime currentDateTime = LocalDateTime.now();
         // 'yyyy-MM-dd'T'HH:mm' 형식의 포매터를 생성합니다.
@@ -67,12 +61,24 @@ public class OrdersController {
         ps.savePoint(point);
 
 
-
-
+        os.saveOrderDetails(session);
+         Member m=ms.findById((String) session.getAttribute("userid"));
+        model.addAttribute("userid",m.getId());
         return "/user/orderOK";
 
     }
 
+    //구매물품들의 상품명,수량,금액을 저장함
+    @ResponseBody
+    @PostMapping("/orderSave")
+    public String orderOK(@RequestBody Map<String, List<Map<String, Object>>> payload, HttpSession session){
+
+        List<Map<String, Object>> products = payload.get("products");
+        products.forEach(product -> {
+        });
+        session.setAttribute("products",products); // 구매품목들을 세션에 저장
+        return "상품정보를 저장함";
+    }
 
 
     @GetMapping("/orderList")
@@ -102,6 +108,13 @@ public class OrdersController {
     public String adminOrderList(Model model){
         model.addAttribute("list", os.findAll());
         return "/admin/adminOrdersList";
+    }
+    @GetMapping("/cancelOrder/{id}")
+    public String cancelOrder(@PathVariable Long id){
+        os.changeState(id);
+        return "redirect:/orderList";
+
+
     }
 
 

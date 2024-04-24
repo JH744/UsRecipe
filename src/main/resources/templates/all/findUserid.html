@@ -36,6 +36,10 @@
             })
         })
     </script>
+
+    <script th:if="${success != null}">
+        alert("이름과 이메일를 알맞게 입력해주세요");
+    </script>
 </head>
 <body>
 <div class="templateBody">
@@ -44,17 +48,17 @@
     </header>
     <div class="mainBody" style="margin-bottom: 200px">
         <div class=e138_572>
-                <div  class="e138_598" style="">
-                    계정정보 찾기
-                </div>
-                <div style="width: 100%">
-                    <button class=e138_612><span class="e138_613">아이디 찾기</span></button>
-                    <button class=e138_615><span class="e138_616">비밀번호 찾기</span></button>
-                </div>
-                    <div class=e138_631>
-                        <div class="e138_608"></div>
-                        <div class="e138_630"></div>
-                    </div>
+            <div  class="e138_598" style="">
+                계정정보 찾기
+            </div>
+            <div style="width: 100%">
+                <button class=e138_612><span class="e138_613">아이디 찾기</span></button>
+                <button class=e138_615><span class="e138_616">비밀번호 찾기</span></button>
+            </div>
+            <div class=e138_631>
+                <div class="e138_608"></div>
+                <div class="e138_630"></div>
+            </div>
 
             <form action="/all/findUserid" method="post">
                 <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">

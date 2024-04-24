@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -48,6 +50,7 @@ public class Orders {
 
     @Builder.Default
     @OneToMany(mappedBy = "pointOrders")
+    @Cascade(CascadeType.REMOVE)
     private List<Point> orderPointList = new ArrayList<>();
 
 

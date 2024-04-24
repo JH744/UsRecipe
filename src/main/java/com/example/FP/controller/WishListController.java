@@ -35,28 +35,25 @@ public class WishListController {
     public String deleteWishlist(@PathVariable Long id){
         ws.deleteWishlist(id);
 
-        return "redirect:/user/wishList";
+        return "redirect:/wishList";
     }
 
 
     @PostMapping("/addWish")
     @ResponseBody
-    public String addWish(Model model, @RequestParam ("Id") Long Id){
-        System.out.println("전달받은거:"+Id);
-        long memberId = 52; //임시 회원id
+    public String addWish(Model model, @RequestParam ("Id") Long Id,HttpSession session){
         // 찜목록에 이미 있는 지 조회
-        List<WishList> result =  ws.findById(Id,memberId);
+        List<WishList> result =  ws.findById(Id,session);
 
         String coment= "";
         // result가 비어있다면 위시리스트에 새로 저장함.
         if(result.isEmpty()){
-            ws.addWish(Id,memberId);
+            ws.addWish(Id,session);
             coment = "저장함";
         }else{
-            ws.deleteWish(memberId,Id);
+            ws.deleteWish(Id,session);
             coment ="삭제함";
         }
-        System.out.println(coment);
         return coment;
     }
 
@@ -64,18 +61,15 @@ public class WishListController {
 
     @PostMapping("/checkWish")
     @ResponseBody
-    public String checkWish(@RequestParam("Id") long Id){
-        System.out.println("확인할 id :"+Id);
-        long memberId = 52; //임시 회원id
+    public String checkWish(@RequestParam("Id") long Id, HttpSession session){
 
-        List<WishList> result =  ws.findById(Id,memberId);
+        List<WishList> result =  ws.findById(Id,session);
         String coment= "";
         if(result.isEmpty()){
             coment = "저장안됨";
         }else{
             coment ="저장됨";
         }
-        System.out.println(coment);
         return coment;
     }
 

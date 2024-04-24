@@ -44,6 +44,12 @@
     background-color: #D65454;
     border: none;
     width: 330px; height: 55px;
+    padding-top: 20px;
     cursor: pointer;
+    border-radius: 1px;
+    text-align: center;
+    box-sizing : border-box ;
 }
+
+
 

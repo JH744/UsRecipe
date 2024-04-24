@@ -60,6 +60,14 @@ public class RecipeService {
         return recipesList;
     }
 
+    //레시피 목록 카테고리+검색+ 페이지네이션 + 맴버id//
+    public Page<Recipe> listRecipes(String keyword,Long categoryId, Long memberId, Pageable pageable) {
+        Page<Recipe> recipesList =
+                rr.findByTitleContainingAndCategoryAndMemberId(keyword, categoryId, memberId,pageable);
+
+        return recipesList;
+    }
+
     //레시피 전체 목록 + 페이지네이션 + 검색
     public Page<Recipe> listAll(Pageable pageable, String keyword) {
         return rr.findByTitleContaining(keyword, pageable);
@@ -82,7 +90,6 @@ public class RecipeService {
         Random r = new Random();
         //랜덤으로 레시피를 하나 가져옴. (1부터 총갯수만큼)
         Long randomId = r.nextLong(totalRecipe +1 );
-        System.out.println("난수:"+randomId);
               Optional<Recipe> optional = rr.findById(randomId);
         Recipe recipe =optional.get();
             return recipe;
@@ -97,15 +104,15 @@ public class RecipeService {
 
 
     // 메인페이지 5개 보여줄 레시피
-    public List<Recipe> top5() {
-        return rr.findTop5ByOrderByRecipeViewsDesc();
+    public List<Recipe> top4() {
+        return rr.findTop4ByOrderByRecipeViewsDesc();
     }
 
     // 랜덤으로 레시피 5개 리턴
     public List<Recipe> randomList() {
         List<Recipe> list = rr.findAll();
         Collections.shuffle(list);
-        List<Recipe> randomRecipes = list.subList(0, Math.min(5, list.size()));
+        List<Recipe> randomRecipes = list.subList(0, Math.min(4, list.size()));
         return randomRecipes;
     }
 
@@ -127,6 +134,12 @@ public class RecipeService {
             List<Map<String, Object>> stepDataList = (List<Map<String, Object>>) jsonMap.get("stepDataList");
             String recipeThumbnail = jsonMap.get("recipeThumbnail").toString();
             String recipeTitle = jsonMap.get("recipeTitle").toString();
+            String recipeUrl = null;
+            if(jsonMap.get("recipeUrl")!=null){
+                if(!jsonMap.get("recipeUrl").toString().equals("")){
+                    recipeUrl=jsonMap.get("recipeUrl").toString();
+                }
+            }
             Long recipeCategoryId = Long.parseLong(jsonMap.get("recipeCategory").toString());
 //            update라면 해당 recipeId를 넣고 새로운 요리순서, 재료목록을 넣기위해 기존건 다 삭제해준다.
             if (jsonMap.get("recipeId") != null) {
@@ -139,7 +152,7 @@ public class RecipeService {
             }
             RecipeCategory recipeCategory = rcr.findById(recipeCategoryId).get();
 
-            recipeDto = new RecipeDto(recipeId, recipeTitle, member.getUserid(), null, recipeThumbnail, 0, recipeCategory, member);
+            recipeDto = new RecipeDto(recipeId, recipeTitle, member.getUserid(), recipeUrl, recipeThumbnail, 0, recipeCategory, member);
             Recipe recipe = RepiceMapper.toEntity(recipeDto);
             rr.save(recipe);
 
@@ -147,13 +160,12 @@ public class RecipeService {
                 Long ingredientId = Long.parseLong(i.get("recipeIngredientId").toString());
                 Ingredient ingredient = ir.findById(ingredientId).get();
                 RecipeIngredientDto rid = new RecipeIngredientDto(
-                        Integer.parseInt(i.get("recipeIngredientQty").toString()),
+                        i.get("recipeIngredientQty").toString(),
                         i.get("recipeIngredientNeed").toString(),
                         recipe,
                         ingredient,
                         i.get("recipeIngredientUnit").toString()
                 );
-                System.out.println(i.get("recipeIngredientNeed").toString()+"       재료이름");
                 RecipeIngredient recipeIngredient = RecipeIngredientMapper.toEntity(rid);
                 rir.save(recipeIngredient);
             }

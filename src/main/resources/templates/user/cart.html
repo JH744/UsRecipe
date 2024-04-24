@@ -20,14 +20,12 @@
                 var orderPrices = tr.find('.orderprice').map(function() {
                     return parseFloat($(this).text());  // 현재 요소의 텍스트를 숫자로 변환하여 반환
                 }).get();  // 수집된 요소를 실제 배열로 변환
-                console.log(orderPrices);
                 // 배열의 요소들을 합산
                 var totalPrice = orderPrices.reduce(function(sum, price) {
                     return sum + price;  // 각 요소를 합산
                 }, 0);  // 초기값을 0으로 설정
 
                 // 합산 결과를 콘솔에 출력
-                console.log("Total Price: " + totalPrice);
                 $('.orderPriceFt2').html(totalPrice + '원');
                 $('.point2').html(totalPrice/100 + '원') ;
             }
@@ -53,19 +51,16 @@
                         return $(this).text();
                     }).get();
                     // ajax로 상품명을 전송. 상품명과 로그인id가 일치하는 항목을 삭제함
-                    console.log("삭제버튼 실행 상품명들모아옴"+selectedItems);
                     $.ajax({
                         url: '/deleteCartItems',
                         type: 'POST', // HTTP 메소드
                         contentType: 'application/json', // 데이터 타입
                         data: JSON.stringify({ ingredientNames: selectedItems }), // 전송할 데이터
                         success: function(response) {
-                            console.log('서버 응답:', response);
                             // 페이지를 새로고침하거나 UI를 업데이트하여 삭제된 항목들을 반영
                             location.reload();
                         },
                         error: function(xhr, status, error) {
-                            console.error('에러 발생:', error);
                         }
                     });
 
@@ -76,11 +71,8 @@
             function CalcPriceAndQty() {
                 let price =parseFloat($(this).closest('tr').find('.ingPrice').text());
                 let qty = parseInt($(this).closest('tr').find('.inputQty').val(), 10);
-                console.log('qty:'+qty );
-                console.log('price:'+price );
 
                var orderPrice = price * qty;
-                console.log(orderPrice);
                 $(this).closest('tr').find('.orderprice').text(orderPrice);
 
 
@@ -136,10 +128,6 @@
                     return;
                 }
 
-                console.log('수집된 주문데이터:'+orderData);
-                console.log('수집된 총주문금액:'+orderData.totalPrice);
-                console.log('수집된 적립예정포인트:'+orderData.points);
-                console.log('수집된 상품명:'+orderData.items[0].name);
 
                 sessionStorage.setItem('orderData', JSON.stringify(orderData));
                 window.location.href = "/order";
@@ -234,7 +222,6 @@
 
 
 
-
                     </tbody>
                 </table>
                 <div class="deletebtnbox"> <button class="btnAllDelete" id="btnAllDelete">선택물품삭제</button></div>
@@ -249,7 +236,6 @@
                         <button class="btnDelete" id="btnCancel">취소</button><button class="btnDelete" id="btnDeleteOK">예</button>
                     </div>
                 </div>    
-
 
 
                 <button class="orderbtn">주문하기</button>

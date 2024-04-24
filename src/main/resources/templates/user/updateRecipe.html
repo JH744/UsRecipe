@@ -92,7 +92,6 @@
                                         th:text="${c.recipeCategoryName}" th:if="${c.id != recipe.recipeCategory.id}"></option>
                             </select>
                             <script th:inline="javascript">
-                                console.log([[${recipe.recipeCategory.id}]])
                                 $(".recipeCategoty").val([[${recipe.recipeCategory.id}]]).prop("selected", true)
                             </script>
 
@@ -125,7 +124,7 @@
                                         <input name="ingredientName" class="ingredientName" placeholder='-재료명-'
                                                readonly=''
                                                style='font-weight: bold' th:value="${r.recipeIngredientNeed}">
-                                        <input type="number" name="ingredientQty" class="ingredientQty form-control"
+                                        <input type="text" name="ingredientQty" class="ingredientQty form-control"
                                                style="width:100px;"
                                                placeholder="10(수량)" th:value="${r.recipeIngredientQty}"/>
                                         <input type="text" name="ingredientUnit" class="ingredientUnit form-control"

@@ -137,13 +137,11 @@
 
                 nickname_overlap_input = document.querySelector('input[name="nickname"]');
                 var nickname = $('.field_nickname input').val();
-                console.log(nickname);
                 $.ajax({
                     type: "POST",
                     url: "/nickname_check",    //해당 url로 데이터를 넘김
                     data: nickname,
                     success: function (data) {
-                        console.log(data);
                         if (data == "fail") {
                             alert("이미 존재하는 닉네임 입니다.");
                             nickname_overlap_input.focus();
@@ -225,7 +223,7 @@
                 }
 
 
-                if( $(".field_pw input")!=null){
+                if( $("#input_pw")==''){
                     if (on_pw_check() == check) {
                         event.preventDefault()
                         return false;
@@ -457,7 +455,7 @@
                                                         </th>
                                                         <td>
                                                             <input type="password"
-                                                                   name="password" option="regPass" onkeyup="pw_check()" maxlength="16" class="reg_pw bad" placeholder="비밀번호를 입력해주세요">
+                                                                   name="password" option="regPass" id="input_pw" onkeyup="pw_check()" maxlength="16" class="reg_pw bad" placeholder="비밀번호를 입력해주세요">
                                                             <p class="txt_guide square">
                                                 <span class="txt txt_case1">
                                                     10자 이상 입력

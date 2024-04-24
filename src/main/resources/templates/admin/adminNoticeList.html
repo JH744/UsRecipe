@@ -172,6 +172,13 @@
 
 
     </style>
+    <script>
+        $(function (){
+            $("#btn_insert").click(function (){
+                location.href = "/admin/noticeInsert";
+            })
+        })
+    </script>
 </head>
 <body>
 <div class="templateBody">
@@ -209,25 +216,18 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="list:${list}">
-                                    <td class="orderList_td"><a th:text="${list.id}" th:href="@{/noticeDetail/${list.id}}"></a></td>
-                                    <td class="orderList_td" th:text="${list.noticeTitle}"></td>
+                                    <td class="orderList_td" th:text="${list.id}"></td>
+                                    <td class="orderList_td" ><a th:text="${list.noticeTitle}" th:href="@{|/noticeDetail/${list.id}|}"></a></td>
                                     <td class="orderList_td" th:text="${list.noticeSubmitDate}"></td>
                                     <td class="orderList_td"><a th:href="@{|/admin/noticeDelete/${list.id}|}" th:text="삭제"></a></td>
                                 </tr>
 
                                 </tbody>
                             </table>
-
+                            <a href="/admin/noticeInsert" ><button style="height: 50px;width: 120px; margin-top: 30px; float: right; background: #D65454;border: none;color: white">공지사항 추가</button></a>
                         </div>
                         <!-- .container -->
-
-                        <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
                     </div>
-                    <!-- #page -->
-                    <script src='/js/jquery.js'></script>
-                    <script src='/js/plugins.js'></script>
-                    <script src='/js/scripts.js'></script>
-                    <script src='/js/masonry.pkgd.min.js'></script>
 
                     </body>
 

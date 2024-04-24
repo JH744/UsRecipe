@@ -198,7 +198,7 @@
                 </tr>
                 <tr style="border-bottom: none">
                     <td class="mypage_myinfo_td" th:text="${info.name}">김김김</td>
-                    <td class="mypage_myinfo_td" th:text="${info.point}">1000원</td>
+                    <td class="mypage_myinfo_td" th:text="${info.point}+'원'">1000원</td>
 
                 </tr>
             </table>
@@ -227,10 +227,10 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="list:${list}">
-                                    <td class="orderList_td" th:text="${list.getId()}">1</td>
-                                    <td class="orderList_td" th:text="${list.getOrdersContent()}">Otto</td>
-                                    <td class="orderList_td"><a th:text="${list.getOrdersSalePrice()}+'원'" th:href="@{|/orderDetail/${list.getId()}|}">10000원</a></td>
-                                    <td class="orderList_td" th:text="${list.getOrdersOrderState().toString() == 'ready' ? '주문대기' : list.getOrdersOrderState().toString() == 'done' ? '주문완료' : list.getOrdersOrderState().toString() == 'cancel' ? '주문취소' : ''}"></td>
+                                    <td class="orderList_td" style="color: black; font-family: Cafe24Dangdanghae; font-size: 16px;"  th:text="${list.getId()}">1</td>
+                                    <td class="orderList_td"><a th:href="@{|/orderDetail/${list.getId()}|}" th:text="${list.getOrdersContent()}" style="color: black; font-family: Cafe24Dangdanghae;font-size: 16px;"></a></td>
+                                    <td class="orderList_td"><a th:text="${list.getOrdersSalePrice()}+'원'" style="color: black; font-family: Cafe24Dangdanghae;font-size: 16px;">10000원</a></td>
+                                    <td class="orderList_td" style="color: black; font-family: Cafe24Dangdanghae; font-size: 16px;" th:text="${list.getOrdersOrderState().toString() == 'ready' ? '주문대기' : list.getOrdersOrderState().toString() == 'done' ? '주문완료' : list.getOrdersOrderState().toString() == 'cancel' ? '주문취소' : ''}"></td>
 
                                 </tr>
 

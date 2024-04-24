@@ -8,7 +8,9 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../../static/css/login.css">
-
+    <script th:if="${errorMessage != null}">
+        alert("아이디 또는 비밀번호가 올바르지 않습니다.")
+    </script>
 </head>
 <body>
 
