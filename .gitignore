@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+### IntelliJ IDEA ###
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### Eclipse ###
+=======
 HELP.md
 .gradle
 build/
@@ -6,6 +14,7 @@ build/
 !**/src/test/**/build/
 
 ### STS ###
+>>>>>>> origin/develop
 .apt_generated
 .classpath
 .factorypath
@@ -17,6 +26,8 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
+<<<<<<< HEAD
+=======
 
 ### IntelliJ IDEA ###
 .idea
@@ -27,6 +38,7 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
+>>>>>>> origin/develop
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -36,5 +48,11 @@ out/
 
 ### VS Code ###
 .vscode/
+<<<<<<< HEAD
+
+### Mac OS ###
+.DS_Store
+=======
 /src/test/java/resources/application.properties
 /src/test/resources/
+>>>>>>> origin/develop
