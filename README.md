@@ -1,6 +1,6 @@
 
 ## 🖥️ 프로젝트 소개
-SpringBoot-Project- 유스레시피 U's Recipe
+SpringBoot-Project- 유스레시피 U's Recipe<br>
 스프링 부트 + thymeleaf를 통한
 레시피조회, 재료구매 사이트
 
