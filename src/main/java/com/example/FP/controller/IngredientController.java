@@ -142,7 +142,7 @@ public class IngredientController {
             File file = new File(fileRoot+"/"+fname);
             file.delete();
         }catch (Exception e){
-            System.out.println(e.getMessage());
+//            System.out.println(e.getMessage());
         }
         ris.updateIngredientId(id);
         rs.deleteAllByIngredientId(id);

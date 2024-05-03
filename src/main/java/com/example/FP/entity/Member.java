@@ -114,7 +114,6 @@ public class Member {
     }
 
     public static Member createMember(MemberDto memberDto, PasswordEncoder passwordEncoder){
-        System.out.println("맴버 생성");
         Member member = Member.builder()
                 .userid(memberDto.getUserid())
                 .name(memberDto.getName())
@@ -131,7 +130,6 @@ public class Member {
         return member;
     }
     public static Member changeMember(MemberDto memberDto, PasswordEncoder passwordEncoder){
-        System.out.println("맴버 생성");
         Member member = Member.builder()
                 .id(memberDto.getId())
                 .userid(memberDto.getUserid())
@@ -149,7 +147,6 @@ public class Member {
     }
 
     public static Member createMember(MemberDto memberDto){
-        System.out.println("맴버 생성");
         Member member = Member.builder()
                 .userid(memberDto.getEmail())
                 .name(memberDto.getName())
@@ -172,14 +169,14 @@ public class Member {
     public void addPoint(Orders orders){
         int savedPoint = (int)Math.round(orders.getOrdersSalePrice()*0.01);
         this.point += savedPoint;
-        System.out.println(this.getUserid()+" 님의 포인트 "+savedPoint + "원이 적립되었습니다");
+//        System.out.println(this.getUserid()+" 님의 포인트 "+savedPoint + "원이 적립되었습니다");
 
     }
 
     public void usePoint(Orders orders){
         int usedPoint = orders.getOrdersUsedPoint();
         this.point-=usedPoint;
-        System.out.println(this.getUserid()+" 님의 포인트 "+usedPoint+"원이 사용되었습니다");
+//        System.out.println(this.getUserid()+" 님의 포인트 "+usedPoint+"원이 사용되었습니다");
     }
 
     public void changeMember(String password, String nickname, String addr){

@@ -79,7 +79,7 @@ public class IngredientService {
     }
 
     public void save(IngredientDto ingredientDto){
-        System.out.println("이게 재료 아이디 :  "+ingredientDto.getId());
+//        System.out.println("이게 재료 아이디 :  "+ingredientDto.getId());
         Ingredient ingredient = IngredientMapper.toEntity(ingredientDto);
         ir.save(ingredient);
     }

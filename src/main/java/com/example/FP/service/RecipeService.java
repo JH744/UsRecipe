@@ -217,7 +217,7 @@ public class RecipeService {
             File file = new File(fileRoot + recipe.getRecipeThumbnail().toString());
             file.delete();
         } catch (Exception e) {
-            System.out.println("레시피 삭제 사진 삭제 중 예외발생 : " + e.getMessage());
+//            System.out.println("레시피 삭제 사진 삭제 중 예외발생 : " + e.getMessage());
         }
         Long recipeIngredientId = rir.PreviousRecipeIngredientMaxId(recipeId);
         rir.deleteAllByPreviousRecipeIngredient(recipeId,recipeIngredientId);
